@@ -3,8 +3,10 @@
  */
 
 package com.mycompany.ecoproyecto;
-
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -25,5 +27,7 @@ public class Ecoproyecto {
         
         window.setLocationRelativeTo(null);
         window.setVisible(true);
+        
+        gamepanel.startGameThread();
     }
 }
