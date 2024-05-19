@@ -4,6 +4,7 @@
  */
 package ep.ecoproyecto;
 import Entidades.Jugador;
+import casillas.ManejadorCasillas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -31,7 +32,7 @@ public class PanelJuego extends JPanel implements Runnable{
     //Fps permitidos
     int fps=60;
     
-    
+    ManejadorCasillas manCas=new ManejadorCasillas(this);
     KeyHandler keyH= new KeyHandler();
     Thread gameThread;
     Jugador jugador= new Jugador(this,keyH);
@@ -111,7 +112,13 @@ public class PanelJuego extends JPanel implements Runnable{
         super.paintComponent(g);
         
         Graphics2D g2 = (Graphics2D)g; // estas dos clases son similares pero graphis2D tiene mas funciones para dibujar 
+
+        manCas.dibujar(g2);
+        
         jugador.draw(g2);
+        
+        
+        
         g2.dispose();
     }
     

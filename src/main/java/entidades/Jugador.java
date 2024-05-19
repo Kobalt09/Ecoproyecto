@@ -72,7 +72,7 @@ public class Jugador extends Entidad{
             direction="right";
             x+=vel;
         }
-        if (spriteCounter>1){
+        if (spriteCounter>10){
             if (spriteNum == 2 )
             {spriteNum=1;}
             else{
