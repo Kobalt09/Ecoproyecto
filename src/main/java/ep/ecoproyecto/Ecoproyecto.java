@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 //
-package com.mycompany.ecoproyecto;
+package ep.ecoproyecto;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JFrame;

@@ -5,8 +5,8 @@
 
 //
 package Entidades;
-import com.mycompany.ecoproyecto.GamePanel;
-import com.mycompany.ecoproyecto.KeyHandler;
+import ep.ecoproyecto.GamePanel;
+import ep.ecoproyecto.KeyHandler;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
