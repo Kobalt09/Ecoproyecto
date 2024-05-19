@@ -5,7 +5,7 @@
 
 //
 package Entidades;
-import ep.ecoproyecto.GamePanel;
+import ep.ecoproyecto.PanelJuego;
 import ep.ecoproyecto.KeyHandler;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -20,11 +20,11 @@ import javax.imageio.ImageIO;
  */
 public class Jugador extends Entidad{
     
-    GamePanel gp;
+    PanelJuego gp;
     KeyHandler keyH;
     String direction;
     
-    public Jugador(GamePanel gp, KeyHandler keyH){
+    public Jugador(PanelJuego gp, KeyHandler keyH){
         this.gp=gp;
         this.keyH=keyH;
         
@@ -137,6 +137,6 @@ public class Jugador extends Entidad{
        
         
        
-       g2.drawImage(image,x, y, gp.titleSize,gp.titleSize,null); 
+       g2.drawImage(image,x, y, gp.tamanioCasilla,gp.tamanioCasilla,null); 
     }
 }

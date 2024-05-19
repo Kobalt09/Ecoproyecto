@@ -15,19 +15,19 @@ import javax.swing.JPanel;
 public class Ecoproyecto {
 
     public static void main(String[] args) {
-        JFrame window= new JFrame();
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setResizable(false);
-        window.setTitle("Ecoproyecto");
+        JFrame ventana= new JFrame();
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setResizable(false);
+        ventana.setTitle("ECOPROYECTO");
+     
+        PanelJuego panelDeJuego= new PanelJuego();
+        ventana.add(panelDeJuego);
         
-        GamePanel gamepanel= new GamePanel();
-        window.add(gamepanel);
+        ventana.pack();
         
-        window.pack();
+        ventana.setLocationRelativeTo(null);
+        ventana.setVisible(true);
         
-        window.setLocationRelativeTo(null);
-        window.setVisible(true);
-        
-        gamepanel.startGameThread();
+        panelDeJuego.startGameThread();
     }
 }
