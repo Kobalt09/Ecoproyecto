@@ -5,8 +5,8 @@
 
 //
 package Entidades;
-import com.mycompany.ecoproyecto.GamePanel;
-import com.mycompany.ecoproyecto.KeyHandler;
+import ep.ecoproyecto.PanelJuego;
+import ep.ecoproyecto.KeyHandler;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -20,11 +20,11 @@ import javax.imageio.ImageIO;
  */
 public class Jugador extends Entidad{
     
-    GamePanel gp;
+    PanelJuego gp;
     KeyHandler keyH;
     String direction;
     
-    public Jugador(GamePanel gp, KeyHandler keyH){
+    public Jugador(PanelJuego gp, KeyHandler keyH){
         this.gp=gp;
         this.keyH=keyH;
         
@@ -35,7 +35,7 @@ public class Jugador extends Entidad{
     public void valoresporDefecto(){
         x=100;
         y=100;
-        vel=4;
+        vel=8;
         direction ="up"; 
     }
     public void getPlayerImage(){
@@ -72,7 +72,7 @@ public class Jugador extends Entidad{
             direction="right";
             x+=vel;
         }
-        if (spriteCounter>1){
+        if (spriteCounter>10){
             if (spriteNum == 2 )
             {spriteNum=1;}
             else{
@@ -137,6 +137,6 @@ public class Jugador extends Entidad{
        
         
        
-       g2.drawImage(image,x, y, gp.titleSize,gp.titleSize,null); 
+       g2.drawImage(image,x, y, gp.tamanioCasilla,gp.tamanioCasilla,null); 
     }
 }

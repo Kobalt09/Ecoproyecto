@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.ecoproyecto;
+package ep.ecoproyecto;
 import Entidades.Jugador;
+import casillas.ManejadorCasillas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -16,22 +17,22 @@ import javax.swing.JPanel;
  *
  * @author Cris
  */
-public class GamePanel extends JPanel implements Runnable{
+public class PanelJuego extends JPanel implements Runnable{
     //configuracion de pantalla
     
-    final int originalTileSize= 32; //dimenciones por defecto del jugador, NPC o mapa title 32x32
-    final int scale = 2; //escala los sprites de 32x32 a 64x64
+    final int tamanioCasillaOrig= 32; //dimenciones por defecto del jugador, NPC o mapa title 32x32
+    final int escala = 2; //escala los sprites de 32x32 a 64x64
     
-    public final int titleSize= originalTileSize*scale; //64x64 tlie
-    final int maxScreenCol= 16;
-    final int maxScreenRow = 10;
-    final int screenWidth=titleSize *maxScreenCol; // 1024
-    final int screenHeight=titleSize *maxScreenRow; // 768
+    public final int tamanioCasilla= tamanioCasillaOrig*escala; //64x64 tlie
+    public final int maxColumnas= 16;
+    public final int maxFilas = 10;
+    final int screenWidth=tamanioCasilla *maxColumnas; // 1024
+    final int screenHeight=tamanioCasilla *maxFilas; // 640
     
     //Fps permitidos
     int fps=60;
     
-    
+    ManejadorCasillas manCas=new ManejadorCasillas(this);
     KeyHandler keyH= new KeyHandler();
     Thread gameThread;
     Jugador jugador= new Jugador(this,keyH);
@@ -40,9 +41,9 @@ public class GamePanel extends JPanel implements Runnable{
     //Posicion por defecto del jugador
     int jugadorX=100;
     int jugadorY=100;
-    int vel_jugador=4;
+    int vel_jugador=8;
     
-    public GamePanel() {
+    public PanelJuego() {
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
@@ -96,7 +97,7 @@ public class GamePanel extends JPanel implements Runnable{
                 nextDrawTime+= drawInterval;
 
             } catch (InterruptedException ex) {
-                Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PanelJuego.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -111,7 +112,13 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(g);
         
         Graphics2D g2 = (Graphics2D)g; // estas dos clases son similares pero graphis2D tiene mas funciones para dibujar 
+
+        manCas.dibujar(g2);
+        
         jugador.draw(g2);
+        
+        
+        
         g2.dispose();
     }
     
