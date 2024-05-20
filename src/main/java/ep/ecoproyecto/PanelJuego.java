@@ -24,8 +24,8 @@ public class PanelJuego extends JPanel implements Runnable{
     final int escala = 2; //escala los sprites de 32x32 a 64x64
     
     public final int tamanioCasilla= tamanioCasillaOrig*escala; //64x64 tlie
-    final int maxColumnas= 16;
-    final int maxFilas = 10;
+    public final int maxColumnas= 16;
+    public final int maxFilas = 10;
     final int screenWidth=tamanioCasilla *maxColumnas; // 1024
     final int screenHeight=tamanioCasilla *maxFilas; // 640
     
@@ -41,7 +41,7 @@ public class PanelJuego extends JPanel implements Runnable{
     //Posicion por defecto del jugador
     int jugadorX=100;
     int jugadorY=100;
-    int vel_jugador=4;
+    int vel_jugador=8;
     
     public PanelJuego() {
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));

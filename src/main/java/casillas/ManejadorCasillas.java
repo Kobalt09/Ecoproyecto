@@ -6,7 +6,10 @@ package casillas;
 
 import ep.ecoproyecto.PanelJuego;
 import java.awt.Graphics2D;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import javax.imageio.ImageIO;
 
 /**
@@ -17,10 +20,16 @@ public class ManejadorCasillas {
     
     PanelJuego gp;
     Casilla[] casilla;
+    int numCasillaMapa[][];
 
     public ManejadorCasillas(PanelJuego gp) {
+        
         this.gp = gp;
+        
         casilla = new Casilla[10];
+        
+        numCasillaMapa= new int[gp.maxColumnas][gp.maxFilas];
+        cargarMapa();
         getImagenCasilla();
         
         
@@ -42,22 +51,63 @@ public class ManejadorCasillas {
         }
     
     }
-    
+    public void cargarMapa(){
+    try{
+        InputStream is = getClass().getResourceAsStream("/mapas/mapaprueba.txt");
+        BufferedReader br =new BufferedReader(new InputStreamReader(is));
+        
+        int colum=0;
+        int fila=0;
+        
+        while(colum < gp.maxColumnas && fila < gp.maxFilas){
+            
+       
+            String line= br.readLine();
+            
+            while(colum < gp.maxColumnas ){
+                String[] numeros = line.split(" ");
+                
+                int num = Integer.parseInt(numeros[colum]);
+                
+                numCasillaMapa[colum][fila]=num;
+                colum++;
+                
+                
+            }
+            if (colum==gp.maxColumnas){
+                colum=0;
+                fila++;
+            }
+        }
+        br.close();
+    }
+    catch (IOException e) {
+     
+    }
+    }
     public void dibujar(Graphics2D g2){
         int tamanio = 64;
         
-        g2.drawImage(casilla[0].imagen, 0, 0, gp.tamanioCasilla,gp.tamanioCasilla,null);
-        g2.drawImage(casilla[1].imagen, 1*tamanio, 0, gp.tamanioCasilla,gp.tamanioCasilla,null);
-        g2.drawImage(casilla[2].imagen, 2*tamanio, 0, gp.tamanioCasilla,gp.tamanioCasilla,null);
-        g2.drawImage(casilla[0].imagen, 3*tamanio, 0, gp.tamanioCasilla,gp.tamanioCasilla,null);
-        g2.drawImage(casilla[1].imagen, 4*tamanio, 0, gp.tamanioCasilla,gp.tamanioCasilla,null);
-        g2.drawImage(casilla[2].imagen, 5*tamanio, 0, gp.tamanioCasilla,gp.tamanioCasilla,null);
+        int columna=0;
+        int fila=0;
+        int x=0;
+        int y=0;
         
-        
-        
-        
-        
-        
+        while (columna < gp.maxColumnas && fila <gp.maxFilas){
+            
+            int numCasilla= numCasillaMapa[columna][fila];
+            
+            
+            g2.drawImage(casilla[numCasilla].imagen, x, y, gp.tamanioCasilla,gp.tamanioCasilla,null);
+            columna++;
+            x+=gp.tamanioCasilla;
+            if(columna==gp.maxColumnas){
+                columna=0;
+                x=0;
+                fila++;
+                y+=gp.tamanioCasilla;
+            }
+        }      
         
     }
 }
