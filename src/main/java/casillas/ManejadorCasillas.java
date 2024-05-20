@@ -29,7 +29,7 @@ public class ManejadorCasillas {
         casilla = new Casilla[10];
         
         numCasillaMapa= new int[gp.maxColumnas][gp.maxFilas];
-        cargarMapa();
+        cargarMapa("/mapas/mapaprueba.txt");
         getImagenCasilla();
         
         
@@ -51,9 +51,9 @@ public class ManejadorCasillas {
         }
     
     }
-    public void cargarMapa(){
+    public void cargarMapa(String direccion){
     try{
-        InputStream is = getClass().getResourceAsStream("/mapas/mapaprueba.txt");
+        InputStream is = getClass().getResourceAsStream(direccion);
         BufferedReader br =new BufferedReader(new InputStreamReader(is));
         
         int colum=0;
