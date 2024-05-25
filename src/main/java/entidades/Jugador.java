@@ -35,7 +35,7 @@ public class Jugador extends Entidad{
     public void valoresporDefecto(){
         x=510;
         y=320;
-        vel=8;
+        vel=4;
         direction ="up"; 
     }
     public void getPlayerImage(){

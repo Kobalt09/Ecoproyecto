@@ -28,13 +28,12 @@ public class Cliente implements Runnable {
     @Override
     public void run() {
         
-    final String HOST="25.62.204.159";
-    final int PUERTO = 5000;
+    final String HOST="2620:9b::193e:cc9f";
     DataInputStream in;
     DataOutputStream out;
         
         try {
-            Socket sc = new Socket(HOST, PUERTO);
+            Socket sc = new Socket(HOST, puerto);
             
             
             out=new DataOutputStream(sc.getOutputStream());

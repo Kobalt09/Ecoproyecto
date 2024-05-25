@@ -105,7 +105,7 @@ public class PanelJuego extends JPanel implements Runnable{
     public void update(){
        
         jugador.update();
-        manCas.actualizar(jugador.x,jugador.y,screenWidth, screenHeight);
+        manCas.actualizar(jugador,screenWidth, screenHeight);
         
     }
     @Override

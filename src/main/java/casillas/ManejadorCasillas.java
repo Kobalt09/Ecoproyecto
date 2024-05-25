@@ -4,6 +4,7 @@
  */
 package casillas;
 
+import Entidades.Jugador;
 import ep.ecoproyecto.PanelJuego;
 import java.awt.Graphics2D;
 import java.io.BufferedReader;
@@ -58,25 +59,25 @@ public class ManejadorCasillas {
             InputStream is = getClass().getResourceAsStream(direccion);
             BufferedReader br =new BufferedReader(new InputStreamReader(is));
         
-            int colum=0+dx;
-            int fila=0;
+            int colum=0+dx+8;
+            int fila=0+8;
         
-            while(colum < gp.maxColumnas+dx && fila < gp.maxFilas){
+            while(colum < gp.maxColumnas+dx+8 && fila < gp.maxFilas+8){
             
        
                 String line= br.readLine();
             
-                while(colum < gp.maxColumnas+dx ){
+                while(colum < gp.maxColumnas+dx+8 ){
                     String[] numeros = line.split(" ");
                 
                     int num = Integer.parseInt(numeros[colum]);
                 
-                    numCasillaMapa[colum-dx][fila]=num;
+                    numCasillaMapa[colum-dx-8][fila-8]=num;
                     colum++;    
                 }
                 
-                if (colum==gp.maxColumnas+dx){
-                    colum=0+dx;
+                if (colum==gp.maxColumnas+dx+8){
+                    colum=0+dx+8;
                     fila++;
                 }
             }
@@ -87,16 +88,19 @@ public class ManejadorCasillas {
         } 
     }
     
-    public void actualizar(int x,int y,int dimX,int dimY){
+    public void actualizar(Jugador jugador,int dimX,int dimY){
+          
+        int i=jugador.x/64; 
         
-        if (x<=dimX*1/3 ||x>=dimX*2/3){
-            
-        cargarMapa("/mapas/mapaprueba.txt",1,0);  
         
-        }else if (x<=dimY*1/3 ||x>=dimY*2/3){
+      
+        
+        cargarMapa("/mapas/mapaprueba.txt",i,0);  
+      
+         
             
         cargarMapa("/mapas/mapaprueba.txt",0,1);
-        }else cargarMapa("/mapas/mapaprueba.txt",0,0);  
+        cargarMapa("/mapas/mapaprueba.txt",i,0);  
         
     
     }
