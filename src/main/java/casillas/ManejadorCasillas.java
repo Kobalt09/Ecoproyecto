@@ -28,8 +28,8 @@ public class ManejadorCasillas {
         
         casilla = new Casilla[10];
         
-        numCasillaMapa= new int[gp.maxColumnas][gp.maxFilas];
-        cargarMapa("/mapas/mapaprueba.txt");
+        numCasillaMapa= new int[gp.maxColumnas+2][gp.maxFilas+2];
+        cargarMapa("/mapas/mapaprueba.txt",0,0);
         getImagenCasilla();
         
         
@@ -51,40 +51,56 @@ public class ManejadorCasillas {
         }
     
     }
-    public void cargarMapa(String direccion){
-    try{
-        InputStream is = getClass().getResourceAsStream(direccion);
-        BufferedReader br =new BufferedReader(new InputStreamReader(is));
+    public void cargarMapa(String direccion,int dx,int dy){
+        try{
+            
+            
+            InputStream is = getClass().getResourceAsStream(direccion);
+            BufferedReader br =new BufferedReader(new InputStreamReader(is));
         
-        int colum=0;
-        int fila=0;
+            int colum=0+dx;
+            int fila=0;
         
-        while(colum < gp.maxColumnas && fila < gp.maxFilas){
+            while(colum < gp.maxColumnas+dx && fila < gp.maxFilas){
             
        
-            String line= br.readLine();
+                String line= br.readLine();
             
-            while(colum < gp.maxColumnas ){
-                String[] numeros = line.split(" ");
+                while(colum < gp.maxColumnas+dx ){
+                    String[] numeros = line.split(" ");
                 
-                int num = Integer.parseInt(numeros[colum]);
+                    int num = Integer.parseInt(numeros[colum]);
                 
-                numCasillaMapa[colum][fila]=num;
-                colum++;
+                    numCasillaMapa[colum-dx][fila]=num;
+                    colum++;    
+                }
                 
-                
+                if (colum==gp.maxColumnas+dx){
+                    colum=0+dx;
+                    fila++;
+                }
             }
-            if (colum==gp.maxColumnas){
-                colum=0;
-                fila++;
-            }
-        }
         br.close();
-    }
-    catch (IOException e) {
+        }
+        catch (IOException e) {
      
+        } 
     }
+    
+    public void actualizar(int x,int y,int dimX,int dimY){
+        
+        if (x<=dimX*1/3 ||x>=dimX*2/3){
+            
+        cargarMapa("/mapas/mapaprueba.txt",1,0);  
+        
+        }else if (x<=dimY*1/3 ||x>=dimY*2/3){
+            
+        cargarMapa("/mapas/mapaprueba.txt",0,1);
+        }else cargarMapa("/mapas/mapaprueba.txt",0,0);  
+        
+    
     }
+    
     public void dibujar(Graphics2D g2){
         int tamanio = 64;
         
@@ -110,4 +126,5 @@ public class ManejadorCasillas {
         }      
         
     }
+    
 }

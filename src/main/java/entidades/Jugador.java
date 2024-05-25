@@ -33,8 +33,8 @@ public class Jugador extends Entidad{
     }
     
     public void valoresporDefecto(){
-        x=100;
-        y=100;
+        x=510;
+        y=320;
         vel=8;
         direction ="up"; 
     }
