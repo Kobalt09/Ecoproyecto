@@ -5,12 +5,13 @@
     <groupId>ep</groupId>    
     <modelVersion>4.0.0</modelVersion>
     <artifactId>Ecoproyecto</artifactId>
-    <version>3.6</version>
+    <version>3.9.6</version>
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.source>22</maven.compiler.source>
+        <maven.compiler.target>22</maven.compiler.target>
+        
         <exec.mainClass>ep.ecoproyecto.Ecoproyecto</exec.mainClass>
     </properties>
 </project>

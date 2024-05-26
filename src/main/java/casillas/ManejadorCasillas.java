@@ -4,6 +4,7 @@
  */
 package casillas;
 
+import Entidades.Jugador;
 import ep.ecoproyecto.PanelJuego;
 import java.awt.Graphics2D;
 import java.io.BufferedReader;
@@ -28,8 +29,8 @@ public class ManejadorCasillas {
         
         casilla = new Casilla[10];
         
-        numCasillaMapa= new int[gp.maxColumnas][gp.maxFilas];
-        cargarMapa("/mapas/mapaprueba.txt");
+        numCasillaMapa= new int[gp.maxColumnas+2][gp.maxFilas+2];
+        cargarMapa("/mapas/mapaprueba.txt",0,0);
         getImagenCasilla();
         
         
@@ -51,40 +52,59 @@ public class ManejadorCasillas {
         }
     
     }
-    public void cargarMapa(String direccion){
-    try{
-        InputStream is = getClass().getResourceAsStream(direccion);
-        BufferedReader br =new BufferedReader(new InputStreamReader(is));
+    public void cargarMapa(String direccion,int dx,int dy){
+        try{
+            
+            
+            InputStream is = getClass().getResourceAsStream(direccion);
+            BufferedReader br =new BufferedReader(new InputStreamReader(is));
         
-        int colum=0;
-        int fila=0;
+            int colum=0+dx+8;
+            int fila=0+8;
         
-        while(colum < gp.maxColumnas && fila < gp.maxFilas){
+            while(colum < gp.maxColumnas+dx+8 && fila < gp.maxFilas+8){
             
        
-            String line= br.readLine();
+                String line= br.readLine();
             
-            while(colum < gp.maxColumnas ){
-                String[] numeros = line.split(" ");
+                while(colum < gp.maxColumnas+dx+8 ){
+                    String[] numeros = line.split(" ");
                 
-                int num = Integer.parseInt(numeros[colum]);
+                    int num = Integer.parseInt(numeros[colum]);
                 
-                numCasillaMapa[colum][fila]=num;
-                colum++;
+                    numCasillaMapa[colum-dx-8][fila-8]=num;
+                    colum++;    
+                }
                 
-                
+                if (colum==gp.maxColumnas+dx+8){
+                    colum=0+dx+8;
+                    fila++;
+                }
             }
-            if (colum==gp.maxColumnas){
-                colum=0;
-                fila++;
-            }
-        }
         br.close();
-    }
-    catch (IOException e) {
+        }
+        catch (IOException e) {
      
+        } 
     }
+    
+    public void actualizar(Jugador jugador,int dimX,int dimY){
+          
+        int i=jugador.x/64; 
+        
+        
+      
+        
+        cargarMapa("/mapas/mapaprueba.txt",i,0);  
+      
+         
+            
+        cargarMapa("/mapas/mapaprueba.txt",0,1);
+        cargarMapa("/mapas/mapaprueba.txt",i,0);  
+        
+    
     }
+    
     public void dibujar(Graphics2D g2){
         int tamanio = 64;
         
@@ -110,4 +130,5 @@ public class ManejadorCasillas {
         }      
         
     }
+    
 }
