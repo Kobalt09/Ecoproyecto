@@ -4,6 +4,7 @@
  */
 package ep.ecoproyecto;
 
+import java.awt.Graphics2D;
 import objetos.ObjetoRecogible;
 
 /**
@@ -24,4 +25,9 @@ public class EmisorObjetos {
         gp.obj[0].posicionY=30;
     }
     
+    public void draw(Graphics2D g2){
+    
+        g2.drawImage(gp.obj[0].image,gp.obj[0].posicioX, gp.obj[0].posicionY, gp.tamanioCasilla,gp.tamanioCasilla,null); 
+    
+    }
 }

@@ -11,8 +11,10 @@ import java.awt.image.BufferedImage;
  * @author Cris
  */
 public class Objetosclase {
+    
     public BufferedImage image;
     public String nombre;
     public boolean colision=false;
     public int posicioX, posicionY;
+    
 }

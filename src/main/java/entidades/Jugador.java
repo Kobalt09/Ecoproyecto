@@ -35,8 +35,8 @@ public class Jugador extends Entidad{
     public void valoresporDefecto(){
         x=510;
         y=320;
-        xMapa=510;
-        yMapa=320;
+        xMapa=0;
+        yMapa=0;
         vel=4;
         direction ="up"; 
     }
@@ -149,9 +149,7 @@ public class Jugador extends Entidad{
             
         }
         
-       
-        
-       
+  
        g2.drawImage(image,x, y, gp.tamanioCasilla,gp.tamanioCasilla,null); 
     }
 }
