@@ -4,6 +4,9 @@
  */
 package objetos;
 
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
 /**
  *
  * @author Cris
@@ -12,6 +15,11 @@ public class ObjetoRecogible extends Objetosclase{
 
     public ObjetoRecogible() {
         this.nombre= "llave";
+        try{
+            image =ImageIO.read(getClass().getResourceAsStream("/objetos/llave1.png"));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
     
     

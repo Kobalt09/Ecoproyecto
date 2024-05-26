@@ -12,6 +12,7 @@ import java.awt.Graphics2D;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
+import objetos.Objetosclase;
 
 /**
  *
@@ -35,7 +36,11 @@ public class PanelJuego extends JPanel implements Runnable{
     ManejadorCasillas manCas=new ManejadorCasillas(this);
     KeyHandler keyH= new KeyHandler();
     Thread gameThread;
+    
+    EmisorObjetos objeto= new EmisorObjetos(this);
     Jugador jugador= new Jugador(this,keyH);
+    //arreglo con el total de objetos que se pueden mostrar al mismo tiempo
+    Objetosclase obj[]= new Objetosclase[10];
     
     
     //Posicion por defecto del jugador
