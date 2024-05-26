@@ -59,27 +59,37 @@ public class ManejadorCasillas {
             InputStream is = getClass().getResourceAsStream(direccion);
             BufferedReader br =new BufferedReader(new InputStreamReader(is));
         
-            int colum=0+dx+8;
-            int fila=0+8;
-        
-            while(colum < gp.maxColumnas+dx+8 && fila < gp.maxFilas+8){
+            int colum=0+dx+5; //el 5 es un numero random para mover el mapa
+            int fila=0;
+            
+            int auxfila=dy;
+            
+            while(colum < gp.maxColumnas+dx+5 && fila < gp.maxFilas){
             
        
                 String line= br.readLine();
-            
-                while(colum < gp.maxColumnas+dx+8 ){
+                
+                while(colum < gp.maxColumnas+dx+5 ){
                     String[] numeros = line.split(" ");
                 
                     int num = Integer.parseInt(numeros[colum]);
-                
-                    numCasillaMapa[colum-dx-8][fila-8]=num;
+                    
+                    if (auxfila==0) numCasillaMapa[colum-dx-5][fila]=num;                       
+                    
                     colum++;    
                 }
+                  if (colum==gp.maxColumnas+dx+5){
+                        colum=0+dx+5;
+                        if(auxfila==0)
+                        fila++;
+                    }
                 
-                if (colum==gp.maxColumnas+dx+8){
-                    colum=0+dx+8;
-                    fila++;
-                }
+                if (auxfila>0)
+                    auxfila--;
+                
+              
+                
+                
             }
         br.close();
         }
@@ -90,17 +100,37 @@ public class ManejadorCasillas {
     
     public void actualizar(Jugador jugador,int dimX,int dimY){
           
-        int i=jugador.x/64; 
+        int i=jugador.xMapa/64; 
+        int j=jugador.yMapa/64;
         
-        
-      
-        
-        cargarMapa("/mapas/mapaprueba.txt",i,0);  
-      
-         
+        if (jugador.x>dimX*2/3){
+            jugador.vel=0;
+            if ("left".equals(jugador.getDirection())) jugador.vel=4;
             
-        cargarMapa("/mapas/mapaprueba.txt",0,1);
-        cargarMapa("/mapas/mapaprueba.txt",i,0);  
+        } 
+        if (jugador.x<dimX*1/3){
+            jugador.vel=0;    
+            if ("right".equals(jugador.getDirection())) jugador.vel=4;
+        }
+          
+        
+        if (jugador.y>dimY*2/3){
+            jugador.vel=0;
+            if ("up".equals(jugador.getDirection())) jugador.vel=4;
+            
+        } 
+        if (jugador.y<dimY*1/3){
+            jugador.vel=0;    
+            if ("down".equals(jugador.getDirection())) jugador.vel=4;
+        }
+        
+        //BORDES DEL MAPA   
+        if (jugador.xMapa<0-(6*64)+5)jugador.xMapa+=16;
+        if (jugador.xMapa>dimX-(2*64)-5)jugador.xMapa-=16;
+        
+        if (jugador.yMapa<0)jugador.yMapa+=16;
+        if (jugador.yMapa>dimY-5)jugador.yMapa-=16;
+        cargarMapa("/mapas/mapaprueba.txt",i,j);  
         
     
     }
