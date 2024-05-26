@@ -38,6 +38,7 @@ public class PanelJuego extends JPanel implements Runnable{
     Thread gameThread;
     
     EmisorObjetos objeto= new EmisorObjetos(this);
+    
     Jugador jugador= new Jugador(this,keyH);
     //arreglo con el total de objetos que se pueden mostrar al mismo tiempo
     Objetosclase obj[]= new Objetosclase[10];
@@ -123,6 +124,9 @@ public class PanelJuego extends JPanel implements Runnable{
         
         jugador.draw(g2);
         
+        objeto.establecerObj();
+        
+        objeto.draw(g2);
         
         
         g2.dispose();
