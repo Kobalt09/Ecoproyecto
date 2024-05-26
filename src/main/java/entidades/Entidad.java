@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
  * @author Cris
  */
 public class Entidad {
-    public int x, y;
+    public int x, y,xMapa,yMapa;
     //vel= velocidad,
     public int vel;
     

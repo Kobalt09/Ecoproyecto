@@ -35,9 +35,16 @@ public class Jugador extends Entidad{
     public void valoresporDefecto(){
         x=510;
         y=320;
+        xMapa=510;
+        yMapa=320;
         vel=4;
         direction ="up"; 
     }
+
+    public String getDirection() {
+        return direction;
+    }
+    
     public void getPlayerImage(){
         try{
             //C:\Users\Cris\Documents\NetBeansProjects\Ecoproyecto\src\main\java\Player\jg_abj_01.png
@@ -62,16 +69,24 @@ public class Jugador extends Entidad{
         if(keyH.upPressed==true){
             direction="up";
             y-=vel;
+            yMapa-=4;
+            
         }else if(keyH.leftPressed==true){
             direction="left";
             x-=vel;
+            xMapa-=4;
+            
         }else if(keyH.downPressed==true){
             direction="down";
             y+=vel;
+            yMapa+=4;
+            
         }else if(keyH.rightPressed==true){
             direction="right";
             x+=vel;
+            xMapa+=4;
         }
+        
         if (spriteCounter>10){
             if (spriteNum == 2 )
             {spriteNum=1;}
