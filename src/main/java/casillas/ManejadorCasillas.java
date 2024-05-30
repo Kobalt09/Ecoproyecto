@@ -129,7 +129,7 @@ public class ManejadorCasillas {
         if (jugador.xMapa>dimX-(2*64)-5)jugador.xMapa-=16;        
         if (jugador.yMapa<0)jugador.yMapa+=16;
         if (jugador.yMapa>dimY-5)jugador.yMapa-=16;
-        
+       
         cargarMapa("/mapas/mapaprueba.txt",i,j);  
         
     
