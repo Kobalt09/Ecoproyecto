@@ -28,6 +28,7 @@ public class Ecoproyecto {
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
         
+        panelDeJuego.configuraciondejuego();
         panelDeJuego.startGameThread();
     }
 }

@@ -57,6 +57,10 @@ public class PanelJuego extends JPanel implements Runnable{
         this.setFocusable(true);
     }
     
+    public void configuraciondejuego(){
+        objeto.establecerObj();
+    }
+    
     public void startGameThread(){
         gameThread = new Thread(this);
         gameThread.start();
