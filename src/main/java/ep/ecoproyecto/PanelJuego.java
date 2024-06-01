@@ -15,9 +15,9 @@ import javax.swing.JPanel;
 import objetos.Objetosclase;
 
 /**
- *
  * @author Cris
  */
+
 public class PanelJuego extends JPanel implements Runnable{
     //configuracion de pantalla
     
@@ -34,6 +34,7 @@ public class PanelJuego extends JPanel implements Runnable{
     int fps=60;
     
     ManejadorCasillas manCas=new ManejadorCasillas(this);
+   
     KeyHandler keyH= new KeyHandler();
     Thread gameThread;
     
@@ -116,7 +117,6 @@ public class PanelJuego extends JPanel implements Runnable{
        
         jugador.update();
         manCas.actualizar(jugador,screenWidth, screenHeight);
-        
     }
     @Override
     public void paintComponent(Graphics g){
@@ -128,11 +128,8 @@ public class PanelJuego extends JPanel implements Runnable{
         
         jugador.draw(g2);
         
-        objeto.establecerObj();
-        
-        objeto.draw(g2);
-        
-        
+        objeto.draw(g2,jugador);
+
         g2.dispose();
     }
     

@@ -4,8 +4,12 @@
  */
 package ep.ecoproyecto;
 
+import Entidades.Jugador;
 import java.awt.Graphics2D;
+import objetos.ObjetoCofre;
+import objetos.ObjetoPuerta;
 import objetos.ObjetoRecogible;
+import objetos.Objetosclase;
 
 /**
  *
@@ -20,18 +24,27 @@ public class EmisorObjetos {
     }
     
     public void establecerObj(){
-        gp.obj[0]=new ObjetoRecogible();
-        gp.obj[0].posicioX=10*gp.tamanioCasilla;
-        gp.obj[0].posicionY=10*gp.tamanioCasilla;
+        gp.obj[0]=new ObjetoRecogible("llave",20*gp.tamanioCasilla,9*gp.tamanioCasilla,gp);
+        gp.obj[1]=new ObjetoRecogible("llave",5*gp.tamanioCasilla,7*gp.tamanioCasilla,gp);
+        gp.obj[2]=new ObjetoPuerta("puerta",7*gp.tamanioCasilla,5*gp.tamanioCasilla,gp);
+        gp.obj[3]=new ObjetoCofre("cofre",2*gp.tamanioCasilla,2*gp.tamanioCasilla,gp);
+    }
+    
+    public void draw(Graphics2D g2,Jugador jugador){
         
-        gp.obj[1]=new ObjetoRecogible();
-        gp.obj[1].posicioX=25*gp.tamanioCasilla;
-        gp.obj[1].posicionY=25*gp.tamanioCasilla;
-    }
+            for(int i=0;i<gp.obj.length;i++){
+                if((gp.obj[i]!=null)&&(gp.obj[i].posicioX>jugador.xMapa && gp.obj[i].posicioX <jugador.xMapa+this.gp.getWidth())){
+
+                    if(gp.obj[i].posicionY>jugador.yMapa && gp.obj[i].posicionY <jugador.yMapa+this.gp.getWidth()){
+
+                        g2.drawImage(gp.obj[i].image,gp.obj[i].posicioX-jugador.xMapa,  gp.obj[i].posicionY-jugador.yMapa, gp.tamanioCasilla,gp.tamanioCasilla,null);
+
+                    }
+               }
+            }
+            
+    }  
     
-    public void draw(Graphics2D g2){
-    
-        g2.drawImage(gp.obj[0].image,gp.obj[0].posicioX, gp.obj[0].posicionY, gp.tamanioCasilla,gp.tamanioCasilla,null); 
-    
-    }
+        
 }
+

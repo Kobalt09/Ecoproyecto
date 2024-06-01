@@ -18,30 +18,25 @@ public class Objetosclase {
     public String nombre;
     public boolean colision=false;
     public int posicioX, posicionY;
+    public PanelJuego gp;
+
+    public Objetosclase( String nombre, int posicioX, int posicionY, PanelJuego gp) {
+        
+        this.nombre = nombre;
+        this.posicioX = posicioX;
+        this.posicionY = posicionY;
+        this.gp = gp;
+    }
     
     
-    public void dibujar(Graphics2D g2, PanelJuego gp){
-        int tamanio = 64;
-        
-        int columna=0;
-        int fila=0;
-        int x=0;
-        int y=0;
-        
-        while (columna < gp.maxColumnas && fila <gp.maxFilas){
-            
-            int numCasilla= numCasillaMapa[columna][fila];
-            
-            
-            g2.drawImage(casilla[numCasilla].imagen, x, y, gp.tamanioCasilla,gp.tamanioCasilla,null);
-            columna++;
-            x+=gp.tamanioCasilla;
-            if(columna==gp.maxColumnas){
-                columna=0;
-                x=0;
-                fila++;
-                y+=gp.tamanioCasilla;
-            }
-        } 
+ 
+    public void draw(Graphics2D g2) {
+       // g2.setColor(Color.white);
+       // g2.fillRect(x, y, gp.titleSize, gp.titleSize);
+        image = null;  
+  
+       g2.drawImage(image,this.posicioX, this.posicionY, gp.tamanioCasilla,gp.tamanioCasilla,null); 
+    
     }
 }
+

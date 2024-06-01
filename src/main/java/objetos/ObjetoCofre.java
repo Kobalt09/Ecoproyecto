@@ -10,21 +10,16 @@ import javax.imageio.ImageIO;
 
 /**
  *
- * @author Cris
+ * @author fabif
  */
-public class ObjetoRecogible extends Objetosclase{
+public class ObjetoCofre extends Objetosclase{
 
-    public ObjetoRecogible(String nombre, int posicioX, int posicionY, PanelJuego gp) {
+    public ObjetoCofre(String nombre, int posicioX, int posicionY, PanelJuego gp) {
         super(nombre, posicioX, posicionY, gp);
-                 
-        
         try{
-            image =ImageIO.read(getClass().getResourceAsStream("/objetos/llave1.png"));
+            image =ImageIO.read(getClass().getResourceAsStream("/objetos/cofre1.png"));
         }catch(IOException e){
         
         }
     }
-    
-    
-    
 }
