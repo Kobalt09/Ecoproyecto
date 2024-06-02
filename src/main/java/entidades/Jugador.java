@@ -33,12 +33,10 @@ public class Jugador extends Entidad{
     }
     
     public void valoresporDefecto(){
-        x=510;
-        y=320;
         xMapa=0;
         yMapa=0;
         vel=4;
-        direction ="up"; 
+        direction ="down"; 
     }
 
     public String getDirection() {
@@ -68,23 +66,21 @@ public class Jugador extends Entidad{
         //actualizamos la posicion del jugador sumando o restando su velocidad
         if(keyH.upPressed==true){
             direction="up";
-            y-=vel;
-            yMapa-=4;
+            yMapa-=vel;
             
         }else if(keyH.leftPressed==true){
             direction="left";
-            x-=vel;
-            xMapa-=4;
+        
+            xMapa-=vel;
             
         }else if(keyH.downPressed==true){
             direction="down";
-            y+=vel;
-            yMapa+=4;
+          
+            yMapa+=vel;
             
         }else if(keyH.rightPressed==true){
-            direction="right";
-            x+=vel;
-            xMapa+=4;
+            direction="right";         
+            xMapa+=vel;
         }
         
         if (spriteCounter>10){
@@ -150,6 +146,6 @@ public class Jugador extends Entidad{
         }
         
   
-       g2.drawImage(image,x, y, gp.tamanioCasilla,gp.tamanioCasilla,null); 
+       g2.drawImage(image,gp.tamanioCasilla*gp.maxColumnas/2,gp.tamanioCasilla*gp.maxFilas/2, gp.tamanioCasilla,gp.tamanioCasilla,null); 
     }
 }
