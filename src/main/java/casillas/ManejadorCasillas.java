@@ -59,27 +59,29 @@ public class ManejadorCasillas {
             InputStream is = getClass().getResourceAsStream(direccion);
             BufferedReader br =new BufferedReader(new InputStreamReader(is));
         
-            int colum=0+dx+5; //el 5 es un numero random para mover el mapa
+            int colum=0+dx; 
             int fila=0;
             
             int auxfila=dy;
-            
-            while(colum < gp.maxColumnas+dx+5 && fila < gp.maxFilas){
+          
+            while(colum+1 < gp.maxColumnas+dx+2 && fila < gp.maxFilas+1){
             
        
                 String line= br.readLine();
                 
-                while(colum < gp.maxColumnas+dx+5 ){
+                while(colum < gp.maxColumnas+dx+1){
+                    
                     String[] numeros = line.split(" ");
-                
+                    
                     int num = Integer.parseInt(numeros[colum]);
                     
-                    if (auxfila==0) numCasillaMapa[colum-dx-5][fila]=num;                       
+                    if (auxfila==0) numCasillaMapa[colum-dx][fila]=num;                       
                     
                     colum++;    
                 }
-                  if (colum==gp.maxColumnas+dx+5){
-                        colum=0+dx+5;
+                
+                  if (colum==gp.maxColumnas+dx+1){
+                        colum=0+dx;
                         if(auxfila==0)
                         fila++;
                     }
@@ -94,7 +96,7 @@ public class ManejadorCasillas {
         br.close();
         }
         catch (IOException e) {
-     
+            
         } 
     }
     
@@ -102,63 +104,44 @@ public class ManejadorCasillas {
           
         int i=jugador.xMapa/64; 
         int j=jugador.yMapa/64;
-        
-        if (jugador.x>dimX*2/3){
-            jugador.vel=0;
-            if ("left".equals(jugador.getDirection())) jugador.vel=4;
-            
-        } 
-        if (jugador.x<dimX*1/3){
-            jugador.vel=0;    
-            if ("right".equals(jugador.getDirection())) jugador.vel=4;
-        }
-          
-        
-        if (jugador.y>dimY*2/3){
-            jugador.vel=0;
-            if ("up".equals(jugador.getDirection())) jugador.vel=4;
-            
-        } 
-        if (jugador.y<dimY*1/3){
-            jugador.vel=0;    
-            if ("down".equals(jugador.getDirection())) jugador.vel=4;
-        }
-        
+           
         //BORDES DEL MAPA   
-        if (jugador.xMapa<0-(6*64)+5)jugador.xMapa+=16;
-        if (jugador.xMapa>dimX-(2*64)-5)jugador.xMapa-=16;        
-        if (jugador.yMapa<0)jugador.yMapa+=16;
-        if (jugador.yMapa>dimY-5)jugador.yMapa-=16;
+        if (jugador.xMapa<0)jugador.xMapa+=4;
+        if (jugador.xMapa>gp.maxColumnas*gp.tamanioCasilla+150)jugador.xMapa-=4;        
+        if (jugador.yMapa<0)jugador.yMapa+=4;
+        if (jugador.yMapa>gp.maxFilas*gp.tamanioCasilla)jugador.yMapa-=4;
        
         cargarMapa("/mapas/mapaprueba.txt",i,j);  
         
     
     }
     
-    public void dibujar(Graphics2D g2){
+    public void dibujar(Graphics2D g2,int dx,int dy){
         int tamanio = 64;
         
         int columna=0;
         int fila=0;
         int x=0;
         int y=0;
+    
+        while (columna < gp.maxColumnas+1 && fila <gp.maxFilas+1){
         
-        while (columna < gp.maxColumnas && fila <gp.maxFilas){
+        int numCasilla= numCasillaMapa[columna][fila];
+
+            g2.drawImage(casilla[numCasilla].imagen, x-(dx%64), y-(dy%64), gp.tamanioCasilla,gp.tamanioCasilla,null);
             
-            int numCasilla= numCasillaMapa[columna][fila];
-            
-            
-            g2.drawImage(casilla[numCasilla].imagen, x, y, gp.tamanioCasilla,gp.tamanioCasilla,null);
             columna++;
+            
             x+=gp.tamanioCasilla;
-            if(columna==gp.maxColumnas){
+            
+            if(columna==gp.maxColumnas+1){
                 columna=0;
                 x=0;
                 fila++;
                 y+=gp.tamanioCasilla;
             }
         }      
-        
-    }
-    
+    }        
 }
+    
+

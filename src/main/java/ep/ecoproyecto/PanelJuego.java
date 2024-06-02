@@ -124,7 +124,7 @@ public class PanelJuego extends JPanel implements Runnable{
         
         Graphics2D g2 = (Graphics2D)g; // estas dos clases son similares pero graphis2D tiene mas funciones para dibujar 
 
-        manCas.dibujar(g2);
+        manCas.dibujar(g2,jugador.xMapa,jugador.yMapa);
         
         jugador.draw(g2);
         
