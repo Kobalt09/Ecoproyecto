@@ -4,6 +4,7 @@
  */
 package Entidades;
 
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 /**
@@ -20,4 +21,7 @@ public class Entidad {
     
     public int spriteCounter = 0 ;
     public int spriteNum = 1;
+    public Rectangle hitBox;
+    public boolean colision;
+    
 }
