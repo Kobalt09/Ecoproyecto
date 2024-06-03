@@ -10,6 +10,7 @@ import ep.ecoproyecto.KeyHandler;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -22,11 +23,18 @@ public class Jugador extends Entidad{
     
     PanelJuego gp;
     KeyHandler keyH;
-    String direction;
+ 
+    
     
     public Jugador(PanelJuego gp, KeyHandler keyH){
         this.gp=gp;
         this.keyH=keyH;
+        
+        hitBox=new Rectangle();
+        hitBox.x=0;
+        hitBox.y=0;
+        hitBox.height=32;
+        hitBox.width=32;
         
         valoresporDefecto();
         getPlayerImage();
@@ -66,23 +74,38 @@ public class Jugador extends Entidad{
         //actualizamos la posicion del jugador sumando o restando su velocidad
         if(keyH.upPressed==true){
             direction="up";
-            yMapa-=vel;
+         
             
         }else if(keyH.leftPressed==true){
             direction="left";
         
-            xMapa-=vel;
+        
             
         }else if(keyH.downPressed==true){
             direction="down";
           
-            yMapa+=vel;
+         
             
         }else if(keyH.rightPressed==true){
             direction="right";         
-            xMapa+=vel;
+            
         }
         
+        colision=false;
+        
+        gp.colisiones.revisarColision(this);
+        
+        if(colision==false){
+            //actualizamos la posicion del jugador sumando o restando su velocidad
+            switch(direction){    
+                case "up": yMapa-=vel; break;
+                case "left":xMapa-=vel; break;
+                case "down":yMapa+=vel; break;
+                case "right":xMapa+=vel; break;
+            } 
+        }    
+        
+        spriteCounter++;
         if (spriteCounter>10){
             if (spriteNum == 2 )
             {spriteNum=1;}
@@ -92,13 +115,11 @@ public class Jugador extends Entidad{
             }
             spriteCounter = 0;
         }
-        
-        } 
-        spriteCounter++;
-        
-        
-       
+            
+    }    
     }
+        
+        
     public void draw(Graphics2D g2){
         
        // g2.setColor(Color.white);

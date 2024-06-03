@@ -13,6 +13,6 @@ import java.awt.image.BufferedImage;
 public class Casilla {
     
      BufferedImage imagen;
-    boolean colision =false; 
+    public boolean colision =false; 
     
 }

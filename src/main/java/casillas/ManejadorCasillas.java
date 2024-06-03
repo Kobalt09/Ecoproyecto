@@ -20,8 +20,8 @@ import javax.imageio.ImageIO;
 public class ManejadorCasillas {
     
     PanelJuego gp;
-    Casilla[] casilla;
-    int numCasillaMapa[][];
+    public Casilla[] casilla;
+    public int numCasillaMapa[][];
 
     public ManejadorCasillas(PanelJuego gp) {
         
@@ -43,9 +43,10 @@ public class ManejadorCasillas {
             
             casilla[1]=new Casilla();
             casilla[1].imagen= ImageIO.read(getClass().getResource("/casillas/agua.png"));
-            
+            casilla[1].colision=true;
             casilla[2]=new Casilla();
             casilla[2].imagen= ImageIO.read(getClass().getResource("/casillas/pared.png"));
+            casilla[2].colision=false;
         }
         catch(IOException e){
             e.printStackTrace();

@@ -37,7 +37,7 @@ public class PanelJuego extends JPanel implements Runnable{
    
     KeyHandler keyH= new KeyHandler();
     Thread gameThread;
-    
+    public Colisionador colisiones =new Colisionador(this); 
     EmisorObjetos objeto= new EmisorObjetos(this);
     
     Jugador jugador= new Jugador(this,keyH);
