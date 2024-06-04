@@ -42,7 +42,7 @@ public class PanelJuego extends JPanel implements Runnable{
     
     Jugador jugador= new Jugador(this,keyH);
     //arreglo con el total de objetos que se pueden mostrar al mismo tiempo
-    Objetosclase obj[]= new Objetosclase[10];
+    public Objetosclase obj[]= new Objetosclase[10];
     
     
     //Posicion por defecto del jugador
@@ -126,10 +126,9 @@ public class PanelJuego extends JPanel implements Runnable{
 
         manCas.dibujar(g2,jugador.xMapa,jugador.yMapa);
         
-        jugador.draw(g2);
-        
         objeto.draw(g2,jugador);
-
+        
+        jugador.draw(g2);   
         g2.dispose();
     }
     

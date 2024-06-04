@@ -24,20 +24,21 @@ public class EmisorObjetos {
     }
     
     public void establecerObj(){
-        gp.obj[0]=new ObjetoRecogible("llave",20*gp.tamanioCasilla,9*gp.tamanioCasilla,gp);
+        //colocar objetos ("nombredelobj",poscionX en casillas, posicionY en casillas)
+        gp.obj[0]=new ObjetoRecogible("llave",13*gp.tamanioCasilla,6*gp.tamanioCasilla,gp);
         gp.obj[1]=new ObjetoRecogible("llave",5*gp.tamanioCasilla,7*gp.tamanioCasilla,gp);
-        gp.obj[2]=new ObjetoPuerta("puerta",7*gp.tamanioCasilla,5*gp.tamanioCasilla,gp);
+        gp.obj[2]=new ObjetoPuerta("puerta",10*gp.tamanioCasilla,5*gp.tamanioCasilla,gp);
         gp.obj[3]=new ObjetoCofre("cofre",2*gp.tamanioCasilla,2*gp.tamanioCasilla,gp);
     }
     
     public void draw(Graphics2D g2,Jugador jugador){
         
             for(int i=0;i<gp.obj.length;i++){
-                if((gp.obj[i]!=null)&&(gp.obj[i].posicioX>jugador.xMapa && gp.obj[i].posicioX <jugador.xMapa+this.gp.getWidth())){
+                if((gp.obj[i]!=null)&&(gp.obj[i].posicionX>jugador.xMapa && gp.obj[i].posicionX <jugador.xMapa+this.gp.getWidth())){
 
                     if(gp.obj[i].posicionY>jugador.yMapa && gp.obj[i].posicionY <jugador.yMapa+this.gp.getWidth()){
 
-                        g2.drawImage(gp.obj[i].image,gp.obj[i].posicioX-jugador.xMapa,  gp.obj[i].posicionY-jugador.yMapa, gp.tamanioCasilla,gp.tamanioCasilla,null);
+                        g2.drawImage(gp.obj[i].image,gp.obj[i].posicionX-jugador.xMapa,  gp.obj[i].posicionY-jugador.yMapa, gp.tamanioCasilla,gp.tamanioCasilla,null);
 
                     }
                }

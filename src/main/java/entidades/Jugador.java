@@ -36,6 +36,11 @@ public class Jugador extends Entidad{
         hitBox.height=32;
         hitBox.width=32;
         
+        //area solida
+        AreaX=hitBox.x;
+        AreaY=hitBox.y;
+        AreadefectoX=AreaX;
+        AreadefectoY=AreaY;
         valoresporDefecto();
         getPlayerImage();
     }
@@ -92,8 +97,12 @@ public class Jugador extends Entidad{
         }
         
         colision=false;
-        
         gp.colisiones.revisarColision(this);
+        
+        //chekeo colision con objteos
+        
+        int objindex= gp.colisiones.checkObjeto(this, true);
+        RecogerObjeto(objindex);
         
         if(colision==false){
             //actualizamos la posicion del jugador sumando o restando su velocidad
@@ -117,6 +126,13 @@ public class Jugador extends Entidad{
         }
             
     }    
+    }
+    
+    public void RecogerObjeto(int i){
+        if(i!=9999){
+            
+            gp.obj[i]=null;
+        }
     }
         
         

@@ -15,8 +15,8 @@ import javax.imageio.ImageIO;
  */
 public class ObjetoRecogible extends Objetosclase{
 
-    public ObjetoRecogible(String nombre, int posicioX, int posicionY, PanelJuego gp) {
-        super(nombre, posicioX, posicionY, gp);
+    public ObjetoRecogible(String nombre, int posicionX, int posicionY, PanelJuego gp) {
+        super(nombre, posicionX, posicionY, gp);
                  
         
         try{
@@ -24,6 +24,9 @@ public class ObjetoRecogible extends Objetosclase{
         }catch(IOException e){
         
         }
+        
+       colision=true;
+        
     }
     
     

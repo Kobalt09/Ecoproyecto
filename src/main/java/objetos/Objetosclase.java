@@ -6,6 +6,7 @@ package objetos;
 
 import ep.ecoproyecto.PanelJuego;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 /**
@@ -17,26 +18,31 @@ public class Objetosclase {
     public BufferedImage image;
     public String nombre;
     public boolean colision=false;
-    public int posicioX, posicionY;
+    public int posicionX, posicionY;
+    public Rectangle Areasolida= new Rectangle(0,0,32,32);
+    public int AreaobjX=0;
+    public int AreaobjY=0;
+    public int AreaobjdefectoX=0;
+    public int AreaobjdefectoY=0;
     public PanelJuego gp;
 
-    public Objetosclase( String nombre, int posicioX, int posicionY, PanelJuego gp) {
+    public Objetosclase( String nombre, int posicionX, int posicionY, PanelJuego gp) {
         
         this.nombre = nombre;
-        this.posicioX = posicioX;
+        this.posicionX = posicionX;
         this.posicionY = posicionY;
         this.gp = gp;
     }
     
     
- 
+    /*
     public void draw(Graphics2D g2) {
        // g2.setColor(Color.white);
        // g2.fillRect(x, y, gp.titleSize, gp.titleSize);
         image = null;  
   
-       g2.drawImage(image,this.posicioX, this.posicionY, gp.tamanioCasilla,gp.tamanioCasilla,null); 
+       g2.drawImage(image,this.posicionX, this.posicionY, gp.tamanioCasilla,gp.tamanioCasilla,null); 
     
-    }
+    }*/
 }
 
