@@ -88,7 +88,7 @@ public class Colisionador {
     }
     
     public int checkObjeto(Entidad entidad, boolean jugador){
-        int index=9999;
+        int index=999;
         
         for(int i=0;i<gp.obj.length;i++){
             if(gp.obj[i]!=null){
@@ -102,52 +102,55 @@ public class Colisionador {
                 gp.obj[i].AreaobjY=gp.obj[i].posicionY+gp.obj[i].AreaobjY;
                 
                 switch(entidad.direction){
-                    case"up":
+                    case"up":{
                         entidad.AreaY-=entidad.vel;
                         if(entidad.hitBox.intersects(gp.obj[i].Areasolida)){
                             if(gp.obj[i].colision==true){
-                                //entidad.colision=true;
+                                entidad.colision=true;
                             }
                             if(jugador ==true){
                                 index=i;
-                                
                             }
+                            System.out.println("up");
                         }
-                        break;
-                    case"down":
+                        break;}
+                    case"down":{
                         entidad.AreaY+=entidad.vel;
                         if(entidad.hitBox.intersects(gp.obj[i].Areasolida)){
                             if(gp.obj[i].colision==true){
-                                //entidad.colision=true;
+                                entidad.colision=true;
                             }
                             if(jugador ==true){
                                 index=i;
                             }
+                            System.out.println("down");
                         }
-                        break;
-                     case"left":
+                        break;}
+                     case"left":{
                         entidad.AreaX-=entidad.vel;
                         if(entidad.hitBox.intersects(gp.obj[i].Areasolida)){
                             if(gp.obj[i].colision==true){
-                                //entidad.colision=true;
-                            }
-                            if(jugador == true){
-                               // index=i;
-                            }
-                        }
-                        break;
-                    case"right":
-                        entidad.AreaX+=entidad.vel;
-                        if(entidad.hitBox.intersects(gp.obj[i].Areasolida)){
-                            if(gp.obj[i].colision==true){
-                               //a entidad.colision=true;
+                                entidad.colision=true;
                             }
                             if(jugador == true){
                                 index=i;
                             }
+                            System.out.println("left");
+                        }
+                        break;}
+                    case"right":{
+                        entidad.AreaX+=entidad.vel;
+                        if(entidad.hitBox.intersects(gp.obj[i].Areasolida)){
+                            if(gp.obj[i].colision==true){
+                               entidad.colision=true;
+                            }
+                            if(jugador == true){
+                                index=i;
+                            }
+                            System.out.println("right");
 
                         }
-                        break; 
+                        break; }
                 }
                 /*
                 entidad.AreaX=entidad.AreadefectoX;

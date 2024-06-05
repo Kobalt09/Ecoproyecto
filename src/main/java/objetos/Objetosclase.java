@@ -20,10 +20,10 @@ public class Objetosclase {
     public boolean colision=false;
     public int posicionX, posicionY;
     public Rectangle Areasolida= new Rectangle(0,0,32,32);
-    public int AreaobjX=0;
-    public int AreaobjY=0;
-    public int AreaobjdefectoX=0;
-    public int AreaobjdefectoY=0;
+    public int AreaobjX=Areasolida.x;
+    public int AreaobjY=Areasolida.y;
+    public int AreaobjdefectoX=Areasolida.x;
+    public int AreaobjdefectoY=Areasolida.y;
     public PanelJuego gp;
 
     public Objetosclase( String nombre, int posicionX, int posicionY, PanelJuego gp) {
@@ -35,14 +35,5 @@ public class Objetosclase {
     }
     
     
-    /*
-    public void draw(Graphics2D g2) {
-       // g2.setColor(Color.white);
-       // g2.fillRect(x, y, gp.titleSize, gp.titleSize);
-        image = null;  
-  
-       g2.drawImage(image,this.posicionX, this.posicionY, gp.tamanioCasilla,gp.tamanioCasilla,null); 
-    
-    }*/
 }
 

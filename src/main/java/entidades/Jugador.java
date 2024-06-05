@@ -101,8 +101,9 @@ public class Jugador extends Entidad{
         
         //chekeo colision con objteos
         
-        int objindex= gp.colisiones.checkObjeto(this, true);
-        RecogerObjeto(objindex);
+        //int objindex=
+        gp.colisiones.checkObjeto(this, true);
+        //RecogerObjeto(objindex);
         
         if(colision==false){
             //actualizamos la posicion del jugador sumando o restando su velocidad
@@ -129,7 +130,7 @@ public class Jugador extends Entidad{
     }
     
     public void RecogerObjeto(int i){
-        if(i!=9999){
+        if(i!=999){
             
             gp.obj[i]=null;
         }
