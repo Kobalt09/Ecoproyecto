@@ -25,7 +25,7 @@ public class ObjetoRecogible extends Objetosclase{
         
         }
         
-       colision=true;
+       colision=false;
         
     }
     

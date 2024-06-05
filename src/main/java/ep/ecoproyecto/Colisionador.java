@@ -106,7 +106,7 @@ public class Colisionador {
                         entidad.AreaY-=entidad.vel;
                         if(entidad.hitBox.intersects(gp.obj[i].Areasolida)){
                             if(gp.obj[i].colision==true){
-                                entidad.colision=true;
+                                //entidad.colision=true;
                             }
                             if(jugador ==true){
                                 index=i;
@@ -118,7 +118,7 @@ public class Colisionador {
                         entidad.AreaY+=entidad.vel;
                         if(entidad.hitBox.intersects(gp.obj[i].Areasolida)){
                             if(gp.obj[i].colision==true){
-                                entidad.colision=true;
+                                //entidad.colision=true;
                             }
                             if(jugador ==true){
                                 index=i;
@@ -129,10 +129,10 @@ public class Colisionador {
                         entidad.AreaX-=entidad.vel;
                         if(entidad.hitBox.intersects(gp.obj[i].Areasolida)){
                             if(gp.obj[i].colision==true){
-                                entidad.colision=true;
+                                //entidad.colision=true;
                             }
-                            if(jugador ==true){
-                                index=i;
+                            if(jugador == true){
+                               // index=i;
                             }
                         }
                         break;
@@ -140,20 +140,21 @@ public class Colisionador {
                         entidad.AreaX+=entidad.vel;
                         if(entidad.hitBox.intersects(gp.obj[i].Areasolida)){
                             if(gp.obj[i].colision==true){
-                                entidad.colision=true;
+                               //a entidad.colision=true;
                             }
-                            if(jugador ==true){
+                            if(jugador == true){
                                 index=i;
                             }
 
                         }
                         break; 
                 }
+                /*
                 entidad.AreaX=entidad.AreadefectoX;
                 entidad.AreaY=entidad.AreadefectoY;
                 
                 gp.obj[i].AreaobjX=gp.obj[i].AreaobjdefectoX;
-                gp.obj[i].AreaobjY=gp.obj[i].AreaobjdefectoY;
+                gp.obj[i].AreaobjY=gp.obj[i].AreaobjdefectoY;*/
             }
         }
         

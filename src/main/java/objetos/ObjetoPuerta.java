@@ -23,7 +23,7 @@ public class ObjetoPuerta extends Objetosclase{
         
         }
         
-        colision=true;
+        colision=false;
     }
     
 }

@@ -39,8 +39,8 @@ public class Jugador extends Entidad{
         //area solida
         AreaX=hitBox.x;
         AreaY=hitBox.y;
-        AreadefectoX=AreaX;
-        AreadefectoY=AreaY;
+        AreadefectoX=hitBox.x;
+        AreadefectoY=hitBox.y;
         valoresporDefecto();
         getPlayerImage();
     }
