@@ -14,6 +14,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import objetos.Objetosclase;
 
 /**
  *
@@ -23,7 +24,8 @@ public class Jugador extends Entidad{
     
     PanelJuego gp;
     KeyHandler keyH;
- 
+    Objetosclase inventario[]= new Objetosclase[10];
+    int llaves=0;
     
     
     public Jugador(PanelJuego gp, KeyHandler keyH){
@@ -31,18 +33,25 @@ public class Jugador extends Entidad{
         this.keyH=keyH;
         
         hitBox=new Rectangle();
+        //donde empiza la hitbox en relacion a la esquina superior
         hitBox.x=0;
         hitBox.y=0;
+        //tamanio de la hitbox
         hitBox.height=32;
         hitBox.width=32;
+        
+        //area de colision
+        areadefectoX=hitBox.x;
+        areadefectoY=hitBox.y;
+        
         
         valoresporDefecto();
         getPlayerImage();
     }
     
     public void valoresporDefecto(){
-        xMapa=0;
-        yMapa=0;
+        xMapa=6*gp.tamanioCasilla;
+        yMapa=6*gp.tamanioCasilla;
         vel=4;
         direction ="down"; 
     }
@@ -70,53 +79,87 @@ public class Jugador extends Entidad{
     }
     
     public void update(){
-        if (keyH.upPressed==true||keyH.leftPressed==true||keyH.downPressed==true||keyH.rightPressed==true){
-        //actualizamos la posicion del jugador sumando o restando su velocidad
-        if(keyH.upPressed==true){
-            direction="up";
-         
-            
-        }else if(keyH.leftPressed==true){
-            direction="left";
-        
-        
-            
-        }else if(keyH.downPressed==true){
-            direction="down";
-          
-         
-            
-        }else if(keyH.rightPressed==true){
-            direction="right";         
-            
-        }
-        
-        colision=false;
-        
-        gp.colisiones.revisarColision(this);
-        
-        if(colision==false){
+            if (keyH.upPressed==true||keyH.leftPressed==true||keyH.downPressed==true||keyH.rightPressed==true){
             //actualizamos la posicion del jugador sumando o restando su velocidad
-            switch(direction){    
-                case "up": yMapa-=vel; break;
-                case "left":xMapa-=vel; break;
-                case "down":yMapa+=vel; break;
-                case "right":xMapa+=vel; break;
-            } 
-        }    
-        
-        spriteCounter++;
-        if (spriteCounter>10){
-            if (spriteNum == 2 )
-            {spriteNum=1;}
-            else{
-            if (spriteNum == 1)
-            spriteNum=2;
+            if(keyH.upPressed==true){
+                direction="up";
+            }else if(keyH.leftPressed==true){
+                direction="left";
+            }else if(keyH.downPressed==true){
+                direction="down";
+            }else if(keyH.rightPressed==true){
+                direction="right";
             }
-            spriteCounter = 0;
-        }
+
+            colision=false;
+
+            gp.colisiones.revisarColision(this);
+
+            //colision con objetos (retornando el objeto con el que se choca)
+            int Index = gp.colisiones.chequeoObjetos(this, true);
+                recogerobjetos(Index);
+
+            if(colision==false){
+                //actualizamos la posicion del jugador sumando o restando su velocidad
+                switch(direction){    
+                    case "up": yMapa-=vel; break;
+                    case "left":xMapa-=vel; break;
+                    case "down":yMapa+=vel; break;
+                    case "right":xMapa+=vel; break;
+                } 
+            }    
+
+            spriteCounter++;
+            if (spriteCounter>10){
+                if (spriteNum == 2 )
+                {spriteNum=1;}
+                else{
+                if (spriteNum == 1)
+                spriteNum=2;
+                }
+                spriteCounter = 0;
+            }
+
+        }    
+    }
+    
+    public void recogerobjetos(int id){
+        if(id!=999){
             
-    }    
+            //usa el nombre del objeto para saber con cual objeto colisiona 
+            String objnombre=gp.obj[id].nombre;
+            
+            //switch para el nombre
+            //nota se puede usar un getclass para saber el tipo o usar 
+            switch(objnombre){
+                case "llave":
+                        llaves++;
+                        gp.obj[id]=null;
+                        System.out.println("llaves: "+llaves);
+                    break;
+                case "puerta":
+                        if(llaves>0){
+                            llaves--;
+                            gp.obj[id]=null;
+                            System.out.println("llaves: "+llaves);
+                        }else{
+                            System.out.println("no tienes llaves para esta puerta");
+                        }
+                    break;    
+                case "botas":
+                        if(this.inventario[0]==null){
+                            vel=vel+2;
+                            this.inventario[0]=gp.obj[id];
+                            
+                            gp.obj[id]=null;
+                        }
+                    break;
+                default:
+                    break;
+            }
+            
+        }
+        
     }
         
         
@@ -166,7 +209,11 @@ public class Jugador extends Entidad{
             
         }
         
-  
-       g2.drawImage(image,gp.tamanioCasilla*gp.maxColumnas/2,gp.tamanioCasilla*gp.maxFilas/2, gp.tamanioCasilla,gp.tamanioCasilla,null); 
+        g2.drawImage(image,gp.tamanioCasilla*xMapa,gp.tamanioCasilla*yMapa, gp.tamanioCasilla,gp.tamanioCasilla,null); 
+    
+       //g2.drawImage(image,gp.tamanioCasilla*gp.maxColumnas/2,gp.tamanioCasilla*gp.maxFilas/2, gp.tamanioCasilla,gp.tamanioCasilla,null); 
     }
+    
+    //los efectos de sonido deben estar en 32 bits 
+    
 }

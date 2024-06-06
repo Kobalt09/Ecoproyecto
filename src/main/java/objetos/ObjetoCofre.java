@@ -14,12 +14,14 @@ import javax.imageio.ImageIO;
  */
 public class ObjetoCofre extends Objetosclase{
 
-    public ObjetoCofre(String nombre, int posicioX, int posicionY, PanelJuego gp) {
-        super(nombre, posicioX, posicionY, gp);
+    public ObjetoCofre(String nombre, int posicionX, int posicionY, PanelJuego gp) {
+        super(nombre, posicionX, posicionY, gp);
         try{
             image =ImageIO.read(getClass().getResourceAsStream("/objetos/cofre1.png"));
         }catch(IOException e){
         
         }
+        
+        colision=true;
     }
 }

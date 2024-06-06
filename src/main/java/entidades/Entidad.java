@@ -13,7 +13,6 @@ import java.awt.image.BufferedImage;
  */
 public class Entidad {
     public int xMapa,yMapa;
-    //vel= velocidad,
     public int vel;
     
     public BufferedImage up1,up2,down1,down2,left1,left2,right1,right2;
@@ -22,6 +21,7 @@ public class Entidad {
     public int spriteCounter = 0 ;
     public int spriteNum = 1;
     public Rectangle hitBox;
+    public int areadefectoX, areadefectoY;
     public boolean colision;
     
 }

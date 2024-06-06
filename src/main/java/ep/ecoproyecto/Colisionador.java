@@ -88,8 +88,81 @@ public class Colisionador {
          
         }
         
-  
-      
-    
+
     }
+    
+    //chequeo de colision con objetos
+            public int chequeoObjetos(Entidad entidad, boolean jugador){
+            int id=999;
+            
+            for(int i=0;i<gp.obj.length;i++){
+                if(gp.obj[i]!=null){
+                    entidad.hitBox.x=entidad.xMapa+entidad.hitBox.x;
+                    entidad.hitBox.y=entidad.yMapa+entidad.hitBox.y;
+                    
+                    gp.obj[i].hitBox.x=gp.obj[i].posicionX+gp.obj[i].hitBox.x;
+                    gp.obj[i].hitBox.y=gp.obj[i].posicionY+gp.obj[i].hitBox.y;
+                
+                    
+                    switch (entidad.direction) {
+                        case "up":  
+                                entidad.hitBox.y-=entidad.vel;
+                                if(entidad.hitBox.intersects(gp.obj[i].hitBox)){
+                                    if(gp.obj[i].colision==true){
+                                        entidad.colision=true;
+                                    }
+                                    if(jugador==true){
+                                        id=i;
+                                    }
+                                    System.out.println("colision arriba");
+                                }
+                                
+                        break;
+                        case "left":
+                                entidad.hitBox.x-=entidad.vel;
+                                if(entidad.hitBox.intersects(gp.obj[i].hitBox)){
+                                    if(gp.obj[i].colision==true){
+                                        entidad.colision=true;
+                                    }
+                                    if(jugador==true){
+                                        id=i;
+                                    }
+                                    System.out.println("colision izquierda");
+                                }
+                        break;
+                        case "down":
+                                entidad.hitBox.y+=entidad.vel;
+                                if(entidad.hitBox.intersects(gp.obj[i].hitBox)){
+                                    if(gp.obj[i].colision==true){
+                                        entidad.colision=true;
+                                    }
+                                    if(jugador==true){
+                                        id=i;
+                                    }
+                                    System.out.println("colision abajo");
+                                }
+                        break;
+                        case "right":
+                                entidad.hitBox.x+=entidad.vel;
+                                if(entidad.hitBox.intersects(gp.obj[i].hitBox)){
+                                    if(gp.obj[i].colision==true){
+                                        entidad.colision=true;
+                                    }
+                                    if(jugador==true){
+                                        id=i;
+                                    }
+                                    System.out.println("colision derecha");
+                                }
+                        break;
+                    }
+                    entidad.hitBox.x=entidad.areadefectoX;
+                    entidad.hitBox.y=entidad.areadefectoY;
+                    gp.obj[i].hitBox.x=gp.obj[i].areadefectoX;
+                    gp.obj[i].hitBox.y=gp.obj[i].areadefectoY;
+                }
+                
+            }
+            
+            return id;
+        }
 }

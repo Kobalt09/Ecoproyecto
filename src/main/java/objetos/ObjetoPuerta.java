@@ -14,14 +14,17 @@ import javax.imageio.ImageIO;
  */
 public class ObjetoPuerta extends Objetosclase{
     
-    public ObjetoPuerta(String nombre, int posicioX, int posicionY, PanelJuego gp) {
-        super(nombre, posicioX, posicionY, gp);
+    public ObjetoPuerta(String nombre, int posicionX, int posicionY, PanelJuego gp) {
+        super(nombre, posicionX, posicionY, gp);
         
         try{
             image =ImageIO.read(getClass().getResourceAsStream("/objetos/puerta1.png"));
         }catch(IOException e){
             
         }
+        
+        colision=true;
+        
     }
     
 }
