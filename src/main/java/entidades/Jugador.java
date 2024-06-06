@@ -50,8 +50,8 @@ public class Jugador extends Entidad{
     }
     
     public void valoresporDefecto(){
-        xMapa=6*gp.tamanioCasilla;
-        yMapa=6*gp.tamanioCasilla;
+        xMapa=0;
+        yMapa=0;
         vel=4;
         direction ="down"; 
     }
@@ -209,9 +209,9 @@ public class Jugador extends Entidad{
             
         }
         
-        g2.drawImage(image,gp.tamanioCasilla*xMapa,gp.tamanioCasilla*yMapa, gp.tamanioCasilla,gp.tamanioCasilla,null); 
+       //    g2.drawImage(image,gp.tamanioCasilla*xMapa,gp.tamanioCasilla*yMapa, gp.tamanioCasilla,gp.tamanioCasilla,null); 
     
-       //g2.drawImage(image,gp.tamanioCasilla*gp.maxColumnas/2,gp.tamanioCasilla*gp.maxFilas/2, gp.tamanioCasilla,gp.tamanioCasilla,null); 
+       g2.drawImage(image,gp.tamanioCasilla*gp.maxColumnas/2,gp.tamanioCasilla*gp.maxFilas/2, gp.tamanioCasilla,gp.tamanioCasilla,null); 
     }
     
     //los efectos de sonido deben estar en 32 bits 

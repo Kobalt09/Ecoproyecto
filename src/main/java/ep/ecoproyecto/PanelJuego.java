@@ -44,11 +44,7 @@ public class PanelJuego extends JPanel implements Runnable{
     //arreglo con el total de objetos que se pueden mostrar al mismo tiempo
     public Objetosclase obj[]= new Objetosclase[10];
     
-    
-    //Posicion por defecto del jugador
-    int jugadorX=100;
-    int jugadorY=100;
-    int vel_jugador=8;
+   
     
     public PanelJuego() {
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));

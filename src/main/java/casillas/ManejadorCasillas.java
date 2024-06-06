@@ -43,10 +43,10 @@ public class ManejadorCasillas {
             
             casilla[1]=new Casilla();
             casilla[1].imagen= ImageIO.read(getClass().getResource("/casillas/agua.png"));
-            casilla[1].colision=true;
+            casilla[1].colision=false;
             casilla[2]=new Casilla();
             casilla[2].imagen= ImageIO.read(getClass().getResource("/casillas/pared.png"));
-            casilla[2].colision=false;
+            casilla[2].colision=true;
         }
         catch(IOException e){
             e.printStackTrace();
@@ -56,7 +56,7 @@ public class ManejadorCasillas {
     public void cargarMapa(String direccion,int dx,int dy){
         try{
             
-            
+            if(dx>=0 && dy>=0){
             InputStream is = getClass().getResourceAsStream(direccion);
             BufferedReader br =new BufferedReader(new InputStreamReader(is));
         
@@ -95,6 +95,7 @@ public class ManejadorCasillas {
                 
             }
         br.close();
+            }
         }
         catch (IOException e) {
             
@@ -106,11 +107,7 @@ public class ManejadorCasillas {
         int i=jugador.xMapa/64; 
         int j=jugador.yMapa/64;
            
-        //BORDES DEL MAPA   
-        if (jugador.xMapa<0)jugador.xMapa+=4;
-        if (jugador.xMapa>gp.maxColumnas*gp.tamanioCasilla+150)jugador.xMapa-=4;        
-        if (jugador.yMapa<0)jugador.yMapa+=4;
-        if (jugador.yMapa>gp.maxFilas*gp.tamanioCasilla)jugador.yMapa-=4;
+       
        
         cargarMapa("/mapas/mapaprueba.txt",i,j);  
         
