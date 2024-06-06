@@ -19,9 +19,8 @@ public class Objetosclase {
     public String nombre;
     public boolean colision=false;
     public int posicionX, posicionY;
-    public Rectangle Areasolida= new Rectangle(0,0,32,32);
-    public int AreaobjX=Areasolida.x;
-    public int AreaobjY=Areasolida.y;
+    public Rectangle Areasolida = new Rectangle(0,0,32,32);
+
     public int AreaobjdefectoX=Areasolida.x;
     public int AreaobjdefectoY=Areasolida.y;
     public PanelJuego gp;

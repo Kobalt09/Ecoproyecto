@@ -92,18 +92,15 @@ public class Colisionador {
         
         for(int i=0;i<gp.obj.length;i++){
             if(gp.obj[i]!=null){
-                //conseguir la posicion de la entidad
-                entidad.AreaX=entidad.xMapa+entidad.AreadefectoX;
-                entidad.AreaY=entidad.yMapa+entidad.AreadefectoY;
+                entidad.hitBox.x=entidad.xMapa+entidad.hitBox.x;
+                entidad.hitBox.y=entidad.yMapa+entidad.hitBox.y;
                 
-                
-                //conseguir el area
-                gp.obj[i].AreaobjX=gp.obj[i].posicionX+gp.obj[i].AreaobjX;
-                gp.obj[i].AreaobjY=gp.obj[i].posicionY+gp.obj[i].AreaobjY;
+                gp.obj[i].Areasolida.x=gp.obj[i].posicionX+gp.obj[i].Areasolida.x;
+                gp.obj[i].Areasolida.y=gp.obj[i].posicionY+gp.obj[i].Areasolida.y;
                 
                 switch(entidad.direction){
-                    case"up":{
-                        entidad.AreaY-=entidad.vel;
+                    case"up":
+                        entidad.hitBox.y-=entidad.vel;
                         if(entidad.hitBox.intersects(gp.obj[i].Areasolida)){
                             if(gp.obj[i].colision==true){
                                 entidad.colision=true;
@@ -113,9 +110,9 @@ public class Colisionador {
                             }
                             System.out.println("up");
                         }
-                        break;}
-                    case"down":{
-                        entidad.AreaY+=entidad.vel;
+                        break;
+                    case"down":
+                        entidad.hitBox.y+=entidad.vel;
                         if(entidad.hitBox.intersects(gp.obj[i].Areasolida)){
                             if(gp.obj[i].colision==true){
                                 entidad.colision=true;
@@ -125,9 +122,10 @@ public class Colisionador {
                             }
                             System.out.println("down");
                         }
-                        break;}
-                     case"left":{
-                        entidad.AreaX-=entidad.vel;
+                        
+                        break;
+                     case"left":
+                        entidad.hitBox.x-=entidad.vel;
                         if(entidad.hitBox.intersects(gp.obj[i].Areasolida)){
                             if(gp.obj[i].colision==true){
                                 entidad.colision=true;
@@ -137,9 +135,10 @@ public class Colisionador {
                             }
                             System.out.println("left");
                         }
-                        break;}
-                    case"right":{
-                        entidad.AreaX+=entidad.vel;
+                        
+                        break;
+                    case"right":
+                        entidad.hitBox.x+=entidad.vel;
                         if(entidad.hitBox.intersects(gp.obj[i].Areasolida)){
                             if(gp.obj[i].colision==true){
                                entidad.colision=true;
@@ -148,19 +147,17 @@ public class Colisionador {
                                 index=i;
                             }
                             System.out.println("right");
-
                         }
-                        break; }
+                        break; 
                 }
-                /*
-                entidad.AreaX=entidad.AreadefectoX;
-                entidad.AreaY=entidad.AreadefectoY;
+                entidad.hitBox.x=entidad.AreadefectoX;
+                entidad.hitBox.y=entidad.AreadefectoY;
                 
-                gp.obj[i].AreaobjX=gp.obj[i].AreaobjdefectoX;
-                gp.obj[i].AreaobjY=gp.obj[i].AreaobjdefectoY;*/
+                gp.obj[i].Areasolida.x=gp.obj[i].AreaobjdefectoX;
+                gp.obj[i].Areasolida.y=gp.obj[i].AreaobjdefectoY;
+                
             }
         }
-        
         return index;
     }
 }

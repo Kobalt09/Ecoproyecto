@@ -21,5 +21,6 @@ public class ObjetoCofre extends Objetosclase{
         }catch(IOException e){
         
         }
+        
     }
 }

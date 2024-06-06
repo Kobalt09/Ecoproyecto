@@ -23,8 +23,7 @@ public class Entidad {
     public int spriteNum = 1;
     public Rectangle hitBox;
     
-    public int AreaX,AreadefectoX;
-    public int AreaY,AreadefectoY;
+    public int AreadefectoX, AreadefectoY;
     public boolean colision=false;
     
 }
