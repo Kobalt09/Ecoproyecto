@@ -20,172 +20,55 @@ public class Colisionador {
         
         this.gp=gp;
     }
-    /*
+    
     public void revisarColision(Entidad entidad){
-        
-        int izqEntidad = entidad.xMapa+entidad.hitBox.x;
-        int derEntidad = entidad.xMapa+entidad.hitBox.x + entidad.hitBox.width;
-        int arrEntidad = entidad.yMapa+ entidad.hitBox.y;
-        int abjEntidad = entidad.yMapa+ entidad.hitBox.y+entidad.hitBox.height;
-    
-        int izqEntidadCol = izqEntidad/gp.tamanioCasilla;
-        int derEntidadCol = derEntidad/gp.tamanioCasilla;
-        int arrEntidadFila = arrEntidad/gp.tamanioCasilla;
-        int abjEntidadFila = abjEntidad/gp.tamanioCasilla;
-    
-        int numCas,numCas1,numCas2;
-        
-        switch(entidad.direction){
+            int posiciojugadorizquierda=entidad.xMapa+entidad.hitBox.x;
+            int posiciojugadorderecha=entidad.xMapa+entidad.hitBox.x+entidad.hitBox.width;
+            int posiciojugadorarriba=entidad.yMapa+entidad.hitBox.y;
+            int posiciojugadorabajo=entidad.yMapa+entidad.hitBox.y+entidad.hitBox.height;
             
-            case "up" -> {     
-                
-                arrEntidadFila =(arrEntidad + entidad.vel)/gp.tamanioCasilla;
-                numCas = gp.manCas.numCasillaMapa[8][4];
-                numCas1 = gp.manCas.numCasillaMapa[9][5];
-                numCas2 = gp.manCas.numCasillaMapa[10][4];
-                
-                if(gp.manCas.casilla[numCas1].colision == true ){
-                 
-                   
-                    
-                    
-                    entidad.colision=true;
-                }
-                 System.out.println(numCas+"  "+numCas1+"  "+numCas2);
-                break;
-            }
-            
-            case "down" -> {      
-                
-                abjEntidadFila =(abjEntidad + entidad.vel)/gp.tamanioCasilla;
-                numCas = gp.manCas.numCasillaMapa[8][6];
-                numCas1 = gp.manCas.numCasillaMapa[9][6];
-                numCas2 = gp.manCas.numCasillaMapa[10][6];
-                if(gp.manCas.casilla[numCas1].colision == true ){
-                    
-            
-                    
-                    entidad.colision=true;
-                }
-                             System.out.println(numCas+"  "+numCas1+"  "+numCas2);                      
-                break;
-            }
-            
-            case "left" ->  {     
-                
-                izqEntidadCol =(izqEntidad - entidad.vel)/gp.tamanioCasilla;
-                numCas = gp.manCas.numCasillaMapa[8][5];
-                numCas1 = gp.manCas.numCasillaMapa[8][5];
-                numCas2 = gp.manCas.numCasillaMapa[8][6];
-                if(gp.manCas.casilla[numCas1].colision == true ){
-                  
-                     
-                    entidad.colision=true;
-                }
-                 System.out.println(numCas+"  "+numCas1+"  "+numCas2);
-                break;
-            }
-            
-            case "right" -> {  
-                
-                derEntidadCol =(derEntidad - entidad.vel)/gp.tamanioCasilla;
-                numCas = gp.manCas.numCasillaMapa[9][4];
-                numCas1 = gp.manCas.numCasillaMapa[9][5];
-                numCas2 = gp.manCas.numCasillaMapa[9][6];
-                if(gp.manCas.casilla[numCas1].colision == true ||gp.manCas.casilla[numCas2].colision == true){
-                    
-                    entidad.colision=true;
-                }
-                
-                      System.out.println(numCas+"  "+numCas1+"  "+numCas2);
-                    
-                break;
-            }
-         
-        }
-        
-
+            int columizquierda=posiciojugadorizquierda/gp.tamanioCasilla;
+            int columderecha=posiciojugadorderecha/gp.tamanioCasilla;
+            int filaarriba=posiciojugadorarriba/gp.tamanioCasilla;
+            int filaabajo=posiciojugadorabajo/gp.tamanioCasilla;
+           
+            int casilla1, casilla2;
+                switch (entidad.direction) {
+                        case "up":  
+                            filaarriba=(posiciojugadorarriba-entidad.vel)/gp.tamanioCasilla;
+                            casilla1=gp.manCas.numCasillaMapa[columizquierda][filaarriba];
+                            casilla2=gp.manCas.numCasillaMapa[columderecha][filaarriba];
+                            if (gp.manCas.casilla[casilla1].colision==true ||gp.manCas.casilla[casilla2].colision==true){
+                                entidad.colision=true;
+                            }
+                            break;
+                        case "left":
+                            columizquierda=(posiciojugadorizquierda-entidad.vel)/gp.tamanioCasilla;
+                            casilla1=gp.manCas.numCasillaMapa[columizquierda][filaarriba];
+                            casilla2=gp.manCas.numCasillaMapa[columizquierda][filaabajo];
+                            if (gp.manCas.casilla[casilla1].colision==true ||gp.manCas.casilla[casilla2].colision==true){
+                                entidad.colision=true;
+                            }
+                        break;
+                        case "down":
+                            filaabajo=(posiciojugadorabajo+entidad.vel)/gp.tamanioCasilla;
+                            casilla1=gp.manCas.numCasillaMapa[columizquierda][filaabajo];
+                            casilla2=gp.manCas.numCasillaMapa[columderecha][filaabajo];
+                            if (gp.manCas.casilla[casilla1].colision==true ||gp.manCas.casilla[casilla2].colision==true){
+                                entidad.colision=true;
+                            }
+                        break;
+                        case "right":
+                            columderecha=(posiciojugadorderecha+entidad.vel)/gp.tamanioCasilla;
+                            casilla1=gp.manCas.numCasillaMapa[columderecha][filaarriba];
+                            casilla2=gp.manCas.numCasillaMapa[columderecha][filaabajo];
+                            if (gp.manCas.casilla[casilla1].colision==true ||gp.manCas.casilla[casilla2].colision==true){
+                                entidad.colision=true;
+                            }
+                        break;
+                    }
     }
-    */
-    /*
-    public void revisarColision(Entidad entidad){
-        
-        int PosicionX=entidad.xMapa+entidad.hitBox.x;
-        int PosicionY=entidad.yMapa+entidad.hitBox.y;
-
-        switch(entidad.direction){
-            case "up" -> {     
-                
-                numCas=gp
-                /*
-                arrEntidadFila =(arrEntidad + entidad.vel)/gp.tamanioCasilla;
-                numCas = gp.manCas.numCasillaMapa[8][4];
-                numCas1 = gp.manCas.numCasillaMapa[9][5];
-                numCas2 = gp.manCas.numCasillaMapa[10][4];
-                
     
-                
-                
-                
-                if(gp.manCas.casilla[numCas1].colision == true ){
-                    entidad.colision=true;
-                }
-                 System.out.println(numCas+"  "+numCas1+"  "+numCas2);
-                break;
-            }
-            
-            case "down" -> {      
-                
-                abjEntidadFila =(abjEntidad + entidad.vel)/gp.tamanioCasilla;
-                numCas = gp.manCas.numCasillaMapa[8][6];
-                numCas1 = gp.manCas.numCasillaMapa[9][6];
-                numCas2 = gp.manCas.numCasillaMapa[10][6];
-                if(gp.manCas.casilla[numCas1].colision == true ){
-                    
-            
-                    
-                    entidad.colision=true;
-                }
-                             System.out.println(numCas+"  "+numCas1+"  "+numCas2);                      
-                break;
-            }
-            
-            case "left" ->  {     
-                
-                izqEntidadCol =(izqEntidad - entidad.vel)/gp.tamanioCasilla;
-                numCas = gp.manCas.numCasillaMapa[8][5];
-                numCas1 = gp.manCas.numCasillaMapa[8][5];
-                numCas2 = gp.manCas.numCasillaMapa[8][6];
-                if(gp.manCas.casilla[numCas1].colision == true ){
-                  
-                     
-                    entidad.colision=true;
-                }
-                 System.out.println(numCas+"  "+numCas1+"  "+numCas2);
-                break;
-            }
-            
-            case "right" -> {  
-                
-                derEntidadCol =(derEntidad - entidad.vel)/gp.tamanioCasilla;
-                numCas = gp.manCas.numCasillaMapa[9][4];
-                numCas1 = gp.manCas.numCasillaMapa[9][5];
-                numCas2 = gp.manCas.numCasillaMapa[9][6];
-                if(gp.manCas.casilla[numCas1].colision == true ||gp.manCas.casilla[numCas2].colision == true){
-                    
-                    entidad.colision=true;
-                }
-                
-                      System.out.println(numCas+"  "+numCas1+"  "+numCas2);
-                    
-                break;
-            }
-         
-        }
-        
-        
-    
-    }*/
 
     
     
@@ -217,7 +100,7 @@ public class Colisionador {
                                     if(jugador==true){
                                         id=i;
                                     }
-                                    System.out.println("colision arriba");
+                                    System.out.println(gp.obj[i].nombre);
                                 }
                                 
                         break;
@@ -230,7 +113,7 @@ public class Colisionador {
                                     if(jugador==true){
                                         id=i;
                                     }
-                                    System.out.println("colision izquierda");
+                                    System.out.println(gp.obj[i].nombre);
                                 }
                         break;
                         case "down":
@@ -242,7 +125,7 @@ public class Colisionador {
                                     if(jugador==true){
                                         id=i;
                                     }
-                                    System.out.println("colision abajo");
+                                    System.out.println(gp.obj[i].nombre);
                                 }
                         break;
                         case "right":
@@ -254,7 +137,7 @@ public class Colisionador {
                                     if(jugador==true){
                                         id=i;
                                     }
-                                    System.out.println("colision derecha");
+                                    System.out.println(gp.obj[i].nombre);
                                 }
                         break;
                     }
@@ -269,90 +152,4 @@ public class Colisionador {
             return id;
         }
 
-    public void Colision2(Entidad entidad){
-        
-        int izqEntidad = entidad.xMapa+entidad.hitBox.x;
-        int derEntidad = entidad.xMapa+entidad.hitBox.x + entidad.hitBox.width;
-        int arrEntidad = entidad.yMapa+ entidad.hitBox.y;
-        int abjEntidad = entidad.yMapa+ entidad.hitBox.y+entidad.hitBox.height;
-    
-        int izqEntidadCol = izqEntidad/gp.tamanioCasilla;
-        int derEntidadCol = derEntidad/gp.tamanioCasilla;
-        int arrEntidadFila = arrEntidad/gp.tamanioCasilla;
-        int abjEntidadFila = abjEntidad/gp.tamanioCasilla;
-        
-      
-    
-        for(int i=0; i<gp.obj.length;i++){
-            int posiX=(gp.obj[i].posicionX-entidad.xMapa)/gp.tamanioCasilla;
-            int posiY=(gp.obj[i].posicionY-entidad.yMapa)/gp.tamanioCasilla;
-            
-                    int numCas,numCas1,numCas2;
-            switch(entidad.direction){
-                    case "up" -> {     
-
-                                    arrEntidadFila =(arrEntidad + entidad.vel)/gp.tamanioCasilla;
-                                    numCas = gp.manCas.numCasillaMapa[8][4];
-                                    numCas1 = gp.manCas.numCasillaMapa[9][5];
-                                    numCas2 = gp.manCas.numCasillaMapa[10][4];
-
-                                    if(gp.manCas.casilla[numCas1].colision == true ){
-                                        entidad.colision=true;
-                                    }
-                                     System.out.println(numCas+"  "+numCas1+"  "+numCas2);
-                                    break;
-                                }
-
-                                case "down" -> {      
-
-                                    abjEntidadFila =(abjEntidad + entidad.vel)/gp.tamanioCasilla;
-                                    numCas = gp.manCas.numCasillaMapa[8][6];
-                                    numCas1 = gp.manCas.numCasillaMapa[9][6];
-                                    numCas2 = gp.manCas.numCasillaMapa[10][6];
-                                    if(gp.manCas.casilla[numCas1].colision == true ){
-
-
-
-                                        entidad.colision=true;
-                                    }
-                                                 System.out.println(numCas+"  "+numCas1+"  "+numCas2);                      
-                                    break;
-                                }
-
-                                case "left" ->  {     
-
-                                    izqEntidadCol =(izqEntidad - entidad.vel)/gp.tamanioCasilla;
-                                    numCas = gp.manCas.numCasillaMapa[8][5];
-                                    numCas1 = gp.manCas.numCasillaMapa[8][5];
-                                    numCas2 = gp.manCas.numCasillaMapa[8][6];
-                                    if(gp.manCas.casilla[numCas1].colision == true ){
-
-
-                                        entidad.colision=true;
-                                    }
-                                     System.out.println(numCas+"  "+numCas1+"  "+numCas2);
-                                    break;
-                                }
-
-                                case "right" -> {  
-
-                                    derEntidadCol =(derEntidad - entidad.vel)/gp.tamanioCasilla;
-                                    numCas = gp.manCas.numCasillaMapa[9][4];
-                                    numCas1 = gp.manCas.numCasillaMapa[9][5];
-                                    numCas2 = gp.manCas.numCasillaMapa[9][6];
-                                    if(gp.manCas.casilla[numCas1].colision == true ||gp.manCas.casilla[numCas2].colision == true){
-
-                                        entidad.colision=true;
-                                    }
-
-                                          System.out.println(numCas+"  "+numCas1+"  "+numCas2);
-
-                                    break;
-                                }
-
-                            }
-        
-        }
-
-    }
 }

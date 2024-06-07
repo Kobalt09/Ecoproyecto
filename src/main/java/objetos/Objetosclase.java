@@ -20,7 +20,7 @@ public class Objetosclase {
     public boolean colision=false;
     public int posicionX, posicionY;
     public PanelJuego gp;
-    public Rectangle hitBox= new Rectangle(0,0,32,32);
+    public Rectangle hitBox= new Rectangle(0,0,64,64);
     public int areadefectoX=hitBox.x;
     public int  areadefectoY=hitBox.y;
     
@@ -37,8 +37,7 @@ public class Objetosclase {
     
  
     public void draw(Graphics2D g2) {
-       // g2.setColor(Color.white);
-       // g2.fillRect(x, y, gp.titleSize, gp.titleSize);
+        
         image = null;
   
        g2.drawImage(image,this.posicionX, this.posicionY, gp.tamanioCasilla,gp.tamanioCasilla,null); 

@@ -24,6 +24,9 @@ public class Jugador extends Entidad{
     
     PanelJuego gp;
     KeyHandler keyH;
+    public final int pantallaX;
+    public final int pantallaY;
+    
     Objetosclase inventario[]= new Objetosclase[10];
     int llaves=0;
     
@@ -32,13 +35,16 @@ public class Jugador extends Entidad{
         this.gp=gp;
         this.keyH=keyH;
         
+        pantallaX=gp.screenWidth/2-(gp.tamanioCasilla/2);
+        pantallaY=gp.screenHeight/2-(gp.tamanioCasilla/2);
+        
         hitBox=new Rectangle();
         //donde empiza la hitbox en relacion a la esquina superior
-        hitBox.x=0;
-        hitBox.y=0;
+        hitBox.x=8;
+        hitBox.y=8;
         //tamanio de la hitbox
-        hitBox.height=32;
-        hitBox.width=32;
+        hitBox.height=48;
+        hitBox.width=48;
         
         //area de colision
         areadefectoX=hitBox.x;
@@ -50,8 +56,10 @@ public class Jugador extends Entidad{
     }
     
     public void valoresporDefecto(){
-        xMapa=0;
-        yMapa=0;
+        
+        //posicion del jugador en el arreglo +1,
+        xMapa=3*gp.tamanioCasilla+gp.tamanioCasilla;
+        yMapa=3*gp.tamanioCasilla+gp.tamanioCasilla;
         vel=4;
         direction ="down"; 
     }
@@ -79,7 +87,7 @@ public class Jugador extends Entidad{
     }
     
     public void update(){
-            if (keyH.upPressed==true||keyH.leftPressed==true||keyH.downPressed==true||keyH.rightPressed==true){
+        if (keyH.upPressed==true||keyH.leftPressed==true||keyH.downPressed==true||keyH.rightPressed==true){
             //actualizamos la posicion del jugador sumando o restando su velocidad
             if(keyH.upPressed==true){
                 direction="up";
@@ -90,24 +98,29 @@ public class Jugador extends Entidad{
             }else if(keyH.rightPressed==true){
                 direction="right";
             }
-
+            
             colision=false;
-
             gp.colisiones.revisarColision(this);
-
-            //colision con objetos (retornando el objeto con el que se choca)
-            int Index = gp.colisiones.chequeoObjetos(this, true);
-                recogerobjetos(Index);
-
+            
+            int objID=gp.colisiones.chequeoObjetos(this, true);
+            recogerobjetos(objID);
+            
             if(colision==false){
-                //actualizamos la posicion del jugador sumando o restando su velocidad
-                switch(direction){    
-                    case "up": yMapa-=vel; break;
-                    case "left":xMapa-=vel; break;
-                    case "down":yMapa+=vel; break;
-                    case "right":xMapa+=vel; break;
-                } 
-            }    
+                switch (direction) {
+                        case "up":
+                            yMapa-=vel;
+                            break;
+                        case "left":
+                            xMapa-=vel;
+                        break;
+                        case "down":
+                            yMapa+=vel;
+                        break;
+                        case "right":
+                            xMapa+=vel;
+                        break;
+                    }
+            }
 
             spriteCounter++;
             if (spriteCounter>10){
@@ -124,13 +137,14 @@ public class Jugador extends Entidad{
     }
     
     public void recogerobjetos(int id){
+        
         if(id!=999){
-            
             //usa el nombre del objeto para saber con cual objeto colisiona 
             String objnombre=gp.obj[id].nombre;
             
             //switch para el nombre
             //nota se puede usar un getclass para saber el tipo o usar 
+            System.out.println(gp.obj[id].nombre);
             switch(objnombre){
                 case "llave":
                         llaves++;
@@ -153,8 +167,6 @@ public class Jugador extends Entidad{
                             
                             gp.obj[id]=null;
                         }
-                    break;
-                default:
                     break;
             }
             
@@ -211,7 +223,7 @@ public class Jugador extends Entidad{
         
        //    g2.drawImage(image,gp.tamanioCasilla*xMapa,gp.tamanioCasilla*yMapa, gp.tamanioCasilla,gp.tamanioCasilla,null); 
     
-       g2.drawImage(image,gp.tamanioCasilla*gp.maxColumnas/2,gp.tamanioCasilla*gp.maxFilas/2, gp.tamanioCasilla,gp.tamanioCasilla,null); 
+       g2.drawImage(image,pantallaX,pantallaY, gp.tamanioCasilla,gp.tamanioCasilla,null); 
     }
     
     //los efectos de sonido deben estar en 32 bits 

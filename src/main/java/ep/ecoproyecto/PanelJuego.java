@@ -25,22 +25,28 @@ public class PanelJuego extends JPanel implements Runnable{
     final int escala = 2; //escala los sprites de 32x32 a 64x64
     
     public final int tamanioCasilla= tamanioCasillaOrig*escala; //64x64 tlie
-    public final int maxColumnas= 16;
-    public final int maxFilas = 10;
-    final int screenWidth=tamanioCasilla *maxColumnas; // 1024
-    final int screenHeight=tamanioCasilla *maxFilas; // 640
+    public final int maxColumnasPantalla= 16;
+    public final int maxFilasPantalla = 10;
+    public final int screenWidth=tamanioCasilla *maxColumnasPantalla; // 1024
+    public final int screenHeight=tamanioCasilla *maxFilasPantalla; // 640
+    
+    //configuracion de mapa
+    public final int Maximocolumnas=50;
+    public final int Maximofilas=50;
+    public final int anchomundo= Maximocolumnas*tamanioCasilla;
+    public final int altomundo= Maximofilas*tamanioCasilla;
     
     //Fps permitidos
     int fps=60;
     
-    ManejadorCasillas manCas=new ManejadorCasillas(this);
+    public ManejadorCasillas manCas=new ManejadorCasillas(this);
    
     KeyHandler keyH= new KeyHandler();
     Thread gameThread;
     public Colisionador colisiones =new Colisionador(this); 
     EmisorObjetos objeto= new EmisorObjetos(this);
     
-    Jugador jugador= new Jugador(this,keyH);
+    public Jugador jugador= new Jugador(this,keyH);
     //arreglo con el total de objetos que se pueden mostrar al mismo tiempo
     public Objetosclase obj[]= new Objetosclase[10];
     
@@ -61,7 +67,6 @@ public class PanelJuego extends JPanel implements Runnable{
     public void startGameThread(){
         gameThread = new Thread(this);
         gameThread.start();
-        
     }
 
     @Override
@@ -120,11 +125,12 @@ public class PanelJuego extends JPanel implements Runnable{
         
         Graphics2D g2 = (Graphics2D)g; // estas dos clases son similares pero graphis2D tiene mas funciones para dibujar 
 
-        manCas.dibujar(g2,jugador.xMapa,jugador.yMapa);
+        manCas.dibujar(g2);
+        
+        objeto.draw(g2,jugador);
         
         jugador.draw(g2);
         
-        objeto.draw(g2,jugador);
 
         g2.dispose();
     }

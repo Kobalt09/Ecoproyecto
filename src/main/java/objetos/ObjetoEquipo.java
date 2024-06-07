@@ -18,7 +18,7 @@ public class ObjetoEquipo extends Objetosclase{
         super(nombre, posicionX, posicionY, gp);
                 
         try{
-            image =ImageIO.read(getClass().getResourceAsStream("/objetos/llave1.png"));
+            image =ImageIO.read(getClass().getResourceAsStream("/objetos/bota1.png"));
         }catch(IOException e){
         
         }
