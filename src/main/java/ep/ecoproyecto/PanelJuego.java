@@ -35,7 +35,7 @@ public class PanelJuego extends JPanel implements Runnable{
     public final int Maximofilas=50;
     
     //indica la cancion que esta sonando actualmente
-    public int musica=5;
+    public int musica=0;
     
     /*
     public final int anchomundo= Maximocolumnas*tamanioCasilla;
