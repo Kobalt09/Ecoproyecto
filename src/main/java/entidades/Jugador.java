@@ -37,17 +37,16 @@ public class Jugador extends Entidad{
         hitBox.width=32;
         
         //area solida
-        AreaX=hitBox.x;
-        AreaY=hitBox.y;
-        AreadefectoX=AreaX;
-        AreadefectoY=AreaY;
+        AreadefectoX=hitBox.x;
+        AreadefectoY=hitBox.y;
+        
         valoresporDefecto();
         getPlayerImage();
     }
     
     public void valoresporDefecto(){
-        xMapa=0;
-        yMapa=0;
+        xMapa=2*gp.tamanioCasilla/2;
+        yMapa=2*gp.tamanioCasilla/2;
         vel=4;
         direction ="down"; 
     }
@@ -101,7 +100,7 @@ public class Jugador extends Entidad{
         
         //chekeo colision con objteos
         
-        int objindex= gp.colisiones.checkObjeto(this, true);
+        int objindex=gp.colisiones.checkObjeto(this, true);
         RecogerObjeto(objindex);
         
         if(colision==false){
@@ -129,8 +128,7 @@ public class Jugador extends Entidad{
     }
     
     public void RecogerObjeto(int i){
-        if(i!=9999){
-            
+        if(i!=999){
             gp.obj[i]=null;
         }
     }

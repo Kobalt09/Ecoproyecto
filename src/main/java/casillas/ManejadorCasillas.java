@@ -40,13 +40,13 @@ public class ManejadorCasillas {
         try{
             casilla[0]=new Casilla();
             casilla[0].imagen= ImageIO.read(getClass().getResource("/casillas/pasto.png"));
-            
+            casilla[0].colision=false;
             casilla[1]=new Casilla();
             casilla[1].imagen= ImageIO.read(getClass().getResource("/casillas/agua.png"));
             casilla[1].colision=true;
             casilla[2]=new Casilla();
             casilla[2].imagen= ImageIO.read(getClass().getResource("/casillas/pared.png"));
-            casilla[2].colision=false;
+            casilla[2].colision=true;
         }
         catch(IOException e){
             e.printStackTrace();
