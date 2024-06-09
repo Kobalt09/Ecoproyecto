@@ -35,7 +35,7 @@ public class PanelJuego extends JPanel implements Runnable{
     public final int Maximofilas=50;
     
     //indica la cancion que esta sonando actualmente
-    public int musica=5;
+    public int musica=0;
     
     /*
     public final int anchomundo= Maximocolumnas*tamanioCasilla;
@@ -49,7 +49,8 @@ public class PanelJuego extends JPanel implements Runnable{
    
     KeyHandler keyH= new KeyHandler();
     
-    
+    public Sonido controlmusica = new Sonido();
+    public Sonido efectossonido = new Sonido();
     public Colisionador colisiones =new Colisionador(this);
     EmisorObjetos objeto= new EmisorObjetos(this);
     Thread gameThread;
@@ -75,7 +76,7 @@ public class PanelJuego extends JPanel implements Runnable{
     public void configuraciondejuego(){
         objeto.establecerObj();
         
-        
+        this.reproducirmusica(musica);
     }
     
     public void startGameThread(){
@@ -146,6 +147,20 @@ public class PanelJuego extends JPanel implements Runnable{
         jugador.draw(g2);
 
         g2.dispose();
+    }
+    
+    public void reproducirmusica(int i){
+        controlmusica.reproducirmusica(i);
+        //controlmusica.reproducir();
+        //controlmusica.bucle();
+    }
+    /*
+    public void paramusica(){
+        controlmusica.parar();
+    }*/
+    
+    public void efectos(int i){
+        efectossonido.reproducirefecto(i);
     }
     
 }

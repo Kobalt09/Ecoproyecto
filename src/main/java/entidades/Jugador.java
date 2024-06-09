@@ -147,12 +147,14 @@ public class Jugador extends Entidad{
             switch(objnombre){
                 case "llave":
                         llaves++;
+                        gp.efectos(2);
                         gp.obj[id]=null;
                         System.out.println("llaves: "+llaves);
                     break;
                 case "puerta":
                         if(llaves>0){
                             llaves--;
+                            gp.efectos(5);
                             gp.obj[id]=null;
                             System.out.println("llaves: "+llaves);
                         }else{
@@ -161,6 +163,7 @@ public class Jugador extends Entidad{
                     break;    
                 case "botas":
                         if(this.inventario[0]==null){
+                            gp.efectos(4);
                             vel=vel+2;
                             this.inventario[0]=gp.obj[id];
                             
@@ -176,8 +179,6 @@ public class Jugador extends Entidad{
         
     public void draw(Graphics2D g2){
         
-       // g2.setColor(Color.white);
-       // g2.fillRect(x, y, gp.titleSize, gp.titleSize);
        BufferedImage image = null;  
        
            
