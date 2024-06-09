@@ -48,7 +48,6 @@ public class PanelJuego extends JPanel implements Runnable{
     public ManejadorCasillas manCas=new ManejadorCasillas(this);
    
     KeyHandler keyH= new KeyHandler();
-    public Sonido sonido= new Sonido();
     
     
     public Colisionador colisiones =new Colisionador(this);
@@ -76,7 +75,6 @@ public class PanelJuego extends JPanel implements Runnable{
     public void configuraciondejuego(){
         objeto.establecerObj();
         
-        reproducirmusica(0);
         
     }
     
@@ -148,21 +146,6 @@ public class PanelJuego extends JPanel implements Runnable{
         jugador.draw(g2);
 
         g2.dispose();
-    }
-    
-    public void reproducirmusica(int i){
-        sonido.establecerArchivo(i);
-        sonido.reproducir();
-        sonido.bucle();
-    }
-    
-    public void detenermusica(){
-        sonido.parar();
-    }
-    
-    public void efectosonido(int i){
-        sonido.establecerArchivo(i);
-        sonido.reproducir();
     }
     
 }

@@ -146,15 +146,12 @@ public class Jugador extends Entidad{
             System.out.println(gp.obj[id].nombre);
             switch(objnombre){
                 case "llave":
-                        gp.efectosonido(4);
-                        gp.efectosonido(0);
                         llaves++;
                         gp.obj[id]=null;
                         System.out.println("llaves: "+llaves);
                     break;
                 case "puerta":
                         if(llaves>0){
-                            gp.efectosonido(2);
                             llaves--;
                             gp.obj[id]=null;
                             System.out.println("llaves: "+llaves);
@@ -164,8 +161,6 @@ public class Jugador extends Entidad{
                     break;    
                 case "botas":
                         if(this.inventario[0]==null){
-                            gp.efectosonido(3);
-                            gp.efectosonido(1);
                             vel=vel+2;
                             this.inventario[0]=gp.obj[id];
                             
