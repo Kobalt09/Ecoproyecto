@@ -35,7 +35,7 @@ public class PanelJuego extends JPanel implements Runnable{
     public final int Maximofilas=50;
     
     //indica la cancion que esta sonando actualmente
-    public int musica=0;
+    public int musica=5;
     
     /*
     public final int anchomundo= Maximocolumnas*tamanioCasilla;
@@ -162,7 +162,7 @@ public class PanelJuego extends JPanel implements Runnable{
     
     public void efectosonido(int i){
         sonido.establecerArchivo(i);
-        //sonido.reproducir();
+        sonido.reproducir();
     }
     
 }
