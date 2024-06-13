@@ -4,6 +4,7 @@
  */
 package objetos;
 
+import ep.ecoproyecto.Herramientas;
 import ep.ecoproyecto.PanelJuego;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -23,19 +24,17 @@ public class Objetosclase {
     public Rectangle hitBox= new Rectangle(0,0,64,64);
     public int areadefectoX=hitBox.x;
     public int  areadefectoY=hitBox.y;
-    
+    Herramientas herramienta= new Herramientas();
 
     public Objetosclase( String nombre, int posicionX, int posicionY, PanelJuego gp) {
         
         this.nombre = nombre;
-        this.posicionX = posicionX;
-        this.posicionY = posicionY;
+        this.posicionX = posicionX*gp.tamanioCasilla;
+        this.posicionY = posicionY*gp.tamanioCasilla;
         this.gp = gp;
         
     }
     
-    
- 
     public void draw(Graphics2D g2) {
         
         image = null;

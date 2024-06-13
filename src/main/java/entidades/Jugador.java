@@ -5,6 +5,7 @@
 
 //
 package Entidades;
+import ep.ecoproyecto.Herramientas;
 import ep.ecoproyecto.PanelJuego;
 import ep.ecoproyecto.KeyHandler;
 import java.awt.Color;
@@ -21,18 +22,19 @@ import objetos.Objetosclase;
  * @author Cris
  */
 public class Jugador extends Entidad{
-    
-    PanelJuego gp;
+
     KeyHandler keyH;
     public final int pantallaX;
     public final int pantallaY;
     
     Objetosclase inventario[]= new Objetosclase[10];
-    int llaves=0;
+    public int llaves=0;
     
     
     public Jugador(PanelJuego gp, KeyHandler keyH){
-        this.gp=gp;
+        
+        super(gp);
+        
         this.keyH=keyH;
         
         pantallaX=gp.screenWidth/2-(gp.tamanioCasilla/2);
@@ -69,19 +71,15 @@ public class Jugador extends Entidad{
     }
     
     public void getPlayerImage(){
-        try{
-            up1= ImageIO.read(getClass().getResourceAsStream("/player/jg_arr_01.png"));
-            up2= ImageIO.read(getClass().getResourceAsStream("/player/jg_arr_02.png"));
-            down1= ImageIO.read(getClass().getResourceAsStream("/player/jg_abj_01.png"));
-            down2= ImageIO.read(getClass().getResourceAsStream("/player/jg_abj_02.png"));
-            left1= ImageIO.read(getClass().getResourceAsStream("/player/jg_izq_01.png"));
-            left2= ImageIO.read(getClass().getResourceAsStream("/player/jg_izq_02.png"));
-            right1= ImageIO.read(getClass().getResourceAsStream("/player/jg_der_01.png"));
-            right2= ImageIO.read(getClass().getResourceAsStream("/player/jg_der_02.png"));
-            
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+        
+        up1=configuracion("/player/jg_arr_01");
+        up2=configuracion("/player/jg_arr_02");
+        down1=configuracion("/player/jg_abj_01");
+        down2=configuracion("/player/jg_abj_02");
+        left1=configuracion("/player/jg_izq_01");
+        left2=configuracion("/player/jg_izq_02");
+        right1=configuracion("/player/jg_der_01");
+        right2=configuracion("/player/jg_der_02");
         
     }
     
@@ -101,6 +99,11 @@ public class Jugador extends Entidad{
             colision=false;
             gp.colisiones.revisarColision(this);
             
+            int entidadID=gp.colisiones.chequeoEntidades(this, gp.NPC);
+            intereaccionNCP(entidadID);
+            
+            
+            //colision objetos
             int objID=gp.colisiones.chequeoObjetos(this, true);
             recogerobjetos(objID);
             
@@ -148,6 +151,7 @@ public class Jugador extends Entidad{
                 case "llave":
                         llaves++;
                         gp.efectos(2);
+                        gp.hud.mostrarmensaje("conseguiste una llave");
                         gp.obj[id]=null;
                         System.out.println("llaves: "+llaves);
                     break;
@@ -155,20 +159,26 @@ public class Jugador extends Entidad{
                         if(llaves>0){
                             llaves--;
                             gp.efectos(5);
+                            gp.hud.mostrarmensaje("puerta abierta");
                             gp.obj[id]=null;
                             System.out.println("llaves: "+llaves);
                         }else{
-                            System.out.println("no tienes llaves para esta puerta");
+                            gp.hud.mostrarmensaje("no tienes llaves para esta puerta");
                         }
                     break;    
                 case "botas":
                         if(this.inventario[0]==null){
                             gp.efectos(4);
+                            gp.hud.mostrarmensaje("conseguiste "+objnombre);
                             vel=vel+2;
                             this.inventario[0]=gp.obj[id];
-                            
                             gp.obj[id]=null;
                         }
+                        
+                    break;
+                case "cofre":
+                            gp.hud.victoriamensaje=true;
+                            gp.obj[id]=null;
                     break;
             }
             
@@ -177,13 +187,17 @@ public class Jugador extends Entidad{
     }
         
         
+    public void intereaccionNCP(int id) {
+        if(id!=999){
+                System.out.println("tocas un npc");
+        }
+    }
+    
     public void draw(Graphics2D g2){
-        
+
        BufferedImage image = null;  
-       
-           
+
         switch(direction){
-            
             case "up" -> {     
                 if (spriteNum==1){
                     image=up1;
@@ -193,16 +207,13 @@ public class Jugador extends Entidad{
                 }
             break;
             }
-            
-            case "down" -> {      
-            
+            case "down" -> {
                 if (spriteNum==1)
                     image=down1;
                 if (spriteNum==2)
                     image=down2;                              
                 break;
             }
-            
             case "left" ->  {     
                 if (spriteNum==1)
                     image=left1;
@@ -210,7 +221,6 @@ public class Jugador extends Entidad{
                     image=left2;
                 break;
             }
-            
             case "right" -> {      
                 if (spriteNum==1)   
                     image=right1;
@@ -221,11 +231,9 @@ public class Jugador extends Entidad{
             
         }
         
-       //    g2.drawImage(image,gp.tamanioCasilla*xMapa,gp.tamanioCasilla*yMapa, gp.tamanioCasilla,gp.tamanioCasilla,null); 
-    
-       g2.drawImage(image,pantallaX,pantallaY, gp.tamanioCasilla,gp.tamanioCasilla,null); 
+     
+       g2.drawImage(image,pantallaX,pantallaY,null); 
     }
-    
-    //los efectos de sonido deben estar en 32 bits 
-    
+
+
 }

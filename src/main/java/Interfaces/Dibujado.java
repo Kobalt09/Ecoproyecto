@@ -2,17 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package casillas;
+package Interfaces;
 
 import java.awt.image.BufferedImage;
 
 /**
  *
- * @author hp
+ * @author Cris
  */
-public class Casilla {
+public interface Dibujado {
     
-    public BufferedImage imagen;
-    public boolean colision =false; 
-    
+    public BufferedImage configuracion(String nombre);
 }

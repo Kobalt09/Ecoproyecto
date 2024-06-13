@@ -5,8 +5,10 @@
 package casillas;
 
 import Entidades.Jugador;
+import ep.ecoproyecto.Herramientas;
 import ep.ecoproyecto.PanelJuego;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,32 +36,34 @@ public class ManejadorCasillas {
         cargarMapa("/mapas/mapaprueba.txt",0,0);
         getImagenCasilla();
         
-        
     }
     
     public void getImagenCasilla(){
-        try{
-            casilla[0]=new Casilla();
-            casilla[0].imagen= ImageIO.read(getClass().getResource("/casillas/pasto.png"));
-            casilla[0].colision=false;
-            casilla[1]=new Casilla();
-            casilla[1].imagen= ImageIO.read(getClass().getResource("/casillas/agua.png"));
-            casilla[1].colision=false;
-            casilla[2]=new Casilla();
-            casilla[2].imagen= ImageIO.read(getClass().getResource("/casillas/pared.png"));
-            casilla[2].colision=true;
-            casilla[3]=new Casilla();
-            casilla[3].imagen= ImageIO.read(getClass().getResource("/casillas/arbol.png"));
-            casilla[3].colision=true;
-            casilla[4]=new Casilla();
-            casilla[4].imagen= ImageIO.read(getClass().getResource("/casillas/arena.png"));
-            casilla[4].colision=false;
-        }
-        catch(IOException e){
-            e.printStackTrace();
-        }
-    
+
+            configutacion(0, "pasto", false);
+            configutacion(1, "agua", false);
+            configutacion(2, "pared", true);
+            configutacion(3, "arbol", true);
+            configutacion(4, "arena", false);
+            
     }
+    
+    public void configutacion(int id,String ruta, boolean colision){
+        
+        Herramientas herramienta = new Herramientas();
+        
+        try{
+            casilla[id] = new Casilla();
+            casilla[id].imagen= ImageIO.read(getClass().getResource("/casillas/"+ruta+".png"));
+            casilla[id].imagen = herramienta.imagenEscalada(casilla[id].imagen, gp.tamanioCasilla, gp.tamanioCasilla);
+            casilla[id].colision = colision;
+            
+        }catch(IOException e){
+        
+        }
+        
+    }
+    
     public void cargarMapa(String direccion,int dx,int dy){
         try{
             
@@ -125,7 +129,7 @@ public class ManejadorCasillas {
                 if((PosicionX+gp.tamanioCasilla > gp.jugador.xMapa-gp.jugador.pantallaX)&&(PosicionX-gp.tamanioCasilla < gp.jugador.xMapa+gp.jugador.pantallaX)&&
                    (PosicionY+gp.tamanioCasilla > gp.jugador.yMapa-gp.jugador.pantallaY)&&(PosicionY-gp.tamanioCasilla < gp.jugador.yMapa+gp.jugador.pantallaY)){     
                 
-                    g2.drawImage(casilla[numCasilla].imagen, PantallaX, PantallaY, gp.tamanioCasilla,gp.tamanioCasilla,null);
+                    g2.drawImage(casilla[numCasilla].imagen, PantallaX, PantallaY,null);
                 }
                 columna++;
 

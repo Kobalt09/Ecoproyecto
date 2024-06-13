@@ -25,14 +25,14 @@ public class EmisorObjetos {
     }
     
     public void establecerObj(){
-        gp.obj[0]=new ObjetoRecogible("llave",20*gp.tamanioCasilla,9*gp.tamanioCasilla,gp);
-        gp.obj[1]=new ObjetoRecogible("llave",5*gp.tamanioCasilla,7*gp.tamanioCasilla,gp);
-        gp.obj[2]=new ObjetoPuerta("puerta",7*gp.tamanioCasilla,8*gp.tamanioCasilla,gp);
-        gp.obj[3]=new ObjetoCofre("cofre",3*gp.tamanioCasilla,7*gp.tamanioCasilla,gp);
-        gp.obj[4]=new ObjetoEquipo("botas",6*gp.tamanioCasilla,6*gp.tamanioCasilla,gp);
+        gp.obj[0]=new ObjetoRecogible("llave",20,9,gp);
+        gp.obj[1]=new ObjetoRecogible("llave",5,7,gp);
+        gp.obj[2]=new ObjetoPuerta("puerta",7,8,gp);
+        gp.obj[3]=new ObjetoCofre("cofre",3,7,gp);
+        gp.obj[4]=new ObjetoEquipo("botas",6,6,gp);
     }
     
-    public void draw(Graphics2D g2,Jugador jugador){
+    public void draw(Graphics2D g2){
         
             for(int i=0;i<gp.obj.length;i++){
                 //if((gp.obj[i]!=null)&&(gp.obj[i].posicionX>jugador.xMapa && gp.obj[i].posicionX <jugador.xMapa+this.gp.getWidth())){

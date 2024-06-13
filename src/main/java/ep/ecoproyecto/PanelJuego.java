@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ep.ecoproyecto;
+import Entidades.Entidad;
 import Entidades.Jugador;
 import casillas.ManejadorCasillas;
 import java.awt.Color;
@@ -37,10 +38,6 @@ public class PanelJuego extends JPanel implements Runnable{
     //indica la cancion que esta sonando actualmente
     public int musica=0;
     
-    /*
-    public final int anchomundo= Maximocolumnas*tamanioCasilla;
-    public final int altomundo= Maximofilas*tamanioCasilla;
-    */
     
     //Fps permitidos
     int fps=60;
@@ -53,15 +50,24 @@ public class PanelJuego extends JPanel implements Runnable{
     public Sonido efectossonido = new Sonido();
     public Colisionador colisiones =new Colisionador(this);
     EmisorObjetos objeto= new EmisorObjetos(this);
+    EmisorNPC npcs= new EmisorNPC(this);
+    public InterfazJugador hud = new InterfazJugador(this);
     Thread gameThread;
     //manejador de efectos de sonido
     
     
     
-    //Jugador y objetos
+    //Jugador, objetos y NPC
     public Jugador jugador= new Jugador(this,keyH);
     public Objetosclase obj[]= new Objetosclase[10];
+    public Entidad NPC[]= new Entidad[10];
     
+    //Estado de Juego
+    public int estadodelJuego;
+    public final int estadoJuego=1;
+    
+    //interfaz
+    public boolean pause;
    
     
     public PanelJuego() {
@@ -75,8 +81,13 @@ public class PanelJuego extends JPanel implements Runnable{
     
     public void configuraciondejuego(){
         objeto.establecerObj();
+        npcs.establecernpcs();
         
         this.reproducirmusica(musica);
+        
+        //estado de juego
+        estadodelJuego=estadoJuego;
+        pause=true;
     }
     
     public void startGameThread(){
@@ -107,7 +118,7 @@ public class PanelJuego extends JPanel implements Runnable{
 
             // mediante esto imrpmimos el numero de cuadros que se han hecho en 1 segundo
             if (currentTime - lastTimeCheck >= 1000000000) {
-                System.out.println("FPS: " + frameCount);
+                //System.out.println("FPS: " + frameCount);
                 frameCount = 0;
                 lastTimeCheck = System.nanoTime();
             }
@@ -131,20 +142,43 @@ public class PanelJuego extends JPanel implements Runnable{
     
     public void update(){
        
+        if(estadodelJuego==1){
+            
+        }
         jugador.update();
+        npcs.actualizacion();
         manCas.actualizar(jugador,screenWidth, screenHeight);
+        
+        
     }
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         
         Graphics2D g2 = (Graphics2D)g; // estas dos clases son similares pero graphis2D tiene mas funciones para dibujar 
-
+        
+        //casillas
         manCas.dibujar(g2);
         
-        objeto.draw(g2,jugador);
+        //objetos
+        objeto.draw(g2);
         
+        //npc
+        /*
+        for(int i=0;i<NPC.length;i++){
+                if(NPC[i]!=null){
+                    NPC[i].draw(g2);
+                }
+        }  */
+        npcs.draw(g2);
+        //NPC[0].draw(g2);
+        
+        //jugador
         jugador.draw(g2);
+        
+        //interfaz
+        hud.dibujar(g2);
+        
 
         g2.dispose();
     }

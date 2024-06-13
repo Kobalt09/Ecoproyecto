@@ -100,7 +100,6 @@ public class Colisionador {
                                     if(jugador==true){
                                         id=i;
                                     }
-                                    System.out.println(gp.obj[i].nombre);
                                 }
                                 
                         break;
@@ -113,7 +112,6 @@ public class Colisionador {
                                     if(jugador==true){
                                         id=i;
                                     }
-                                    System.out.println(gp.obj[i].nombre);
                                 }
                         break;
                         case "down":
@@ -125,7 +123,6 @@ public class Colisionador {
                                     if(jugador==true){
                                         id=i;
                                     }
-                                    System.out.println(gp.obj[i].nombre);
                                 }
                         break;
                         case "right":
@@ -137,7 +134,6 @@ public class Colisionador {
                                     if(jugador==true){
                                         id=i;
                                     }
-                                    System.out.println(gp.obj[i].nombre);
                                 }
                         break;
                     }
@@ -151,5 +147,100 @@ public class Colisionador {
             
             return id;
         }
+    
+    public int chequeoEntidades(Entidad entidad, Entidad[] objetivos){
+                    int id=999;
+            
+            for(int i=0;i<objetivos.length;i++){
+                if(objetivos[i]!=null){
+                    
+                    entidad.hitBox.x=entidad.xMapa+entidad.hitBox.x;
+                    entidad.hitBox.y=entidad.yMapa+entidad.hitBox.y;
+                    
+                    objetivos[i].hitBox.x=objetivos[i].xMapa+objetivos[i].hitBox.x;
+                    objetivos[i].hitBox.y=objetivos[i].yMapa+objetivos[i].hitBox.y;
+                
+                    
+                    switch (entidad.direction) {
+                        case "up":  
+                                entidad.hitBox.y-=entidad.vel;
+                                if(entidad.hitBox.intersects(objetivos[i].hitBox)){
+                                    entidad.colision=true;
+                                    id=i;
+                                }
+                                
+                        break;
+                        case "left":
+                                entidad.hitBox.x-=entidad.vel;
+                                if(entidad.hitBox.intersects(objetivos[i].hitBox)){
+                                    entidad.colision=true;
+                                    id=i;
+                                }
+                        break;
+                        case "down":
+                                entidad.hitBox.y+=entidad.vel;
+                                if(entidad.hitBox.intersects(objetivos[i].hitBox)){
+                                    entidad.colision=true;
+                                    id=i;
+                                }
+                        break;
+                        case "right":
+                                entidad.hitBox.x+=entidad.vel;
+                                if(entidad.hitBox.intersects(objetivos[i].hitBox)){
+                                    entidad.colision=true;
+                                    id=i;
+                                }
+                        break;
+                    }
+                    entidad.hitBox.x=entidad.areadefectoX;
+                    entidad.hitBox.y=entidad.areadefectoY;
+                    objetivos[i].hitBox.x=objetivos[i].areadefectoX;
+                    objetivos[i].hitBox.y=objetivos[i].areadefectoY;
+                }
+                
+            }
+            
+            return id;
+    }
 
+    public void chequeojugador(Entidad entidad){
+                    entidad.hitBox.x=entidad.xMapa+entidad.hitBox.x;
+                    entidad.hitBox.y=entidad.yMapa+entidad.hitBox.y;
+                    
+                    gp.jugador.hitBox.x=gp.jugador.xMapa+gp.jugador.hitBox.x;
+                    gp.jugador.hitBox.y=gp.jugador.yMapa+gp.jugador.hitBox.y;
+                
+                    
+                    switch (entidad.direction) {
+                        case "up":  
+                                entidad.hitBox.y-=entidad.vel;
+                                if(entidad.hitBox.intersects(gp.jugador.hitBox)){
+                                    entidad.colision=true;
+                                }
+                                
+                        break;
+                        case "left":
+                                entidad.hitBox.x-=entidad.vel;
+                                if(entidad.hitBox.intersects(gp.jugador.hitBox)){
+                                    entidad.colision=true;
+                                }
+                        break;
+                        case "down":
+                                entidad.hitBox.y+=entidad.vel;
+                                if(entidad.hitBox.intersects(gp.jugador.hitBox)){
+                                    entidad.colision=true;
+                                }
+                        break;
+                        case "right":
+                                entidad.hitBox.x+=entidad.vel;
+                                if(entidad.hitBox.intersects(gp.jugador.hitBox)){
+                                    entidad.colision=true;
+                                }
+                        break;
+                    }
+                    entidad.hitBox.x=entidad.areadefectoX;
+                    entidad.hitBox.y=entidad.areadefectoY;
+                    gp.jugador.hitBox.x=gp.jugador.areadefectoX;
+                    gp.jugador.hitBox.y=gp.jugador.areadefectoY;
+    }
 }
