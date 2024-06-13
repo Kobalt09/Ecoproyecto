@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ep.ecoproyecto;
+import Entidades.Entidad;
 import Entidades.Jugador;
 import casillas.ManejadorCasillas;
 import java.awt.Color;
@@ -25,32 +26,52 @@ public class PanelJuego extends JPanel implements Runnable{
     final int escala = 2; //escala los sprites de 32x32 a 64x64
     
     public final int tamanioCasilla= tamanioCasillaOrig*escala; //64x64 tlie
-    public final int maxColumnas= 16;
-    public final int maxFilas = 10;
-    final int screenWidth=tamanioCasilla *maxColumnas; // 1024
-    final int screenHeight=tamanioCasilla *maxFilas; // 640
+    public final int maxColumnasPantalla= 16;
+    public final int maxFilasPantalla = 10;
+    public final int screenWidth=tamanioCasilla *maxColumnasPantalla; // 1024
+    public final int screenHeight=tamanioCasilla *maxFilasPantalla; // 640
+    
+    //configuracion de mapa
+    public final int Maximocolumnas=50;
+    public final int Maximofilas=50;
+    
+    //indica la cancion que esta sonando actualmente
+    public int musica=0;
+    
     
     //Fps permitidos
     int fps=60;
     
-    ManejadorCasillas manCas=new ManejadorCasillas(this);
+    public ManejadorCasillas manCas=new ManejadorCasillas(this);
    
     KeyHandler keyH= new KeyHandler();
-    Thread gameThread;
-    public Colisionador colisiones =new Colisionador(this); 
+    
+    public Sonido controlmusica = new Sonido();
+    public Sonido efectossonido = new Sonido();
+    public Colisionador colisiones =new Colisionador(this);
     EmisorObjetos objeto= new EmisorObjetos(this);
+    EmisorNPC npcs= new EmisorNPC(this);
+    public InterfazJugador hud = new InterfazJugador(this);
+    Thread gameThread;
+    //manejador de efectos de sonido
     
-    Jugador jugador= new Jugador(this,keyH);
-    //arreglo con el total de objetos que se pueden mostrar al mismo tiempo
+
+    
+    //Jugador, objetos y NPC
+    public Jugador jugador= new Jugador(this,keyH);
     public Objetosclase obj[]= new Objetosclase[10];
+    public Entidad NPC[]= new Entidad[10];
     
+    //Estado de Juego
+    public int estadodelJuego;
+    public final int estadoJuego=1;
     
-    //Posicion por defecto del jugador
-    int jugadorX=100;
-    int jugadorY=100;
-    int vel_jugador=8;
+    //interfaz
+    public boolean pause;
+   
     
     public PanelJuego() {
+        
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
@@ -60,12 +81,18 @@ public class PanelJuego extends JPanel implements Runnable{
     
     public void configuraciondejuego(){
         objeto.establecerObj();
+        npcs.establecernpcs();
+        
+        this.reproducirmusica(musica);
+        
+        //estado de juego
+        estadodelJuego=estadoJuego;
+        pause=true;
     }
     
     public void startGameThread(){
         gameThread = new Thread(this);
         gameThread.start();
-        
     }
 
     @Override
@@ -91,7 +118,7 @@ public class PanelJuego extends JPanel implements Runnable{
 
             // mediante esto imrpmimos el numero de cuadros que se han hecho en 1 segundo
             if (currentTime - lastTimeCheck >= 1000000000) {
-                System.out.println("FPS: " + frameCount);
+                //System.out.println("FPS: " + frameCount);
                 frameCount = 0;
                 lastTimeCheck = System.nanoTime();
             }
@@ -115,21 +142,61 @@ public class PanelJuego extends JPanel implements Runnable{
     
     public void update(){
        
+        if(estadodelJuego==1){
+            
+        }
         jugador.update();
+        npcs.actualizacion();
         manCas.actualizar(jugador,screenWidth, screenHeight);
+        
+        
     }
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         
         Graphics2D g2 = (Graphics2D)g; // estas dos clases son similares pero graphis2D tiene mas funciones para dibujar 
+        
 
-        manCas.dibujar(g2,jugador.xMapa,jugador.yMapa);
+        //casillas
+        manCas.dibujar(g2);
         
-        objeto.draw(g2,jugador);
+        //objetos
+        objeto.draw(g2);
         
-        jugador.draw(g2);   
+        //npc
+        /*
+        for(int i=0;i<NPC.length;i++){
+                if(NPC[i]!=null){
+                    NPC[i].draw(g2);
+                }
+        }  */
+        npcs.draw(g2);
+        //NPC[0].draw(g2);
+        
+        //jugador
+        jugador.draw(g2);
+        
+        //interfaz
+        hud.dibujar(g2);
+        
+
+
         g2.dispose();
+    }
+    
+    public void reproducirmusica(int i){
+        controlmusica.reproducirmusica(i);
+        //controlmusica.reproducir();
+        //controlmusica.bucle();
+    }
+    /*
+    public void paramusica(){
+        controlmusica.parar();
+    }*/
+    
+    public void efectos(int i){
+        efectossonido.reproducirefecto(i);
     }
     
 }

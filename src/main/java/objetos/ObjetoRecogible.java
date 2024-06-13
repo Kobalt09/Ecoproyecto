@@ -21,12 +21,12 @@ public class ObjetoRecogible extends Objetosclase{
         
         try{
             image =ImageIO.read(getClass().getResourceAsStream("/objetos/llave1.png"));
+            herramienta.imagenEscalada(image, gp.tamanioCasilla, gp.tamanioCasilla);
         }catch(IOException e){
         
         }
         
-       colision=true;
-        
+
     }
     
     
