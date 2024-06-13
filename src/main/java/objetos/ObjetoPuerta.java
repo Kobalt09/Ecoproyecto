@@ -20,11 +20,10 @@ public class ObjetoPuerta extends Objetosclase{
         try{
             image =ImageIO.read(getClass().getResourceAsStream("/objetos/puerta1.png"));
         }catch(IOException e){
-            
+        
         }
         
         colision=true;
-        
     }
     
 }

@@ -23,5 +23,6 @@ public class ObjetoCofre extends Objetosclase{
         }
         
         colision=true;
+
     }
 }

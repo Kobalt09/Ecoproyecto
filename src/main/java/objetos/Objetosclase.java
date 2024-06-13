@@ -29,12 +29,15 @@ public class Objetosclase {
     public Objetosclase( String nombre, int posicionX, int posicionY, PanelJuego gp) {
         
         this.nombre = nombre;
+
         this.posicionX = posicionX*gp.tamanioCasilla;
         this.posicionY = posicionY*gp.tamanioCasilla;
+
         this.gp = gp;
         
     }
     
+
     public void draw(Graphics2D g2) {
         
         image = null;
@@ -42,5 +45,6 @@ public class Objetosclase {
        g2.drawImage(image,this.posicionX, this.posicionY, gp.tamanioCasilla,gp.tamanioCasilla,null); 
     
     }
+
 }
 

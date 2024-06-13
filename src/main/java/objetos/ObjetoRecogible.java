@@ -26,6 +26,7 @@ public class ObjetoRecogible extends Objetosclase{
         
         }
         
+
     }
     
     

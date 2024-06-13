@@ -28,6 +28,7 @@ public class Entidad{
     public int spriteCounter = 0 ;
     public int spriteNum = 1;
     public Rectangle hitBox;
+
     public int areadefectoX, areadefectoY;
     public boolean colision;
     public int contadordeaccion=0;
@@ -138,5 +139,6 @@ public class Entidad{
         return imagen;
     }
     
+
     
 }

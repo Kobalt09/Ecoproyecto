@@ -55,7 +55,7 @@ public class PanelJuego extends JPanel implements Runnable{
     Thread gameThread;
     //manejador de efectos de sonido
     
-    
+
     
     //Jugador, objetos y NPC
     public Jugador jugador= new Jugador(this,keyH);
@@ -157,6 +157,7 @@ public class PanelJuego extends JPanel implements Runnable{
         
         Graphics2D g2 = (Graphics2D)g; // estas dos clases son similares pero graphis2D tiene mas funciones para dibujar 
         
+
         //casillas
         manCas.dibujar(g2);
         
@@ -179,6 +180,7 @@ public class PanelJuego extends JPanel implements Runnable{
         //interfaz
         hud.dibujar(g2);
         
+
 
         g2.dispose();
     }

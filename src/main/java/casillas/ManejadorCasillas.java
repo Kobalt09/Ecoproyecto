@@ -53,13 +53,14 @@ public class ManejadorCasillas {
         Herramientas herramienta = new Herramientas();
         
         try{
+
             casilla[id] = new Casilla();
             casilla[id].imagen= ImageIO.read(getClass().getResource("/casillas/"+ruta+".png"));
             casilla[id].imagen = herramienta.imagenEscalada(casilla[id].imagen, gp.tamanioCasilla, gp.tamanioCasilla);
             casilla[id].colision = colision;
             
         }catch(IOException e){
-        
+
         }
         
     }

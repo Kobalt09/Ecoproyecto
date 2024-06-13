@@ -17,7 +17,6 @@ public class Colisionador {
     private final PanelJuego gp;
 
     public Colisionador(PanelJuego gp) {
-        
         this.gp=gp;
     }
     
@@ -68,12 +67,7 @@ public class Colisionador {
                         break;
                     }
     }
-    
 
-    
-    
-    
-    
     //chequeo de colision con objetos
     
     
@@ -88,6 +82,7 @@ public class Colisionador {
                     
                     gp.obj[i].hitBox.x=gp.obj[i].posicionX+gp.obj[i].hitBox.x;
                     gp.obj[i].hitBox.y=gp.obj[i].posicionY+gp.obj[i].hitBox.y;
+
                 
                     
                     switch (entidad.direction) {
@@ -242,5 +237,6 @@ public class Colisionador {
                     entidad.hitBox.y=entidad.areadefectoY;
                     gp.jugador.hitBox.x=gp.jugador.areadefectoX;
                     gp.jugador.hitBox.y=gp.jugador.areadefectoY;
+
     }
 }

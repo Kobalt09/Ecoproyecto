@@ -5,6 +5,7 @@
 package ep.ecoproyecto;
 
 import Entidades.Jugador;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import objetos.ObjetoCofre;
 import objetos.ObjetoEquipo;
@@ -25,11 +26,13 @@ public class EmisorObjetos {
     }
     
     public void establecerObj(){
+
         gp.obj[0]=new ObjetoRecogible("llave",20,9,gp);
         gp.obj[1]=new ObjetoRecogible("llave",5,7,gp);
         gp.obj[2]=new ObjetoPuerta("puerta",7,8,gp);
         gp.obj[3]=new ObjetoCofre("cofre",3,7,gp);
         gp.obj[4]=new ObjetoEquipo("botas",6,6,gp);
+
     }
     
     public void draw(Graphics2D g2){
@@ -43,9 +46,16 @@ public class EmisorObjetos {
                     if((gp.obj[i].posicionX+gp.tamanioCasilla > gp.jugador.xMapa-gp.jugador.pantallaX)&&(gp.obj[i].posicionX-gp.tamanioCasilla < gp.jugador.xMapa+gp.jugador.pantallaX)&&
                        (gp.obj[i].posicionY+gp.tamanioCasilla > gp.jugador.yMapa-gp.jugador.pantallaY)&&(gp.obj[i].posicionY-gp.tamanioCasilla < gp.jugador.yMapa+gp.jugador.pantallaY)){     
 
+
                         g2.drawImage(gp.obj[i].image, PantallaX, PantallaY, gp.tamanioCasilla,gp.tamanioCasilla,null);
                     }
+                    /*
+                    g2.setColor(Color.red);
+                    g2.fillRect(gp.obj[i].posicionX, gp.obj[i].posicionY, gp.obj[i].AreaobjX, gp.obj[i].AreaobjdefectoY);*/
                }
+                
+               
+                
             }
             
     }

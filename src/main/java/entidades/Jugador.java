@@ -53,15 +53,21 @@ public class Jugador extends Entidad{
         areadefectoY=hitBox.y;
         
         
+        //area solida
+        AreadefectoX=hitBox.x;
+        AreadefectoY=hitBox.y;
+        
         valoresporDefecto();
         getPlayerImage();
     }
     
     public void valoresporDefecto(){
+
         
         //posicion del jugador en el arreglo +1,
         xMapa=3*gp.tamanioCasilla+gp.tamanioCasilla;
         yMapa=3*gp.tamanioCasilla+gp.tamanioCasilla;
+
         vel=4;
         direction ="down"; 
     }
@@ -103,6 +109,7 @@ public class Jugador extends Entidad{
             intereaccionNCP(entidadID);
             
             
+
             //colision objetos
             int objID=gp.colisiones.chequeoObjetos(this, true);
             recogerobjetos(objID);
@@ -135,7 +142,8 @@ public class Jugador extends Entidad{
                 spriteCounter = 0;
             }
 
-        }    
+
+        }    mria pero aqui porque me dice que hay confligto?
     }
     
     public void recogerobjetos(int id){
@@ -184,6 +192,12 @@ public class Jugador extends Entidad{
             
         }
         
+    }
+    
+    public void RecogerObjeto(int i){
+        if(i!=999){
+            gp.obj[i]=null;
+        }
     }
         
         
