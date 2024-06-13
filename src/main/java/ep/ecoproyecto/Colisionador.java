@@ -5,6 +5,8 @@
 package ep.ecoproyecto;
 
 import Entidades.Entidad;
+import java.awt.Color;
+import java.awt.Graphics2D;
 
 /**
  *
@@ -19,145 +21,222 @@ public class Colisionador {
     }
     
     public void revisarColision(Entidad entidad){
-        
-        int izqEntidad = entidad.xMapa+entidad.hitBox.x;
-        int derEntidad = entidad.xMapa+entidad.hitBox.x + entidad.hitBox.width;
-        int arrEntidad = entidad.yMapa+ entidad.hitBox.y;
-        int abjEntidad = entidad.yMapa+ entidad.hitBox.y+entidad.hitBox.height;
-    
-        int izqEntidadCol = izqEntidad/gp.tamanioCasilla;
-        int derEntidadCol = derEntidad/gp.tamanioCasilla;
-        int arrEntidadFila = arrEntidad/gp.tamanioCasilla;
-        int abjEntidadFila = abjEntidad/gp.tamanioCasilla;
-    
-        int numCas1,numCas2;
-        
-        switch(entidad.direction){
-
-            case "up" -> {     
-                
-                arrEntidadFila =(arrEntidad + entidad.vel)/gp.tamanioCasilla;
-                numCas1 = gp.manCas.numCasillaMapa[izqEntidadCol][arrEntidadFila];
-                numCas2 = gp.manCas.numCasillaMapa[derEntidadCol][arrEntidadFila];
-                
-                if(gp.manCas.casilla[numCas1].colision == true ||gp.manCas.casilla[numCas2].colision == true){
-                    entidad.colision=true;
-                }
-
-                break;
-            }
-
-            case "down" -> {      
-                
-                abjEntidadFila =(abjEntidad + entidad.vel)/gp.tamanioCasilla;
-                numCas1 = gp.manCas.numCasillaMapa[izqEntidadCol][abjEntidadFila];
-                numCas2 = gp.manCas.numCasillaMapa[derEntidadCol][abjEntidadFila];
-               
-                if(gp.manCas.casilla[numCas1].colision == true ||gp.manCas.casilla[numCas2].colision == true){
-                    entidad.colision=true;
-                }
-                                         
-                break;
-            }
+            int posiciojugadorizquierda=entidad.xMapa+entidad.hitBox.x;
+            int posiciojugadorderecha=entidad.xMapa+entidad.hitBox.x+entidad.hitBox.width;
+            int posiciojugadorarriba=entidad.yMapa+entidad.hitBox.y;
+            int posiciojugadorabajo=entidad.yMapa+entidad.hitBox.y+entidad.hitBox.height;
             
-            case "left" ->  {     
-                
-                izqEntidadCol =(izqEntidad - entidad.vel)/gp.tamanioCasilla;
-                numCas1 = gp.manCas.numCasillaMapa[izqEntidadCol][arrEntidadFila];
-                numCas2 = gp.manCas.numCasillaMapa[izqEntidadCol][abjEntidadFila];
-               
-                if(gp.manCas.casilla[numCas1].colision == true ||gp.manCas.casilla[numCas2].colision == true){
-                    entidad.colision=true;
-                }
-                
-                break;
-            }
-            
-            case "right" -> {  
-                
-                derEntidadCol =(derEntidad - entidad.vel)/gp.tamanioCasilla;
-                numCas1 = gp.manCas.numCasillaMapa[derEntidadCol][arrEntidadFila];
-                numCas2 = gp.manCas.numCasillaMapa[derEntidadCol][abjEntidadFila];
-               
-                if(gp.manCas.casilla[numCas1].colision == true ||gp.manCas.casilla[numCas2].colision == true){
-                    entidad.colision=true;
-                }
-                break;
-            }
-        }
+            int columizquierda=posiciojugadorizquierda/gp.tamanioCasilla;
+            int columderecha=posiciojugadorderecha/gp.tamanioCasilla;
+            int filaarriba=posiciojugadorarriba/gp.tamanioCasilla;
+            int filaabajo=posiciojugadorabajo/gp.tamanioCasilla;
+           
+            int casilla1, casilla2;
+                switch (entidad.direction) {
+                        case "up":  
+                            filaarriba=(posiciojugadorarriba-entidad.vel)/gp.tamanioCasilla;
+                            casilla1=gp.manCas.numCasillaMapa[columizquierda][filaarriba];
+                            casilla2=gp.manCas.numCasillaMapa[columderecha][filaarriba];
+                            if (gp.manCas.casilla[casilla1].colision==true ||gp.manCas.casilla[casilla2].colision==true){
+                                entidad.colision=true;
+                            }
+                            break;
+                        case "left":
+                            columizquierda=(posiciojugadorizquierda-entidad.vel)/gp.tamanioCasilla;
+                            casilla1=gp.manCas.numCasillaMapa[columizquierda][filaarriba];
+                            casilla2=gp.manCas.numCasillaMapa[columizquierda][filaabajo];
+                            if (gp.manCas.casilla[casilla1].colision==true ||gp.manCas.casilla[casilla2].colision==true){
+                                entidad.colision=true;
+                            }
+                        break;
+                        case "down":
+                            filaabajo=(posiciojugadorabajo+entidad.vel)/gp.tamanioCasilla;
+                            casilla1=gp.manCas.numCasillaMapa[columizquierda][filaabajo];
+                            casilla2=gp.manCas.numCasillaMapa[columderecha][filaabajo];
+                            if (gp.manCas.casilla[casilla1].colision==true ||gp.manCas.casilla[casilla2].colision==true){
+                                entidad.colision=true;
+                            }
+                        break;
+                        case "right":
+                            columderecha=(posiciojugadorderecha+entidad.vel)/gp.tamanioCasilla;
+                            casilla1=gp.manCas.numCasillaMapa[columderecha][filaarriba];
+                            casilla2=gp.manCas.numCasillaMapa[columderecha][filaabajo];
+                            if (gp.manCas.casilla[casilla1].colision==true ||gp.manCas.casilla[casilla2].colision==true){
+                                entidad.colision=true;
+                            }
+                        break;
+                    }
     }
+
+    //chequeo de colision con objetos
     
-    public int checkObjeto(Entidad entidad, boolean jugador){
-        int index=999;
-        
-        for(int i=0;i<gp.obj.length;i++){
-            if(gp.obj[i]!=null){
-                entidad.hitBox.x=entidad.xMapa+entidad.hitBox.x;
-                entidad.hitBox.y=entidad.yMapa+entidad.hitBox.y;
+    
+    public int chequeoObjetos(Entidad entidad, boolean jugador){
+            int id=999;
+            
+            for(int i=0;i<gp.obj.length;i++){
+                if(gp.obj[i]!=null){
+                    
+                    entidad.hitBox.x=entidad.xMapa+entidad.hitBox.x;
+                    entidad.hitBox.y=entidad.yMapa+entidad.hitBox.y;
+                    
+                    gp.obj[i].hitBox.x=gp.obj[i].posicionX+gp.obj[i].hitBox.x;
+                    gp.obj[i].hitBox.y=gp.obj[i].posicionY+gp.obj[i].hitBox.y;
+
                 
-                gp.obj[i].Areasolida.x=gp.obj[i].posicionX+gp.obj[i].Areasolida.x;
-                gp.obj[i].Areasolida.y=gp.obj[i].posicionY+gp.obj[i].Areasolida.y;
-                
-                switch(entidad.direction){
-                    case"up":
-                        entidad.hitBox.y-=entidad.vel;
-                        if(entidad.hitBox.intersects(gp.obj[i].Areasolida)){
-                            if(gp.obj[i].colision==true){
-                                entidad.colision=true;
-                            }
-                            if(jugador ==true){
-                                index=i;
-                            }
-                            System.out.println("up");
-                        }
+                    
+                    switch (entidad.direction) {
+                        case "up":  
+                                entidad.hitBox.y-=entidad.vel;
+                                if(entidad.hitBox.intersects(gp.obj[i].hitBox)){
+                                    if(gp.obj[i].colision==true){
+                                        entidad.colision=true;
+                                    }
+                                    if(jugador==true){
+                                        id=i;
+                                    }
+                                }
+                                
                         break;
-                    case"down":
-                        entidad.hitBox.y+=entidad.vel;
-                        if(entidad.hitBox.intersects(gp.obj[i].Areasolida)){
-                            if(gp.obj[i].colision==true){
-                                entidad.colision=true;
-                            }
-                            if(jugador ==true){
-                                index=i;
-                            }
-                            System.out.println("down");
-                        }
-                        
+                        case "left":
+                                entidad.hitBox.x-=entidad.vel;
+                                if(entidad.hitBox.intersects(gp.obj[i].hitBox)){
+                                    if(gp.obj[i].colision==true){
+                                        entidad.colision=true;
+                                    }
+                                    if(jugador==true){
+                                        id=i;
+                                    }
+                                }
                         break;
-                     case"left":
-                        entidad.hitBox.x-=entidad.vel;
-                        if(entidad.hitBox.intersects(gp.obj[i].Areasolida)){
-                            if(gp.obj[i].colision==true){
-                                entidad.colision=true;
-                            }
-                            if(jugador == true){
-                                index=i;
-                            }
-                            System.out.println("left");
-                        }
-                        
+                        case "down":
+                                entidad.hitBox.y+=entidad.vel;
+                                if(entidad.hitBox.intersects(gp.obj[i].hitBox)){
+                                    if(gp.obj[i].colision==true){
+                                        entidad.colision=true;
+                                    }
+                                    if(jugador==true){
+                                        id=i;
+                                    }
+                                }
                         break;
-                    case"right":
-                        entidad.hitBox.x+=entidad.vel;
-                        if(entidad.hitBox.intersects(gp.obj[i].Areasolida)){
-                            if(gp.obj[i].colision==true){
-                               entidad.colision=true;
-                            }
-                            if(jugador == true){
-                                index=i;
-                            }
-                            System.out.println("right");
-                        }
-                        break; 
+                        case "right":
+                                entidad.hitBox.x+=entidad.vel;
+                                if(entidad.hitBox.intersects(gp.obj[i].hitBox)){
+                                    if(gp.obj[i].colision==true){
+                                        entidad.colision=true;
+                                    }
+                                    if(jugador==true){
+                                        id=i;
+                                    }
+                                }
+                        break;
+                    }
+                    entidad.hitBox.x=entidad.areadefectoX;
+                    entidad.hitBox.y=entidad.areadefectoY;
+                    gp.obj[i].hitBox.x=gp.obj[i].areadefectoX;
+                    gp.obj[i].hitBox.y=gp.obj[i].areadefectoY;
                 }
-                entidad.hitBox.x=entidad.AreadefectoX;
-                entidad.hitBox.y=entidad.AreadefectoY;
-                
-                gp.obj[i].Areasolida.x=gp.obj[i].AreaobjdefectoX;
-                gp.obj[i].Areasolida.y=gp.obj[i].AreaobjdefectoY;
                 
             }
+            
+            return id;
         }
-        return index;
+    
+    public int chequeoEntidades(Entidad entidad, Entidad[] objetivos){
+                    int id=999;
+            
+            for(int i=0;i<objetivos.length;i++){
+                if(objetivos[i]!=null){
+                    
+                    entidad.hitBox.x=entidad.xMapa+entidad.hitBox.x;
+                    entidad.hitBox.y=entidad.yMapa+entidad.hitBox.y;
+                    
+                    objetivos[i].hitBox.x=objetivos[i].xMapa+objetivos[i].hitBox.x;
+                    objetivos[i].hitBox.y=objetivos[i].yMapa+objetivos[i].hitBox.y;
+                
+                    
+                    switch (entidad.direction) {
+                        case "up":  
+                                entidad.hitBox.y-=entidad.vel;
+                                if(entidad.hitBox.intersects(objetivos[i].hitBox)){
+                                    entidad.colision=true;
+                                    id=i;
+                                }
+                                
+                        break;
+                        case "left":
+                                entidad.hitBox.x-=entidad.vel;
+                                if(entidad.hitBox.intersects(objetivos[i].hitBox)){
+                                    entidad.colision=true;
+                                    id=i;
+                                }
+                        break;
+                        case "down":
+                                entidad.hitBox.y+=entidad.vel;
+                                if(entidad.hitBox.intersects(objetivos[i].hitBox)){
+                                    entidad.colision=true;
+                                    id=i;
+                                }
+                        break;
+                        case "right":
+                                entidad.hitBox.x+=entidad.vel;
+                                if(entidad.hitBox.intersects(objetivos[i].hitBox)){
+                                    entidad.colision=true;
+                                    id=i;
+                                }
+                        break;
+                    }
+                    entidad.hitBox.x=entidad.areadefectoX;
+                    entidad.hitBox.y=entidad.areadefectoY;
+                    objetivos[i].hitBox.x=objetivos[i].areadefectoX;
+                    objetivos[i].hitBox.y=objetivos[i].areadefectoY;
+                }
+                
+            }
+            
+            return id;
+    }
+
+    public void chequeojugador(Entidad entidad){
+                    entidad.hitBox.x=entidad.xMapa+entidad.hitBox.x;
+                    entidad.hitBox.y=entidad.yMapa+entidad.hitBox.y;
+                    
+                    gp.jugador.hitBox.x=gp.jugador.xMapa+gp.jugador.hitBox.x;
+                    gp.jugador.hitBox.y=gp.jugador.yMapa+gp.jugador.hitBox.y;
+                
+                    
+                    switch (entidad.direction) {
+                        case "up":  
+                                entidad.hitBox.y-=entidad.vel;
+                                if(entidad.hitBox.intersects(gp.jugador.hitBox)){
+                                    entidad.colision=true;
+                                }
+                                
+                        break;
+                        case "left":
+                                entidad.hitBox.x-=entidad.vel;
+                                if(entidad.hitBox.intersects(gp.jugador.hitBox)){
+                                    entidad.colision=true;
+                                }
+                        break;
+                        case "down":
+                                entidad.hitBox.y+=entidad.vel;
+                                if(entidad.hitBox.intersects(gp.jugador.hitBox)){
+                                    entidad.colision=true;
+                                }
+                        break;
+                        case "right":
+                                entidad.hitBox.x+=entidad.vel;
+                                if(entidad.hitBox.intersects(gp.jugador.hitBox)){
+                                    entidad.colision=true;
+                                }
+                        break;
+                    }
+                    entidad.hitBox.x=entidad.areadefectoX;
+                    entidad.hitBox.y=entidad.areadefectoY;
+                    gp.jugador.hitBox.x=gp.jugador.areadefectoX;
+                    gp.jugador.hitBox.y=gp.jugador.areadefectoY;
+
     }
 }
