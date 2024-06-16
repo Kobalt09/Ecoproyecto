@@ -2,16 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ep.ecoproyecto;
+package ep.ecoproyecto.logica;
 
-import Entidades.Jugador;
+import ep.ecoproyecto.gui.PanelJuego;
+import ep.ecoproyecto.logica.entidades.Jugador;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import objetos.ObjetoCofre;
-import objetos.ObjetoEquipo;
-import objetos.ObjetoPuerta;
-import objetos.ObjetoRecogible;
-import objetos.Objetosclase;
+import ep.ecoproyecto.logica.objetos.ObjetoCofre;
+import ep.ecoproyecto.logica.objetos.ObjetoEquipo;
+import ep.ecoproyecto.logica.objetos.ObjetoPuerta;
+import ep.ecoproyecto.logica.objetos.ObjetoRecogible;
+import ep.ecoproyecto.logica.objetos.Objetosclase;
 
 /**
  *

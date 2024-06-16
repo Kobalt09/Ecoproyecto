@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package objetos;
+package ep.ecoproyecto.logica.objetos;
 
-import ep.ecoproyecto.PanelJuego;
+import ep.ecoproyecto.gui.PanelJuego;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 

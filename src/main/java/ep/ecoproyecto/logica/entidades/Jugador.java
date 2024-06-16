@@ -4,10 +4,10 @@
  */
 
 //
-package Entidades;
-import ep.ecoproyecto.Herramientas;
-import ep.ecoproyecto.PanelJuego;
-import ep.ecoproyecto.KeyHandler;
+package ep.ecoproyecto.logica.entidades;
+import ep.ecoproyecto.logica.Herramientas;
+import ep.ecoproyecto.gui.PanelJuego;
+import ep.ecoproyecto.logica.KeyHandler;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -15,7 +15,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import objetos.Objetosclase;
+import ep.ecoproyecto.logica.objetos.Objetosclase;
 
 /**
  *
@@ -52,10 +52,6 @@ public class Jugador extends Entidad{
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
         
-        
-        //area solida
-        AreadefectoX=hitBox.x;
-        AreadefectoY=hitBox.y;
         
         valoresporDefecto();
         getPlayerImage();
@@ -143,7 +139,7 @@ public class Jugador extends Entidad{
             }
 
 
-        }    mria pero aqui porque me dice que hay confligto?
+        }  
     }
     
     public void recogerobjetos(int id){

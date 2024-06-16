@@ -2,10 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ep.ecoproyecto;
-import Entidades.Entidad;
-import Entidades.Jugador;
-import casillas.ManejadorCasillas;
+package ep.ecoproyecto.gui;
+import ep.ecoproyecto.logica.InterfazJugador;
+import ep.ecoproyecto.logica.EmisorObjetos;
+import ep.ecoproyecto.logica.EmisorNPC;
+import ep.ecoproyecto.logica.KeyHandler;
+import ep.ecoproyecto.logica.Sonido;
+import ep.ecoproyecto.logica.Colisionador;
+import ep.ecoproyecto.logica.entidades.Entidad;
+import ep.ecoproyecto.logica.entidades.Jugador;
+import ep.ecoproyecto.logica.casillas.ManejadorCasillas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -13,7 +19,7 @@ import java.awt.Graphics2D;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
-import objetos.Objetosclase;
+import ep.ecoproyecto.logica.objetos.Objetosclase;
 
 /**
  * @author Cris
