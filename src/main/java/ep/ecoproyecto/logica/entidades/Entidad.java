@@ -4,7 +4,7 @@
  */
 package ep.ecoproyecto.logica.entidades;
 
-import Interfaces.Dibujado;
+import ep.ecoproyecto.logica.Interfaces.Dibujado;
 import ep.ecoproyecto.logica.Herramientas;
 import ep.ecoproyecto.gui.PanelJuego;
 import java.awt.Graphics2D;

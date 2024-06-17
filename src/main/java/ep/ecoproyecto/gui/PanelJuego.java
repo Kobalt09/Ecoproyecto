@@ -128,12 +128,16 @@ public class PanelJuego extends JPanel implements Runnable{
                 frameCount = 0;
                 lastTimeCheck = System.nanoTime();
             }
-
+          
             //de esta forma el programa se queda en espera tras que se cumpla una actualizacion 
             try{
                 double remaningTime= nextDrawTime - System.nanoTime();
                 remaningTime=remaningTime /1000000;
-
+               
+                if(keyH.escPressed==true){
+                              gameThread.interrupt();
+                          }
+                
                 if(remaningTime<0){
                     remaningTime=0;
                 }
@@ -151,10 +155,13 @@ public class PanelJuego extends JPanel implements Runnable{
         if(estadodelJuego==1){
             
         }
+        
         jugador.update();
         npcs.actualizacion();
         manCas.actualizar(jugador,screenWidth, screenHeight);
         
+     
+     
         
     }
     @Override

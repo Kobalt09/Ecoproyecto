@@ -3,10 +3,7 @@
  */
 //
 package ep.ecoproyecto.gui;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 /**
  *
@@ -14,15 +11,15 @@ import javax.swing.JPanel;
  */
 public class Ecoproyecto {
 
-    public static void main(String[] args) {
+    public void iniciarJuego() {
+        
         JFrame ventana= new JFrame();
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setResizable(false);
         ventana.setTitle("ECOPROYECTO");
      
         PanelJuego panelDeJuego= new PanelJuego();
-        ventana.add(panelDeJuego);
-        
+        ventana.add(panelDeJuego);        
         ventana.pack();
         
         ventana.setLocationRelativeTo(null);
@@ -30,5 +27,6 @@ public class Ecoproyecto {
         
         panelDeJuego.configuraciondejuego();
         panelDeJuego.startGameThread();
+    
     }
 }
