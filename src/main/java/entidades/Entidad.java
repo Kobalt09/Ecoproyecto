@@ -111,6 +111,4 @@ public class Entidad{
             direction=directionoriginal;
         }
     }
-
-    
 }

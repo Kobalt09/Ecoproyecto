@@ -25,8 +25,6 @@ public class ObjetoRecogible extends Objetosclase{
         }catch(IOException e){
         
         }
-        
-
     }
     
     

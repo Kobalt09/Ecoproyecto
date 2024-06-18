@@ -26,6 +26,7 @@ public class Objetosclase {
     public int  areadefectoY=hitBox.y;
     Herramientas herramienta= new Herramientas();
 
+
     public Objetosclase( String nombre, int posicionX, int posicionY, PanelJuego gp) {
         
         this.nombre = nombre;

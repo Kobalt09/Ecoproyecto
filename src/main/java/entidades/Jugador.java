@@ -58,6 +58,7 @@ public class Jugador extends Entidad{
        
         valoresporDefecto();
         getPlayerImage();
+        
     }
     
     public void valoresporDefecto(){

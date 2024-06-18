@@ -5,6 +5,7 @@
 package objetos;
 
 import ep.ecoproyecto.PanelJuego;
+import java.awt.Rectangle;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
@@ -14,6 +15,7 @@ import javax.imageio.ImageIO;
  */
 public class ObjetoPuerta extends Objetosclase{
     
+
     public ObjetoPuerta(String nombre, int posicionX, int posicionY, PanelJuego gp) {
         super(nombre, posicionX, posicionY, gp);
         
