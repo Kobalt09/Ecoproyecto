@@ -26,28 +26,41 @@ public class EmisorObjetos {
     }
     
     public void establecerObj(){
-
-        gp.obj[0]=new ObjetoRecogible("llave",20,9,gp);
-        gp.obj[1]=new ObjetoRecogible("llave",5,7,gp);
-        gp.obj[2]=new ObjetoPuerta("puerta",7,8,gp);
-        gp.obj[3]=new ObjetoCofre("cofre",3,7,gp);
-        gp.obj[4]=new ObjetoEquipo("botas",6,6,gp);
-
+        
+        //MAPA 1://
+        int MapNum = 0;
+        gp.obj[MapNum][0]=new ObjetoRecogible("llave",20,9,gp);
+        gp.obj[MapNum][1]=new ObjetoRecogible("llave",5,7,gp);
+        gp.obj[MapNum][2]=new ObjetoPuerta("puerta",7,8,gp);
+        gp.obj[MapNum][3]=new ObjetoCofre("cofre",3,7,gp);
+        gp.obj[MapNum][4]=new ObjetoEquipo("botas",6,6,gp);
+        
+        //MAPA 2://
+        MapNum = 1;
+        
+        //MAPA 3://
+        MapNum = 2;
+        
+        //MAPA 4://
+        MapNum = 3;
+        
+        //MAPA 5://
+        MapNum = 4;
     }
     
     public void draw(Graphics2D g2){
         
-            for(int i=0;i<gp.obj.length;i++){
+            for(int i=0;i<gp.obj[0].length;i++){
                 //if((gp.obj[i]!=null)&&(gp.obj[i].posicionX>jugador.xMapa && gp.obj[i].posicionX <jugador.xMapa+this.gp.getWidth())){
-                if(gp.obj[i]!=null){
-                int PantallaX=gp.obj[i].posicionX- gp.jugador.xMapa+gp.jugador.pantallaX;
-                int PantallaY=gp.obj[i].posicionY- gp.jugador.yMapa+gp.jugador.pantallaY;
+                if(gp.obj[gp.Mapaactual][i]!=null){
+                int PantallaX=gp.obj[gp.Mapaactual][i].posicionX- gp.jugador.xMapa+gp.jugador.pantallaX;
+                int PantallaY=gp.obj[gp.Mapaactual][i].posicionY- gp.jugador.yMapa+gp.jugador.pantallaY;
                 
-                    if((gp.obj[i].posicionX+gp.tamanioCasilla > gp.jugador.xMapa-gp.jugador.pantallaX)&&(gp.obj[i].posicionX-gp.tamanioCasilla < gp.jugador.xMapa+gp.jugador.pantallaX)&&
-                       (gp.obj[i].posicionY+gp.tamanioCasilla > gp.jugador.yMapa-gp.jugador.pantallaY)&&(gp.obj[i].posicionY-gp.tamanioCasilla < gp.jugador.yMapa+gp.jugador.pantallaY)){     
+                    if((gp.obj[gp.Mapaactual][i].posicionX+gp.tamanioCasilla > gp.jugador.xMapa-gp.jugador.pantallaX)&&(gp.obj[gp.Mapaactual][i].posicionX-gp.tamanioCasilla < gp.jugador.xMapa+gp.jugador.pantallaX)&&
+                       (gp.obj[gp.Mapaactual][i].posicionY+gp.tamanioCasilla > gp.jugador.yMapa-gp.jugador.pantallaY)&&(gp.obj[gp.Mapaactual][i].posicionY-gp.tamanioCasilla < gp.jugador.yMapa+gp.jugador.pantallaY)){     
 
 
-                        g2.drawImage(gp.obj[i].image, PantallaX, PantallaY, gp.tamanioCasilla,gp.tamanioCasilla,null);
+                        g2.drawImage(gp.obj[gp.Mapaactual][i].image, PantallaX, PantallaY, gp.tamanioCasilla,gp.tamanioCasilla,null);
                     }
                     /*
                     g2.setColor(Color.red);

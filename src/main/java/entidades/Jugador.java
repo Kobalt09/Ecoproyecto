@@ -54,9 +54,6 @@ public class Jugador extends Entidad{
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
         
-
-       
-        valoresporDefecto();
         getPlayerImage();
     }
     
@@ -150,23 +147,24 @@ public class Jugador extends Entidad{
         if (key2.ePressed==true){
             
         }*/
+        
     }
     
-    public void recogerobjetos(int id){
+    public void recogerobjetos(int id){ //MODIFICADO
         
         if(id!=999){
             //usa el nombre del objeto para saber con cual objeto colisiona 
-            String objnombre=gp.obj[id].nombre;
+            String objnombre=gp.obj[gp.Mapaactual][id].nombre;
             
             //switch para el nombre
             //nota se puede usar un getclass para saber el tipo o usar 
-            System.out.println(gp.obj[id].nombre);
+            System.out.println(gp.obj[gp.Mapaactual][id].nombre);
             switch(objnombre){
                 case "llave":
                         llaves++;
                         gp.efectos(2);
                         gp.hud.mostrarmensaje("conseguiste una llave");
-                        gp.obj[id]=null;
+                        gp.obj[gp.Mapaactual][id]=null;
                         System.out.println("llaves: "+llaves);
                     break;
                 case "puerta":
@@ -174,7 +172,7 @@ public class Jugador extends Entidad{
                             llaves--;
                             gp.efectos(5);
                             gp.hud.mostrarmensaje("puerta abierta");
-                            gp.obj[id]=null;
+                            gp.obj[gp.Mapaactual][id]=null;
                             System.out.println("llaves: "+llaves);
                         }else{
                             gp.hud.mostrarmensaje("no tienes llaves para esta puerta");
@@ -185,7 +183,7 @@ public class Jugador extends Entidad{
                             gp.efectos(4);
                             gp.hud.mostrarmensaje("conseguiste "+objnombre);
                             vel=vel+2;
-                            this.inventario[0]=gp.obj[id];
+                            this.inventario[0]=gp.obj[gp.Mapaactual][id];
                             gp.obj[id]=null;
                         }
                         
@@ -202,7 +200,7 @@ public class Jugador extends Entidad{
     
     public void RecogerObjeto(int i){
         if(i!=999){
-            gp.obj[i]=null;
+            gp.obj[gp.Mapaactual][i]=null;
         }
     }
         
