@@ -33,56 +33,15 @@ public class Entidad{
     public boolean colision;
     public int contadordeaccion=0;
     
+    //variables de dialogo
+    public boolean dialogo=false;
+    public int veloriginal;
+    public String directionoriginal;
+    
+    
     public Entidad(PanelJuego gp){
         this.gp=gp;
     }
-    /*
-    public void draw(Graphics2D g2){
-        BufferedImage image =null;  
-        int PantallaX=xMapa- gp.jugador.xMapa+gp.jugador.pantallaX;
-        int PantallaY=yMapa- gp.jugador.yMapa+gp.jugador.pantallaY;
-                
-                    if((xMapa+gp.tamanioCasilla > gp.jugador.xMapa-gp.jugador.pantallaX)&&(xMapa-gp.tamanioCasilla < gp.jugador.xMapa+gp.jugador.pantallaX)&&
-                       (yMapa+gp.tamanioCasilla > gp.jugador.yMapa-gp.jugador.pantallaY)&&(yMapa-gp.tamanioCasilla < gp.jugador.yMapa+gp.jugador.pantallaY)){     
-
-                                switch(direction){
-                                    case "up" -> {     
-                                        if (spriteNum==1){
-                                            image=up1;
-                                        }
-                                          if (spriteNum==2){
-                                            image=up2;
-                                        }
-                                    break;
-                                    }
-                                    case "down" -> {
-                                        if (spriteNum==1)
-                                            image=down1;
-                                        if (spriteNum==2)
-                                            image=down2;                              
-                                        break;
-                                    }
-                                    case "left" ->  {     
-                                        if (spriteNum==1)
-                                            image=left1;
-                                        if (spriteNum==2)
-                                            image=left2;
-                                        break;
-                                    }
-                                    case "right" -> {      
-                                        if (spriteNum==1)   
-                                            image=right1;
-                                        if (spriteNum==2)   
-                                            image=right2;
-                                        break;
-                                    }
-
-                                }
-                        
-                        g2.drawImage(image, PantallaX, PantallaY, gp.tamanioCasilla,gp.tamanioCasilla,null);
-                    }
-    }
-    */
     
     public void estableceraccion(){}
     
@@ -92,6 +51,7 @@ public class Entidad{
         colision=false;
         gp.colisiones.revisarColision(this);
         gp.colisiones.chequeoObjetos(this, colision);
+        
         gp.colisiones.chequeojugador(this);
         
         if(colision==false){
@@ -139,6 +99,18 @@ public class Entidad{
         return imagen;
     }
     
+    public void dialogo(){
+        if(dialogo==false){
+            dialogo=true;
+            veloriginal=vel;
+            vel=0;
+            directionoriginal=direction;
+        }else{
+            dialogo=false;
+            vel=veloriginal;
+            direction=directionoriginal;
+        }
+    }
 
     
 }

@@ -24,6 +24,7 @@ import objetos.Objetosclase;
 public class Jugador extends Entidad{
 
     KeyHandler keyH;
+    KeyHandler key2;
     public final int pantallaX;
     public final int pantallaY;
     
@@ -31,11 +32,12 @@ public class Jugador extends Entidad{
     public int llaves=0;
     
     
-    public Jugador(PanelJuego gp, KeyHandler keyH){
+    public Jugador(PanelJuego gp, KeyHandler keyH,KeyHandler key2){
         
         super(gp);
         
         this.keyH=keyH;
+        this.key2=key2;
         
         pantallaX=gp.screenWidth/2-(gp.tamanioCasilla/2);
         pantallaY=gp.screenHeight/2-(gp.tamanioCasilla/2);
@@ -52,11 +54,8 @@ public class Jugador extends Entidad{
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
         
-        
-        //area solida
-        AreadefectoX=hitBox.x;
-        AreadefectoY=hitBox.y;
-        
+
+       
         valoresporDefecto();
         getPlayerImage();
     }
@@ -102,17 +101,21 @@ public class Jugador extends Entidad{
                 direction="right";
             }
             
+            //colision Casillas
             colision=false;
             gp.colisiones.revisarColision(this);
             
+            //colision NPC
             int entidadID=gp.colisiones.chequeoEntidades(this, gp.NPC);
             intereaccionNCP(entidadID);
             
-            
-
             //colision objetos
             int objID=gp.colisiones.chequeoObjetos(this, true);
             recogerobjetos(objID);
+            
+            //colision eventos
+            gp.ControlEventos.chequeoEvento();
+            
             
             if(colision==false){
                 switch (direction) {
@@ -141,9 +144,12 @@ public class Jugador extends Entidad{
                 }
                 spriteCounter = 0;
             }
-
-
-        }    mria pero aqui porque me dice que hay confligto?
+        } 
+        
+        /*interaccion
+        if (key2.ePressed==true){
+            
+        }*/
     }
     
     public void recogerobjetos(int id){

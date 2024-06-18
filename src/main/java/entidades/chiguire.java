@@ -23,7 +23,7 @@ public class chiguire extends Entidad{
         this.xMapa=x*gp.tamanioCasilla;
         this.yMapa=y*gp.tamanioCasilla;
         this.direction="down";
-        this.vel=1;
+        this.vel=0;
         this.hitBox=new Rectangle(0,0,gp.tamanioCasilla,gp.tamanioCasilla);
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;

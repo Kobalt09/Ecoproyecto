@@ -45,6 +45,7 @@ public class PanelJuego extends JPanel implements Runnable{
     public ManejadorCasillas manCas=new ManejadorCasillas(this);
    
     KeyHandler keyH= new KeyHandler();
+    KeyHandler key2= new KeyHandler();
     
     public Sonido controlmusica = new Sonido();
     public Sonido efectossonido = new Sonido();
@@ -52,23 +53,24 @@ public class PanelJuego extends JPanel implements Runnable{
     EmisorObjetos objeto= new EmisorObjetos(this);
     EmisorNPC npcs= new EmisorNPC(this);
     public InterfazJugador hud = new InterfazJugador(this);
+    public ControladorEventos ControlEventos= new ControladorEventos(this);
     Thread gameThread;
     //manejador de efectos de sonido
     
 
     
     //Jugador, objetos y NPC
-    public Jugador jugador= new Jugador(this,keyH);
+    public Jugador jugador= new Jugador(this,keyH,key2);
     public Objetosclase obj[]= new Objetosclase[10];
     public Entidad NPC[]= new Entidad[10];
     
     //Estado de Juego
     public int estadodelJuego;
     public final int estadoJuego=1;
+    public final int estadoDialogo=3;
     
     //interfaz
     public boolean pause;
-   
     
     public PanelJuego() {
         
@@ -77,6 +79,7 @@ public class PanelJuego extends JPanel implements Runnable{
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH); //reconocer la letra precioanda
         this.setFocusable(true);
+        this.addKeyListener(key2);
     }
     
     public void configuraciondejuego(){
@@ -148,15 +151,13 @@ public class PanelJuego extends JPanel implements Runnable{
         jugador.update();
         npcs.actualizacion();
         manCas.actualizar(jugador,screenWidth, screenHeight);
-        
-        
     }
+    
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         
         Graphics2D g2 = (Graphics2D)g; // estas dos clases son similares pero graphis2D tiene mas funciones para dibujar 
-        
 
         //casillas
         manCas.dibujar(g2);
@@ -165,14 +166,7 @@ public class PanelJuego extends JPanel implements Runnable{
         objeto.draw(g2);
         
         //npc
-        /*
-        for(int i=0;i<NPC.length;i++){
-                if(NPC[i]!=null){
-                    NPC[i].draw(g2);
-                }
-        }  */
         npcs.draw(g2);
-        //NPC[0].draw(g2);
         
         //jugador
         jugador.draw(g2);
