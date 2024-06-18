@@ -34,8 +34,6 @@ public class PanelJuego extends JPanel implements Runnable{
     //configuracion de mapa
     public final int Maximocolumnas=50;
     public final int Maximofilas=50;
-    public final int Maximomundos=5;
-    public int Mapaactual = 0;
     
     //indica la cancion que esta sonando actualmente
     public int musica=0;
@@ -63,8 +61,8 @@ public class PanelJuego extends JPanel implements Runnable{
     
     //Jugador, objetos y NPC
     public Jugador jugador= new Jugador(this,keyH,key2);
-    public Objetosclase obj[][]= new Objetosclase[Maximomundos][10];
-    public Entidad NPC[][]= new Entidad[Maximomundos][10];
+    public Objetosclase obj[]= new Objetosclase[10];
+    public Entidad NPC[]= new Entidad[10];
     
     //Estado de Juego
     public int estadodelJuego;
