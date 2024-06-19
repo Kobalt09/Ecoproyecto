@@ -156,17 +156,17 @@ public class Jugador extends Entidad{
         
         if(id!=999){
             //usa el nombre del objeto para saber con cual objeto colisiona 
-            String objnombre=gp.obj[gp.MapaActual][id].nombre;
+            String objnombre=gp.obj[gp.mapaActual][id].nombre;
             
             //switch para el nombre
             //nota se puede usar un getclass para saber el tipo o usar 
-            System.out.println(gp.obj[gp.MapaActual][id].nombre);
+            System.out.println(gp.obj[gp.mapaActual][id].nombre);
             switch(objnombre){
                 case "llave":
                         llaves++;
                         gp.efectos(2);
                         gp.hud.mostrarmensaje("conseguiste una llave");
-                        gp.obj[gp.MapaActual][id]=null;
+                        gp.obj[gp.mapaActual][id]=null;
                         System.out.println("llaves: "+llaves);
                     break;
                 case "puerta":
@@ -174,7 +174,7 @@ public class Jugador extends Entidad{
                             llaves--;
                             gp.efectos(5);
                             gp.hud.mostrarmensaje("puerta abierta");
-                            gp.obj[gp.MapaActual][id]=null;
+                            gp.obj[gp.mapaActual][id]=null;
                             System.out.println("llaves: "+llaves);
                         }else{
                             gp.hud.mostrarmensaje("no tienes llaves para esta puerta");
@@ -185,14 +185,14 @@ public class Jugador extends Entidad{
                             gp.efectos(4);
                             gp.hud.mostrarmensaje("conseguiste "+objnombre);
                             vel=vel+2;
-                            this.inventario[0]=gp.obj[gp.MapaActual][id];
-                            gp.obj[gp.MapaActual][id]=null;
+                            this.inventario[0]=gp.obj[gp.mapaActual][id];
+                            gp.obj[gp.mapaActual][id]=null;
                         }
                         
                     break;
                 case "cofre":
                             gp.hud.victoriamensaje=true;
-                            gp.obj[gp.MapaActual][id]=null;
+                            gp.obj[gp.mapaActual][id]=null;
                     break;
             }
             
@@ -202,7 +202,7 @@ public class Jugador extends Entidad{
     
     public void RecogerObjeto(int i){
         if(i!=999){
-            gp.obj[gp.MapaActual][i]=null;
+            gp.obj[gp.mapaActual][i]=null;
         }
     }
         

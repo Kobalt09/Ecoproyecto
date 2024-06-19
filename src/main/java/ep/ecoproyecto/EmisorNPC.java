@@ -48,43 +48,43 @@ public class EmisorNPC {
 
             for(int i=0;i<gp.NPC[0].length;i++){
                 
-                if(gp.NPC[gp.MapaActual][i]!=null){
+                if(gp.NPC[gp.mapaActual][i]!=null){
                     BufferedImage image =null;  
-                    int PantallaX=gp.NPC[gp.MapaActual][i].xMapa- gp.jugador.xMapa+gp.jugador.pantallaX;
-                    int PantallaY=gp.NPC[gp.MapaActual][i].yMapa- gp.jugador.yMapa+gp.jugador.pantallaY;
+                    int PantallaX=gp.NPC[gp.mapaActual][i].xMapa- gp.jugador.xMapa+gp.jugador.pantallaX;
+                    int PantallaY=gp.NPC[gp.mapaActual][i].yMapa- gp.jugador.yMapa+gp.jugador.pantallaY;
                 
-                    if((gp.NPC[gp.MapaActual][i].xMapa+gp.tamanioCasilla > gp.jugador.xMapa-gp.jugador.pantallaX)&&(gp.NPC[gp.MapaActual][i].xMapa-gp.tamanioCasilla < gp.jugador.xMapa+gp.jugador.pantallaX)&&
-                       (gp.NPC[gp.MapaActual][i].yMapa+gp.tamanioCasilla > gp.jugador.yMapa-gp.jugador.pantallaY)&&(gp.NPC[gp.MapaActual][i].yMapa-gp.tamanioCasilla < gp.jugador.yMapa+gp.jugador.pantallaY)){     
+                    if((gp.NPC[gp.mapaActual][i].xMapa+gp.tamanioCasilla > gp.jugador.xMapa-gp.jugador.pantallaX)&&(gp.NPC[gp.mapaActual][i].xMapa-gp.tamanioCasilla < gp.jugador.xMapa+gp.jugador.pantallaX)&&
+                       (gp.NPC[gp.mapaActual][i].yMapa+gp.tamanioCasilla > gp.jugador.yMapa-gp.jugador.pantallaY)&&(gp.NPC[gp.mapaActual][i].yMapa-gp.tamanioCasilla < gp.jugador.yMapa+gp.jugador.pantallaY)){     
 
-                                switch(gp.NPC[gp.MapaActual][i].direction){
+                                switch(gp.NPC[gp.mapaActual][i].direction){
                                     case "up" -> {     
-                                        if (gp.NPC[gp.MapaActual][i].spriteNum==1){
-                                            image=gp.NPC[gp.MapaActual][i].up1;
+                                        if (gp.NPC[gp.mapaActual][i].spriteNum==1){
+                                            image=gp.NPC[gp.mapaActual][i].up1;
                                         }
-                                          if (gp.NPC[gp.MapaActual][i].spriteNum==2){
-                                            image=gp.NPC[gp.MapaActual][i].up2;
+                                          if (gp.NPC[gp.mapaActual][i].spriteNum==2){
+                                            image=gp.NPC[gp.mapaActual][i].up2;
                                         }
                                     break;
                                     }
                                     case "down" -> {
-                                        if (gp.NPC[gp.MapaActual][i].spriteNum==1)
-                                            image=gp.NPC[gp.MapaActual][i].down1;
-                                        if (gp.NPC[gp.MapaActual][i].spriteNum==2)
-                                            image=gp.NPC[gp.MapaActual][i].down2;                              
+                                        if (gp.NPC[gp.mapaActual][i].spriteNum==1)
+                                            image=gp.NPC[gp.mapaActual][i].down1;
+                                        if (gp.NPC[gp.mapaActual][i].spriteNum==2)
+                                            image=gp.NPC[gp.mapaActual][i].down2;                              
                                         break;
                                     }
                                     case "left" ->  {     
-                                        if (gp.NPC[gp.MapaActual][i].spriteNum==1)
-                                            image=gp.NPC[gp.MapaActual][i].left1;
-                                        if (gp.NPC[gp.MapaActual][i].spriteNum==2)
-                                            image=gp.NPC[gp.MapaActual][i].left2;
+                                        if (gp.NPC[gp.mapaActual][i].spriteNum==1)
+                                            image=gp.NPC[gp.mapaActual][i].left1;
+                                        if (gp.NPC[gp.mapaActual][i].spriteNum==2)
+                                            image=gp.NPC[gp.mapaActual][i].left2;
                                         break;
                                     }
                                     case "right" -> {      
-                                        if (gp.NPC[gp.MapaActual][i].spriteNum==1)   
-                                            image=gp.NPC[gp.MapaActual][i].right1;
-                                        if (gp.NPC[gp.MapaActual][i].spriteNum==2)   
-                                            image=gp.NPC[gp.MapaActual][i].right2;
+                                        if (gp.NPC[gp.mapaActual][i].spriteNum==1)   
+                                            image=gp.NPC[gp.mapaActual][i].right1;
+                                        if (gp.NPC[gp.mapaActual][i].spriteNum==2)   
+                                            image=gp.NPC[gp.mapaActual][i].right2;
                                         break;
                                     }
 
@@ -101,8 +101,8 @@ public class EmisorNPC {
 
             for(int i=0;i<gp.NPC[0].length;i++){
                 
-                if(gp.NPC[gp.MapaActual][i]!=null){
-                    gp.NPC[gp.MapaActual][i].actualizar();
+                if(gp.NPC[gp.mapaActual][i]!=null){
+                    gp.NPC[gp.mapaActual][i].actualizar();
                }
             }
             

@@ -23,7 +23,8 @@ public class ManejadorCasillas {
     
     PanelJuego gp;
     public Casilla[] casilla;
-    public int numCasillaMapa[][][];
+    public int numCasillaMapa[][];
+    public String mapa[]= new String[5];
 
     public ManejadorCasillas(PanelJuego gp) {
         
@@ -31,10 +32,19 @@ public class ManejadorCasillas {
         
         casilla = new Casilla[10];
         
-        numCasillaMapa= new int[gp.Maximomundos][gp.Maximocolumnas][gp.Maximofilas];
+        numCasillaMapa= new int[gp.Maximocolumnas][gp.Maximofilas];
+        
+        
+        
         
         //-----AGREGAR MUNDOS AQUI----------//
-        cargarMapa("/mapas/mapaprueba.txt",0,0,0);
+        
+        mapa[0]="/mapas/mapaprueba.txt";
+        mapa[1]="/mapas/mapaprueba_1.txt";
+        
+        
+        
+        cargarMapa(mapa[gp.mapaActual],0,0);
         getImagenCasilla();
         
     }
@@ -66,7 +76,7 @@ public class ManejadorCasillas {
         
     }
     
-    public void cargarMapa(String direccion,int mapa, int dx,int dy){
+    public void cargarMapa(String direccion, int dx,int dy){
         try{
             
             
@@ -88,7 +98,7 @@ public class ManejadorCasillas {
                     
                     int num = Integer.parseInt(numeros[colum]);
                     
-                    numCasillaMapa[mapa][colum][fila]=num;
+                    numCasillaMapa[colum][fila]=num;
                     colum++;
                 }
                 if(colum==gp.Maximocolumnas){
@@ -108,7 +118,7 @@ public class ManejadorCasillas {
         int i=jugador.xMapa/64; 
         int j=jugador.yMapa/64;
 
-        cargarMapa("/mapas/mapaprueba.txt",gp.MapaActual,i,j);  
+        cargarMapa(mapa[gp.mapaActual],i,j);  
         
     
     }
@@ -121,7 +131,7 @@ public class ManejadorCasillas {
     
         while (columna < gp.Maximocolumnas && fila <gp.Maximofilas){
         
-            int numCasilla= numCasillaMapa[gp.MapaActual][columna][fila];
+            int numCasilla = numCasillaMapa[columna][fila];
                 
                 int PosicionX=columna*gp.tamanioCasilla;
                 int PosicionY=fila*gp.tamanioCasilla;
