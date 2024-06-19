@@ -75,22 +75,22 @@ public class Colisionador {
     public int chequeoObjetos(Entidad entidad, boolean jugador){
             int id=999;
             
-            for(int i=0;i<gp.obj.length;i++){
-                if(gp.obj[i]!=null){
+            for(int i=0;i<gp.obj[0].length;i++){
+                if(gp.obj[gp.mapaActual][i]!=null){
                     
                     entidad.hitBox.x=entidad.xMapa+entidad.hitBox.x;
                     entidad.hitBox.y=entidad.yMapa+entidad.hitBox.y;
                     
-                    gp.obj[i].hitBox.x=gp.obj[i].posicionX+gp.obj[i].hitBox.x;
-                    gp.obj[i].hitBox.y=gp.obj[i].posicionY+gp.obj[i].hitBox.y;
+                    gp.obj[gp.mapaActual][i].hitBox.x=gp.obj[gp.mapaActual][i].posicionX+gp.obj[gp.mapaActual][i].hitBox.x;
+                    gp.obj[gp.mapaActual][i].hitBox.y=gp.obj[gp.mapaActual][i].posicionY+gp.obj[gp.mapaActual][i].hitBox.y;
 
                 
                     
                     switch (entidad.direction) {
                         case "up":  
                                 entidad.hitBox.y-=entidad.vel;
-                                if(entidad.hitBox.intersects(gp.obj[i].hitBox)){
-                                    if(gp.obj[i].colision==true){
+                                if(entidad.hitBox.intersects(gp.obj[gp.mapaActual][i].hitBox)){
+                                    if(gp.obj[gp.mapaActual][i].colision==true){
                                         entidad.colision=true;
                                     }
                                     if(jugador==true){
@@ -101,8 +101,8 @@ public class Colisionador {
                         break;
                         case "left":
                                 entidad.hitBox.x-=entidad.vel;
-                                if(entidad.hitBox.intersects(gp.obj[i].hitBox)){
-                                    if(gp.obj[i].colision==true){
+                                if(entidad.hitBox.intersects(gp.obj[gp.mapaActual][i].hitBox)){
+                                    if(gp.obj[gp.mapaActual][i].colision==true){
                                         entidad.colision=true;
                                     }
                                     if(jugador==true){
@@ -112,8 +112,8 @@ public class Colisionador {
                         break;
                         case "down":
                                 entidad.hitBox.y+=entidad.vel;
-                                if(entidad.hitBox.intersects(gp.obj[i].hitBox)){
-                                    if(gp.obj[i].colision==true){
+                                if(entidad.hitBox.intersects(gp.obj[gp.mapaActual][i].hitBox)){
+                                    if(gp.obj[gp.mapaActual][i].colision==true){
                                         entidad.colision=true;
                                     }
                                     if(jugador==true){
@@ -123,8 +123,8 @@ public class Colisionador {
                         break;
                         case "right":
                                 entidad.hitBox.x+=entidad.vel;
-                                if(entidad.hitBox.intersects(gp.obj[i].hitBox)){
-                                    if(gp.obj[i].colision==true){
+                                if(entidad.hitBox.intersects(gp.obj[gp.mapaActual][i].hitBox)){
+                                    if(gp.obj[gp.mapaActual][i].colision==true){
                                         entidad.colision=true;
                                     }
                                     if(jugador==true){
@@ -135,8 +135,8 @@ public class Colisionador {
                     }
                     entidad.hitBox.x=entidad.areadefectoX;
                     entidad.hitBox.y=entidad.areadefectoY;
-                    gp.obj[i].hitBox.x=gp.obj[i].areadefectoX;
-                    gp.obj[i].hitBox.y=gp.obj[i].areadefectoY;
+                    gp.obj[gp.mapaActual][i].hitBox.x=gp.obj[gp.mapaActual][i].areadefectoX;
+                    gp.obj[gp.mapaActual][i].hitBox.y=gp.obj[gp.mapaActual][i].areadefectoY;
                 }
                 
             }
@@ -144,23 +144,23 @@ public class Colisionador {
             return id;
         }
     
-    public int chequeoEntidades(Entidad entidad, Entidad[] objetivos){
+    public int chequeoEntidades(Entidad entidad, Entidad[][] objetivos){
                     int id=999;
             
-            for(int i=0;i<objetivos.length;i++){
-                if(objetivos[i]!=null){
+            for(int i=0;i<objetivos[0].length;i++){
+                if(objetivos[gp.mapaActual][i]!=null){
                     
                     entidad.hitBox.x=entidad.xMapa+entidad.hitBox.x;
                     entidad.hitBox.y=entidad.yMapa+entidad.hitBox.y;
                     
-                    objetivos[i].hitBox.x=objetivos[i].xMapa+objetivos[i].hitBox.x;
-                    objetivos[i].hitBox.y=objetivos[i].yMapa+objetivos[i].hitBox.y;
+                    objetivos[gp.mapaActual][i].hitBox.x=objetivos[gp.mapaActual][i].xMapa+objetivos[gp.mapaActual][i].hitBox.x;
+                    objetivos[gp.mapaActual][i].hitBox.y=objetivos[gp.mapaActual][i].yMapa+objetivos[gp.mapaActual][i].hitBox.y;
                 
                     
                     switch (entidad.direction) {
                         case "up":  
                                 entidad.hitBox.y-=entidad.vel;
-                                if(entidad.hitBox.intersects(objetivos[i].hitBox)){
+                                if(entidad.hitBox.intersects(objetivos[gp.mapaActual][i].hitBox)){
                                     entidad.colision=true;
                                     id=i;
                                 }
@@ -168,21 +168,21 @@ public class Colisionador {
                         break;
                         case "left":
                                 entidad.hitBox.x-=entidad.vel;
-                                if(entidad.hitBox.intersects(objetivos[i].hitBox)){
+                                if(entidad.hitBox.intersects(objetivos[gp.mapaActual][i].hitBox)){
                                     entidad.colision=true;
                                     id=i;
                                 }
                         break;
                         case "down":
                                 entidad.hitBox.y+=entidad.vel;
-                                if(entidad.hitBox.intersects(objetivos[i].hitBox)){
+                                if(entidad.hitBox.intersects(objetivos[gp.mapaActual][i].hitBox)){
                                     entidad.colision=true;
                                     id=i;
                                 }
                         break;
                         case "right":
                                 entidad.hitBox.x+=entidad.vel;
-                                if(entidad.hitBox.intersects(objetivos[i].hitBox)){
+                                if(entidad.hitBox.intersects(objetivos[gp.mapaActual][i].hitBox)){
                                     entidad.colision=true;
                                     id=i;
                                 }
@@ -190,8 +190,8 @@ public class Colisionador {
                     }
                     entidad.hitBox.x=entidad.areadefectoX;
                     entidad.hitBox.y=entidad.areadefectoY;
-                    objetivos[i].hitBox.x=objetivos[i].areadefectoX;
-                    objetivos[i].hitBox.y=objetivos[i].areadefectoY;
+                    objetivos[gp.mapaActual][i].hitBox.x=objetivos[gp.mapaActual][i].areadefectoX;
+                    objetivos[gp.mapaActual][i].hitBox.y=objetivos[gp.mapaActual][i].areadefectoY;
                 }
                 
             }

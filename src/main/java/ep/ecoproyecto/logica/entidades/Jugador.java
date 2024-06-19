@@ -24,6 +24,7 @@ import ep.ecoproyecto.logica.objetos.Objetosclase;
 public class Jugador extends Entidad{
 
     KeyHandler keyH;
+    KeyHandler key2;
     public final int pantallaX;
     public final int pantallaY;
     
@@ -31,11 +32,12 @@ public class Jugador extends Entidad{
     public int llaves=0;
     
     
-    public Jugador(PanelJuego gp, KeyHandler keyH){
+    public Jugador(PanelJuego gp, KeyHandler keyH,KeyHandler key2){
         
         super(gp);
         
         this.keyH=keyH;
+        this.key2=key2;
         
         pantallaX=gp.screenWidth/2-(gp.tamanioCasilla/2);
         pantallaY=gp.screenHeight/2-(gp.tamanioCasilla/2);
@@ -52,7 +54,12 @@ public class Jugador extends Entidad{
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
         
+<<<<<<< HEAD:src/main/java/entidades/Jugador.java
+
+       
+=======
         
+>>>>>>> main:src/main/java/ep/ecoproyecto/logica/entidades/Jugador.java
         valoresporDefecto();
         getPlayerImage();
     }
@@ -98,17 +105,21 @@ public class Jugador extends Entidad{
                 direction="right";
             }
             
+            //colision Casillas
             colision=false;
             gp.colisiones.revisarColision(this);
             
+            //colision NPC
             int entidadID=gp.colisiones.chequeoEntidades(this, gp.NPC);
             intereaccionNCP(entidadID);
             
-            
-
             //colision objetos
             int objID=gp.colisiones.chequeoObjetos(this, true);
             recogerobjetos(objID);
+            
+            //colision eventos
+            gp.ControlEventos.chequeoEvento();
+            
             
             if(colision==false){
                 switch (direction) {
@@ -137,26 +148,35 @@ public class Jugador extends Entidad{
                 }
                 spriteCounter = 0;
             }
+<<<<<<< HEAD:src/main/java/entidades/Jugador.java
+        } 
+        
+        /*interaccion
+        if (key2.ePressed==true){
+            
+        }*/
+=======
 
 
         }  
+>>>>>>> main:src/main/java/ep/ecoproyecto/logica/entidades/Jugador.java
     }
     
     public void recogerobjetos(int id){
         
         if(id!=999){
             //usa el nombre del objeto para saber con cual objeto colisiona 
-            String objnombre=gp.obj[id].nombre;
+            String objnombre=gp.obj[gp.mapaActual][id].nombre;
             
             //switch para el nombre
             //nota se puede usar un getclass para saber el tipo o usar 
-            System.out.println(gp.obj[id].nombre);
+            System.out.println(gp.obj[gp.mapaActual][id].nombre);
             switch(objnombre){
                 case "llave":
                         llaves++;
                         gp.efectos(2);
                         gp.hud.mostrarmensaje("conseguiste una llave");
-                        gp.obj[id]=null;
+                        gp.obj[gp.mapaActual][id]=null;
                         System.out.println("llaves: "+llaves);
                     break;
                 case "puerta":
@@ -164,7 +184,7 @@ public class Jugador extends Entidad{
                             llaves--;
                             gp.efectos(5);
                             gp.hud.mostrarmensaje("puerta abierta");
-                            gp.obj[id]=null;
+                            gp.obj[gp.mapaActual][id]=null;
                             System.out.println("llaves: "+llaves);
                         }else{
                             gp.hud.mostrarmensaje("no tienes llaves para esta puerta");
@@ -175,14 +195,14 @@ public class Jugador extends Entidad{
                             gp.efectos(4);
                             gp.hud.mostrarmensaje("conseguiste "+objnombre);
                             vel=vel+2;
-                            this.inventario[0]=gp.obj[id];
-                            gp.obj[id]=null;
+                            this.inventario[0]=gp.obj[gp.mapaActual][id];
+                            gp.obj[gp.mapaActual][id]=null;
                         }
                         
                     break;
                 case "cofre":
                             gp.hud.victoriamensaje=true;
-                            gp.obj[id]=null;
+                            gp.obj[gp.mapaActual][id]=null;
                     break;
             }
             
@@ -192,7 +212,7 @@ public class Jugador extends Entidad{
     
     public void RecogerObjeto(int i){
         if(i!=999){
-            gp.obj[i]=null;
+            gp.obj[gp.mapaActual][i]=null;
         }
     }
         

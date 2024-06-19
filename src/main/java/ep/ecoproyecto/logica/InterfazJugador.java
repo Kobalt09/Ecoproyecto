@@ -40,6 +40,7 @@ public class InterfazJugador {
         
     }
     
+    
     public void dibujar(Graphics2D g2){
         
         g2.setFont(fuente);
@@ -47,7 +48,10 @@ public class InterfazJugador {
         g2.drawString("posicion X:"+(gp.jugador.xMapa/64)+" Y "+(gp.jugador.yMapa/64), gp.tamanioCasilla*2, gp.tamanioCasilla);
         
         
-        
+        //estado de dialogo
+        if(gp.estadoDialogo==gp.estadodelJuego){
+            
+        }
         
         /*
         g2.setFont(fuente);

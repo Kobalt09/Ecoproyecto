@@ -24,6 +24,7 @@ public class ManejadorCasillas {
     PanelJuego gp;
     public Casilla[] casilla;
     public int numCasillaMapa[][];
+    public String mapa[]= new String[5];
 
     public ManejadorCasillas(PanelJuego gp) {
         
@@ -33,7 +34,17 @@ public class ManejadorCasillas {
         
         numCasillaMapa= new int[gp.Maximocolumnas][gp.Maximofilas];
         
-        cargarMapa("/mapas/mapaprueba.txt",0,0);
+        
+        
+        
+        //-----AGREGAR MUNDOS AQUI----------//
+        
+        mapa[0]="/mapas/mapaprueba.txt";
+        mapa[1]="/mapas/mapaprueba_1.txt";
+        
+        
+        
+        cargarMapa(mapa[gp.mapaActual],0,0);
         getImagenCasilla();
         
     }
@@ -65,7 +76,7 @@ public class ManejadorCasillas {
         
     }
     
-    public void cargarMapa(String direccion,int dx,int dy){
+    public void cargarMapa(String direccion, int dx,int dy){
         try{
             
             
@@ -107,7 +118,7 @@ public class ManejadorCasillas {
         int i=jugador.xMapa/64; 
         int j=jugador.yMapa/64;
 
-        cargarMapa("/mapas/mapaprueba.txt",i,j);  
+        cargarMapa(mapa[gp.mapaActual],i,j);  
         
     
     }
@@ -120,7 +131,7 @@ public class ManejadorCasillas {
     
         while (columna < gp.Maximocolumnas && fila <gp.Maximofilas){
         
-            int numCasilla= numCasillaMapa[columna][fila];
+            int numCasilla = numCasillaMapa[columna][fila];
                 
                 int PosicionX=columna*gp.tamanioCasilla;
                 int PosicionY=fila*gp.tamanioCasilla;
