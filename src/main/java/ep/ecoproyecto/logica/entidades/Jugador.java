@@ -1,26 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
-//
+
 package ep.ecoproyecto.logica.entidades;
-import ep.ecoproyecto.logica.Herramientas;
+
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.KeyHandler;
-import java.awt.Color;
-import java.awt.Graphics;
+import ep.ecoproyecto.logica.entidades.Entidad;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import ep.ecoproyecto.logica.objetos.Objetosclase;
 
 /**
  *
  * @author Cris
  */
+
 public class Jugador extends Entidad{
 
     KeyHandler keyH;
@@ -54,12 +48,6 @@ public class Jugador extends Entidad{
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
         
-<<<<<<< HEAD:src/main/java/entidades/Jugador.java
-
-       
-=======
-        
->>>>>>> main:src/main/java/ep/ecoproyecto/logica/entidades/Jugador.java
         valoresporDefecto();
         getPlayerImage();
     }
@@ -148,20 +136,14 @@ public class Jugador extends Entidad{
                 }
                 spriteCounter = 0;
             }
-<<<<<<< HEAD:src/main/java/entidades/Jugador.java
+
         } 
-        
+    }
         /*interaccion
         if (key2.ePressed==true){
             
         }*/
-=======
 
-
-        }  
->>>>>>> main:src/main/java/ep/ecoproyecto/logica/entidades/Jugador.java
-    }
-    
     public void recogerobjetos(int id){
         
         if(id!=999){
@@ -225,7 +207,7 @@ public class Jugador extends Entidad{
     
     public void draw(Graphics2D g2){
 
-       BufferedImage image = null;  
+        BufferedImage image = null;  
 
         switch(direction){
             case "up" -> {     

@@ -5,7 +5,6 @@
 package ep.ecoproyecto.logica;
 
 import ep.ecoproyecto.gui.PanelJuego;
-import ep.ecoproyecto.logica.entidades.Jugador;
 import ep.ecoproyecto.logica.entidades.chiguire;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;

@@ -13,14 +13,12 @@ import java.awt.event.KeyEvent;
  */
 public class KeyHandler implements KeyListener{
     
-<<<<<<< HEAD:src/main/java/ep/ecoproyecto/KeyHandler.java
-    public boolean upPressed, downPressed, leftPressed, rightPressed,PPressed;
+
+
     public boolean ePressed;
-=======
+
     public boolean upPressed, downPressed, leftPressed, rightPressed,PPressed,escPressed;
  
->>>>>>> main:src/main/java/ep/ecoproyecto/logica/KeyHandler.java
-
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -43,14 +41,15 @@ public class KeyHandler implements KeyListener{
         if(code==KeyEvent.VK_S){
             downPressed=true;
         }
-<<<<<<< HEAD:src/main/java/ep/ecoproyecto/KeyHandler.java
+
         if(code==KeyEvent.VK_E){
             ePressed=true;
-=======
         
         if(code==KeyEvent.VK_ESCAPE){
             escPressed=true;
->>>>>>> main:src/main/java/ep/ecoproyecto/logica/KeyHandler.java
+
+        }
+        
         }
     }
 
