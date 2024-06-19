@@ -74,6 +74,7 @@ public class ControladorEventos {
     public void tp(int x,int y){
         gp.jugador.xMapa=x*gp.tamanioCasilla-gp.tamanioCasilla;
         gp.jugador.yMapa=y*gp.tamanioCasilla-gp.tamanioCasilla;
+        gp.mapaActual=1;
     }
     
 }
