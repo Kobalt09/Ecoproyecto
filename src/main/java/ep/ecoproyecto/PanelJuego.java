@@ -35,7 +35,7 @@ public class PanelJuego extends JPanel implements Runnable{
     public final int Maximocolumnas=50;
     public final int Maximofilas=50;
     public final int Maximomundos=5;
-    public int MapaActual=0;
+    public int mapaActual=0;
     
     //indica la cancion que esta sonando actualmente
     public int musica=0;
