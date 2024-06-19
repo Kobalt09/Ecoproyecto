@@ -16,7 +16,7 @@ public class Fuentes {
     Font fuente=null;
     
     public String upheaval="/fuente/upheavtt.ttf";
-
+     public String Roboto="/fuente/Roboto-Regular.ttf";
     
     public Font fuente(String nFuente, int estilo, float tamanio){
         
