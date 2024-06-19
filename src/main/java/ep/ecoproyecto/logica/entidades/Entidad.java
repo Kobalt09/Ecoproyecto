@@ -18,7 +18,7 @@ import javax.imageio.ImageIO;
  * @author Cris
  */
 public class Entidad{
-    PanelJuego gp;
+    public PanelJuego gp;
     public int xMapa,yMapa;
     public int vel;
     

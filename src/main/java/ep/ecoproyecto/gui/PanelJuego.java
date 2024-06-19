@@ -3,15 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ep.ecoproyecto.gui;
+import ep.ecoproyecto.logica.ControladorEventos;
 import ep.ecoproyecto.logica.InterfazJugador;
 import ep.ecoproyecto.logica.EmisorObjetos;
 import ep.ecoproyecto.logica.EmisorNPC;
-import ep.ecoproyecto.logica.KeyHandler;
 import ep.ecoproyecto.logica.Sonido;
 import ep.ecoproyecto.logica.Colisionador;
+import ep.ecoproyecto.logica.KeyHandler;
 import ep.ecoproyecto.logica.entidades.Entidad;
-import ep.ecoproyecto.logica.entidades.Jugador;
 import ep.ecoproyecto.logica.casillas.ManejadorCasillas;
+import ep.ecoproyecto.logica.entidades.Jugador;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -164,13 +165,8 @@ public class PanelJuego extends JPanel implements Runnable{
         jugador.update();
         npcs.actualizacion();
         manCas.actualizar(jugador,screenWidth, screenHeight);
-<<<<<<< HEAD:src/main/java/ep/ecoproyecto/PanelJuego.java
-=======
+
         
-     
-     
-        
->>>>>>> main:src/main/java/ep/ecoproyecto/gui/PanelJuego.java
     }
     
     @Override
