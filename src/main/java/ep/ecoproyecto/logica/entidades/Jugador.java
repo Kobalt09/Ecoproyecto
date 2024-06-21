@@ -60,8 +60,8 @@ public class Jugador extends Entidad{
 
         
         //posicion del jugador en el arreglo +1,
-        xMapa=3*gp.tamanioCasilla+gp.tamanioCasilla;
-        yMapa=3*gp.tamanioCasilla+gp.tamanioCasilla;
+        xMapa=10*gp.tamanioCasilla+gp.tamanioCasilla;
+        yMapa=10*gp.tamanioCasilla+gp.tamanioCasilla;
 
         vel=4;
         direction ="down"; 

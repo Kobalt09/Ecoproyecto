@@ -41,8 +41,8 @@ public class PanelJuego extends JPanel implements Runnable{
     public final int screenHeight=tamanioCasilla *maxFilasPantalla; // 640
     
     //configuracion de mapa
-    public final int Maximocolumnas=50;
-    public final int Maximofilas=50;
+    public final int Maximocolumnas=40;
+    public final int Maximofilas=34;
     public final int Maximomundos=5;
     public int mapaActual=0;
     

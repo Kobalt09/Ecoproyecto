@@ -52,10 +52,11 @@ public class ManejadorCasillas {
     public void getImagenCasilla(){
 
             configutacion(0, "pasto", false);
-            configutacion(1, "agua", false);
-            configutacion(2, "pared", true);
+            configutacion(1, "agua", true);
+            configutacion(2, "pared", false);
             configutacion(3, "arbol", true);
             configutacion(4, "arena", false);
+            configutacion(5, "asfalto", true);
             
     }
     
