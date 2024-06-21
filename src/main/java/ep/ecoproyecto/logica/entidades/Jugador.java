@@ -9,6 +9,8 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import ep.ecoproyecto.logica.objetos.Objetosclase;
+import java.awt.Color;
+import java.awt.Font;
 
 /**
  *
@@ -21,17 +23,19 @@ public class Jugador extends Entidad{
     KeyHandler key2;
     public final int pantallaX;
     public final int pantallaY;
+    private String username;
     
     Objetosclase inventario[]= new Objetosclase[10];
     public int llaves=0;
     
     
-    public Jugador(PanelJuego gp, KeyHandler keyH,KeyHandler key2){
+    public Jugador(PanelJuego gp, KeyHandler keyH,KeyHandler key2, String username){
         
         super(gp);
         
         this.keyH=keyH;
         this.key2=key2;
+        this.username=username;
         
         pantallaX=gp.screenWidth/2-(gp.tamanioCasilla/2);
         pantallaY=gp.screenHeight/2-(gp.tamanioCasilla/2);
@@ -244,7 +248,28 @@ public class Jugador extends Entidad{
         }
         
      
-       g2.drawImage(image,pantallaX,pantallaY,null); 
+       g2.drawImage(image,pantallaX,pantallaY,null);
+       
+       if (username != null){
+           g2.setFont(new Font("Joystix Monospace",Font.BOLD,20));
+           int textX = pantallaX + (image.getWidth() - g2.getFontMetrics().stringWidth(username))/2 ;
+           int textY = pantallaY - 10;
+           
+           // Draw the black border
+            g2.setColor(Color.BLACK);
+            g2.drawString(username, textX - 2, textY - 2);
+            g2.drawString(username, textX - 2, textY + 2);
+            g2.drawString(username, textX + 2, textY - 2);
+            g2.drawString(username, textX + 2, textY + 2);
+            g2.drawString(username, textX, textY - 2);
+            g2.drawString(username, textX, textY + 2);
+            g2.drawString(username, textX - 2, textY);
+            g2.drawString(username, textX + 2, textY);
+
+            // Draw the white text
+            g2.setColor(Color.WHITE);
+            g2.drawString(username, textX, textY);
+       }
     }
 
 

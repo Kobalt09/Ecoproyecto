@@ -71,7 +71,7 @@ public class PanelJuego extends JPanel implements Runnable{
 
     
     //Jugador, objetos y NPC
-    public Jugador jugador= new Jugador(this,keyH,key2);
+    public Jugador jugador;
     public Objetosclase obj[][]= new Objetosclase[Maximomundos][10];
     public Entidad NPC[][]= new Entidad[Maximomundos][10];
     
@@ -108,6 +108,7 @@ public class PanelJuego extends JPanel implements Runnable{
         pause=true;
         
         //ONLINE//
+        jugador = new Jugador(this,keyH,key2,JOptionPane.showInputDialog(this, "Por favor, introduzca su nombre de usuario:"));
         if (socketcliente != null) {
             socketcliente.enviarData("ping".getBytes());
         }
