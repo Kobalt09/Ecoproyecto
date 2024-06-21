@@ -13,6 +13,7 @@ import ep.ecoproyecto.logica.KeyHandler;
 import ep.ecoproyecto.logica.entidades.Entidad;
 import ep.ecoproyecto.logica.casillas.ManejadorCasillas;
 import ep.ecoproyecto.logica.entidades.Jugador;
+import ep.ecoproyecto.logica.net.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -21,6 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 import ep.ecoproyecto.logica.objetos.Objetosclase;
+import javax.swing.JOptionPane;
 
 /**
  * @author Cris
@@ -81,6 +83,10 @@ public class PanelJuego extends JPanel implements Runnable{
     //interfaz
     public boolean pause;
     
+    //----ONLINE-----//
+    private Cliente socketcliente;
+    private Server socketserver;
+    
     public PanelJuego() {
         
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
@@ -100,11 +106,26 @@ public class PanelJuego extends JPanel implements Runnable{
         //estado de juego
         estadodelJuego=estadoJuego;
         pause=true;
+        
+        //ONLINE//
+        if (socketcliente != null) {
+            socketcliente.enviarData("ping".getBytes());
+        }
     }
     
     public void startGameThread(){
         gameThread = new Thread(this);
         gameThread.start();
+        
+        //Se puede adaptar como una funcion dentro del MENU//
+        if(JOptionPane.showConfirmDialog(this, "Quieres iniciar el server?") == JOptionPane.YES_OPTION){
+            socketserver = new Server(this);
+            socketserver.start();
+        }
+        //-------------------------------------------------//
+        
+        socketcliente = new Cliente("localhost", this);
+        socketcliente.start();
     }
 
     @Override
