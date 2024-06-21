@@ -255,7 +255,7 @@ public class Jugador extends Entidad{
            int textX = pantallaX + (image.getWidth() - g2.getFontMetrics().stringWidth(username))/2 ;
            int textY = pantallaY - 10;
            
-           // Draw the black border
+           //Bordes Negros//
             g2.setColor(Color.BLACK);
             g2.drawString(username, textX - 2, textY - 2);
             g2.drawString(username, textX - 2, textY + 2);
@@ -266,7 +266,7 @@ public class Jugador extends Entidad{
             g2.drawString(username, textX - 2, textY);
             g2.drawString(username, textX + 2, textY);
 
-            // Draw the white text
+            //Letras Blancas//
             g2.setColor(Color.WHITE);
             g2.drawString(username, textX, textY);
        }
