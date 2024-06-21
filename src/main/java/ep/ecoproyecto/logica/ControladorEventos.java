@@ -1,32 +1,31 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ep.ecoproyecto.logica;
 
 import ep.ecoproyecto.gui.PanelJuego;
-import java.awt.Rectangle;
 
-/**
- *
- * @author Cris
- */
 public class ControladorEventos {
     PanelJuego gp;
-    Rectangle rectanguloEvento;
-    int rectanguloEventoDefaultX, rectanguloEventoDefaultY;
+    EventoRect rectanguloEvento[][];
     
     public ControladorEventos(PanelJuego gp){
         this.gp=gp;
+        rectanguloEvento = new EventoRect[gp.Maximocolumnas][gp.Maximofilas];
         
-        rectanguloEvento= new Rectangle();
-        rectanguloEvento.x=0;
-        rectanguloEvento.y=0;
-        rectanguloEvento.width=gp.tamanioCasilla;
-        rectanguloEvento.height=gp.tamanioCasilla;
-        rectanguloEventoDefaultX=rectanguloEvento.x;
-        rectanguloEventoDefaultY=rectanguloEvento.y;
-        
+        int columna = 0, fila = 0;
+        while(columna < gp.Maximocolumnas && fila < gp.Maximofilas){
+            rectanguloEvento[columna][fila] = new EventoRect();
+            rectanguloEvento[columna][fila].x=0;
+            rectanguloEvento[columna][fila].y=0;
+            rectanguloEvento[columna][fila].width=gp.tamanioCasilla;
+            rectanguloEvento[columna][fila].height=gp.tamanioCasilla;
+            rectanguloEvento[columna][fila].rectanguloEventoDefaultX=rectanguloEvento[columna][fila].x;
+            rectanguloEvento[columna][fila].rectanguloEventoDefaultY=rectanguloEvento[columna][fila].y;
+            
+            columna++;
+            if (columna == gp.Maximocolumnas){
+                columna = 0;
+                fila++;
+            }
+        }
     }
     
     public void chequeoEvento(){
@@ -38,15 +37,15 @@ public class ControladorEventos {
         
     }
     
-    public boolean colision(int eventCol, int eventRow, String regdirecion){
+    public boolean colision(int columna, int fila, String regdirecion){
         boolean hit= false;
         
         gp.jugador.hitBox.x=gp.jugador.xMapa+gp.jugador.hitBox.width;
         gp.jugador.hitBox.y=gp.jugador.yMapa+gp.jugador.hitBox.height;
-        rectanguloEvento.x=eventCol*gp.tamanioCasilla+rectanguloEvento.x;
-        rectanguloEvento.y=eventRow*gp.tamanioCasilla+rectanguloEvento.y;
+        rectanguloEvento[columna][fila].x=columna*gp.tamanioCasilla+rectanguloEvento[columna][fila].x;
+        rectanguloEvento[columna][fila].y=fila*gp.tamanioCasilla+rectanguloEvento[columna][fila].y;
         
-        if(gp.jugador.hitBox.intersects(rectanguloEvento)){
+        if(gp.jugador.hitBox.intersects(rectanguloEvento[columna][fila])){
             if(gp.jugador.direction.equals(regdirecion)||regdirecion.contentEquals("any")){
                 hit=true;
             }
@@ -54,8 +53,8 @@ public class ControladorEventos {
         
         gp.jugador.hitBox.x=gp.jugador.areadefectoX;
         gp.jugador.hitBox.y=gp.jugador.areadefectoY;
-        rectanguloEvento.x=rectanguloEventoDefaultX;
-        rectanguloEvento.y=rectanguloEventoDefaultY;
+        rectanguloEvento[columna][fila].x=rectanguloEvento[columna][fila].rectanguloEventoDefaultX;
+        rectanguloEvento[columna][fila].y=rectanguloEvento[columna][fila].rectanguloEventoDefaultY;
         
         
         return hit;
