@@ -163,7 +163,6 @@ public class Colisionador {
                                     entidad.colision=true;
                                     id=i;
                                 }
-                                
                         break;
                         case "left":
                                 entidad.hitBox.x-=entidad.vel;
@@ -192,7 +191,6 @@ public class Colisionador {
                     objetivos[gp.MapaActual][i].hitBox.x=objetivos[gp.MapaActual][i].areadefectoX;
                     objetivos[gp.MapaActual][i].hitBox.y=objetivos[gp.MapaActual][i].areadefectoY;
                 }
-                
             }
             
             return id;

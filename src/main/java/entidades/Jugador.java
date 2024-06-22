@@ -25,20 +25,19 @@ import objetos.Objetosclase;
 public class Jugador extends Entidad implements Dibujado{
 
     KeyHandler keyH;
-    KeyHandler key2;
     public final int pantallaX;
     public final int pantallaY;
     
-    Entidad inventario[]= new Entidad[10];
+    public Entidad inventario[]= new Entidad[10];
     public int llaves=0;
+    public boolean interactuar;
     
     
-    public Jugador(PanelJuego gp, KeyHandler keyH,KeyHandler key2){
+    public Jugador(PanelJuego gp, KeyHandler keyH){
         
         super(gp);
         
         this.keyH=keyH;
-        this.key2=key2;
         
         pantallaX=gp.screenWidth/2-(gp.tamanioCasilla/2);
         pantallaY=gp.screenHeight/2-(gp.tamanioCasilla/2);
@@ -60,17 +59,17 @@ public class Jugador extends Entidad implements Dibujado{
         valoresporDefecto();
         getPlayerImage();
         
+        
     }
     
     public void valoresporDefecto(){
-
-        
         //posicion del jugador en el arreglo +1,
         xMapa=3*gp.tamanioCasilla+gp.tamanioCasilla;
         yMapa=3*gp.tamanioCasilla+gp.tamanioCasilla;
 
         vel=4;
         direction ="down"; 
+        interactuar=false;
     }
 
     public String getDirection() {
@@ -78,7 +77,6 @@ public class Jugador extends Entidad implements Dibujado{
     }
     
     public void getPlayerImage(){
-        
         up1=configuracion("/player/jg_arr_01");
         up2=configuracion("/player/jg_arr_02");
         down1=configuracion("/player/jg_abj_01");
@@ -87,11 +85,11 @@ public class Jugador extends Entidad implements Dibujado{
         left2=configuracion("/player/jg_izq_02");
         right1=configuracion("/player/jg_der_01");
         right2=configuracion("/player/jg_der_02");
-        
     }
     
     public void update(){
-        if (keyH.upPressed==true||keyH.leftPressed==true||keyH.downPressed==true||keyH.rightPressed==true){
+        interactuar=false;
+        if (keyH.upPressed==true||keyH.leftPressed==true||keyH.downPressed==true||keyH.rightPressed==true||keyH.ePressed==true){
             //actualizamos la posicion del jugador sumando o restando su velocidad
             if(keyH.upPressed==true){
                 direction="up";
@@ -101,6 +99,8 @@ public class Jugador extends Entidad implements Dibujado{
                 direction="down";
             }else if(keyH.rightPressed==true){
                 direction="right";
+            }else if(keyH.ePressed==true){
+                interactuar=true;
             }
             
             //colision Casillas
@@ -118,7 +118,6 @@ public class Jugador extends Entidad implements Dibujado{
             //colision eventos
             gp.ControlEventos.chequeoEvento();
             
-            
             if(colision==false){
                 switch (direction) {
                         case "up":
@@ -135,7 +134,6 @@ public class Jugador extends Entidad implements Dibujado{
                         break;
                     }
             }
-
             spriteCounter++;
             if (spriteCounter>10){
                 if (spriteNum == 2 )
@@ -147,15 +145,9 @@ public class Jugador extends Entidad implements Dibujado{
                 spriteCounter = 0;
             }
         } 
-        
-        /*interaccion
-        if (key2.ePressed==true){
-            
-        }*/
     }
     
     public void ColisionconObjetos(int id){
-        
         if(id!=999){
             //usa el nombre del objeto para saber con cual objeto colisiona 
             String objnombre=gp.obj[gp.MapaActual][id].nombre;
@@ -168,6 +160,7 @@ public class Jugador extends Entidad implements Dibujado{
                         llaves++;
                         gp.efectos(2);
                         gp.hud.mostrarmensaje("conseguiste una llave");
+                        this.inventario[1]=gp.obj[gp.MapaActual][id];
                         gp.obj[gp.MapaActual][id]=null;
                         System.out.println("llaves: "+llaves);
                     break;
@@ -178,6 +171,7 @@ public class Jugador extends Entidad implements Dibujado{
                             gp.hud.mostrarmensaje("puerta abierta");
                             gp.obj[gp.MapaActual][id]=null;
                             System.out.println("llaves: "+llaves);
+                            this.inventario[0]=gp.obj[gp.MapaActual][id];
                         }else{
                             gp.hud.mostrarmensaje("no tienes llaves para esta puerta");
                         }
@@ -186,20 +180,17 @@ public class Jugador extends Entidad implements Dibujado{
                         if(this.inventario[0]==null){
                             gp.efectos(4);
                             gp.hud.mostrarmensaje("conseguiste "+objnombre);
-                            vel=vel+2;
+                            vel=vel+1;
                             this.inventario[0]=gp.obj[gp.MapaActual][id];
                             gp.obj[gp.MapaActual][id]=null;
                         }
-                        
                     break;
                 case "cofre":
                             gp.hud.victoriamensaje=true;
                             gp.obj[gp.MapaActual][id]=null;
                     break;
             }
-            
         }
-        
     }
     
     public void RecogerObjeto(int i){
@@ -207,11 +198,24 @@ public class Jugador extends Entidad implements Dibujado{
             gp.obj[gp.MapaActual][i]=null;
         }
     }
-        
-        
+    
     public void intereaccionNCP(int id) {
         if(id!=999){
-                System.out.println("tocas un npc");
+            if (interactuar==true){
+                if(direction=="right"){
+                    gp.NPC[gp.MapaActual][id].direction="left";
+                }
+                if(direction=="left"){
+                    gp.NPC[gp.MapaActual][id].direction="right";
+                }
+                if(direction=="up"){
+                    gp.NPC[gp.MapaActual][id].direction="down";
+                }
+                if(direction=="down"){
+                    gp.NPC[gp.MapaActual][id].direction="up";
+                }
+                gp.hud.mostrarmensaje(gp.NPC[gp.MapaActual][id].Mensaje);
+            }
         }
     }
     
@@ -250,10 +254,7 @@ public class Jugador extends Entidad implements Dibujado{
                     image=right2;
                 break;
             }
-            
         }
-        
-     
        g2.drawImage(image,pantallaX,pantallaY,null); 
     }
 

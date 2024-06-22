@@ -54,8 +54,8 @@ public class PanelJuego extends JPanel implements Runnable{
     public Sonido controlmusica = new Sonido();
     public Sonido efectossonido = new Sonido();
     public Colisionador colisiones =new Colisionador(this);
-    EmisorObjetos objeto= new EmisorObjetos(this);
-    EmisorNPC npcs= new EmisorNPC(this);
+    public EmisorObjetos objeto= new EmisorObjetos(this);
+    public EmisorNPC npcs= new EmisorNPC(this);
     public InterfazJugador hud = new InterfazJugador(this);
     public ControladorEventos ControlEventos= new ControladorEventos(this);
     Thread gameThread;
@@ -65,7 +65,7 @@ public class PanelJuego extends JPanel implements Runnable{
     
     //Jugador, objetos y NPC
     
-    public Jugador jugador= new Jugador(this,keyH,key2);
+    public Jugador jugador= new Jugador(this,keyH);
     public Entidad obj[][]= new Entidad[Maximomundos][10];
     public Entidad NPC[][]= new Entidad[Maximomundos][10];
     //ArrayList<Entidad> Entidadlista= new ArrayList<>();
@@ -180,21 +180,13 @@ public class PanelJuego extends JPanel implements Runnable{
         
         //interfaz
         hud.dibujado(g2);
-        
-
 
         g2.dispose();
     }
     
     public void reproducirmusica(int i){
         controlmusica.reproducirmusica(i);
-        //controlmusica.reproducir();
-        //controlmusica.bucle();
     }
-    /*
-    public void paramusica(){
-        controlmusica.parar();
-    }*/
     
     public void efectos(int i){
         efectossonido.reproducirefecto(i);

@@ -13,8 +13,7 @@ import java.awt.event.KeyEvent;
  */
 public class KeyHandler implements KeyListener{
     
-    public boolean upPressed, downPressed, leftPressed, rightPressed,PPressed;
-    public boolean ePressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed,ePressed;
 
     @Override
     public void keyTyped(KeyEvent e) {

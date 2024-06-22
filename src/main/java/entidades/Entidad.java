@@ -43,6 +43,8 @@ public class Entidad{
     public int veloriginal;
     public String directionoriginal;
     
+    public String Mensaje;
+    
     
     public Entidad(PanelJuego gp){
         this.gp=gp;

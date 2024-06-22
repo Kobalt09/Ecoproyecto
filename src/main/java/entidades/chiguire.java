@@ -29,6 +29,8 @@ public class chiguire extends Entidad {
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
         
+        this.Mensaje="hola soy un chiguire";
+        
         getImage();
     }
     

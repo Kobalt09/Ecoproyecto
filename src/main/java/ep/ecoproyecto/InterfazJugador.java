@@ -4,6 +4,7 @@
  */
 package ep.ecoproyecto;
 
+import Entidades.Entidad;
 import Interfaces.Dibujado;
 import java.awt.Color;
 import java.awt.Font;
@@ -19,7 +20,7 @@ public class InterfazJugador implements Dibujado{
     public PanelJuego gp;
     public Font fuente;
     public Graphics2D g2;
-    //BufferedImage llaveimagen;
+    BufferedImage imagen;
     public boolean mensajeOn=false;
     public String mensaje="";
     int contmensajes=0;
@@ -29,17 +30,13 @@ public class InterfazJugador implements Dibujado{
     public InterfazJugador(PanelJuego gp) {
         this.gp = gp;
         fuente=new Font("Arial",Font.PLAIN,40);
-       // ObjetoRecogible llave= new ObjetoRecogible("llave",0,0,gp);
-       // llaveimagen = llave.image;
     }
     
     public void mostrarmensaje(String texto) {
-        
         mensaje=texto;
         mensajeOn= true;
-        
     }
-    
+
     
     public void dibujado(Graphics2D g2){
         
@@ -47,21 +44,12 @@ public class InterfazJugador implements Dibujado{
         g2.setColor(Color.white);
         g2.drawString("posicion X:"+(gp.jugador.xMapa/64)+" Y "+(gp.jugador.yMapa/64), gp.tamanioCasilla*2, gp.tamanioCasilla);
         
-        
-        //estado de dialogo
-        if(gp.estadoDialogo==gp.estadodelJuego){
-            
-        }
-        
-        
+
         
         g2.setFont(fuente);
         g2.setColor(Color.white);
-       // g2.drawImage(llaveimagen, gp.tamanioCasilla/2, gp.tamanioCasilla/2, gp.tamanioCasilla,gp.tamanioCasilla,null);
-        g2.drawString("x = "+gp.jugador.llaves, gp.tamanioCasilla*2, gp.tamanioCasilla);
-        
-        
-        dibujadoinventario();
+        //g2.drawImage(llaveimagen, gp.tamanioCasilla/2, gp.tamanioCasilla/2, gp.tamanioCasilla,gp.tamanioCasilla,null);
+        //g2.drawString("x = "+gp.jugador.llaves, gp.tamanioCasilla*2, gp.tamanioCasilla);
         
         if(mensajeOn==true){
             int tarjeta=mensaje.length();
@@ -73,31 +61,44 @@ public class InterfazJugador implements Dibujado{
             g2.setColor(Color.white);
             g2.setFont(g2.getFont().deriveFont(30F));
             
-            g2.drawString(mensaje, gp.screenWidth/3, gp.tamanioCasilla/2+5);
-            
+            g2.drawString(mensaje, gp.screenWidth/3, gp.tamanioCasilla/2+5);   
             contmensajes++;
-            
             if(contmensajes>120){
                 contmensajes=0;
                 mensajeOn=false;
             }
         }
-    }
+
+        //dibujado de inventario
+        if(mensajeOn==false){
+            int MarcoX=gp.tamanioCasilla*4;
+            int MarcoY=gp.tamanioCasilla/4;
+            int MarcoAncho=gp.screenWidth/2;
+            int MarcoAlto=gp.tamanioCasilla;
     
+            Color c= new Color(82,183,136);
+            g2.setColor(c);
+            g2.fillRect(MarcoX, MarcoY, MarcoAncho, MarcoAlto);
+            int cont=0;
+            for(Entidad obj:gp.jugador.inventario){
+                if(obj!=null){
+                    g2.drawImage(obj.down1, gp.tamanioCasilla*4+cont, gp.tamanioCasilla/4, gp.tamanioCasilla,gp.tamanioCasilla,null);
+                }
+                cont=cont+gp.tamanioCasilla;
+            }
+        }
+    }
+    /*
     public void dibujadoinventario(){
         int MarcoX=gp.tamanioCasilla*4;
-        int MarcoY=gp.tamanioCasilla*4;
-        int MarcoAncho=gp.tamanioCasilla/2;
-        int MarcoAlto=gp.tamanioCasilla/2;
-        subventanas(MarcoX,MarcoY,MarcoAncho,MarcoAlto);
-    }
-
-    public void subventanas(int posX,int posY, int Ancho, int Largo){
-        
-        //establecemos el color de la sudventana
+        int MarcoY=gp.tamanioCasilla/4;
+        int MarcoAncho=gp.screenWidth/2;
+        int MarcoAlto=gp.tamanioCasilla;
+         Graphics2D g = null;
+    
         Color c= new Color(82,183,136);
-        g2.setColor(Color.GREEN);
-        g2.fillRect(posX, posY, Largo, Largo);
-        
-    }
+        g.setColor(c);
+        g.fillRect(MarcoX, MarcoY, MarcoAncho, MarcoAlto);
+    }*/
+
 }
