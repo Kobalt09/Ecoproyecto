@@ -6,6 +6,7 @@ package ep.ecoproyecto;
 
 import Entidades.Jugador;
 import Entidades.chiguire;
+import Interfaces.Dibujado;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
@@ -13,7 +14,7 @@ import java.awt.image.BufferedImage;
  *
  * @author Cris
  */
-public class EmisorNPC {
+public class EmisorNPC  implements Dibujado{
     PanelJuego gp;
 
     public EmisorNPC(PanelJuego gp) {
@@ -43,8 +44,16 @@ public class EmisorNPC {
         
     }
     
+    /*
+    public void Agregar(){
+            for(int i=0;i<gp.NPC[0].length;i++){
+                    gp.Entidadlista.add(gp.NPC[0][i]);
+            }
+        
+    }*/
     
-    public void draw(Graphics2D g2){
+    
+    public void dibujado(Graphics2D g2){
 
             for(int i=0;i<gp.NPC[0].length;i++){
                 
@@ -87,20 +96,16 @@ public class EmisorNPC {
                                             image=gp.NPC[gp.MapaActual][i].right2;
                                         break;
                                     }
-
                                 }
-                        
                         g2.drawImage(image, PantallaX, PantallaY, gp.tamanioCasilla,gp.tamanioCasilla,null);
                     }
                }
             }
-            
     }
     
     public void actualizacion(){
 
-            for(int i=0;i<gp.NPC[0].length;i++){
-                
+            for(int i=0;i<gp.NPC[0].length;i++){ 
                 if(gp.NPC[gp.MapaActual][i]!=null){
                     gp.NPC[gp.MapaActual][i].actualizar();
                }

@@ -5,6 +5,7 @@
 
 //
 package Entidades;
+import Interfaces.Dibujado;
 import ep.ecoproyecto.Herramientas;
 import ep.ecoproyecto.PanelJuego;
 import ep.ecoproyecto.KeyHandler;
@@ -21,14 +22,14 @@ import objetos.Objetosclase;
  *
  * @author Cris
  */
-public class Jugador extends Entidad{
+public class Jugador extends Entidad implements Dibujado{
 
     KeyHandler keyH;
     KeyHandler key2;
     public final int pantallaX;
     public final int pantallaY;
     
-    Objetosclase inventario[]= new Objetosclase[10];
+    Entidad inventario[]= new Entidad[10];
     public int llaves=0;
     
     
@@ -112,7 +113,7 @@ public class Jugador extends Entidad{
             
             //colision objetos
             int objID=gp.colisiones.chequeoObjetos(this, true);
-            recogerobjetos(objID);
+            ColisionconObjetos(objID);
             
             //colision eventos
             gp.ControlEventos.chequeoEvento();
@@ -153,7 +154,7 @@ public class Jugador extends Entidad{
         }*/
     }
     
-    public void recogerobjetos(int id){
+    public void ColisionconObjetos(int id){
         
         if(id!=999){
             //usa el nombre del objeto para saber con cual objeto colisiona 
@@ -214,7 +215,7 @@ public class Jugador extends Entidad{
         }
     }
     
-    public void draw(Graphics2D g2){
+    public void dibujado(Graphics2D g2){
 
        BufferedImage image = null;  
 

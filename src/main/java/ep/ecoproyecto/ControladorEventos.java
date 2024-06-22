@@ -31,8 +31,9 @@ public class ControladorEventos {
     public void chequeoEvento(){
         
         //evento sonido
+        //posicion, direccion en la que se activa
         if(colision(27,16,"right")==true){ eventSonido(2); }
-        if(colision(15,15,"any")==true){ eventMusica(1); }
+        if(colision(3,8,"any")==true){ eventMusica(gp.musica); }
         if(colision(5,1,"any")==true){ tp(48, 48); }
         
     }
@@ -66,8 +67,15 @@ public class ControladorEventos {
     }
     
     //cambiar la musica
+    
     public void eventMusica(int i){
-        gp.efectos(1);
+        
+        //pendiente de arreglar que solo pueda activarse 1 vez para que no colapse
+        if(i==1){
+            gp.reproducirmusica(1);
+        }else{
+            gp.reproducirmusica(0);
+        }
     }
     
     //desplazar al jugador

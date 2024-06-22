@@ -10,6 +10,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
@@ -62,9 +64,12 @@ public class PanelJuego extends JPanel implements Runnable{
 
     
     //Jugador, objetos y NPC
+    
     public Jugador jugador= new Jugador(this,keyH,key2);
-    public Objetosclase obj[][]= new Objetosclase[Maximomundos][10];
+    public Entidad obj[][]= new Entidad[Maximomundos][10];
     public Entidad NPC[][]= new Entidad[Maximomundos][10];
+    //ArrayList<Entidad> Entidadlista= new ArrayList<>();
+    
     
     //Estado de Juego
     public int estadodelJuego;
@@ -162,19 +167,19 @@ public class PanelJuego extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D)g; // estas dos clases son similares pero graphis2D tiene mas funciones para dibujar 
 
         //casillas
-        manCas.dibujar(g2);
+        manCas.dibujado(g2);
         
         //objetos
-        objeto.draw(g2);
+        objeto.dibujado(g2);
         
         //npc
-        npcs.draw(g2);
+        npcs.dibujado(g2);
         
         //jugador
-        jugador.draw(g2);
+        jugador.dibujado(g2);
         
         //interfaz
-        hud.dibujar(g2);
+        hud.dibujado(g2);
         
 
 

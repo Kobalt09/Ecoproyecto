@@ -4,6 +4,7 @@
  */
 package Entidades;
 
+import Interfaces.Dibujado;
 import ep.ecoproyecto.Herramientas;
 import ep.ecoproyecto.PanelJuego;
 import java.awt.Rectangle;
@@ -16,7 +17,7 @@ import javax.imageio.ImageIO;
  *
  * @author Cris
  */
-public class chiguire extends Entidad{
+public class chiguire extends Entidad {
 
     public chiguire(PanelJuego gp, int x, int y) {
         super(gp);

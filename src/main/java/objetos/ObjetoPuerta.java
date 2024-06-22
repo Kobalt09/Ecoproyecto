@@ -4,6 +4,7 @@
  */
 package objetos;
 
+import Entidades.Entidad;
 import ep.ecoproyecto.PanelJuego;
 import java.awt.Rectangle;
 import java.io.IOException;
@@ -13,19 +14,20 @@ import javax.imageio.ImageIO;
  *
  * @author fabif
  */
-public class ObjetoPuerta extends Objetosclase{
+public class ObjetoPuerta extends Entidad{
     
 
+
     public ObjetoPuerta(String nombre, int posicionX, int posicionY, PanelJuego gp) {
-        super(nombre, posicionX, posicionY, gp);
-        
-        try{
-            image =ImageIO.read(getClass().getResourceAsStream("/objetos/puerta1.png"));
-        }catch(IOException e){
-        
-        }
-        
+        super(gp);
+        this.nombre=nombre;
+        this.xMapa=posicionX*gp.tamanioCasilla;
+        this.yMapa=posicionY*gp.tamanioCasilla;
+        down1= this.configuracion("/objetos/puerta1");
         colision=true;
+        hitBox= new Rectangle(0,0,64,64);
+        areadefectoX=hitBox.x;
+        areadefectoY=hitBox.y;
     }
     
 }

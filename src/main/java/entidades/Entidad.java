@@ -18,19 +18,24 @@ import javax.imageio.ImageIO;
  * @author Cris
  */
 public class Entidad{
+    //
+    public BufferedImage image;
+    public String nombre;
+    public boolean colision=false;
+    //
     PanelJuego gp;
     public int xMapa,yMapa;
     public int vel;
     
     public BufferedImage up1,up2,down1,down2,left1,left2,right1,right2;
-    public String direction;
+    public String direction= "down";
     
     public int spriteCounter = 0 ;
     public int spriteNum = 1;
     public Rectangle hitBox;
 
     public int areadefectoX, areadefectoY;
-    public boolean colision;
+    
     public int contadordeaccion=0;
     
     //variables de dialogo
@@ -43,10 +48,8 @@ public class Entidad{
         this.gp=gp;
     }
     
-    public void estableceraccion(){}
     
     public void actualizar(){
-        estableceraccion();
         
         colision=false;
         gp.colisiones.revisarColision(this);

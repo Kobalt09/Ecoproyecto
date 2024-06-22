@@ -15,16 +15,14 @@ import java.awt.image.BufferedImage;
  * @author Cris
  */
 public class Objetosclase {
-    
-    public BufferedImage image;
-    public String nombre;
-    public boolean colision=false;
+      
     public int posicionX, posicionY;
     public PanelJuego gp;
     public Rectangle hitBox= new Rectangle(0,0,64,64);
     public int areadefectoX=hitBox.x;
     public int  areadefectoY=hitBox.y;
     Herramientas herramienta= new Herramientas();
+    private final String nombre;
 
 
     public Objetosclase( String nombre, int posicionX, int posicionY, PanelJuego gp) {
@@ -38,14 +36,14 @@ public class Objetosclase {
         
     }
     
-
+/*
     public void draw(Graphics2D g2) {
         
         image = null;
   
        g2.drawImage(image,this.posicionX, this.posicionY, gp.tamanioCasilla,gp.tamanioCasilla,null); 
     
-    }
+    }*/
 
 }
 

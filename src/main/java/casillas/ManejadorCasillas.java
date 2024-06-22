@@ -5,6 +5,7 @@
 package casillas;
 
 import Entidades.Jugador;
+import Interfaces.Dibujado;
 import ep.ecoproyecto.Herramientas;
 import ep.ecoproyecto.PanelJuego;
 import java.awt.Graphics2D;
@@ -19,7 +20,7 @@ import javax.imageio.ImageIO;
  *
  * @author hp
  */
-public class ManejadorCasillas {
+public class ManejadorCasillas  implements Dibujado{
     
     PanelJuego gp;
     public Casilla[] casilla;
@@ -113,7 +114,7 @@ public class ManejadorCasillas {
     
     }
     
-    public void dibujar(Graphics2D g2){
+    public void dibujado(Graphics2D g2){
         
         int columna=0;
         int fila=0;

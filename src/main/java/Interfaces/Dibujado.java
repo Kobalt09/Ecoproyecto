@@ -4,6 +4,7 @@
  */
 package Interfaces;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 /**
@@ -12,5 +13,5 @@ import java.awt.image.BufferedImage;
  */
 public interface Dibujado {
     
-    public BufferedImage configuracion(String nombre);
+    public void dibujado(Graphics2D g2);
 }

@@ -4,6 +4,7 @@
  */
 package ep.ecoproyecto;
 
+import Interfaces.Dibujado;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -14,10 +15,10 @@ import objetos.ObjetoRecogible;
  *
  * @author Cris
  */
-public class InterfazJugador {
-    PanelJuego gp;
-    Font fuente;
-    Graphics2D g2;
+public class InterfazJugador implements Dibujado{
+    public PanelJuego gp;
+    public Font fuente;
+    public Graphics2D g2;
     //BufferedImage llaveimagen;
     public boolean mensajeOn=false;
     public String mensaje="";
@@ -40,7 +41,7 @@ public class InterfazJugador {
     }
     
     
-    public void dibujar(Graphics2D g2){
+    public void dibujado(Graphics2D g2){
         
         g2.setFont(fuente);
         g2.setColor(Color.white);
@@ -52,12 +53,15 @@ public class InterfazJugador {
             
         }
         
-        /*
+        
+        
         g2.setFont(fuente);
         g2.setColor(Color.white);
        // g2.drawImage(llaveimagen, gp.tamanioCasilla/2, gp.tamanioCasilla/2, gp.tamanioCasilla,gp.tamanioCasilla,null);
         g2.drawString("x = "+gp.jugador.llaves, gp.tamanioCasilla*2, gp.tamanioCasilla);
         
+        
+        dibujadoinventario();
         
         if(mensajeOn==true){
             int tarjeta=mensaje.length();
@@ -77,6 +81,23 @@ public class InterfazJugador {
                 contmensajes=0;
                 mensajeOn=false;
             }
-        }*/
+        }
+    }
+    
+    public void dibujadoinventario(){
+        int MarcoX=gp.tamanioCasilla*4;
+        int MarcoY=gp.tamanioCasilla*4;
+        int MarcoAncho=gp.tamanioCasilla/2;
+        int MarcoAlto=gp.tamanioCasilla/2;
+        subventanas(MarcoX,MarcoY,MarcoAncho,MarcoAlto);
+    }
+
+    public void subventanas(int posX,int posY, int Ancho, int Largo){
+        
+        //establecemos el color de la sudventana
+        Color c= new Color(82,183,136);
+        g2.setColor(Color.GREEN);
+        g2.fillRect(posX, posY, Largo, Largo);
+        
     }
 }

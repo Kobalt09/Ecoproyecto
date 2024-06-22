@@ -5,6 +5,7 @@
 package ep.ecoproyecto;
 
 import Entidades.Jugador;
+import Interfaces.Dibujado;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import objetos.ObjetoCofre;
@@ -17,7 +18,7 @@ import objetos.Objetosclase;
  *
  * @author Cris
  */
-public class EmisorObjetos {
+public class EmisorObjetos  implements Dibujado{
     
     PanelJuego gp;
     
@@ -49,30 +50,30 @@ public class EmisorObjetos {
         NumMap = 4;
         */
     }
+    /*
+    public void Agregar(){
+            for(int i=0;i<gp.obj[0].length;i++){
+                    gp.Entidadlista.add(gp.obj[0][i]);
+            }
+        
+    }*/
     
-    public void draw(Graphics2D g2){
+    
+    public void dibujado(Graphics2D g2){
         
             for(int i=0;i<gp.obj[0].length;i++){
                 //if((gp.obj[i]!=null)&&(gp.obj[i].posicionX>jugador.xMapa && gp.obj[i].posicionX <jugador.xMapa+this.gp.getWidth())){
                 if(gp.obj[gp.MapaActual][i]!=null){
-                int PantallaX=gp.obj[gp.MapaActual][i].posicionX- gp.jugador.xMapa+gp.jugador.pantallaX;
-                int PantallaY=gp.obj[gp.MapaActual][i].posicionY- gp.jugador.yMapa+gp.jugador.pantallaY;
+                int PantallaX=gp.obj[gp.MapaActual][i].xMapa- gp.jugador.xMapa+gp.jugador.pantallaX;
+                int PantallaY=gp.obj[gp.MapaActual][i].yMapa- gp.jugador.yMapa+gp.jugador.pantallaY;
                 
-                    if((gp.obj[gp.MapaActual][i].posicionX+gp.tamanioCasilla > gp.jugador.xMapa-gp.jugador.pantallaX)&&(gp.obj[gp.MapaActual][i].posicionX-gp.tamanioCasilla < gp.jugador.xMapa+gp.jugador.pantallaX)&&
-                       (gp.obj[gp.MapaActual][i].posicionY+gp.tamanioCasilla > gp.jugador.yMapa-gp.jugador.pantallaY)&&(gp.obj[gp.MapaActual][i].posicionY-gp.tamanioCasilla < gp.jugador.yMapa+gp.jugador.pantallaY)){     
+                    if((gp.obj[gp.MapaActual][i].xMapa+gp.tamanioCasilla > gp.jugador.xMapa-gp.jugador.pantallaX)&&(gp.obj[gp.MapaActual][i].xMapa-gp.tamanioCasilla < gp.jugador.xMapa+gp.jugador.pantallaX)&&
+                       (gp.obj[gp.MapaActual][i].yMapa+gp.tamanioCasilla > gp.jugador.yMapa-gp.jugador.pantallaY)&&(gp.obj[gp.MapaActual][i].yMapa-gp.tamanioCasilla < gp.jugador.yMapa+gp.jugador.pantallaY)){     
 
-
-                        g2.drawImage(gp.obj[gp.MapaActual][i].image, PantallaX, PantallaY, gp.tamanioCasilla,gp.tamanioCasilla,null);
+                        g2.drawImage(gp.obj[gp.MapaActual][i].down1, PantallaX, PantallaY, gp.tamanioCasilla,gp.tamanioCasilla,null);
                     }
-                    /*
-                    g2.setColor(Color.red);
-                    g2.fillRect(gp.obj[i].posicionX, gp.obj[i].posicionY, gp.obj[i].AreaobjX, gp.obj[i].AreaobjdefectoY);*/
-               }
-                
-               
-                
+                }
             }
-            
     }
     
     
