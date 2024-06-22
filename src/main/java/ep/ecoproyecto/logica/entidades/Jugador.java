@@ -9,6 +9,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import ep.ecoproyecto.logica.objetos.Objetosclase;
+import ep.ecoproyecto.logica.tipografia.Fuentes;
 import java.awt.Color;
 import java.awt.Font;
 
@@ -20,7 +21,6 @@ import java.awt.Font;
 public class Jugador extends Entidad{
 
     KeyHandler keyH;
-    KeyHandler key2;
     public final int pantallaX;
     public final int pantallaY;
     private String username;
@@ -29,12 +29,11 @@ public class Jugador extends Entidad{
     public int llaves=0;
     
     
-    public Jugador(PanelJuego gp, KeyHandler keyH,KeyHandler key2, String username){
+    public Jugador(PanelJuego gp, KeyHandler keyH, String username){
         
         super(gp);
         
         this.keyH=keyH;
-        this.key2=key2;
         this.username=username;
         
         pantallaX=gp.screenWidth/2-(gp.tamanioCasilla/2);
@@ -251,9 +250,10 @@ public class Jugador extends Entidad{
        g2.drawImage(image,pantallaX,pantallaY,null);
        
        if (username != null){
-           g2.setFont(new Font("Joystix Monospace",Font.BOLD,20));
+           Fuentes tipoFuente=new Fuentes();
+           g2.setFont((tipoFuente.fuente(tipoFuente.upheaval,0,20)));
            int textX = pantallaX + (image.getWidth() - g2.getFontMetrics().stringWidth(username))/2 ;
-           int textY = pantallaY - 10;
+           int textY = pantallaY - 5;
            
            //Bordes Negros//
             g2.setColor(Color.BLACK);
@@ -265,7 +265,7 @@ public class Jugador extends Entidad{
             g2.drawString(username, textX, textY + 2);
             g2.drawString(username, textX - 2, textY);
             g2.drawString(username, textX + 2, textY);
-
+            
             //Letras Blancas//
             g2.setColor(Color.WHITE);
             g2.drawString(username, textX, textY);

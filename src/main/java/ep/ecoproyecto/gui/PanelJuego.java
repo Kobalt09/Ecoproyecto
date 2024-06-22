@@ -108,7 +108,7 @@ public class PanelJuego extends JPanel implements Runnable{
         pause=true;
         
         //ONLINE//
-        jugador = new Jugador(this,keyH,key2,JOptionPane.showInputDialog(this, "Por favor, introduzca su nombre de usuario:"));
+        jugador = new Jugador(this,keyH,JOptionPane.showInputDialog(this, "Por favor, introduzca su nombre de usuario:"));
         if (socketcliente != null) {
             socketcliente.enviarData("ping".getBytes());
         }
