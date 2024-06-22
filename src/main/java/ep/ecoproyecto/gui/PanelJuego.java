@@ -13,6 +13,7 @@ import ep.ecoproyecto.logica.KeyHandler;
 import ep.ecoproyecto.logica.entidades.Entidad;
 import ep.ecoproyecto.logica.casillas.ManejadorCasillas;
 import ep.ecoproyecto.logica.entidades.Jugador;
+import ep.ecoproyecto.logica.entidades.JugadorMP;
 import ep.ecoproyecto.logica.net.*;
 import ep.ecoproyecto.logica.net.packets.Packet00Login;
 import java.awt.Color;
@@ -23,6 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 import ep.ecoproyecto.logica.objetos.Objetosclase;
+import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 /**
@@ -70,8 +72,9 @@ public class PanelJuego extends JPanel implements Runnable{
     
 
     
-    //Jugador, objetos y NPC
+    //Jugadores, objetos y NPC
     public Jugador jugador;
+    public LinkedList<JugadorMP> jugadores = new LinkedList<>(); 
     public Objetosclase obj[][]= new Objetosclase[Maximomundos][10];
     public Entidad NPC[][]= new Entidad[Maximomundos][10];
     
@@ -105,24 +108,18 @@ public class PanelJuego extends JPanel implements Runnable{
         //estado de juego
         estadodelJuego=estadoJuego;
         pause=true;
-        
-        //ONLINE//
-        jugador = new Jugador(this,keyH,JOptionPane.showInputDialog(this, "Por favor, introduzca su nombre de usuario:"));
-        if (socketcliente != null) {
-            socketcliente.enviarData("ping".getBytes());
+    }
+    
+    public void inicioJugador (){
+        jugador = new JugadorMP(null,-1,this,keyH,JOptionPane.showInputDialog(this, "Por favor, introduzca su nombre de usuario:"));
+        jugadores.add((JugadorMP)jugador);
+        Packet00Login loginpacket = new Packet00Login(jugador.getUsername());
+        if (socketserver!=null){
+            socketserver.addConection((JugadorMP)jugador, loginpacket);
         }
-        
-        //SOLUCIONAR ESTE ERROR//
-//        Packet00Login loginpacket = new Packet00Login(JOptionPane.showInputDialog(this, "Por favor, introduzca su nombre de usuario:"));
-//        if (socketcliente != null){
-//            loginpacket.writeData(socketcliente);
-//        }
     }
     
     public void startGameThread(){
-        gameThread = new Thread(this);
-        gameThread.start();
-        
         //Se puede adaptar como una funcion dentro del MENU//
         if(JOptionPane.showConfirmDialog(this, "Quieres iniciar el server?") == JOptionPane.YES_OPTION){
             socketserver = new Server(this);
@@ -130,7 +127,12 @@ public class PanelJuego extends JPanel implements Runnable{
         }
         //-------------------------------------------------//
         
+        socketcliente = new Cliente("localhost",this);
+        socketcliente.start();
         
+        inicioJugador();
+        gameThread = new Thread(this);
+        gameThread.start();
     }
 
     @Override

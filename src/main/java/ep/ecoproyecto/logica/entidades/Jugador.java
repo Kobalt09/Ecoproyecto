@@ -69,6 +69,10 @@ public class Jugador extends Entidad{
     public String getDirection() {
         return direction;
     }
+
+    public String getUsername() {
+        return username;
+    }
     
     public void getPlayerImage(){
         

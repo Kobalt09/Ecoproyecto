@@ -1,6 +1,12 @@
 package ep.ecoproyecto.logica.net;
 
 import ep.ecoproyecto.gui.PanelJuego;
+import ep.ecoproyecto.logica.entidades.JugadorMP;
+import ep.ecoproyecto.logica.net.packets.Packet;
+import static ep.ecoproyecto.logica.net.packets.Packet.PacketTypes.DISCONNECT;
+import static ep.ecoproyecto.logica.net.packets.Packet.PacketTypes.INVALID;
+import static ep.ecoproyecto.logica.net.packets.Packet.PacketTypes.LOGIN;
+import ep.ecoproyecto.logica.net.packets.Packet00Login;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -31,7 +37,32 @@ public class Cliente extends Thread{
                 socket.receive(packet);
             } catch (IOException ex) {
             }
-            System.out.println("SERVER > "+ new String(packet.getData()));
+//            System.out.println("SERVER > "+ new String(packet.getData()));
+            parsePacket(packet.getData(), packet.getAddress(), packet.getPort());
+        }
+    }
+    
+    private void parsePacket(byte[] data, InetAddress direccion, int puerto) {
+        String mensaje = new String(data).trim();
+        Packet.PacketTypes type = Packet.lookupPacket(mensaje.substring(0,2));
+        Packet packet;
+        switch(type){
+            case INVALID->{
+                System.out.println("Paquete invalido");
+            }
+            case LOGIN->{
+                packet = new Packet00Login(data); 
+                System.out.println("["+direccion.getHostAddress()+":"+puerto+"] "+((Packet00Login)packet).getUsername()+" se ha unido al juego.");
+                JugadorMP jugador = new JugadorMP(direccion,puerto,juego,((Packet00Login)packet).getUsername());
+                //REVISAR//
+                juego.jugadores.add(jugador);
+            }
+            case DISCONNECT->{
+                
+            }
+            default->{
+                System.out.println("Paquete desconocido");
+            }
         }
     }
 

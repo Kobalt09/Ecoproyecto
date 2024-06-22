@@ -33,9 +33,9 @@ public class Server extends Thread{
             DatagramPacket packet = new DatagramPacket(data, data.length);
             try {
                 socket.receive(packet);
-                parsePacket(packet.getData(), packet.getAddress(), packet.getPort());
             } catch (IOException ex) {
             }
+            parsePacket(packet.getData(), packet.getAddress(), packet.getPort());
 //            String mensaje = new String(packet.getData());
 //            System.out.println("CLIENT > "+ mensaje);
 //            if (mensaje.equalsIgnoreCase("ping")){
@@ -44,24 +44,19 @@ public class Server extends Thread{
         }
     }
     
-    private void parsePacket(byte[] data, InetAddress direccion, int puerto) {
+    public void parsePacket(byte[] data, InetAddress direccion, int puerto) {
         String mensaje = new String(data).trim();
         PacketTypes type = Packet.lookupPacket(mensaje.substring(0,2));
+        Packet packet;
         switch(type){
             case INVALID->{
                 System.out.println("Paquete invalido");
             }
             case LOGIN->{
-                Packet00Login packet = new Packet00Login(data); 
-                System.out.println("["+direccion.getHostAddress()+":"+puerto+"] "+packet.getUsername()+" se ha conectado.");
-                JugadorMP jugador;
-                if (direccion.getHostAddress().equalsIgnoreCase("127.0.0.1")){
-                    jugador = new JugadorMP(direccion,puerto,juego,juego.keyH,packet.getUsername());
-                }else{
-                    jugador = new JugadorMP(direccion,puerto,juego,packet.getUsername());
-                }
-                jugadoresConectados.add(jugador);
-                juego.jugador = jugador;
+                packet = new Packet00Login(data); 
+                System.out.println("["+direccion.getHostAddress()+":"+puerto+"] "+((Packet00Login)packet).getUsername()+" se ha conectado.");
+                JugadorMP jugador = new JugadorMP(direccion,puerto,juego,((Packet00Login)packet).getUsername());
+                this.addConection(jugador,((Packet00Login)packet));
             }
             case DISCONNECT->{
                 
@@ -69,6 +64,26 @@ public class Server extends Thread{
             default->{
                 System.out.println("Paquete desconocido");
             }
+        }
+    }
+    
+    public void addConection(JugadorMP jugador, Packet00Login packet) {
+        boolean yaConectado = false;
+        for (JugadorMP j:jugadoresConectados){
+            if (jugador.getUsername().equalsIgnoreCase(j.getUsername())){
+                if (j.direccionIP == null){
+                    j.direccionIP = jugador.direccionIP;
+                }
+                if (j.puerto == -1){
+                    j.puerto = jugador.puerto;
+                }
+                yaConectado = true;
+            }else{
+                enviarData(packet.getData(),j.direccionIP,j.puerto);
+            }
+        }
+        if (!yaConectado){
+            this.jugadoresConectados.add(jugador);
         }
     }
     

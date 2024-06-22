@@ -27,6 +27,5 @@ public class Ecoproyecto {
         
         panelDeJuego.configuraciondejuego();
         panelDeJuego.startGameThread();
-    
     }
 }
