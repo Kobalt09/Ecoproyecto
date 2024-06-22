@@ -14,6 +14,7 @@ import ep.ecoproyecto.logica.entidades.Entidad;
 import ep.ecoproyecto.logica.casillas.ManejadorCasillas;
 import ep.ecoproyecto.logica.entidades.Jugador;
 import ep.ecoproyecto.logica.net.*;
+import ep.ecoproyecto.logica.net.packets.Packet00Login;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -55,8 +56,7 @@ public class PanelJuego extends JPanel implements Runnable{
     
     public ManejadorCasillas manCas=new ManejadorCasillas(this);
    
-    KeyHandler keyH= new KeyHandler();
-    KeyHandler key2= new KeyHandler();
+    public KeyHandler keyH= new KeyHandler();
     
     public Sonido controlmusica = new Sonido();
     public Sonido efectossonido = new Sonido();
@@ -94,7 +94,6 @@ public class PanelJuego extends JPanel implements Runnable{
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH); //reconocer la letra precioanda
         this.setFocusable(true);
-        this.addKeyListener(key2);
     }
     
     public void configuraciondejuego(){
@@ -112,6 +111,12 @@ public class PanelJuego extends JPanel implements Runnable{
         if (socketcliente != null) {
             socketcliente.enviarData("ping".getBytes());
         }
+        
+        //SOLUCIONAR ESTE ERROR//
+//        Packet00Login loginpacket = new Packet00Login(JOptionPane.showInputDialog(this, "Por favor, introduzca su nombre de usuario:"));
+//        if (socketcliente != null){
+//            loginpacket.writeData(socketcliente);
+//        }
     }
     
     public void startGameThread(){
@@ -125,8 +130,7 @@ public class PanelJuego extends JPanel implements Runnable{
         }
         //-------------------------------------------------//
         
-        socketcliente = new Cliente("localhost", this);
-        socketcliente.start();
+        
     }
 
     @Override

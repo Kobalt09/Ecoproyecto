@@ -8,7 +8,7 @@ public class JugadorMP extends Jugador{
     public InetAddress direccionIP;
     public int puerto;
 
-    public JugadorMP(InetAddress direccionIP, int puerto, PanelJuego gp, KeyHandler keyH, KeyHandler key2, String username) {
+    public JugadorMP(InetAddress direccionIP, int puerto, PanelJuego gp, KeyHandler keyH, String username) {
         super(gp, keyH, username);
         this.direccionIP = direccionIP;
         this.puerto = puerto;

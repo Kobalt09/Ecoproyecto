@@ -43,7 +43,6 @@ public class ManejadorCasillas {
         mapa[1]="/mapas/mapaprueba_1.txt";
         
         
-        
         cargarMapa(mapa[gp.mapaActual],0,0);
         getImagenCasilla();
         
