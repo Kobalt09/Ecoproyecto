@@ -27,7 +27,31 @@ public class Jugador extends Entidad{
     
     Objetosclase inventario[]= new Objetosclase[10];
     public int llaves=0;
+
+    public Jugador(PanelJuego gp) {
+        super(gp);
+        this.keyH=new KeyHandler();
+        this.username="";
+        pantallaX=gp.screenWidth/2-(gp.tamanioCasilla/2);
+        pantallaY=gp.screenHeight/2-(gp.tamanioCasilla/2);
+        
+        hitBox=new Rectangle();
+        //donde empiza la hitbox en relacion a la esquina superior
+        hitBox.x=8;
+        hitBox.y=8;
+        //tamanio de la hitbox
+        hitBox.height=48;
+        hitBox.width=48;
+        
+        //area de colision
+        areadefectoX=hitBox.x;
+        areadefectoY=hitBox.y;
+        
+        valoresporDefecto();
+        getPlayerImage();
+    }
     
+   
     
     public Jugador(PanelJuego gp, KeyHandler keyH, String username){
         
