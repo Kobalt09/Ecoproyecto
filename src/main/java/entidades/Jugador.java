@@ -257,6 +257,4 @@ public class Jugador extends Entidad implements Dibujado{
         }
        g2.drawImage(image,pantallaX,pantallaY,null); 
     }
-
-
 }
