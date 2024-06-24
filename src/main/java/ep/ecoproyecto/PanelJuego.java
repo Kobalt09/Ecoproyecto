@@ -65,7 +65,7 @@ public class PanelJuego extends JPanel implements Runnable{
     public Jugador jugador= new Jugador(this,keyH,key2);
     public Objetosclase obj[][]= new Objetosclase[Maximomundos][10];
     public Entidad NPC[][]= new Entidad[Maximomundos][10];
-    
+
     //Estado de Juego
     public int estadodelJuego;
     public final int estadoJuego=1;
@@ -75,13 +75,11 @@ public class PanelJuego extends JPanel implements Runnable{
     public boolean pause;
     
     public PanelJuego() {
-        
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH); //reconocer la letra precioanda
         this.setFocusable(true);
-        this.addKeyListener(key2);
     }
     
     public void configuraciondejuego(){

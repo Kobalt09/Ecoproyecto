@@ -17,6 +17,7 @@ public class Sonido {
     //los archivos deben ser WAP de 16bits
     Clip clip;
     URL sonidoURL[]= new URL[30];
+    URL sonidoactual;
     
     public Sonido(){
         
@@ -44,12 +45,14 @@ public class Sonido {
     
     public void reproducirmusica(int i) {
         try{
-            AudioInputStream ais= AudioSystem.getAudioInputStream(sonidoURL[i]);
-            clip= AudioSystem.getClip();
-            clip.open(ais);
-            clip.start();
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
-
+            if(!sonidoactual.equals(sonidoURL[i])||sonidoactual.equals(null)){
+                AudioInputStream ais= AudioSystem.getAudioInputStream(sonidoURL[i]);
+                clip= AudioSystem.getClip();
+                clip.open(ais);
+                clip.start();
+                clip.loop(Clip.LOOP_CONTINUOUSLY);
+                sonidoactual=sonidoURL[i];
+            }
         }catch(Exception e){
     
         }
@@ -63,7 +66,7 @@ public class Sonido {
             clip= AudioSystem.getClip();
             clip.open(ais);
             clip.start();
-
+            sonidoactual=sonidoURL[i];
         }catch(Exception e){
     
         }

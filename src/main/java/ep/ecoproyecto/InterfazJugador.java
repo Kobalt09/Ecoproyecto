@@ -46,6 +46,7 @@ public class InterfazJugador {
         g2.setColor(Color.white);
         g2.drawString("posicion X:"+(gp.jugador.xMapa/64)+" Y "+(gp.jugador.yMapa/64), gp.tamanioCasilla*2, gp.tamanioCasilla);
         
+
         
         //estado de dialogo
         if(gp.estadoDialogo==gp.estadodelJuego){
@@ -53,6 +54,7 @@ public class InterfazJugador {
         }
         
         /*
+
         g2.setFont(fuente);
         g2.setColor(Color.white);
        // g2.drawImage(llaveimagen, gp.tamanioCasilla/2, gp.tamanioCasilla/2, gp.tamanioCasilla,gp.tamanioCasilla,null);

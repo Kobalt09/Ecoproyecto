@@ -4,14 +4,13 @@
  */
 package ep.ecoproyecto;
 
-import Entidades.Jugador;
-import java.awt.Color;
+
+import Interfaces.Dibujado;
 import java.awt.Graphics2D;
 import objetos.ObjetoCofre;
 import objetos.ObjetoEquipo;
 import objetos.ObjetoPuerta;
 import objetos.ObjetoRecogible;
-import objetos.Objetosclase;
 
 /**
  *
@@ -60,7 +59,6 @@ public class EmisorObjetos {
                 
                     if((gp.obj[gp.MapaActual][i].posicionX+gp.tamanioCasilla > gp.jugador.xMapa-gp.jugador.pantallaX)&&(gp.obj[gp.MapaActual][i].posicionX-gp.tamanioCasilla < gp.jugador.xMapa+gp.jugador.pantallaX)&&
                        (gp.obj[gp.MapaActual][i].posicionY+gp.tamanioCasilla > gp.jugador.yMapa-gp.jugador.pantallaY)&&(gp.obj[gp.MapaActual][i].posicionY-gp.tamanioCasilla < gp.jugador.yMapa+gp.jugador.pantallaY)){     
-
 
                         g2.drawImage(gp.obj[gp.MapaActual][i].image, PantallaX, PantallaY, gp.tamanioCasilla,gp.tamanioCasilla,null);
                     }
