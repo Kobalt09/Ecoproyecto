@@ -10,15 +10,14 @@ import javax.swing.JFrame;
  * @author Cris
  */
 public class Ecoproyecto {
-
+    
     public void iniciarJuego() {
-        
         JFrame ventana= new JFrame();
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setResizable(false);
         ventana.setTitle("ECOPROYECTO");
      
-        PanelJuego panelDeJuego= new PanelJuego();
+        PanelJuego panelDeJuego= new PanelJuego(ventana);
         ventana.add(panelDeJuego);        
         ventana.pack();
         

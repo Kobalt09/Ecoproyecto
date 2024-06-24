@@ -10,6 +10,7 @@ import ep.ecoproyecto.logica.EmisorNPC;
 import ep.ecoproyecto.logica.Sonido;
 import ep.ecoproyecto.logica.Colisionador;
 import ep.ecoproyecto.logica.KeyHandler;
+import ep.ecoproyecto.logica.WindowHandler;
 import ep.ecoproyecto.logica.entidades.Entidad;
 import ep.ecoproyecto.logica.casillas.ManejadorCasillas;
 import ep.ecoproyecto.logica.entidades.Jugador;
@@ -25,6 +26,7 @@ import java.util.logging.Logger;
 import javax.swing.JPanel;
 import ep.ecoproyecto.logica.objetos.Objetosclase;
 import java.util.LinkedList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -57,8 +59,9 @@ public class PanelJuego extends JPanel implements Runnable{
     int fps=60;
     
     public ManejadorCasillas manCas=new ManejadorCasillas(this);
-   
     public KeyHandler keyH= new KeyHandler();
+    public WindowHandler winH;
+    public JFrame frame;
     
     public Sonido controlmusica = new Sonido();
     public Sonido efectossonido = new Sonido();
@@ -87,16 +90,18 @@ public class PanelJuego extends JPanel implements Runnable{
     public boolean pause;
     
     //----ONLINE-----//
-    private Cliente socketcliente;
-    private Server socketserver;
+    public Cliente socketcliente;
+    public Server socketserver;
     
-    public PanelJuego() {
+    public PanelJuego(JFrame frame) {
         
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH); //reconocer la letra precioanda
         this.setFocusable(true);
+        this.frame = frame;
+        winH = new WindowHandler(this);
     }
     
     public void configuraciondejuego(){
@@ -115,9 +120,17 @@ public class PanelJuego extends JPanel implements Runnable{
         jugadores.add((JugadorMP)jugador);
         Packet00Login loginpacket = new Packet00Login(jugador.getUsername());
         if (socketserver!=null){
-            socketserver.addConection((JugadorMP)jugador, loginpacket);
+            socketserver.addConnection((JugadorMP)jugador, loginpacket);
         }
         loginpacket.writeData(socketcliente);
+    }
+        
+    public void removePlayerMP(String username) {
+        for (JugadorMP j:jugadores){
+            if (j.getUsername().equals(username)){
+                jugadores.remove(j);
+            }
+        }
     }
     
     public void startGameThread(){
