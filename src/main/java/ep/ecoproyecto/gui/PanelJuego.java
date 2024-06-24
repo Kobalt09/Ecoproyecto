@@ -115,12 +115,12 @@ public class PanelJuego extends JPanel implements Runnable{
         jugadores.add((JugadorMP)jugador);
         Packet00Login loginpacket = new Packet00Login(jugador.getUsername());
         if (socketserver!=null){
+            System.out.println("LOLOLOLOLL");
             socketserver.addConection((JugadorMP)jugador, loginpacket);
         }
     }
     
     public void startGameThread(){
-        inicioJugador();
         //Se puede adaptar como una funcion dentro del MENU//
         if(JOptionPane.showConfirmDialog(this, "Quieres iniciar el server?") == JOptionPane.YES_OPTION){
             socketserver = new Server(this);
@@ -131,6 +131,7 @@ public class PanelJuego extends JPanel implements Runnable{
         socketcliente = new Cliente("localhost",this);
         socketcliente.start();
         
+        inicioJugador();
         
         gameThread = new Thread(this);
         gameThread.start();
