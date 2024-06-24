@@ -104,7 +104,7 @@ public class PanelJuego extends JPanel implements Runnable{
         npcs.establecernpcs();
         
         this.reproducirmusica(musica);
-        
+        this.jugador=new Jugador(this);
         //estado de juego
         estadodelJuego=estadoJuego;
         pause=true;
@@ -120,6 +120,7 @@ public class PanelJuego extends JPanel implements Runnable{
     }
     
     public void startGameThread(){
+        inicioJugador();
         //Se puede adaptar como una funcion dentro del MENU//
         if(JOptionPane.showConfirmDialog(this, "Quieres iniciar el server?") == JOptionPane.YES_OPTION){
             socketserver = new Server(this);
@@ -130,7 +131,7 @@ public class PanelJuego extends JPanel implements Runnable{
         socketcliente = new Cliente("localhost",this);
         socketcliente.start();
         
-        inicioJugador();
+        
         gameThread = new Thread(this);
         gameThread.start();
     }
@@ -203,6 +204,7 @@ public class PanelJuego extends JPanel implements Runnable{
         
         Graphics2D g2 = (Graphics2D)g; // estas dos clases son similares pero graphis2D tiene mas funciones para dibujar 
 
+        
         //casillas
         manCas.dibujar(g2);
         
@@ -211,6 +213,10 @@ public class PanelJuego extends JPanel implements Runnable{
         
         //npc
         npcs.draw(g2);
+        
+        for(Jugador jug:jugadores){
+            jug.draw(g2);
+        }
         
         //jugador
         jugador.draw(g2);
