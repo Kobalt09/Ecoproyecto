@@ -115,9 +115,9 @@ public class PanelJuego extends JPanel implements Runnable{
         jugadores.add((JugadorMP)jugador);
         Packet00Login loginpacket = new Packet00Login(jugador.getUsername());
         if (socketserver!=null){
-            System.out.println("LOLOLOLOLL");
             socketserver.addConection((JugadorMP)jugador, loginpacket);
         }
+        loginpacket.writeData(socketcliente);
     }
     
     public void startGameThread(){

@@ -38,7 +38,7 @@ public class Cliente extends Thread{
             } catch (IOException ex) {
             }
 //            System.out.println("SERVER > "+ new String(packet.getData()));
-            parsePacket(packet.getData(), packet.getAddress(), packet.getPort());
+            this.parsePacket(packet.getData(), packet.getAddress(), packet.getPort());
         }
     }
     

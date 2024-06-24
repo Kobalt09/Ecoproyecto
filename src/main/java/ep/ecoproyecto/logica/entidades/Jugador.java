@@ -114,16 +114,17 @@ public class Jugador extends Entidad{
     public void update(){
         if (keyH.upPressed==true||keyH.leftPressed==true||keyH.downPressed==true||keyH.rightPressed==true){
             //actualizamos la posicion del jugador sumando o restando su velocidad
-            if(keyH.upPressed==true){
-                direction="up";
-            }else if(keyH.leftPressed==true){
-                direction="left";
-            }else if(keyH.downPressed==true){
-                direction="down";
-            }else if(keyH.rightPressed==true){
-                direction="right";
+            if(keyH != null){
+                if(keyH.upPressed==true){
+                    direction="up";
+                }else if(keyH.leftPressed==true){
+                    direction="left";
+                }else if(keyH.downPressed==true){
+                    direction="down";
+                }else if(keyH.rightPressed==true){
+                    direction="right";
+                }
             }
-            
             //colision Casillas
             colision=false;
             gp.colisiones.revisarColision(this);

@@ -80,6 +80,8 @@ public class Server extends Thread{
                 yaConectado = true;
             }else{
                 enviarData(packet.getData(),j.direccionIP,j.puerto);
+                packet = new Packet00Login(j.getUsername());
+                enviarData(packet.getData(),jugador.direccionIP,jugador.puerto);
             }
         }
         if (!yaConectado){
