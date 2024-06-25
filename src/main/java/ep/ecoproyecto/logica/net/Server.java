@@ -1,11 +1,13 @@
 package ep.ecoproyecto.logica.net;
 
 import ep.ecoproyecto.gui.PanelJuego;
+import ep.ecoproyecto.logica.KeyHandler;
 import ep.ecoproyecto.logica.casillas.ManejadorCasillas;
 import ep.ecoproyecto.logica.entidades.JugadorMP;
 import ep.ecoproyecto.logica.net.packets.Packet;
 import ep.ecoproyecto.logica.net.packets.Packet.PacketTypes;
 import ep.ecoproyecto.logica.net.packets.Packet00Login;
+import ep.ecoproyecto.logica.net.packets.Packet02Mov;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -61,6 +63,12 @@ public class Server extends Thread{
             case DISCONNECT->{
                 
             }
+            case MOVE->{
+                packet =new Packet02Mov(data);
+                System.out.println(((Packet02Mov)packet).getUsername()+" movido a x "+((Packet02Mov)packet).getX()+" y "+((Packet02Mov)packet).getY()+"mirando"+((Packet02Mov)packet).getDir());
+                this.manejarMov((Packet02Mov)packet);
+            }
+            
             default->{
                 System.out.println("Paquete desconocido");
             }
@@ -94,12 +102,45 @@ public class Server extends Thread{
         try {
             socket.send(packet);
         } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 
     public void enviarDataClientes(byte[] data) {
         for (JugadorMP j:jugadoresConectados){
             enviarData(data,j.direccionIP,j.puerto);
+        }
+    }
+
+    public JugadorMP getJugadorMP(String user){
+        for (JugadorMP jug:jugadoresConectados){
+            if (jug.getUsername().equals(user)){
+                return jug;}
+        }
+        return null;
+    } 
+    public int getIndiceJugador(String user){
+        int indice=0;
+        for (JugadorMP jug:jugadoresConectados){
+            if (jug.getUsername().equals(user)){
+                break;
+            }
+        indice++;
+        } 
+        return indice;
+    }
+    
+    private void manejarMov(Packet02Mov packet) {
+        
+        if(getJugadorMP(packet.getUsername())!=null){
+            
+            int indice=this.getIndiceJugador(packet.getUsername());
+            
+            this.jugadoresConectados.get(indice).xMapa=packet.getX();
+            this.jugadoresConectados.get(indice).yMapa=packet.getY();
+            this.jugadoresConectados.get(indice).direction=packet.getDir();
+            System.out.println(this.jugadoresConectados.get(indice).yMapa);
+            packet.writeData(this);
         }
     }
 

@@ -1,12 +1,14 @@
 package ep.ecoproyecto.logica.net;
 
 import ep.ecoproyecto.gui.PanelJuego;
+import ep.ecoproyecto.logica.KeyHandler;
 import ep.ecoproyecto.logica.entidades.JugadorMP;
 import ep.ecoproyecto.logica.net.packets.Packet;
 import static ep.ecoproyecto.logica.net.packets.Packet.PacketTypes.DISCONNECT;
 import static ep.ecoproyecto.logica.net.packets.Packet.PacketTypes.INVALID;
 import static ep.ecoproyecto.logica.net.packets.Packet.PacketTypes.LOGIN;
 import ep.ecoproyecto.logica.net.packets.Packet00Login;
+import ep.ecoproyecto.logica.net.packets.Packet02Mov;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -60,6 +62,10 @@ public class Cliente extends Thread{
             case DISCONNECT->{
                 
             }
+            case MOVE->{
+                packet = new Packet02Mov(data);
+                this.manejarMov((Packet02Mov)packet);
+            }
             default->{
                 System.out.println("Paquete desconocido");
             }
@@ -73,4 +79,9 @@ public class Cliente extends Thread{
         } catch (IOException ex) {
         }
     }
+    
+    private void manejarMov(Packet02Mov packet) {
+        this.juego.moverJugadores(packet.getUsername(), packet.getX(), packet.getY(),packet.getDir());          
+    }
+    
 }

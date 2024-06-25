@@ -13,8 +13,9 @@ public class Packet00Login extends Packet{
     
     public Packet00Login(byte[] data) {
         super(00);
-        this.username = readData(data);
+        this.username = readData(data);   
     }
+
 
     public Packet00Login(String username) {
         super(00);
@@ -24,7 +25,8 @@ public class Packet00Login extends Packet{
     public String getUsername() {
         return username;
     }
-
+    
+    
     @Override
     public void writeData(Cliente cliente) {
         cliente.enviarData(getData());
