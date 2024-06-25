@@ -4,7 +4,7 @@ import ep.ecoproyecto.logica.net.*;
 
 public abstract class Packet {
     public static enum PacketTypes{
-        INVALID(-1), LOGIN(00), DISCONNECT(01);
+        INVALID(-1), LOGIN(00), DISCONNECT(01),MOVE(02);
     
         private int packetid;
 
@@ -28,6 +28,7 @@ public abstract class Packet {
     public abstract void writeData(Cliente cliente);
     public abstract void writeData(Server server);
     public String readData(byte[] data){
+        
         String mensaje = new String(data).trim();
         return mensaje.substring(2);
     }
