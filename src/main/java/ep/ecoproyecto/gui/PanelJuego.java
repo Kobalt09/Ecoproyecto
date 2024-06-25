@@ -121,6 +121,7 @@ public class PanelJuego extends JPanel implements Runnable{
             socketserver.addConection((JugadorMP)jugador, loginpacket);
         }
         loginpacket.writeData(socketcliente);
+        
     }
     
     public void startGameThread(){
@@ -195,10 +196,11 @@ public class PanelJuego extends JPanel implements Runnable{
         if(estadodelJuego==1){
             
         }
-        for (JugadorMP jug : jugadores) {
-            jug.update();
-        }
         jugador.update();
+        for (JugadorMP jug : jugadores) {
+            if (jugador!=jug)jug.update();
+        }
+        
         npcs.actualizacion();
         manCas.actualizar(jugador,screenWidth, screenHeight);
 
@@ -249,7 +251,7 @@ public class PanelJuego extends JPanel implements Runnable{
     private int getIndiceJugador(String user){
         int indice=0;
         for (Jugador jug:jugadores){
-            if(jug.getUsername().equals(user)){
+            if(jug.getUsername() == null ? (user) == null : jug.getUsername().equals(user)){
                 break;
             }indice++;
         }
@@ -258,8 +260,20 @@ public class PanelJuego extends JPanel implements Runnable{
     
     public void moverJugadores(String user,int x, int y,String dir){
         int indice=getIndiceJugador(user);
+        
         this.jugadores.get(indice).xMapa=x;
         this.jugadores.get(indice).yMapa=y;
         this.jugadores.get(indice).direction=dir;
+        
+        this.jugadores.get(indice).spriteCounter++;
+                if (this.jugadores.get(indice).spriteCounter>15){
+                    if (this.jugadores.get(indice).spriteNum == 2 )
+                    {this.jugadores.get(indice).spriteNum=1;}
+                    else{
+                    if (this.jugadores.get(indice).spriteNum == 1)
+                    this.jugadores.get(indice).spriteNum=2;
+                    }
+                    this.jugadores.get(indice).spriteCounter = 0;
+                }
     }
 }

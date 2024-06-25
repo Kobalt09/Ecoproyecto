@@ -87,6 +87,9 @@ public class Jugador extends Entidad{
 
         vel=4;
         direction ="down"; 
+        if(gp.socketserver!=null){
+        Packet02Mov packet=new Packet02Mov(username, this.xMapa, this.yMapa,this.direction);
+        packet.writeData(PanelJuego.juego.socketcliente);}
     }
 
     public String getDirection() {
@@ -160,7 +163,7 @@ public class Jugador extends Entidad{
                     }
                 }
 
-                spriteCounter++;
+              /*  spriteCounter++;
                 if (spriteCounter>10){
                     if (spriteNum == 2 )
                     {spriteNum=1;}
@@ -169,7 +172,7 @@ public class Jugador extends Entidad{
                     spriteNum=2;
                     }
                     spriteCounter = 0;
-                }
+                }*/
             }
         } 
     }
@@ -312,6 +315,30 @@ public class Jugador extends Entidad{
             int dibY=gp.jugador.pantallaY+this.yMapa-gp.jugador.yMapa;
            // g2.drawImage(image,xMapa,yMapa,null);
             g2.drawImage(image,dibX,dibY,null);
+            
+            
+            if (username != null){
+                Fuentes tipoFuente=new Fuentes();
+                g2.setFont((tipoFuente.fuente(tipoFuente.upheaval,0,20)));
+                int textX = dibX + (image.getWidth() - g2.getFontMetrics().stringWidth(username))/2 ;
+                int textY = dibY - 5;
+
+                //Bordes Negros//
+                 g2.setColor(Color.BLACK);
+                 g2.drawString(username, textX - 2, textY - 2);
+                 g2.drawString(username, textX - 2, textY + 2);
+                 g2.drawString(username, textX + 2, textY - 2);
+                 g2.drawString(username, textX + 2, textY + 2);
+                 g2.drawString(username, textX, textY - 2);
+                 g2.drawString(username, textX, textY + 2);
+                 g2.drawString(username, textX - 2, textY);
+                 g2.drawString(username, textX + 2, textY);
+
+                 //Letras Blancas//
+                 g2.setColor(Color.WHITE);
+                 g2.drawString(username, textX, textY);
+            }
+            
         }
     }
 
