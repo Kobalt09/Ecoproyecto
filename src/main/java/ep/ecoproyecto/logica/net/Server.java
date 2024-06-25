@@ -7,7 +7,10 @@ import ep.ecoproyecto.logica.entidades.JugadorMP;
 import ep.ecoproyecto.logica.net.packets.Packet;
 import ep.ecoproyecto.logica.net.packets.Packet.PacketTypes;
 import ep.ecoproyecto.logica.net.packets.Packet00Login;
+
 import ep.ecoproyecto.logica.net.packets.Packet02Mov;
+
+import ep.ecoproyecto.logica.net.packets.Packet01Disconnect;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -58,10 +61,12 @@ public class Server extends Thread{
                 packet = new Packet00Login(data); 
                 System.out.println("["+direccion.getHostAddress()+":"+puerto+"] "+((Packet00Login)packet).getUsername()+" se ha conectado.");
                 JugadorMP jugador = new JugadorMP(direccion,puerto,juego,((Packet00Login)packet).getUsername());
-                this.addConection(jugador,((Packet00Login)packet));
+                this.addConnection(jugador,((Packet00Login)packet));
             }
             case DISCONNECT->{
-                
+                packet = new Packet01Disconnect(data); 
+                System.out.println("["+direccion.getHostAddress()+":"+puerto+"] "+((Packet01Disconnect)packet).getUsername()+" se ha desconectado.");
+                this.removeConnection((Packet01Disconnect)packet);
             }
             case MOVE->{
                 packet =new Packet02Mov(data);
@@ -75,7 +80,7 @@ public class Server extends Thread{
         }
     }
     
-    public void addConection(JugadorMP jugador, Packet00Login packet) {
+    public void addConnection(JugadorMP jugador, Packet00Login packet) {
         boolean yaConectado = false;
         for (JugadorMP j:jugadoresConectados){
             if (jugador.getUsername().equalsIgnoreCase(j.getUsername())){
@@ -95,6 +100,32 @@ public class Server extends Thread{
         if (!yaConectado){
             this.jugadoresConectados.add(jugador);
         }
+    }
+    
+    
+    private void removeConnection(Packet01Disconnect packet) {
+        this.jugadoresConectados.remove(getJugadorMPindex(packet.getUsername()));
+        packet.writeData(this);
+    }
+    
+    public JugadorMP getJugadorMP(String username){
+        for (JugadorMP jugador:jugadoresConectados){
+            if (jugador.getUsername().equals(username)){
+                return jugador;
+            }
+        }
+        return null;
+    }
+    
+    public int getJugadorMPindex(String username){
+        int index = 0;
+        for (JugadorMP jugador:jugadoresConectados){
+            if (jugador.getUsername().equals(username)){
+                break;
+            }
+            index++;
+        }
+        return index;
     }
     
     public void enviarData(byte[] data, InetAddress direccionIP, int puerto){

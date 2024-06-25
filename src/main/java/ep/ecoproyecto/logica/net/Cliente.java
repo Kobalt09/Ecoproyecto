@@ -8,7 +8,11 @@ import static ep.ecoproyecto.logica.net.packets.Packet.PacketTypes.DISCONNECT;
 import static ep.ecoproyecto.logica.net.packets.Packet.PacketTypes.INVALID;
 import static ep.ecoproyecto.logica.net.packets.Packet.PacketTypes.LOGIN;
 import ep.ecoproyecto.logica.net.packets.Packet00Login;
+
 import ep.ecoproyecto.logica.net.packets.Packet02Mov;
+
+import ep.ecoproyecto.logica.net.packets.Packet01Disconnect;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -56,11 +60,12 @@ public class Cliente extends Thread{
                 packet = new Packet00Login(data); 
                 System.out.println("["+direccion.getHostAddress()+":"+puerto+"] "+((Packet00Login)packet).getUsername()+" se ha unido al juego.");
                 JugadorMP jugador = new JugadorMP(direccion,puerto,juego,((Packet00Login)packet).getUsername());
-                //REVISAR//
                 juego.jugadores.add(jugador);
             }
             case DISCONNECT->{
-                
+                packet = new Packet01Disconnect(data); 
+                System.out.println("["+direccion.getHostAddress()+":"+puerto+"] "+((Packet01Disconnect)packet).getUsername()+" se ha ido del juego.");
+                juego.removePlayerMP(((Packet01Disconnect)packet).getUsername());
             }
             case MOVE->{
                 packet = new Packet02Mov(data);
