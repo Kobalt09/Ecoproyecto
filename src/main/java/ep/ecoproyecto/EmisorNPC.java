@@ -6,7 +6,9 @@ package ep.ecoproyecto;
 
 import Entidades.Jugador;
 import Entidades.chiguire;
+import Interfaces.Actualizar;
 import Interfaces.Dibujado;
+import entidades.Tienda;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
@@ -14,7 +16,7 @@ import java.awt.image.BufferedImage;
  *
  * @author Cris
  */
-public class EmisorNPC  implements Dibujado{
+public class EmisorNPC  implements Dibujado, Actualizar{
     PanelJuego gp;
 
     public EmisorNPC(PanelJuego gp) {
@@ -27,6 +29,7 @@ public class EmisorNPC  implements Dibujado{
         //----MUNDO 1:-----//
         int NumMap = 0;
         gp.NPC[NumMap][0]= new chiguire(gp,7,7);
+        gp.NPC[NumMap][1]= new Tienda(gp,9,9);
         
         /*
         //----MUNDO 2:-----//
@@ -103,7 +106,7 @@ public class EmisorNPC  implements Dibujado{
             }
     }
     
-    public void actualizacion(){
+    public void actualizar(){
 
             for(int i=0;i<gp.NPC[0].length;i++){ 
                 if(gp.NPC[gp.MapaActual][i]!=null){

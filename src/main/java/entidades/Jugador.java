@@ -5,6 +5,7 @@
 
 //
 package Entidades;
+import Interfaces.Actualizar;
 import Interfaces.Dibujado;
 import ep.ecoproyecto.Herramientas;
 import ep.ecoproyecto.PanelJuego;
@@ -22,23 +23,20 @@ import objetos.Objetosclase;
  *
  * @author Cris
  */
-public class Jugador extends Entidad implements Dibujado{
+public class Jugador extends Entidad implements Dibujado, Actualizar{
 
     KeyHandler keyH;
     public final int pantallaX;
     public final int pantallaY;
     
-    public Entidad inventario[]= new Entidad[10];
+    public int dinero=0;
     public int llaves=0;
     public boolean interactuar;
     
     
     public Jugador(PanelJuego gp, KeyHandler keyH){
-        
         super(gp);
-        
         this.keyH=keyH;
-        
         pantallaX=gp.screenWidth/2-(gp.tamanioCasilla/2);
         pantallaY=gp.screenHeight/2-(gp.tamanioCasilla/2);
         
@@ -87,7 +85,7 @@ public class Jugador extends Entidad implements Dibujado{
         right2=configuracion("/player/jg_der_02");
     }
     
-    public void update(){
+    public void actualizar(){
         interactuar=false;
         if (keyH.upPressed==true||keyH.leftPressed==true||keyH.downPressed==true||keyH.rightPressed==true||keyH.ePressed==true){
             //actualizamos la posicion del jugador sumando o restando su velocidad
@@ -171,7 +169,9 @@ public class Jugador extends Entidad implements Dibujado{
                             gp.hud.mostrarmensaje("puerta abierta");
                             gp.obj[gp.MapaActual][id]=null;
                             System.out.println("llaves: "+llaves);
-                            this.inventario[0]=gp.obj[gp.MapaActual][id];
+                            if(llaves==0){
+                                this.inventario[1]=null;
+                            }
                         }else{
                             gp.hud.mostrarmensaje("no tienes llaves para esta puerta");
                         }
@@ -189,6 +189,11 @@ public class Jugador extends Entidad implements Dibujado{
                             gp.hud.victoriamensaje=true;
                             gp.obj[gp.MapaActual][id]=null;
                     break;
+                case "coin":
+                            dinero++;
+                            gp.hud.victoriamensaje=true;
+                            gp.obj[gp.MapaActual][id]=null;
+                    break;
             }
         }
     }
@@ -202,19 +207,23 @@ public class Jugador extends Entidad implements Dibujado{
     public void intereaccionNCP(int id) {
         if(id!=999){
             if (interactuar==true){
-                if(direction=="right"){
-                    gp.NPC[gp.MapaActual][id].direction="left";
+                if(gp.NPC[gp.MapaActual][id].movimiento==true){
+                    if(direction=="right"){
+                        gp.NPC[gp.MapaActual][id].direction="left";
+                    }
+                    if(direction=="left"){
+                        gp.NPC[gp.MapaActual][id].direction="right";
+                    }
+                    if(direction=="up"){
+                        gp.NPC[gp.MapaActual][id].direction="down";
+                    }
+                    if(direction=="down"){
+                        gp.NPC[gp.MapaActual][id].direction="up";
+                    }
                 }
-                if(direction=="left"){
-                    gp.NPC[gp.MapaActual][id].direction="right";
+                if(gp.NPC[gp.MapaActual][id].Mensaje!=null){
+                    gp.hud.mostrarmensaje(gp.NPC[gp.MapaActual][id].Mensaje);
                 }
-                if(direction=="up"){
-                    gp.NPC[gp.MapaActual][id].direction="down";
-                }
-                if(direction=="down"){
-                    gp.NPC[gp.MapaActual][id].direction="up";
-                }
-                gp.hud.mostrarmensaje(gp.NPC[gp.MapaActual][id].Mensaje);
             }
         }
     }

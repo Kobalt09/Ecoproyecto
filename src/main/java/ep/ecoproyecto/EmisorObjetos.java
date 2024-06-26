@@ -10,6 +10,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import objetos.ObjetoCofre;
 import objetos.ObjetoEquipo;
+import objetos.ObjetoMesa;
+import objetos.ObjetoMoneda;
 import objetos.ObjetoPuerta;
 import objetos.ObjetoRecogible;
 import objetos.Objetosclase;
@@ -35,7 +37,8 @@ public class EmisorObjetos  implements Dibujado{
         gp.obj[NumMap][2]=new ObjetoPuerta("puerta",7,8,gp);
         gp.obj[NumMap][3]=new ObjetoCofre("cofre",3,7,gp);
         gp.obj[NumMap][4]=new ObjetoEquipo("botas",6,6,gp);
-        
+        gp.obj[NumMap][5]=new ObjetoMesa("mesa",9,9,gp);
+        gp.obj[NumMap][6]=new ObjetoMoneda("coin",10,10,gp);
         /*
         //----MUNDO 2:-----//
         NumMap = 1;

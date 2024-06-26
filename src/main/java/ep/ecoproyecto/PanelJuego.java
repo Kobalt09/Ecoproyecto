@@ -49,10 +49,9 @@ public class PanelJuego extends JPanel implements Runnable{
     public ManejadorCasillas manCas=new ManejadorCasillas(this);
    
     KeyHandler keyH= new KeyHandler();
-    KeyHandler key2= new KeyHandler();
     
-    public Sonido controlmusica = new Sonido();
-    public Sonido efectossonido = new Sonido();
+    public sonido controlmusica = new sonido();
+    public sonido efectossonido = new sonido();
     public Colisionador colisiones =new Colisionador(this);
     public EmisorObjetos objeto= new EmisorObjetos(this);
     public EmisorNPC npcs= new EmisorNPC(this);
@@ -73,8 +72,14 @@ public class PanelJuego extends JPanel implements Runnable{
     
     //Estado de Juego
     public int estadodelJuego;
+    
+    //estado jugando
     public final int estadoJuego=1;
-    public final int estadoDialogo=3;
+        //estado tienda
+    public final int estadoTienda=2;
+        //estado cambio de mapa
+
+    public final int estadoTraslado=3;
     
     //interfaz
     public boolean pause;
@@ -86,7 +91,6 @@ public class PanelJuego extends JPanel implements Runnable{
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH); //reconocer la letra precioanda
         this.setFocusable(true);
-        this.addKeyListener(key2);
     }
     
     public void configuraciondejuego(){
@@ -119,7 +123,7 @@ public class PanelJuego extends JPanel implements Runnable{
             long currentTime = System.nanoTime();
 
             //actualiza la informacion como la posicion del personaje
-            update();
+            actualizar();
             //muestra la pantalla y actuliza la informacion en pantalla
             repaint();
 
@@ -150,13 +154,14 @@ public class PanelJuego extends JPanel implements Runnable{
         }
     }
     
-    public void update(){
+    public void actualizar(){
        
         if(estadodelJuego==1){
             
         }
-        jugador.update();
-        npcs.actualizacion();
+        jugador.actualizar();
+        npcs.actualizar();
+    
         manCas.actualizar(jugador,screenWidth, screenHeight);
     }
     

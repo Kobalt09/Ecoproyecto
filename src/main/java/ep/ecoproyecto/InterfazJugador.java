@@ -44,6 +44,7 @@ public class InterfazJugador implements Dibujado{
         g2.setColor(Color.white);
         g2.drawString("posicion X:"+(gp.jugador.xMapa/64)+" Y "+(gp.jugador.yMapa/64), gp.tamanioCasilla*2, gp.tamanioCasilla);
         
+        
 
         
         g2.setFont(fuente);
@@ -51,6 +52,8 @@ public class InterfazJugador implements Dibujado{
         //g2.drawImage(llaveimagen, gp.tamanioCasilla/2, gp.tamanioCasilla/2, gp.tamanioCasilla,gp.tamanioCasilla,null);
         //g2.drawString("x = "+gp.jugador.llaves, gp.tamanioCasilla*2, gp.tamanioCasilla);
         
+        
+        //mostrar mensajes de NPC
         if(mensajeOn==true){
             int tarjeta=mensaje.length();
             g2.setColor(Color.blue);
@@ -88,17 +91,5 @@ public class InterfazJugador implements Dibujado{
             }
         }
     }
-    /*
-    public void dibujadoinventario(){
-        int MarcoX=gp.tamanioCasilla*4;
-        int MarcoY=gp.tamanioCasilla/4;
-        int MarcoAncho=gp.screenWidth/2;
-        int MarcoAlto=gp.tamanioCasilla;
-         Graphics2D g = null;
-    
-        Color c= new Color(82,183,136);
-        g.setColor(c);
-        g.fillRect(MarcoX, MarcoY, MarcoAncho, MarcoAlto);
-    }*/
 
 }

@@ -4,6 +4,7 @@
  */
 package Entidades;
 
+import Interfaces.Actualizar;
 import Interfaces.Dibujado;
 import ep.ecoproyecto.Herramientas;
 import ep.ecoproyecto.PanelJuego;
@@ -17,7 +18,7 @@ import javax.imageio.ImageIO;
  *
  * @author Cris
  */
-public class Entidad{
+public class Entidad implements Actualizar{
     //
     public BufferedImage image;
     public String nombre;
@@ -37,6 +38,7 @@ public class Entidad{
     public int areadefectoX, areadefectoY;
     
     public int contadordeaccion=0;
+    public Entidad inventario[]= new Entidad[10];
     
     //variables de dialogo
     public boolean dialogo=false;
@@ -44,6 +46,7 @@ public class Entidad{
     public String directionoriginal;
     
     public String Mensaje;
+    public boolean movimiento;
     
     
     public Entidad(PanelJuego gp){
