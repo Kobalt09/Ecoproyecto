@@ -261,11 +261,7 @@ public class PanelJuego extends JPanel implements Runnable{
                 hud.dibujado(g2,jug);
         }
        
-        
-        //interfaz
-        /*
-        hud.dibujado(g2);
-        */
+
 
         g2.dispose();
     }

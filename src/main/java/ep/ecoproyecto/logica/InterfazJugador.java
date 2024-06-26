@@ -50,8 +50,7 @@ public class InterfazJugador implements Dibujado{
         g2.setFont(fuente);
         g2.setColor(Color.white);
         //g2.drawImage(llaveimagen, gp.tamanioCasilla/2, gp.tamanioCasilla/2, gp.tamanioCasilla,gp.tamanioCasilla,null);
-        //g2.drawString("x = "+gp.jugador.llaves, gp.tamanioCasilla*2, gp.tamanioCasilla);
-        
+        //g2.drawString("x = "+gp.jugador.llaves, gp.tamanioCasilla*2, gp.tamanioCasilla);   
         
         //mostrar mensajes de NPC
         if(mensajeOn==true){

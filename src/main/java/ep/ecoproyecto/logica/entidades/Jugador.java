@@ -87,6 +87,7 @@ public class Jugador extends Entidad{
         yMapa=10*gp.tamanioCasilla+gp.tamanioCasilla;
         
         vel=4;
+        veloriginal=vel;
         direction ="down"; 
         if(gp.socketserver!=null){
         Packet02Mov packet=new Packet02Mov(username, this.xMapa, this.yMapa,this.direction);
@@ -115,10 +116,10 @@ public class Jugador extends Entidad{
     }
     
     public void update(){
-        if(keyH != null){
-            if (keyH.upPressed==true||keyH.leftPressed==true||keyH.downPressed==true||keyH.rightPressed==true){
-            //actualizamos la posicion del jugador sumando o restando su velocidad
-            
+        if(keyH != null){        
+            interactuar=false;
+            if (keyH.upPressed==true||keyH.leftPressed==true||keyH.downPressed==true||keyH.rightPressed==true||keyH.ePressed==true){
+                //actualizamos la posicion del jugador sumando o restando su velocidad
                 if(keyH.upPressed==true){
                     direction="up";
                 }else if(keyH.leftPressed==true){
@@ -127,6 +128,8 @@ public class Jugador extends Entidad{
                     direction="down";
                 }else if(keyH.rightPressed==true){
                     direction="right";
+                }else if(keyH.ePressed==true){
+                    interactuar=true;
                 }
                 
                 Packet02Mov packet=new Packet02Mov(username, this.xMapa, this.yMapa,this.direction);
@@ -137,6 +140,7 @@ public class Jugador extends Entidad{
             
              //colision NPC
                 int entidadID=gp.colisiones.chequeoEntidades(this, gp.NPC);
+                System.out.println(entidadID);
                 intereaccionNCP(entidadID);
             
             //colision objetos
@@ -147,7 +151,7 @@ public class Jugador extends Entidad{
                 gp.ControlEventos.chequeoEvento();
             
             
-                if(colision==false){
+                if(colision==false && interactuar==false){
                     switch (direction) {
                             case "up":
                                 yMapa-=vel;
@@ -164,7 +168,7 @@ public class Jugador extends Entidad{
                     }
                 }
 
-              /*  spriteCounter++;
+                spriteCounter++;
                 if (spriteCounter>10){
                     if (spriteNum == 2 )
                     {spriteNum=1;}
@@ -173,14 +177,10 @@ public class Jugador extends Entidad{
                     spriteNum=2;
                     }
                     spriteCounter = 0;
-                }*/
+                }
             }
         } 
     }
-        /*interaccion
-        if (key2.ePressed==true){
-            
-        }*/
 
     public void recogerobjetos(int id){
         
@@ -219,6 +219,7 @@ public class Jugador extends Entidad{
                             gp.efectos(4);
                             gp.hud.mostrarmensaje("conseguiste "+objnombre);
                             vel=vel+2;
+                            veloriginal=vel;
                             this.inventario[0]=gp.obj[gp.mapaActual][id];
                             gp.obj[gp.mapaActual][id]=null;
                         }
@@ -248,6 +249,7 @@ public class Jugador extends Entidad{
     public void intereaccionNCP(int id) {
         if(id!=999){
             if (interactuar==true){
+                System.out.println(gp.NPC[gp.mapaActual][id].nombre);
                 if(gp.NPC[gp.mapaActual][id].movimiento==true){
                     if(direction=="right"){
                         gp.NPC[gp.mapaActual][id].direction="left";

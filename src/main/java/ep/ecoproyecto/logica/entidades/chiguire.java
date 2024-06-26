@@ -35,16 +35,8 @@ public class chiguire extends Entidad {
     }
     
     public void getImage(){
-        
-        up1=configuracion("/player/jg_arr_01");
-        up2=configuracion("/player/jg_arr_02");
-        down1=configuracion("/player/jg_abj_01");
-        down2=configuracion("/player/jg_abj_02");
-        left1=configuracion("/player/jg_izq_01");
-        left2=configuracion("/player/jg_izq_02");
-        right1=configuracion("/player/jg_der_01");
-        right2=configuracion("/player/jg_der_02");
-        
+        right1=up1=left1=down1= this.configuracion("/NPC/chigu");
+        right2=up2=left2=down2=this.configuracion("/NPC/chigu2");
     }
     
     public void estableceraccion(){

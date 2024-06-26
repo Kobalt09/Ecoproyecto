@@ -29,7 +29,7 @@ public class EmisorNPC  implements Dibujado, Actualizar{
         
         //----MUNDO 1:-----//
         int NumMap = 0;
-        gp.NPC[NumMap][0]= new chiguire(gp,7,7);
+        gp.NPC[NumMap][0]= new chiguire(gp,10,7);
         gp.NPC[NumMap][1]= new Tienda(gp,9,9);
         
         /*
@@ -108,7 +108,6 @@ public class EmisorNPC  implements Dibujado, Actualizar{
     }
     
     public void actualizar(){
-
 
             for(int i=0;i<gp.NPC[0].length;i++){ 
                 if(gp.NPC[gp.mapaActual][i]!=null){
