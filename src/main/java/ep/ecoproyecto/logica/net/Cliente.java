@@ -1,12 +1,18 @@
 package ep.ecoproyecto.logica.net;
 
 import ep.ecoproyecto.gui.PanelJuego;
+import ep.ecoproyecto.logica.KeyHandler;
 import ep.ecoproyecto.logica.entidades.JugadorMP;
 import ep.ecoproyecto.logica.net.packets.Packet;
 import static ep.ecoproyecto.logica.net.packets.Packet.PacketTypes.DISCONNECT;
 import static ep.ecoproyecto.logica.net.packets.Packet.PacketTypes.INVALID;
 import static ep.ecoproyecto.logica.net.packets.Packet.PacketTypes.LOGIN;
 import ep.ecoproyecto.logica.net.packets.Packet00Login;
+
+import ep.ecoproyecto.logica.net.packets.Packet02Mov;
+
+import ep.ecoproyecto.logica.net.packets.Packet01Disconnect;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -38,7 +44,7 @@ public class Cliente extends Thread{
             } catch (IOException ex) {
             }
 //            System.out.println("SERVER > "+ new String(packet.getData()));
-            parsePacket(packet.getData(), packet.getAddress(), packet.getPort());
+            this.parsePacket(packet.getData(), packet.getAddress(), packet.getPort());
         }
     }
     
@@ -54,11 +60,16 @@ public class Cliente extends Thread{
                 packet = new Packet00Login(data); 
                 System.out.println("["+direccion.getHostAddress()+":"+puerto+"] "+((Packet00Login)packet).getUsername()+" se ha unido al juego.");
                 JugadorMP jugador = new JugadorMP(direccion,puerto,juego,((Packet00Login)packet).getUsername());
-                //REVISAR//
                 juego.jugadores.add(jugador);
             }
             case DISCONNECT->{
-                
+                packet = new Packet01Disconnect(data); 
+                System.out.println("["+direccion.getHostAddress()+":"+puerto+"] "+((Packet01Disconnect)packet).getUsername()+" se ha ido del juego.");
+                juego.removePlayerMP(((Packet01Disconnect)packet).getUsername());
+            }
+            case MOVE->{
+                packet = new Packet02Mov(data);
+                this.manejarMov((Packet02Mov)packet);
             }
             default->{
                 System.out.println("Paquete desconocido");
@@ -73,4 +84,9 @@ public class Cliente extends Thread{
         } catch (IOException ex) {
         }
     }
+    
+    private void manejarMov(Packet02Mov packet) {
+        this.juego.moverJugadores(packet.getUsername(), packet.getX(), packet.getY(),packet.getDir());          
+    }
+    
 }

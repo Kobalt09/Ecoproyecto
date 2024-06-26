@@ -10,6 +10,7 @@ import ep.ecoproyecto.logica.EmisorNPC;
 import ep.ecoproyecto.logica.Sonido;
 import ep.ecoproyecto.logica.Colisionador;
 import ep.ecoproyecto.logica.KeyHandler;
+import ep.ecoproyecto.logica.WindowHandler;
 import ep.ecoproyecto.logica.entidades.Entidad;
 import ep.ecoproyecto.logica.casillas.ManejadorCasillas;
 import ep.ecoproyecto.logica.entidades.Jugador;
@@ -25,6 +26,7 @@ import java.util.logging.Logger;
 import javax.swing.JPanel;
 import ep.ecoproyecto.logica.objetos.Objetosclase;
 import java.util.LinkedList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -37,30 +39,33 @@ public class PanelJuego extends JPanel implements Runnable{
     final int tamanioCasillaOrig= 32; //dimenciones por defecto del jugador, NPC o mapa title 32x32
     final int escala = 2; //escala los sprites de 32x32 a 64x64
     
-    public final int tamanioCasilla= tamanioCasillaOrig*escala; //64x64 tlie
+    public final int tamanioCasilla= tamanioCasillaOrig*escala; //casillas 64x64 
     public final int maxColumnasPantalla= 16;
     public final int maxFilasPantalla = 10;
-    public final int screenWidth=tamanioCasilla *maxColumnasPantalla; // 1024
-    public final int screenHeight=tamanioCasilla *maxFilasPantalla; // 640
+    public final int screenWidth=tamanioCasilla *maxColumnasPantalla; // resoluciom en x 1024
+    public final int screenHeight=tamanioCasilla *maxFilasPantalla; //  resoluciom en x  640
     
     //configuracion de mapa
     public final int Maximocolumnas=40;
     public final int Maximofilas=34;
     public final int Maximomundos=5;
     public int mapaActual=0;
-    
+    public static PanelJuego juego;
+     
     //indica la cancion que esta sonando actualmente
     public int musica=0;
-    
     
     //Fps permitidos
     int fps=60;
     
-    public ManejadorCasillas manCas=new ManejadorCasillas(this);
-   
-    public KeyHandler keyH= new KeyHandler();
-    
-    public Sonido controlmusica = new Sonido();
+
+    public ManejadorCasillas manCas=new ManejadorCasillas(this); // maneja los mapas 
+    public KeyHandler keyH= new KeyHandler();                    // detecta el teclado
+    public Sonido controlmusica = new Sonido();                 
+
+    public WindowHandler winH;
+    public JFrame frame;
+
     public Sonido efectossonido = new Sonido();
     public Colisionador colisiones =new Colisionador(this);
     EmisorObjetos objeto= new EmisorObjetos(this);
@@ -68,10 +73,7 @@ public class PanelJuego extends JPanel implements Runnable{
     public InterfazJugador hud = new InterfazJugador(this);
     public ControladorEventos ControlEventos= new ControladorEventos(this);
     Thread gameThread;
-    //manejador de efectos de sonido
-    
-
-    
+     
     //Jugadores, objetos y NPC
     public Jugador jugador;
     public LinkedList<JugadorMP> jugadores = new LinkedList<>(); 
@@ -87,38 +89,61 @@ public class PanelJuego extends JPanel implements Runnable{
     public boolean pause;
     
     //----ONLINE-----//
-    private Cliente socketcliente;
-    private Server socketserver;
+    public Cliente socketcliente;
+    public Server socketserver;
     
-    public PanelJuego() {
+
+    
+    //Inicializar el panel
+    public PanelJuego(JFrame frame) {
+        
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH); //reconocer la letra precioanda
         this.setFocusable(true);
+        this.frame = frame;
+        winH = new WindowHandler(this);
     }
     
+    //prepara todo para antes de dibujar y comenzar el juego
     public void configuraciondejuego(){
-        objeto.establecerObj();
-        npcs.establecernpcs();
+        juego=this;
+
+        objeto.establecerObj();     //envia los objetos definidos a un arreglo
+        npcs.establecernpcs();      //igual pero con npcs
         
         this.reproducirmusica(musica);
         
+        this.jugador=new Jugador(this); //inicializa un jugador en blanco para las funciones que lo necesitan antes de darle valores
         //estado de juego
         estadodelJuego=estadoJuego;
         pause=true;
     }
     
     public void inicioJugador (){
+        
         jugador = new JugadorMP(null,-1,this,keyH,JOptionPane.showInputDialog(this, "Por favor, introduzca su nombre de usuario:"));
         jugadores.add((JugadorMP)jugador);
+        
         Packet00Login loginpacket = new Packet00Login(jugador.getUsername());
         if (socketserver!=null){
-            socketserver.addConection((JugadorMP)jugador, loginpacket);
+            socketserver.addConnection((JugadorMP)jugador, loginpacket);
+        }
+        loginpacket.writeData(socketcliente);
+        
+    }
+        
+    public void removePlayerMP(String username) {
+        for (JugadorMP j:jugadores){
+            if (j.getUsername().equals(username)){
+                jugadores.remove(j);
+            }
         }
     }
     
     public void startGameThread(){
+        
         //Se puede adaptar como una funcion dentro del MENU//
         if(JOptionPane.showConfirmDialog(this, "Quieres iniciar el server?") == JOptionPane.YES_OPTION){
             socketserver = new Server(this);
@@ -130,6 +155,7 @@ public class PanelJuego extends JPanel implements Runnable{
         socketcliente.start();
         
         inicioJugador();
+        
         gameThread = new Thread(this);
         gameThread.start();
     }
@@ -188,8 +214,11 @@ public class PanelJuego extends JPanel implements Runnable{
         if(estadodelJuego==1){
             
         }
-        
         jugador.update();
+        for (JugadorMP jug : jugadores) {
+            if (jugador!=jug)jug.update();
+        }
+        
         npcs.actualizacion();
         manCas.actualizar(jugador,screenWidth, screenHeight);
 
@@ -202,6 +231,7 @@ public class PanelJuego extends JPanel implements Runnable{
         
         Graphics2D g2 = (Graphics2D)g; // estas dos clases son similares pero graphis2D tiene mas funciones para dibujar 
 
+        
         //casillas
         manCas.dibujar(g2);
         
@@ -210,14 +240,14 @@ public class PanelJuego extends JPanel implements Runnable{
         
         //npc
         npcs.draw(g2);
-        
-        //jugador
-        jugador.draw(g2);
+        //jugadores
+            for (JugadorMP jug : jugadores) {
+                jug.draw(g2);
+        }
+       
         
         //interfaz
         hud.dibujar(g2);
-        
-
 
         g2.dispose();
     }
@@ -236,4 +266,32 @@ public class PanelJuego extends JPanel implements Runnable{
         efectossonido.reproducirefecto(i);
     }
     
+    private int getIndiceJugador(String user){
+        int indice=0;
+        for (Jugador jug:jugadores){
+            if(jug.getUsername() == null ? (user) == null : jug.getUsername().equals(user)){
+                break;
+            }indice++;
+        }
+        return indice;
+    }
+    
+    public void moverJugadores(String user,int x, int y,String dir){
+        int indice=getIndiceJugador(user);
+        
+        this.jugadores.get(indice).xMapa=x;
+        this.jugadores.get(indice).yMapa=y;
+        this.jugadores.get(indice).direction=dir;
+        
+        this.jugadores.get(indice).spriteCounter++;
+                if (this.jugadores.get(indice).spriteCounter>15){
+                    if (this.jugadores.get(indice).spriteNum == 2 )
+                    {this.jugadores.get(indice).spriteNum=1;}
+                    else{
+                    if (this.jugadores.get(indice).spriteNum == 1)
+                    this.jugadores.get(indice).spriteNum=2;
+                    }
+                    this.jugadores.get(indice).spriteCounter = 0;
+                }
+    }
 }

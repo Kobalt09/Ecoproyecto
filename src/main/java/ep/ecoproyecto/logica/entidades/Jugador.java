@@ -1,17 +1,15 @@
 
 
 package ep.ecoproyecto.logica.entidades;
-
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.KeyHandler;
-import ep.ecoproyecto.logica.entidades.Entidad;
+import ep.ecoproyecto.logica.net.packets.Packet02Mov;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import ep.ecoproyecto.logica.objetos.Objetosclase;
 import ep.ecoproyecto.logica.tipografia.Fuentes;
 import java.awt.Color;
-import java.awt.Font;
 
 /**
  *
@@ -23,11 +21,36 @@ public class Jugador extends Entidad{
     KeyHandler keyH;
     public final int pantallaX;
     public final int pantallaY;
-    private String username;
+    protected String username;
     
     Objetosclase inventario[]= new Objetosclase[10];
     public int llaves=0;
+
+    public Jugador(PanelJuego gp) {
+        super(gp);
+        this.keyH=new KeyHandler();
+        this.username="";
+        
+        pantallaX=gp.screenWidth/2-(gp.tamanioCasilla/2);
+        pantallaY=gp.screenHeight/2-(gp.tamanioCasilla/2);
+        
+        hitBox=new Rectangle();
+        //donde empiza la hitbox en relacion a la esquina superior
+        hitBox.x=8;
+        hitBox.y=8;
+        //tamanio de la hitbox
+        hitBox.height=48;
+        hitBox.width=48;
+        
+        //area de colision
+        areadefectoX=hitBox.x;
+        areadefectoY=hitBox.y;
+        
+        valoresporDefecto();
+        getPlayerImage();
+    }
     
+   
     
     public Jugador(PanelJuego gp, KeyHandler keyH, String username){
         
@@ -65,6 +88,9 @@ public class Jugador extends Entidad{
 
         vel=4;
         direction ="down"; 
+        if(gp.socketserver!=null){
+        Packet02Mov packet=new Packet02Mov(username, this.xMapa, this.yMapa,this.direction);
+        packet.writeData(PanelJuego.juego.socketcliente);}
     }
 
     public String getDirection() {
@@ -89,62 +115,66 @@ public class Jugador extends Entidad{
     }
     
     public void update(){
-        if (keyH.upPressed==true||keyH.leftPressed==true||keyH.downPressed==true||keyH.rightPressed==true){
+        if(keyH != null){
+            if (keyH.upPressed==true||keyH.leftPressed==true||keyH.downPressed==true||keyH.rightPressed==true){
             //actualizamos la posicion del jugador sumando o restando su velocidad
-            if(keyH.upPressed==true){
-                direction="up";
-            }else if(keyH.leftPressed==true){
-                direction="left";
-            }else if(keyH.downPressed==true){
-                direction="down";
-            }else if(keyH.rightPressed==true){
-                direction="right";
-            }
             
-            //colision Casillas
-            colision=false;
-            gp.colisiones.revisarColision(this);
+                if(keyH.upPressed==true){
+                    direction="up";
+                }else if(keyH.leftPressed==true){
+                    direction="left";
+                }else if(keyH.downPressed==true){
+                    direction="down";
+                }else if(keyH.rightPressed==true){
+                    direction="right";
+                }
+                
+                Packet02Mov packet=new Packet02Mov(username, this.xMapa, this.yMapa,this.direction);
+                packet.writeData(PanelJuego.juego.socketcliente);
+                //colision Casillas
+                colision=false;
+                gp.colisiones.revisarColision(this);
             
-            //colision NPC
-            int entidadID=gp.colisiones.chequeoEntidades(this, gp.NPC);
-            intereaccionNCP(entidadID);
+             //colision NPC
+                int entidadID=gp.colisiones.chequeoEntidades(this, gp.NPC);
+                intereaccionNCP(entidadID);
             
             //colision objetos
-            int objID=gp.colisiones.chequeoObjetos(this, true);
-            recogerobjetos(objID);
+                int objID=gp.colisiones.chequeoObjetos(this, true);
+                recogerobjetos(objID);
             
             //colision eventos
-            gp.ControlEventos.chequeoEvento();
+                gp.ControlEventos.chequeoEvento();
             
             
-            if(colision==false){
-                switch (direction) {
-                        case "up":
-                            yMapa-=vel;
+                if(colision==false){
+                    switch (direction) {
+                            case "up":
+                                yMapa-=vel;
+                                break;
+                            case "left":
+                                xMapa-=vel;
                             break;
-                        case "left":
-                            xMapa-=vel;
-                        break;
-                        case "down":
-                            yMapa+=vel;
-                        break;
-                        case "right":
-                            xMapa+=vel;
-                        break;
+                            case "down":
+                                yMapa+=vel;
+                            break;
+                             case "right":
+                                xMapa+=vel;
+                            break;
                     }
-            }
-
-            spriteCounter++;
-            if (spriteCounter>10){
-                if (spriteNum == 2 )
-                {spriteNum=1;}
-                else{
-                if (spriteNum == 1)
-                spriteNum=2;
                 }
-                spriteCounter = 0;
-            }
 
+              /*  spriteCounter++;
+                if (spriteCounter>10){
+                    if (spriteNum == 2 )
+                    {spriteNum=1;}
+                    else{
+                    if (spriteNum == 1)
+                    spriteNum=2;
+                    }
+                    spriteCounter = 0;
+                }*/
+            }
         } 
     }
         /*interaccion
@@ -250,31 +280,67 @@ public class Jugador extends Entidad{
             }
             
         }
-        
-     
-       g2.drawImage(image,pantallaX,pantallaY,null);
        
-       if (username != null){
-           Fuentes tipoFuente=new Fuentes();
-           g2.setFont((tipoFuente.fuente(tipoFuente.upheaval,0,20)));
-           int textX = pantallaX + (image.getWidth() - g2.getFontMetrics().stringWidth(username))/2 ;
-           int textY = pantallaY - 5;
-           
-           //Bordes Negros//
-            g2.setColor(Color.BLACK);
-            g2.drawString(username, textX - 2, textY - 2);
-            g2.drawString(username, textX - 2, textY + 2);
-            g2.drawString(username, textX + 2, textY - 2);
-            g2.drawString(username, textX + 2, textY + 2);
-            g2.drawString(username, textX, textY - 2);
-            g2.drawString(username, textX, textY + 2);
-            g2.drawString(username, textX - 2, textY);
-            g2.drawString(username, textX + 2, textY);
+        
+        if(gp.jugador.equals(this)) {
+            g2.drawImage(image,pantallaX,pantallaY,null);   
+ 
+            if (username != null){
+                Fuentes tipoFuente=new Fuentes();
+                g2.setFont((tipoFuente.fuente(tipoFuente.upheaval,0,20)));
+                int textX = pantallaX + (image.getWidth() - g2.getFontMetrics().stringWidth(username))/2 ;
+                int textY = pantallaY - 5;
+
+                //Bordes Negros//
+                 g2.setColor(Color.BLACK);
+                 g2.drawString(username, textX - 2, textY - 2);
+                 g2.drawString(username, textX - 2, textY + 2);
+                 g2.drawString(username, textX + 2, textY - 2);
+                 g2.drawString(username, textX + 2, textY + 2);
+                 g2.drawString(username, textX, textY - 2);
+                 g2.drawString(username, textX, textY + 2);
+                 g2.drawString(username, textX - 2, textY);
+                 g2.drawString(username, textX + 2, textY);
+
+                 //Letras Blancas//
+                 g2.setColor(Color.WHITE);
+                 g2.drawString(username, textX, textY);
+
             
-            //Letras Blancas//
-            g2.setColor(Color.WHITE);
-            g2.drawString(username, textX, textY);
-       }
+            
+            
+            }
+        }else
+        {
+            int dibX=gp.jugador.pantallaX+this.xMapa-gp.jugador.xMapa;
+            int dibY=gp.jugador.pantallaY+this.yMapa-gp.jugador.yMapa;
+           // g2.drawImage(image,xMapa,yMapa,null);
+            g2.drawImage(image,dibX,dibY,null);
+            
+            
+            if (username != null){
+                Fuentes tipoFuente=new Fuentes();
+                g2.setFont((tipoFuente.fuente(tipoFuente.upheaval,0,20)));
+                int textX = dibX + (image.getWidth() - g2.getFontMetrics().stringWidth(username))/2 ;
+                int textY = dibY - 5;
+
+                //Bordes Negros//
+                 g2.setColor(Color.BLACK);
+                 g2.drawString(username, textX - 2, textY - 2);
+                 g2.drawString(username, textX - 2, textY + 2);
+                 g2.drawString(username, textX + 2, textY - 2);
+                 g2.drawString(username, textX + 2, textY + 2);
+                 g2.drawString(username, textX, textY - 2);
+                 g2.drawString(username, textX, textY + 2);
+                 g2.drawString(username, textX - 2, textY);
+                 g2.drawString(username, textX + 2, textY);
+
+                 //Letras Blancas//
+                 g2.setColor(Color.WHITE);
+                 g2.drawString(username, textX, textY);
+            }
+            
+        }
     }
 
 
