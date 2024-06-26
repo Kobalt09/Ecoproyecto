@@ -1,12 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ep.ecoproyecto.logica.net.packets;
-
 import ep.ecoproyecto.logica.net.Cliente;
 import ep.ecoproyecto.logica.net.Server;
-
+/**
+ *
+ * @author C-A-F
+ */
 public class Packet01Disconnect extends Packet{
     
     private String username;
@@ -23,6 +21,10 @@ public class Packet01Disconnect extends Packet{
 
     public String getUsername() {
         return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override

@@ -1,5 +1,3 @@
-
-
 package ep.ecoproyecto.logica.entidades;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.KeyHandler;
@@ -7,13 +5,12 @@ import ep.ecoproyecto.logica.net.packets.Packet02Mov;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import ep.ecoproyecto.logica.objetos.Objetosclase;
 import ep.ecoproyecto.logica.tipografia.Fuentes;
 import java.awt.Color;
 
 /**
  *
- * @author Cris
+ * @author C-A-F
  */
 
 public class Jugador extends Entidad{
@@ -81,7 +78,7 @@ public class Jugador extends Entidad{
         
     }
     
-    public void valoresporDefecto(){
+    private void valoresporDefecto(){
         //posicion del jugador en el arreglo +1,
         xMapa=10*gp.tamanioCasilla+gp.tamanioCasilla;
         yMapa=10*gp.tamanioCasilla+gp.tamanioCasilla;
@@ -101,7 +98,7 @@ public class Jugador extends Entidad{
         return username;
     }
     
-    public void getPlayerImage(){
+    private void getPlayerImage(){
         
         up1=configuracion("/player/jg_arr_01");
         up2=configuracion("/player/jg_arr_02");
@@ -129,8 +126,7 @@ public class Jugador extends Entidad{
                     direction="right";
                 }
                 
-                Packet02Mov packet=new Packet02Mov(username, this.xMapa, this.yMapa,this.direction);
-                packet.writeData(PanelJuego.juego.socketcliente);
+              
                 //colision Casillas
                 colision=false;
                 gp.colisiones.revisarColision(this);
@@ -149,31 +145,16 @@ public class Jugador extends Entidad{
             
                 if(colision==false){
                     switch (direction) {
-                            case "up":
-                                yMapa-=vel;
-                                break;
-                            case "left":
-                                xMapa-=vel;
-                            break;
-                            case "down":
-                                yMapa+=vel;
-                            break;
-                             case "right":
-                                xMapa+=vel;
-                            break;
+                            case "up" -> yMapa-=vel;
+                            case "left" -> xMapa-=vel;
+                            case "down" -> yMapa+=vel;
+                            case "right" -> xMapa+=vel;
                     }
                 }
-
-              /*  spriteCounter++;
-                if (spriteCounter>10){
-                    if (spriteNum == 2 )
-                    {spriteNum=1;}
-                    else{
-                    if (spriteNum == 1)
-                    spriteNum=2;
-                    }
-                    spriteCounter = 0;
-                }*/
+                
+                Packet02Mov packet=new Packet02Mov(username, this.xMapa, this.yMapa,this.direction);
+                packet.writeData(PanelJuego.juego.socketcliente);
+         
             }
         } 
     }
@@ -192,47 +173,46 @@ public class Jugador extends Entidad{
             //nota se puede usar un getclass para saber el tipo o usar 
             System.out.println(gp.obj[gp.mapaActual][id].nombre);
             switch(objnombre){
-                case "llave":
-                        llaves++;
-                        gp.efectos(2);
-                        gp.hud.mostrarmensaje("conseguiste una llave");
-                        this.inventario[1]=gp.obj[gp.mapaActual][id];
+                case "llave" -> {
+                    llaves++;
+                    gp.efectos(2);
+                    gp.hud.mostrarmensaje("conseguiste una llave");
+                    this.inventario[1]=gp.obj[gp.mapaActual][id];
+                    gp.obj[gp.mapaActual][id]=null;
+                    System.out.println("llaves: "+llaves);
+                }
+                case "puerta" -> {
+                    if(llaves>0){
+                        llaves--;
+                        gp.efectos(5);
+                        gp.hud.mostrarmensaje("puerta abierta");
                         gp.obj[gp.mapaActual][id]=null;
                         System.out.println("llaves: "+llaves);
-                    break;
-                case "puerta":
-                        if(llaves>0){
-                            llaves--;
-                            gp.efectos(5);
-                            gp.hud.mostrarmensaje("puerta abierta");
-                            gp.obj[gp.mapaActual][id]=null;
-                            System.out.println("llaves: "+llaves);
-                            if(llaves==0){
-                                this.inventario[1]=null;
-                            }
-                        }else{
-                            gp.hud.mostrarmensaje("no tienes llaves para esta puerta");
+                        if(llaves==0){
+                            this.inventario[1]=null;
                         }
-                    break;    
-                case "botas":
-                        if(this.inventario[0]==null){
-                            gp.efectos(4);
-                            gp.hud.mostrarmensaje("conseguiste "+objnombre);
-                            vel=vel+2;
-                            this.inventario[0]=gp.obj[gp.mapaActual][id];
-                            gp.obj[gp.mapaActual][id]=null;
-                        }
-                        
-                    break;
-                case "cofre":
-                            gp.hud.victoriamensaje=true;
-                            gp.obj[gp.mapaActual][id]=null;
-                    break;
-                case "coin":
-                            dinero++;
-                            gp.hud.victoriamensaje=true;
-                            gp.obj[gp.mapaActual][id]=null;
-                    break;
+                    }else{
+                        gp.hud.mostrarmensaje("no tienes llaves para esta puerta");
+                    }
+                }
+                case "botas" -> {
+                    if(this.inventario[0]==null){
+                        gp.efectos(4);
+                        gp.hud.mostrarmensaje("conseguiste "+objnombre);
+                        vel=vel+2;
+                        this.inventario[0]=gp.obj[gp.mapaActual][id];
+                        gp.obj[gp.mapaActual][id]=null;
+                    }
+                }
+                case "cofre" -> {
+                    gp.hud.victoriamensaje=true;
+                    gp.obj[gp.mapaActual][id]=null;
+                }
+                case "coin" -> {
+                    dinero++;
+                    gp.hud.victoriamensaje=true;
+                    gp.obj[gp.mapaActual][id]=null;
+                }
             }
             
         }
@@ -249,16 +229,16 @@ public class Jugador extends Entidad{
         if(id!=999){
             if (interactuar==true){
                 if(gp.NPC[gp.mapaActual][id].movimiento==true){
-                    if(direction=="right"){
+                    if("right".equals(direction)){
                         gp.NPC[gp.mapaActual][id].direction="left";
                     }
-                    if(direction=="left"){
+                    if("left".equals(direction)){
                         gp.NPC[gp.mapaActual][id].direction="right";
                     }
-                    if(direction=="up"){
+                    if("up".equals(direction)){
                         gp.NPC[gp.mapaActual][id].direction="down";
                     }
-                    if(direction=="down"){
+                    if("down".equals(direction)){
                         gp.NPC[gp.mapaActual][id].direction="up";
                     }
                 }

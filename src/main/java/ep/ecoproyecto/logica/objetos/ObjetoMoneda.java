@@ -1,16 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ep.ecoproyecto.logica.objetos;
-
 import ep.ecoproyecto.logica.entidades.Entidad;
 import ep.ecoproyecto.gui.PanelJuego;
 import java.awt.Rectangle;
 
 /**
  *
- * @author Cris
+ * @author C-A-F
  */
 public class ObjetoMoneda extends Entidad{
     

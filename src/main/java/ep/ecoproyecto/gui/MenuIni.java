@@ -1,18 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package ep.ecoproyecto.gui;
-import ep.ecoproyecto.logica.KeyHandler;
 import ep.ecoproyecto.logica.tipografia.Fuentes;
-import java.awt.Font;
-import java.awt.Window;
-import javax.swing.JLabel;
-import javax.swing.SwingUtilities;
-
 /**
  *
- * @author hp
+ * @author C-A-F
  */
 public class MenuIni extends javax.swing.JFrame {
 
@@ -189,14 +179,9 @@ public class MenuIni extends javax.swing.JFrame {
         /* Create and display the form */
         
         
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                
-                new MenuIni().setVisible(true);
-                
-            }
-        }
-        )
+        java.awt.EventQueue.invokeLater(() -> {
+            new MenuIni().setVisible(true);
+        })
                 ;
     }
 

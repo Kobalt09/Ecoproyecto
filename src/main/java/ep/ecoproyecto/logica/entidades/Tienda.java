@@ -1,18 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ep.ecoproyecto.logica.entidades;
-
-
 import ep.ecoproyecto.gui.PanelJuego;
-import ep.ecoproyecto.logica.entidades.Entidad;
 import java.awt.Rectangle;
 import java.util.Random;
 
 /**
  *
- * @author Cris
+ * @author C-A-F
  */
 public class Tienda extends Entidad {
     

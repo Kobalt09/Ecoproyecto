@@ -1,25 +1,23 @@
 package ep.ecoproyecto.logica.net;
-
 import ep.ecoproyecto.gui.PanelJuego;
-import ep.ecoproyecto.logica.KeyHandler;
 import ep.ecoproyecto.logica.entidades.JugadorMP;
 import ep.ecoproyecto.logica.net.packets.Packet;
 import static ep.ecoproyecto.logica.net.packets.Packet.PacketTypes.DISCONNECT;
 import static ep.ecoproyecto.logica.net.packets.Packet.PacketTypes.INVALID;
 import static ep.ecoproyecto.logica.net.packets.Packet.PacketTypes.LOGIN;
 import ep.ecoproyecto.logica.net.packets.Packet00Login;
-
 import ep.ecoproyecto.logica.net.packets.Packet02Mov;
-
 import ep.ecoproyecto.logica.net.packets.Packet01Disconnect;
-
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
-
+/**
+ *
+ * @author C-A-F
+ */
 public class Cliente extends Thread{
     private InetAddress direccionIP;
     private DatagramSocket socket;
@@ -59,7 +57,7 @@ public class Cliente extends Thread{
             case LOGIN->{
                 packet = new Packet00Login(data); 
                 System.out.println("["+direccion.getHostAddress()+":"+puerto+"] "+((Packet00Login)packet).getUsername()+" se ha unido al juego.");
-                JugadorMP jugador = new JugadorMP(direccion,puerto,juego,((Packet00Login)packet).getUsername());
+                JugadorMP jugador = new JugadorMP(direccion,puerto,juego,((Packet00Login)packet).getUsername(),((Packet00Login)packet).getX(),((Packet00Login)packet).getY(),((Packet00Login)packet).getDir());
                 juego.jugadores.add(jugador);
             }
             case DISCONNECT->{

@@ -1,14 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ep.ecoproyecto.logica.entidades;
-
-
 import ep.ecoproyecto.logica.Herramientas;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.Interfaces.Actualizar;
-import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -16,7 +9,7 @@ import javax.imageio.ImageIO;
 
 /**
  *
- * @author Cris
+ * @author C-A-F
  */
 
 public class Entidad implements Actualizar{
@@ -65,18 +58,10 @@ public class Entidad implements Actualizar{
         
         if(colision==false){
                 switch (direction) {
-                        case "up":
-                            yMapa-=vel;
-                            break;
-                        case "left":
-                            xMapa-=vel;
-                        break;
-                        case "down":
-                            yMapa+=vel;
-                        break;
-                        case "right":
-                            xMapa+=vel;
-                        break;
+                        case "up" -> yMapa-=vel;
+                        case "left" -> xMapa-=vel;
+                        case "down" -> yMapa+=vel;
+                        case "right" -> xMapa+=vel;
                     }
             }
 
@@ -102,7 +87,6 @@ public class Entidad implements Actualizar{
             imagen= herramienta.imagenEscalada(imagen, gp.tamanioCasilla, gp.tamanioCasilla);
             
         }catch(IOException e){
-            e.printStackTrace();
         }
         
         return imagen;

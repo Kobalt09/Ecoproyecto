@@ -1,10 +1,16 @@
 package ep.ecoproyecto.logica;
 
+import java.io.IOException;
 import java.net.URL;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+/**
+ *
+ * @author C-A-F
+ */
 public class Sonido {
     //los archivos deben ser WAP de 16bits
     Clip clip;
@@ -37,7 +43,7 @@ public class Sonido {
     
     public void reproducirmusica(int i) {
         try{
-            if(!sonidoactual.equals(sonidoURL[i])||sonidoactual.equals(null)){
+            if(!sonidoactual.equals(sonidoURL[i])||sonidoactual == null){
                 AudioInputStream ais= AudioSystem.getAudioInputStream(sonidoURL[i]);
                 clip= AudioSystem.getClip();
                 clip.open(ais);
@@ -45,8 +51,8 @@ public class Sonido {
                 clip.loop(Clip.LOOP_CONTINUOUSLY);
                 sonidoactual=sonidoURL[i];
             }
-        }catch(Exception e){
-    
+        }catch(IOException | LineUnavailableException | UnsupportedAudioFileException e){
+            
         }
     }
     
@@ -59,7 +65,7 @@ public class Sonido {
             clip.open(ais);
             clip.start();
             sonidoactual=sonidoURL[i];
-        }catch(Exception e){
+        }catch(IOException | LineUnavailableException | UnsupportedAudioFileException e){
     
         }
     }

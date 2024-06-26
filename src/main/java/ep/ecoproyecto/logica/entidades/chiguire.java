@@ -1,20 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ep.ecoproyecto.logica.entidades;
-
-
 import ep.ecoproyecto.gui.PanelJuego;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.Random;
-import javax.imageio.ImageIO;
-
 /**
  *
- * @author Cris
+ * @author C-A-F
  */
 public class chiguire extends Entidad {
 
@@ -34,7 +24,7 @@ public class chiguire extends Entidad {
         getImage();
     }
     
-    public void getImage(){
+    private void getImage(){
         
         up1=configuracion("/player/jg_arr_01");
         up2=configuracion("/player/jg_arr_02");
@@ -70,9 +60,5 @@ public class chiguire extends Entidad {
                 contadordeaccion=0;
             }
         }
-    }
-    
-    
-    
-    
+    }    
 }

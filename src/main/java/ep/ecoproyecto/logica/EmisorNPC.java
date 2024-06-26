@@ -1,10 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package ep.ecoproyecto.logica;
-
-
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.Interfaces.Actualizar;
 import ep.ecoproyecto.logica.Interfaces.Dibujado;
@@ -15,8 +10,9 @@ import java.awt.image.BufferedImage;
 
 /**
  *
- * @author Cris
+ * @author C-A-F
  */
+
 public class EmisorNPC  implements Dibujado, Actualizar{
     PanelJuego gp;
 
@@ -57,6 +53,7 @@ public class EmisorNPC  implements Dibujado, Actualizar{
     }*/
     
     
+    @Override
     public void dibujado(Graphics2D g2){
 
             for(int i=0;i<gp.NPC[0].length;i++){
@@ -107,6 +104,7 @@ public class EmisorNPC  implements Dibujado, Actualizar{
             }
     }
     
+    @Override
     public void actualizar(){
 
 
