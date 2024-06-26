@@ -4,8 +4,12 @@
  */
 package ep.ecoproyecto.logica;
 
-import ep.ecoproyecto.gui.PanelJuego;
-import ep.ecoproyecto.logica.entidades.chiguire;
+
+import Entidades.Jugador;
+import Entidades.chiguire;
+import Interfaces.Actualizar;
+import Interfaces.Dibujado;
+import entidades.Tienda;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
@@ -13,7 +17,7 @@ import java.awt.image.BufferedImage;
  *
  * @author Cris
  */
-public class EmisorNPC {
+public class EmisorNPC  implements Dibujado, Actualizar{
     PanelJuego gp;
 
     public EmisorNPC(PanelJuego gp) {
@@ -26,6 +30,7 @@ public class EmisorNPC {
         //----MUNDO 1:-----//
         int NumMap = 0;
         gp.NPC[NumMap][0]= new chiguire(gp,7,7);
+        gp.NPC[NumMap][1]= new Tienda(gp,9,9);
         
         /*
         //----MUNDO 2:-----//
@@ -43,8 +48,16 @@ public class EmisorNPC {
         
     }
     
+    /*
+    public void Agregar(){
+            for(int i=0;i<gp.NPC[0].length;i++){
+                    gp.Entidadlista.add(gp.NPC[0][i]);
+            }
+        
+    }*/
     
-    public void draw(Graphics2D g2){
+    
+    public void dibujado(Graphics2D g2){
 
             for(int i=0;i<gp.NPC[0].length;i++){
                 
@@ -87,22 +100,19 @@ public class EmisorNPC {
                                             image=gp.NPC[gp.mapaActual][i].right2;
                                         break;
                                     }
-
                                 }
-                        
                         g2.drawImage(image, PantallaX, PantallaY, gp.tamanioCasilla,gp.tamanioCasilla,null);
                     }
                }
             }
-            
     }
     
-    public void actualizacion(){
+    public void actualizar(){
 
-            for(int i=0;i<gp.NPC[0].length;i++){
-                
-                if(gp.NPC[gp.mapaActual][i]!=null){
-                    gp.NPC[gp.mapaActual][i].actualizar();
+
+            for(int i=0;i<gp.NPC[0].length;i++){ 
+                if(gp.NPC[gp.MapaActual][i]!=null){
+                    gp.NPC[gp.MapaActual][i].actualizar();
                }
             }
             

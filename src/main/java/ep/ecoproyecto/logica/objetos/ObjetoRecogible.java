@@ -5,7 +5,10 @@
  */
 package ep.ecoproyecto.logica.objetos;
 
-import ep.ecoproyecto.gui.PanelJuego;
+
+import Entidades.Entidad;
+import ep.ecoproyecto.PanelJuego;
+import java.awt.Rectangle;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
@@ -13,18 +16,19 @@ import javax.imageio.ImageIO;
  *
  * @author Cris
  */
-public class ObjetoRecogible extends Objetosclase{
+public class ObjetoRecogible extends Entidad{
 
     public ObjetoRecogible(String nombre, int posicionX, int posicionY, PanelJuego gp) {
-        super(nombre, posicionX, posicionY, gp);
-                 
+        super(gp);
+        this.nombre=nombre;
+        this.xMapa=posicionX*gp.tamanioCasilla;
+        this.yMapa=posicionY*gp.tamanioCasilla;
+        down1= this.configuracion("/objetos/llave1");
+        colision=true;
         
-        try{
-            image =ImageIO.read(getClass().getResourceAsStream("/objetos/llave1.png"));
-            herramienta.imagenEscalada(image, gp.tamanioCasilla, gp.tamanioCasilla);
-        }catch(IOException e){
-        
-        }
+        hitBox= new Rectangle(0,0,64,64);
+        areadefectoX=hitBox.x;
+        areadefectoY=hitBox.y;
     }
     
     

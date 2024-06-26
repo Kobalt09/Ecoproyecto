@@ -21,6 +21,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
@@ -59,6 +61,7 @@ public class PanelJuego extends JPanel implements Runnable{
     int fps=60;
     
 
+
     public ManejadorCasillas manCas=new ManejadorCasillas(this); // maneja los mapas 
     public KeyHandler keyH= new KeyHandler();                    // detecta el teclado
     public Sonido controlmusica = new Sonido();                 
@@ -67,23 +70,35 @@ public class PanelJuego extends JPanel implements Runnable{
     public JFrame frame;
 
     public Sonido efectossonido = new Sonido();
+
     public Colisionador colisiones =new Colisionador(this);
-    EmisorObjetos objeto= new EmisorObjetos(this);
-    EmisorNPC npcs= new EmisorNPC(this);
+    public EmisorObjetos objeto= new EmisorObjetos(this);
+    public EmisorNPC npcs= new EmisorNPC(this);
     public InterfazJugador hud = new InterfazJugador(this);
     public ControladorEventos ControlEventos= new ControladorEventos(this);
     Thread gameThread;
-     
-    //Jugadores, objetos y NPC
+
+    //manejador de efectos de sonido
+    
+
+    
+    //Jugador, objetos y NPC
     public Jugador jugador;
     public LinkedList<JugadorMP> jugadores = new LinkedList<>(); 
-    public Objetosclase obj[][]= new Objetosclase[Maximomundos][10];
+    public Entidad obj[][]= new Entidad[Maximomundos][10];
     public Entidad NPC[][]= new Entidad[Maximomundos][10];
+    //ArrayList<Entidad> Entidadlista= new ArrayList<>();
 
     //Estado de Juego
     public int estadodelJuego;
+    
+    //estado jugando
     public final int estadoJuego=1;
-    public final int estadoDialogo=3;
+        //estado tienda
+    public final int estadoTienda=2;
+        //estado cambio de mapa
+
+    public final int estadoTraslado=3;
     
     //interfaz
     public boolean pause;
@@ -174,7 +189,7 @@ public class PanelJuego extends JPanel implements Runnable{
             long currentTime = System.nanoTime();
 
             //actualiza la informacion como la posicion del personaje
-            update();
+            actualizar();
             //muestra la pantalla y actuliza la informacion en pantalla
             repaint();
 
@@ -209,7 +224,7 @@ public class PanelJuego extends JPanel implements Runnable{
         }
     }
     
-    public void update(){
+    public void actualizar(){
        
         if(estadodelJuego==1){
             
@@ -233,10 +248,10 @@ public class PanelJuego extends JPanel implements Runnable{
 
         
         //casillas
-        manCas.dibujar(g2);
+        manCas.dibujado(g2);
         
         //objetos
-        objeto.draw(g2);
+        objeto.dibujado(g2);
         
         //npc
         npcs.draw(g2);
@@ -254,13 +269,7 @@ public class PanelJuego extends JPanel implements Runnable{
     
     public void reproducirmusica(int i){
         controlmusica.reproducirmusica(i);
-        //controlmusica.reproducir();
-        //controlmusica.bucle();
     }
-    /*
-    public void paramusica(){
-        controlmusica.parar();
-    }*/
     
     public void efectos(int i){
         efectossonido.reproducirefecto(i);

@@ -4,7 +4,10 @@
  */
 package ep.ecoproyecto.logica.objetos;
 
-import ep.ecoproyecto.gui.PanelJuego;
+
+import Entidades.Entidad;
+import ep.ecoproyecto.PanelJuego;
+import java.awt.Rectangle;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
@@ -12,16 +15,18 @@ import javax.imageio.ImageIO;
  *
  * @author fabif
  */
-public class ObjetoEquipo extends Objetosclase{
+public class ObjetoEquipo extends Entidad{
     
     public ObjetoEquipo(String nombre, int posicionX, int posicionY, PanelJuego gp) {
-        super(nombre, posicionX, posicionY, gp);
-                
-        try{
-            image =ImageIO.read(getClass().getResourceAsStream("/objetos/bota1.png"));
-        }catch(IOException e){
-        
-        }
+        super(gp);
+        this.nombre=nombre;
+        this.xMapa=posicionX*gp.tamanioCasilla;
+        this.yMapa=posicionY*gp.tamanioCasilla;
+        down1= this.configuracion("/objetos/bota1");
+        colision=true;
+        hitBox= new Rectangle(0,0,64,64);
+        areadefectoX=hitBox.x;
+        areadefectoY=hitBox.y;
     }
     
     

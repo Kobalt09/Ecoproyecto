@@ -13,13 +13,13 @@ import javax.sound.sampled.Clip;
  *
  * @author Cris
  */
-public class Sonido {
+public class sonido {
     //los archivos deben ser WAP de 16bits
     Clip clip;
     URL sonidoURL[]= new URL[30];
     URL sonidoactual;
     
-    public Sonido(){
+    public sonido(){
         
         sonidoURL[0]=getClass().getResource("/musica/paseo.wav");
         sonidoURL[1]=getClass().getResource("/musica/tiendajazz.wav");

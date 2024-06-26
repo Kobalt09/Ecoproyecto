@@ -7,25 +7,21 @@ package objetos;
 import Entidades.Entidad;
 import ep.ecoproyecto.PanelJuego;
 import java.awt.Rectangle;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 
 /**
  *
- * @author fabif
+ * @author Cris
  */
-public class ObjetoPuerta extends Entidad{
+public class ObjetoMesa extends Entidad{
     
-
-
-    public ObjetoPuerta(String nombre, int posicionX, int posicionY, PanelJuego gp) {
+    public ObjetoMesa(String nombre, int posicionX, int posicionY, PanelJuego gp) {
         super(gp);
         this.nombre=nombre;
         this.xMapa=posicionX*gp.tamanioCasilla;
         this.yMapa=posicionY*gp.tamanioCasilla;
-        down1= this.configuracion("/objetos/puerta1");
-        colision=true;
-        hitBox= new Rectangle(0,0,64,64);
+        down1= this.configuracion("/objetos/mesa");
+        colision=false;
+        hitBox= new Rectangle(16,16,32,32);
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
     }

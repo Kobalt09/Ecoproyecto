@@ -4,9 +4,11 @@
  */
 package ep.ecoproyecto.logica.entidades;
 
-import ep.ecoproyecto.logica.Interfaces.Dibujado;
-import ep.ecoproyecto.logica.Herramientas;
-import ep.ecoproyecto.gui.PanelJuego;
+
+import Interfaces.Actualizar;
+import Interfaces.Dibujado;
+import ep.ecoproyecto.Herramientas;
+import ep.ecoproyecto.PanelJuego;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -17,36 +19,44 @@ import javax.imageio.ImageIO;
  *
  * @author Cris
  */
-public class Entidad{
-    public PanelJuego gp;
+
+public class Entidad implements Actualizar{
+    //
+    public BufferedImage image;
+    public String nombre;
+    public boolean colision=false;
+    //
+    PanelJuego gp;
     public int xMapa,yMapa;
     public int vel;
     
     public BufferedImage up1,up2,down1,down2,left1,left2,right1,right2;
-    public String direction;
+    public String direction= "down";
     
     public int spriteCounter = 0 ;
     public int spriteNum = 1;
     public Rectangle hitBox;
 
     public int areadefectoX, areadefectoY;
-    public boolean colision;
+    
     public int contadordeaccion=0;
+    public Entidad inventario[]= new Entidad[10];
     
     //variables de dialogo
     public boolean dialogo=false;
     public int veloriginal;
     public String directionoriginal;
     
+    public String Mensaje;
+    public boolean movimiento;
+    
     
     public Entidad(PanelJuego gp){
         this.gp=gp;
     }
     
-    public void estableceraccion(){}
     
     public void actualizar(){
-        estableceraccion();
         
         colision=false;
         gp.colisiones.revisarColision(this);
