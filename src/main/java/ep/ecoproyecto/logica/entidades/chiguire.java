@@ -5,9 +5,7 @@
 package ep.ecoproyecto.logica.entidades;
 
 
-import Interfaces.Dibujado;
-import ep.ecoproyecto.Herramientas;
-import ep.ecoproyecto.PanelJuego;
+import ep.ecoproyecto.gui.PanelJuego;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;

@@ -5,10 +5,9 @@
 package ep.ecoproyecto.logica.entidades;
 
 
-import Interfaces.Actualizar;
-import Interfaces.Dibujado;
-import ep.ecoproyecto.Herramientas;
-import ep.ecoproyecto.PanelJuego;
+import ep.ecoproyecto.logica.Herramientas;
+import ep.ecoproyecto.gui.PanelJuego;
+import ep.ecoproyecto.logica.Interfaces.Actualizar;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;

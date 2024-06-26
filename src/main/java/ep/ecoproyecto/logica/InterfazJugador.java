@@ -5,8 +5,10 @@
 package ep.ecoproyecto.logica;
 
 
-import Entidades.Entidad;
-import Interfaces.Dibujado;
+import ep.ecoproyecto.gui.PanelJuego;
+import ep.ecoproyecto.logica.Interfaces.Dibujado;
+import ep.ecoproyecto.logica.entidades.Entidad;
+import ep.ecoproyecto.logica.entidades.Jugador;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -39,7 +41,7 @@ public class InterfazJugador implements Dibujado{
     }
 
     
-    public void dibujado(Graphics2D g2){
+    public void dibujado(Graphics2D g2,Jugador jugador){
         
         g2.setFont(fuente);
         g2.setColor(Color.white);
@@ -81,13 +83,20 @@ public class InterfazJugador implements Dibujado{
             g2.setColor(c);
             g2.fillRect(MarcoX, MarcoY, MarcoAncho, MarcoAlto);
             int cont=0;
-            for(Entidad obj:gp.jugador.inventario){
+
+            
+            for(Entidad obj:jugador.inventario){
                 if(obj!=null){
                     g2.drawImage(obj.down1, gp.tamanioCasilla*4+cont, gp.tamanioCasilla/4, gp.tamanioCasilla,gp.tamanioCasilla,null);
                 }
                 cont=cont+gp.tamanioCasilla;
             }
         }
+    }
+
+    @Override
+    public void dibujado(Graphics2D g2) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

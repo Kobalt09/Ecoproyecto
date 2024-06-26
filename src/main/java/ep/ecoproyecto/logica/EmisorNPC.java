@@ -5,11 +5,11 @@
 package ep.ecoproyecto.logica;
 
 
-import Entidades.Jugador;
-import Entidades.chiguire;
-import Interfaces.Actualizar;
-import Interfaces.Dibujado;
-import entidades.Tienda;
+import ep.ecoproyecto.gui.PanelJuego;
+import ep.ecoproyecto.logica.Interfaces.Actualizar;
+import ep.ecoproyecto.logica.Interfaces.Dibujado;
+import ep.ecoproyecto.logica.entidades.Tienda;
+import ep.ecoproyecto.logica.entidades.chiguire;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
@@ -111,8 +111,8 @@ public class EmisorNPC  implements Dibujado, Actualizar{
 
 
             for(int i=0;i<gp.NPC[0].length;i++){ 
-                if(gp.NPC[gp.MapaActual][i]!=null){
-                    gp.NPC[gp.MapaActual][i].actualizar();
+                if(gp.NPC[gp.mapaActual][i]!=null){
+                    gp.NPC[gp.mapaActual][i].actualizar();
                }
             }
             

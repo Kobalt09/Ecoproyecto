@@ -5,10 +5,10 @@
 package ep.ecoproyecto.logica.casillas;
 
 
-import Entidades.Jugador;
-import Interfaces.Dibujado;
-import ep.ecoproyecto.Herramientas;
-import ep.ecoproyecto.PanelJuego;
+import ep.ecoproyecto.logica.Herramientas;
+import ep.ecoproyecto.gui.PanelJuego;
+import ep.ecoproyecto.logica.Interfaces.Dibujado;
+import ep.ecoproyecto.logica.entidades.Jugador;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;

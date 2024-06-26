@@ -23,8 +23,10 @@ public class Jugador extends Entidad{
     public final int pantallaY;
     protected String username;
     
-    Objetosclase inventario[]= new Objetosclase[10];
+    public Entidad inventario[]= new Entidad[10];
+    public int dinero=0;
     public int llaves=0;
+    public boolean interactuar;
 
     public Jugador(PanelJuego gp) {
         super(gp);
@@ -80,12 +82,10 @@ public class Jugador extends Entidad{
     }
     
     public void valoresporDefecto(){
-
-        
         //posicion del jugador en el arreglo +1,
         xMapa=10*gp.tamanioCasilla+gp.tamanioCasilla;
         yMapa=10*gp.tamanioCasilla+gp.tamanioCasilla;
-
+        
         vel=4;
         direction ="down"; 
         if(gp.socketserver!=null){
@@ -196,6 +196,7 @@ public class Jugador extends Entidad{
                         llaves++;
                         gp.efectos(2);
                         gp.hud.mostrarmensaje("conseguiste una llave");
+                        this.inventario[1]=gp.obj[gp.mapaActual][id];
                         gp.obj[gp.mapaActual][id]=null;
                         System.out.println("llaves: "+llaves);
                     break;
@@ -206,6 +207,9 @@ public class Jugador extends Entidad{
                             gp.hud.mostrarmensaje("puerta abierta");
                             gp.obj[gp.mapaActual][id]=null;
                             System.out.println("llaves: "+llaves);
+                            if(llaves==0){
+                                this.inventario[1]=null;
+                            }
                         }else{
                             gp.hud.mostrarmensaje("no tienes llaves para esta puerta");
                         }
@@ -224,6 +228,11 @@ public class Jugador extends Entidad{
                             gp.hud.victoriamensaje=true;
                             gp.obj[gp.mapaActual][id]=null;
                     break;
+                case "coin":
+                            dinero++;
+                            gp.hud.victoriamensaje=true;
+                            gp.obj[gp.mapaActual][id]=null;
+                    break;
             }
             
         }
@@ -235,15 +244,32 @@ public class Jugador extends Entidad{
             gp.obj[gp.mapaActual][i]=null;
         }
     }
-        
-        
+          
     public void intereaccionNCP(int id) {
         if(id!=999){
-                System.out.println("tocas un npc");
+            if (interactuar==true){
+                if(gp.NPC[gp.mapaActual][id].movimiento==true){
+                    if(direction=="right"){
+                        gp.NPC[gp.mapaActual][id].direction="left";
+                    }
+                    if(direction=="left"){
+                        gp.NPC[gp.mapaActual][id].direction="right";
+                    }
+                    if(direction=="up"){
+                        gp.NPC[gp.mapaActual][id].direction="down";
+                    }
+                    if(direction=="down"){
+                        gp.NPC[gp.mapaActual][id].direction="up";
+                    }
+                }
+                if(gp.NPC[gp.mapaActual][id].Mensaje!=null){
+                    gp.hud.mostrarmensaje(gp.NPC[gp.mapaActual][id].Mensaje);
+                }
+            }
         }
     }
     
-    public void draw(Graphics2D g2){
+    public void dibujado(Graphics2D g2){
 
         BufferedImage image = null;  
 

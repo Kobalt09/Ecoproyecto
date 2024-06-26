@@ -2,19 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ep.ecoproyecto;
+package ep.ecoproyecto.logica;
 
 
-import Entidades.Jugador;
-import Interfaces.Dibujado;
+import ep.ecoproyecto.gui.PanelJuego;
+import ep.ecoproyecto.logica.Interfaces.Dibujado;
+import ep.ecoproyecto.logica.objetos.ObjetoCofre;
+import ep.ecoproyecto.logica.objetos.ObjetoEquipo;
+import ep.ecoproyecto.logica.objetos.ObjetoMesa;
+import ep.ecoproyecto.logica.objetos.ObjetoMoneda;
+import ep.ecoproyecto.logica.objetos.ObjetoPuerta;
+import ep.ecoproyecto.logica.objetos.ObjetoRecogible;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import objetos.ObjetoCofre;
-import objetos.ObjetoEquipo;
-import objetos.ObjetoMesa;
-import objetos.ObjetoMoneda;
-import objetos.ObjetoPuerta;
-import objetos.ObjetoRecogible;
 
 /**
  *
@@ -66,15 +66,15 @@ public class EmisorObjetos  implements Dibujado{
         
             for(int i=0;i<gp.obj[0].length;i++){
                 //if((gp.obj[i]!=null)&&(gp.obj[i].posicionX>jugador.xMapa && gp.obj[i].posicionX <jugador.xMapa+this.gp.getWidth())){
-                if(gp.obj[gp.MapaActual][i]!=null){
-                int PantallaX=gp.obj[gp.MapaActual][i].xMapa- gp.jugador.xMapa+gp.jugador.pantallaX;
-                int PantallaY=gp.obj[gp.MapaActual][i].yMapa- gp.jugador.yMapa+gp.jugador.pantallaY;
+                if(gp.obj[gp.mapaActual][i]!=null){
+                int PantallaX=gp.obj[gp.mapaActual][i].xMapa- gp.jugador.xMapa+gp.jugador.pantallaX;
+                int PantallaY=gp.obj[gp.mapaActual][i].yMapa- gp.jugador.yMapa+gp.jugador.pantallaY;
                 
-                    if((gp.obj[gp.MapaActual][i].xMapa+gp.tamanioCasilla > gp.jugador.xMapa-gp.jugador.pantallaX)&&(gp.obj[gp.MapaActual][i].xMapa-gp.tamanioCasilla < gp.jugador.xMapa+gp.jugador.pantallaX)&&
-                       (gp.obj[gp.MapaActual][i].yMapa+gp.tamanioCasilla > gp.jugador.yMapa-gp.jugador.pantallaY)&&(gp.obj[gp.MapaActual][i].yMapa-gp.tamanioCasilla < gp.jugador.yMapa+gp.jugador.pantallaY)){     
+                    if((gp.obj[gp.mapaActual][i].xMapa+gp.tamanioCasilla > gp.jugador.xMapa-gp.jugador.pantallaX)&&(gp.obj[gp.mapaActual][i].xMapa-gp.tamanioCasilla < gp.jugador.xMapa+gp.jugador.pantallaX)&&
+                       (gp.obj[gp.mapaActual][i].yMapa+gp.tamanioCasilla > gp.jugador.yMapa-gp.jugador.pantallaY)&&(gp.obj[gp.mapaActual][i].yMapa-gp.tamanioCasilla < gp.jugador.yMapa+gp.jugador.pantallaY)){     
 
 
-                        g2.drawImage(gp.obj[gp.MapaActual][i].down1, PantallaX, PantallaY, gp.tamanioCasilla,gp.tamanioCasilla,null);
+                        g2.drawImage(gp.obj[gp.mapaActual][i].down1, PantallaX, PantallaY, gp.tamanioCasilla,gp.tamanioCasilla,null);
                     }
                 }
             }

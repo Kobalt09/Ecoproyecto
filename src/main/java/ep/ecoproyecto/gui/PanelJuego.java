@@ -234,7 +234,7 @@ public class PanelJuego extends JPanel implements Runnable{
             if (jugador!=jug)jug.update();
         }
         
-        npcs.actualizacion();
+        npcs.actualizar();
         manCas.actualizar(jugador,screenWidth, screenHeight);
 
         
@@ -254,15 +254,18 @@ public class PanelJuego extends JPanel implements Runnable{
         objeto.dibujado(g2);
         
         //npc
-        npcs.draw(g2);
+        npcs.dibujado(g2);
         //jugadores
             for (JugadorMP jug : jugadores) {
-                jug.draw(g2);
+                jug.dibujado(g2);
+                hud.dibujado(g2,jug);
         }
        
         
         //interfaz
-        hud.dibujar(g2);
+        /*
+        hud.dibujado(g2);
+        */
 
         g2.dispose();
     }
