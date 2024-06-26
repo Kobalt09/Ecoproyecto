@@ -29,7 +29,7 @@ public class EmisorObjetos  implements Dibujado{
         gp.obj[NumMap][1]=new ObjetoRecogible("llave",5,7,gp);
         gp.obj[NumMap][2]=new ObjetoPuerta("puerta",7,8,gp);
         gp.obj[NumMap][3]=new ObjetoCofre("cofre",3,7,gp);
-        gp.obj[NumMap][4]=new ObjetoEquipo("botas",6,6,gp);
+        gp.obj[NumMap][4]=new ObjetoEquipo("botas",16,6,gp);
         gp.obj[NumMap][5]=new ObjetoMesa("mesa",9,9,gp);
         gp.obj[NumMap][6]=new ObjetoMoneda("coin",10,10,gp);
         /*
