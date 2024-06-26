@@ -142,14 +142,7 @@ public class Server extends Thread{
             enviarData(data,j.direccionIP,j.puerto);
         }
     }
-    /*
-    public JugadorMP getJugadorMP(String user){
-        for (JugadorMP jug:jugadoresConectados){
-            if (jug.getUsername().equals(user)){
-                return jug;}
-        }
-        return null;
-    } */
+   
     public int getIndiceJugador(String user){
         int indice=0;
         for (JugadorMP jug:jugadoresConectados){
