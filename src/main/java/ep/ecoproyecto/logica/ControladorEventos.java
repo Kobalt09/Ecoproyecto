@@ -1,6 +1,10 @@
 package ep.ecoproyecto.logica;
-
 import ep.ecoproyecto.gui.PanelJuego;
+
+/**
+ *
+ * @author C-A-F
+ */
 
 public class ControladorEventos {
     PanelJuego gp;

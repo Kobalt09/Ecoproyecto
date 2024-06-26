@@ -1,16 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ep.ecoproyecto.logica.casillas;
-
-
 import ep.ecoproyecto.logica.Herramientas;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.Interfaces.Dibujado;
 import ep.ecoproyecto.logica.entidades.Jugador;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -50,7 +43,7 @@ public class ManejadorCasillas  implements Dibujado{
         
     }
     
-    public void getImagenCasilla(){
+    private void getImagenCasilla(){
 
             configutacion(0, "pasto", false);
             configutacion(1, "agua", true);
@@ -78,38 +71,37 @@ public class ManejadorCasillas  implements Dibujado{
         
     }
     
-    public void cargarMapa(String direccion, int dx,int dy){
+    private void cargarMapa(String direccion, int dx,int dy){
         try{
             
             
             InputStream is = getClass().getResourceAsStream(direccion);
-            BufferedReader br =new BufferedReader(new InputStreamReader(is));
-        
-            int colum=0; 
-            int fila=0;
-            
-          
-            while(colum < gp.Maximocolumnas && fila < gp.Maximofilas){
-            
-       
-                String line= br.readLine();
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
+                int colum=0;
+                int fila=0;
                 
-                while(colum < gp.Maximocolumnas){
+
+                while(colum < gp.Maximocolumnas && fila < gp.Maximofilas){
                     
-                    String numeros[] = line.split(" ");
                     
-                    int num = Integer.parseInt(numeros[colum]);
+                    String line= br.readLine();
                     
-                    numCasillaMapa[colum][fila]=num;
-                    colum++;
-                }
-                if(colum==gp.Maximocolumnas){
-                    colum=0;
-                    fila++;
-                    
+                    while(colum < gp.Maximocolumnas){
+                        
+                        String numeros[] = line.split(" ");
+                        
+                        int num = Integer.parseInt(numeros[colum]);
+                        
+                        numCasillaMapa[colum][fila]=num;
+                        colum++;
+                    }
+                    if(colum==gp.Maximocolumnas){
+                        colum=0;
+                        fila++;
+                        
+                    }
                 }
             }
-            br.close();
         }catch (IOException e) {
             
         } 
@@ -125,6 +117,7 @@ public class ManejadorCasillas  implements Dibujado{
     
     }
     
+    @Override
     public void dibujado(Graphics2D g2){
         
         int columna=0;

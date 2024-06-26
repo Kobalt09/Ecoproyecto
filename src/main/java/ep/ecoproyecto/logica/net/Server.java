@@ -1,15 +1,11 @@
 package ep.ecoproyecto.logica.net;
 
 import ep.ecoproyecto.gui.PanelJuego;
-import ep.ecoproyecto.logica.KeyHandler;
-import ep.ecoproyecto.logica.casillas.ManejadorCasillas;
 import ep.ecoproyecto.logica.entidades.JugadorMP;
 import ep.ecoproyecto.logica.net.packets.Packet;
 import ep.ecoproyecto.logica.net.packets.Packet.PacketTypes;
 import ep.ecoproyecto.logica.net.packets.Packet00Login;
-
 import ep.ecoproyecto.logica.net.packets.Packet02Mov;
-
 import ep.ecoproyecto.logica.net.packets.Packet01Disconnect;
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -17,12 +13,17 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.util.LinkedList;
-
+/**
+ *
+ * @author C-A-F
+ */
 public class Server extends Thread{
     private DatagramSocket socket;
     private PanelJuego juego;
     private LinkedList<JugadorMP> jugadoresConectados = new LinkedList<>();
-
+    public static int refresco=0;
+    
+    
     public Server(PanelJuego juego) {
         this.juego = juego;
         try {
@@ -60,7 +61,7 @@ public class Server extends Thread{
             case LOGIN->{
                 packet = new Packet00Login(data); 
                 System.out.println("["+direccion.getHostAddress()+":"+puerto+"] "+((Packet00Login)packet).getUsername()+" se ha conectado.");
-                JugadorMP jugador = new JugadorMP(direccion,puerto,juego,((Packet00Login)packet).getUsername());
+                JugadorMP jugador = new JugadorMP(direccion,puerto,juego,((Packet00Login)packet).getUsername(),((Packet00Login)packet).getX(),((Packet00Login)packet).getY(),((Packet00Login)packet).getDir());
                 this.addConnection(jugador,((Packet00Login)packet));
             }
             case DISCONNECT->{
@@ -70,7 +71,8 @@ public class Server extends Thread{
             }
             case MOVE->{
                 packet =new Packet02Mov(data);
-                System.out.println(((Packet02Mov)packet).getUsername()+" movido a x "+((Packet02Mov)packet).getX()+" y "+((Packet02Mov)packet).getY()+"mirando"+((Packet02Mov)packet).getDir());
+                if (refresco++ % 10==0)
+                    System.out.println(((Packet02Mov)packet).getUsername()+" movido a x "+((Packet02Mov)packet).getX()+" y "+((Packet02Mov)packet).getY()+"mirando"+((Packet02Mov)packet).getDir());
                 this.manejarMov((Packet02Mov)packet);
             }
             
@@ -93,7 +95,7 @@ public class Server extends Thread{
                 yaConectado = true;
             }else{
                 enviarData(packet.getData(),j.direccionIP,j.puerto);
-                packet = new Packet00Login(j.getUsername());
+                packet = new Packet00Login(j.getUsername(),j.xMapa,j.yMapa,j.direction);
                 enviarData(packet.getData(),jugador.direccionIP,jugador.puerto);
             }
         }
@@ -133,7 +135,6 @@ public class Server extends Thread{
         try {
             socket.send(packet);
         } catch (IOException ex) {
-            ex.printStackTrace();
         }
     }
 
@@ -163,7 +164,7 @@ public class Server extends Thread{
             this.jugadoresConectados.get(indice).xMapa=packet.getX();
             this.jugadoresConectados.get(indice).yMapa=packet.getY();
             this.jugadoresConectados.get(indice).direction=packet.getDir();
-            System.out.println(this.jugadoresConectados.get(indice).yMapa);
+         //   System.out.println(this.jugadoresConectados.get(indice).yMapa);
             packet.writeData(this);
         }
     }
