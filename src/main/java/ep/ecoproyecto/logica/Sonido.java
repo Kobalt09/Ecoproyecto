@@ -43,7 +43,7 @@ public class Sonido {
     
     public void reproducirmusica(int i) {
         try{
-            if(!sonidoactual.equals(sonidoURL[i])||sonidoactual == null){
+            if(sonidoactual == null||!sonidoactual.equals(sonidoURL[i])){
                 AudioInputStream ais= AudioSystem.getAudioInputStream(sonidoURL[i]);
                 clip= AudioSystem.getClip();
                 clip.open(ais);
