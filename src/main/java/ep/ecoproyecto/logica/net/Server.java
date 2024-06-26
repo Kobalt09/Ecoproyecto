@@ -72,7 +72,7 @@ public class Server extends Thread{
             case MOVE->{
                 packet =new Packet02Mov(data);
                 if (refresco++ % 10==0)
-                    System.out.println(((Packet02Mov)packet).getUsername()+" movido a x "+((Packet02Mov)packet).getX()+" y "+((Packet02Mov)packet).getY()+"mirando"+((Packet02Mov)packet).getDir());
+                    System.out.println(((Packet02Mov)packet).getUsername()+" movido a x "+((Packet02Mov)packet).getX()+" y "+((Packet02Mov)packet).getY()+" mirando a "+((Packet02Mov)packet).getDir());
                 this.manejarMov((Packet02Mov)packet);
             }
             
@@ -164,7 +164,6 @@ public class Server extends Thread{
             this.jugadoresConectados.get(indice).xMapa=packet.getX();
             this.jugadoresConectados.get(indice).yMapa=packet.getY();
             this.jugadoresConectados.get(indice).direction=packet.getDir();
-         //   System.out.println(this.jugadoresConectados.get(indice).yMapa);
             packet.writeData(this);
         }
     }
