@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package ep.ecoproyecto.logica;
 
 import ep.ecoproyecto.gui.PanelJuego;
@@ -190,7 +187,6 @@ public class Colisionador {
                     objetivos[gp.mapaActual][i].hitBox.y=objetivos[gp.mapaActual][i].areadefectoY;
                 }
             }
-            
             return id;
     }
 

@@ -89,16 +89,7 @@ public class PanelJuego extends JPanel implements Runnable{
     public Entidad NPC[][]= new Entidad[Maximomundos][10];
     //ArrayList<Entidad> Entidadlista= new ArrayList<>();
 
-    //Estado de Juego
-    public int estadodelJuego;
-    
-    //estado jugando
-    public final int estadoJuego=1;
-        //estado tienda
-    public final int estadoTienda=2;
-        //estado cambio de mapa
 
-    public final int estadoTraslado=3;
     
     //interfaz
     public boolean pause;
@@ -132,7 +123,7 @@ public class PanelJuego extends JPanel implements Runnable{
         
         this.jugador=new Jugador(this); //inicializa un jugador en blanco para las funciones que lo necesitan antes de darle valores
         //estado de juego
-        estadodelJuego=estadoJuego;
+        
         pause=true;
     }
     
@@ -226,18 +217,14 @@ public class PanelJuego extends JPanel implements Runnable{
     
     public void actualizar(){
        
-        if(estadodelJuego==1){
-            
-        }
         jugador.update();
+        
         for (JugadorMP jug : jugadores) {
             if (jugador!=jug)jug.update();
         }
         
         npcs.actualizar();
         manCas.actualizar(jugador,screenWidth, screenHeight);
-
-        
     }
     
     @Override
@@ -246,7 +233,6 @@ public class PanelJuego extends JPanel implements Runnable{
         
         Graphics2D g2 = (Graphics2D)g; // estas dos clases son similares pero graphis2D tiene mas funciones para dibujar 
 
-        
         //casillas
         manCas.dibujado(g2);
         
@@ -256,18 +242,20 @@ public class PanelJuego extends JPanel implements Runnable{
         //npc
         npcs.dibujado(g2);
         //jugadores
-            for (JugadorMP jug : jugadores) {
-                jug.dibujado(g2);
-                hud.dibujado(g2,jug);
+        for (JugadorMP jug : jugadores) {
+            jug.dibujado(g2);
+            hud.dibujado(g2,jug);
         }
-       
-
 
         g2.dispose();
     }
     
     public void reproducirmusica(int i){
         controlmusica.reproducirmusica(i);
+    }
+    
+    public int reproducirmusicatienda(int i){
+        return controlmusica.musicatienda(i);
     }
     
     public void efectos(int i){
