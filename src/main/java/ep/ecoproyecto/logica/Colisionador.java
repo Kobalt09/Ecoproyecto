@@ -1,3 +1,4 @@
+
 package ep.ecoproyecto.logica;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.entidades.Entidad;
@@ -182,7 +183,6 @@ public class Colisionador {
                     objetivos[gp.mapaActual][i].hitBox.y=objetivos[gp.mapaActual][i].areadefectoY;
                 }
             }
-            
             return id;
     }
 

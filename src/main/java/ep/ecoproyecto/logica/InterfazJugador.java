@@ -39,7 +39,7 @@ public class InterfazJugador implements Dibujado{
         
         g2.setFont(fuente);
         g2.setColor(Color.white);
-        g2.drawString("posicion X:"+(gp.jugador.xMapa/64)+" Y "+(gp.jugador.yMapa/64), gp.tamanioCasilla*2, gp.tamanioCasilla);
+        g2.drawString("posicion X:"+(gp.jugador.xMapa/64)+" Y "+(gp.jugador.yMapa/64), gp.screenWidth-800, gp.screenHeight-50);
 
         g2.setFont(fuente);
         g2.setColor(Color.white);

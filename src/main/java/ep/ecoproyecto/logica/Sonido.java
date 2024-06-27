@@ -1,5 +1,7 @@
 package ep.ecoproyecto.logica;
 
+import ep.ecoproyecto.gui.PanelJuego;
+
 import java.io.IOException;
 import java.net.URL;
 import javax.sound.sampled.AudioInputStream;
@@ -15,7 +17,7 @@ public class Sonido {
     //los archivos deben ser WAP de 16bits
     Clip clip;
     URL sonidoURL[]= new URL[30];
-    URL sonidoactual;
+    int sonidoanterior;
     
     public Sonido(){
         
@@ -35,28 +37,45 @@ public class Sonido {
             clip.open(ais);
             clip.start();
             clip.loop(Clip.LOOP_CONTINUOUSLY);
-
         }catch(Exception e){
-    
         }
-    }*/
+    }
+    */
     
-    public void reproducirmusica(int i) {
+    public int musicatienda(int i) {
+        int actual=9999;
         try{
-            if(sonidoactual == null||!sonidoactual.equals(sonidoURL[i])){
-                AudioInputStream ais= AudioSystem.getAudioInputStream(sonidoURL[i]);
+            if(i!=1){
+                clip.stop();
+                AudioInputStream ais= AudioSystem.getAudioInputStream(sonidoURL[1]);
                 clip= AudioSystem.getClip();
                 clip.open(ais);
                 clip.start();
                 clip.loop(Clip.LOOP_CONTINUOUSLY);
-                sonidoactual=sonidoURL[i];
+                sonidoanterior=i;
+                actual= 1;
+            }else {
+                clip.stop();
+                AudioInputStream ais= AudioSystem.getAudioInputStream(sonidoURL[sonidoanterior]);
+                clip= AudioSystem.getClip();
+                clip.open(ais);
+                clip.start();
+                clip.loop(Clip.LOOP_CONTINUOUSLY);
+                actual= sonidoanterior;
             }
-        }catch(IOException | LineUnavailableException | UnsupportedAudioFileException e){
-            
-        }
+        }catch(Exception e){}
+        return actual;
     }
     
-    
+    public void reproducirmusica(int i) {
+            try{
+                    AudioInputStream ais= AudioSystem.getAudioInputStream(sonidoURL[i]);
+                    clip= AudioSystem.getClip();
+                    clip.open(ais);
+                    clip.start();
+                    clip.loop(Clip.LOOP_CONTINUOUSLY);
+            }catch(Exception e){}
+    }
     
     public void reproducirefecto(int i) {
         try{
@@ -64,10 +83,7 @@ public class Sonido {
             clip= AudioSystem.getClip();
             clip.open(ais);
             clip.start();
-            sonidoactual=sonidoURL[i];
-        }catch(IOException | LineUnavailableException | UnsupportedAudioFileException e){
-    
-        }
+        }catch(Exception e){}
     }
     
     
