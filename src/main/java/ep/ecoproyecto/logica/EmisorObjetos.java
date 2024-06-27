@@ -68,7 +68,7 @@ public class EmisorObjetos  implements Dibujado{
                 
                     if((gp.obj[gp.mapaActual][i].xMapa+gp.tamanioCasilla > gp.jugador.xMapa-gp.jugador.pantallaX)&&(gp.obj[gp.mapaActual][i].xMapa-gp.tamanioCasilla < gp.jugador.xMapa+gp.jugador.pantallaX)&&
                        (gp.obj[gp.mapaActual][i].yMapa+gp.tamanioCasilla > gp.jugador.yMapa-gp.jugador.pantallaY)&&(gp.obj[gp.mapaActual][i].yMapa-gp.tamanioCasilla < gp.jugador.yMapa+gp.jugador.pantallaY)){     
-                        g2.drawImage(gp.obj[gp.mapaActual][i].down1, PantallaX, PantallaY, gp.tamanioCasilla,gp.tamanioCasilla,null);
+                        g2.drawImage(gp.obj[gp.mapaActual][i].down1, gp.obj[gp.mapaActual][i].hitBox.width, gp.obj[gp.mapaActual][i].hitBox.height, gp.tamanioCasilla,gp.tamanioCasilla,null);
                     }
                 }
             }
