@@ -213,14 +213,6 @@ public class Jugador extends Entidad{
                     System.out.println("llaves: "+llaves);
                 }
                 case "puerta" -> {
-                    if(llaves>0){
-                        llaves--;
-                        gp.efectos(5);
-                        gp.hud.mostrarmensaje("puerta abierta");
-                        gp.obj[gp.mapaActual][id]=null;
-                        System.out.println("llaves: "+llaves);
-                    break;
-                case "puerta":
                         if(llaves>0){
                             llaves--;
                             gp.efectos(5);
@@ -231,13 +223,11 @@ public class Jugador extends Entidad{
                             }
                         }else{
                             gp.hud.mostrarmensaje("no tienes llaves para esta puerta");
-                        if(llaves==0){
-                            this.inventario[1]=null;
+                            if(llaves==0){
+                                this.inventario[1]=null;
+                            }
                         }
-                    }else{
-                        gp.hud.mostrarmensaje("no tienes llaves para esta puerta");
-                    }
-                }
+                    }    
                 case "botas" -> {
                     if(this.inventario[0]==null){
                         gp.efectos(4);

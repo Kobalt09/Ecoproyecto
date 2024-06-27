@@ -63,29 +63,19 @@ public class Sonido {
                 clip.loop(Clip.LOOP_CONTINUOUSLY);
                 actual= sonidoanterior;
             }
-        }catch(Exception e){
-            e.getMessage();
-        }
+        }catch(Exception e){}
         return actual;
     }
     
-        public void reproducirmusica(int i) {
-        try{
-                AudioInputStream ais= AudioSystem.getAudioInputStream(sonidoURL[i]);
-                clip= AudioSystem.getClip();
-                clip.open(ais);
-                clip.start();
-                clip.loop(Clip.LOOP_CONTINUOUSLY);
-            
-        }catch(Exception e){
-                sonidoactual=sonidoURL[i];
-            }
-        }catch(IOException | LineUnavailableException | UnsupportedAudioFileException e){
-
-        }
+    public void reproducirmusica(int i) {
+            try{
+                    AudioInputStream ais= AudioSystem.getAudioInputStream(sonidoURL[i]);
+                    clip= AudioSystem.getClip();
+                    clip.open(ais);
+                    clip.start();
+                    clip.loop(Clip.LOOP_CONTINUOUSLY);
+            }catch(Exception e){}
     }
-    
-    
     
     public void reproducirefecto(int i) {
         try{
@@ -93,11 +83,7 @@ public class Sonido {
             clip= AudioSystem.getClip();
             clip.open(ais);
             clip.start();
-        }catch(Exception e){
-            sonidoactual=sonidoURL[i];
-        }catch(IOException | LineUnavailableException | UnsupportedAudioFileException e){
-    
-        }
+        }catch(Exception e){}
     }
     
     

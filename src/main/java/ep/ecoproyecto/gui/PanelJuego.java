@@ -57,12 +57,11 @@ public class PanelJuego extends JPanel implements Runnable{
 
     public ManejadorCasillas manCas=new ManejadorCasillas(this); // maneja los mapas 
     public KeyHandler keyH= new KeyHandler();                    // detecta el teclado
-    public Sonido controlmusica = new Sonido();                 
+    public Sonido controlmusica = new Sonido();
+    public Sonido efectossonido = new Sonido();
 
     public WindowHandler winH;
     public JFrame frame;
-
-    public Sonido efectossonido = new Sonido();
 
     public Colisionador colisiones =new Colisionador(this);
     public EmisorObjetos objeto= new EmisorObjetos(this);
