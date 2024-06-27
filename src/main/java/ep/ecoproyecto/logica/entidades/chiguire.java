@@ -32,7 +32,7 @@ public class chiguire extends Entidad {
     public void estableceraccion(){
         if(movimiento==true){
         contadordeaccion++;
-            if(contadordeaccion==120){
+            if(contadordeaccion==500){
                 Random random = new Random();
                 int i= random.nextInt(100)+1;
 
