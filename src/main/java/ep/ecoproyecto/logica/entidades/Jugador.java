@@ -24,6 +24,11 @@ public class Jugador extends Entidad{
     public int dinero=0;
     public int llaves=0;
     public boolean interactuar;
+    
+    public int estado;
+    public int estadojuego=1;
+    public int estadotienda=2;
+    public int eventoprevio;
 
     public Jugador(PanelJuego gp) {
         super(gp);
@@ -44,6 +49,8 @@ public class Jugador extends Entidad{
         //area de colision
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
+        
+        estado=estadojuego;
         
         valoresporDefecto();
         getPlayerImage();
@@ -82,6 +89,8 @@ public class Jugador extends Entidad{
         //posicion del jugador en el arreglo +1,
         xMapa=10*gp.tamanioCasilla+gp.tamanioCasilla;
         yMapa=10*gp.tamanioCasilla+gp.tamanioCasilla;
+        
+        estado=estadojuego;
         
         vel=4;
         veloriginal=vel;
@@ -128,22 +137,36 @@ public class Jugador extends Entidad{
                 }else if(keyH.ePressed==true){
                     interactuar=true;
                 }
+                Packet02Mov packet=new Packet02Mov(username, this.xMapa, this.yMapa,this.direction);
+                packet.writeData(PanelJuego.juego.socketcliente);
                 
-              
+                switch(estado){
+                    case 1:estadoJuego();
+                        break;
+                    case 2:
+                        break;
+                }
+            }    
+        } 
+    }
+    
+    
+    public void estadoJuego(){
+               
                 //colision Casillas
                 colision=false;
                 gp.colisiones.revisarColision(this);
             
-             //colision NPC
-                int entidadID=gp.colisiones.chequeoEntidades(this, gp.NPC);
-                //System.out.println(entidadID);
-                intereaccionNCP(entidadID);
+                //colision NPC
+                   //int entidadID=gp.colisiones.chequeoEntidades(this, gp.NPC);
+                   //intereaccionNCP(entidadID);
+                intereaccionNCP(gp.colisiones.chequeoEntidades(this, gp.NPC));
+                //colision objetos
+                    //int objID=gp.colisiones.chequeoObjetos(this, true);
+                    //recogerobjetos(objID);
+                recogerobjetos(gp.colisiones.chequeoObjetos(this, true));
             
-            //colision objetos
-                int objID=gp.colisiones.chequeoObjetos(this, true);
-                recogerobjetos(objID);
-            
-            //colision eventos
+                //colision eventos
                 gp.ControlEventos.chequeoEvento();
             
             
@@ -176,8 +199,16 @@ public class Jugador extends Entidad{
                 packet.writeData(PanelJuego.juego.socketcliente);
          
 
-            }
-        } 
+                    spriteCounter++;
+                    if (spriteCounter>10){
+                        if (spriteNum == 2 )
+                        {spriteNum=1;}
+                        else{
+                        if (spriteNum == 1)
+                        spriteNum=2;
+                        }
+                        spriteCounter = 0;
+                    }
     }
 
     public void recogerobjetos(int id){
@@ -188,8 +219,6 @@ public class Jugador extends Entidad{
             
             //switch para el nombre
             //nota se puede usar un getclass para saber el tipo o usar 
-           //.out.println(gp.obj[gp.mapaActual][id].nombre);
-            
             switch(objnombre){
                 case "llave" -> {
                     llaves++;
@@ -200,19 +229,21 @@ public class Jugador extends Entidad{
                     System.out.println("llaves: "+llaves);
                 }
                 case "puerta" -> {
-                    if(llaves>0){
-                        llaves--;
-                        gp.efectos(5);
-                        gp.hud.mostrarmensaje("puerta abierta");
-                        gp.obj[gp.mapaActual][id]=null;
-                        System.out.println("llaves: "+llaves);
-                        if(llaves==0){
-                            this.inventario[1]=null;
+                        if(llaves>0){
+                            llaves--;
+                            gp.efectos(5);
+                            gp.hud.mostrarmensaje("puerta abierta");
+                            gp.obj[gp.mapaActual][id]=null;
+                            if(llaves==0){
+                                this.inventario[1]=null;
+                            }
+                        }else{
+                            gp.hud.mostrarmensaje("no tienes llaves para esta puerta");
+                            if(llaves==0){
+                                this.inventario[1]=null;
+                            }
                         }
-                    }else{
-                        gp.hud.mostrarmensaje("no tienes llaves para esta puerta");
-                    }
-                }
+                    }    
                 case "botas" -> {
                     if(this.inventario[0]==null){
                         gp.efectos(4);
@@ -247,7 +278,6 @@ public class Jugador extends Entidad{
     public void intereaccionNCP(int id) {
         if(id!=999){
             if (interactuar==true){
-                //System.out.println(gp.NPC[gp.mapaActual][id].nombre);
                 if(gp.NPC[gp.mapaActual][id].movimiento==true){
                     if("right".equals(direction)){
                         gp.NPC[gp.mapaActual][id].direction="left";
@@ -264,6 +294,9 @@ public class Jugador extends Entidad{
                 }
                 if(gp.NPC[gp.mapaActual][id].Mensaje!=null){
                     gp.hud.mostrarmensaje(gp.NPC[gp.mapaActual][id].Mensaje);
+                }
+                if(gp.NPC[gp.mapaActual][id] instanceof Tienda){
+                    gp.hud.mostrarmensaje("tienda");
                 }
             }
         }
