@@ -1,12 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ep.ecoproyecto.logica.net.packets;
-
 import ep.ecoproyecto.logica.net.Cliente;
 import ep.ecoproyecto.logica.net.Server;
-
+/**
+ *
+ * @author C-A-F
+ */
 public class Packet02Mov extends Packet{
     
     private String username,dir;
@@ -46,6 +44,22 @@ public class Packet02Mov extends Packet{
 
     public int getY() {
         return y;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setDir(String dir) {
+        this.dir = dir;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 
    

@@ -1,31 +1,66 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ep.ecoproyecto.logica.net.packets;
-
 import ep.ecoproyecto.logica.net.Cliente;
 import ep.ecoproyecto.logica.net.Server;
-
+/**
+ *
+ * @author C-A-F
+ */
 public class Packet00Login extends Packet{
     
-    private String username;
+    private String username,dir;
+    private int x,y;
+    
     
     public Packet00Login(byte[] data) {
         super(00);
-        this.username = readData(data);   
+        String[] datos = readData(data).split(",");
+        this.username = datos[0];
+        this.x=Integer.parseInt(datos[1]);
+        this.y=Integer.parseInt(datos[2]);
+        this.dir=datos[3];
     }
 
 
-    public Packet00Login(String username) {
+    public Packet00Login(String username,int x,int y,String dir) {
         super(00);
         this.username = username;
+        this.x=x;
+        this.y=y;
+        this.dir=dir;
     }
 
     public String getUsername() {
         return username;
     }
     
+    public int getX() {
+        return x;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public String getDir() {
+        return dir;
+    }
+
+    public void setDir(String dir) {
+        this.dir = dir;
+    }
     
     @Override
     public void writeData(Cliente cliente) {
@@ -39,7 +74,7 @@ public class Packet00Login extends Packet{
 
     @Override
     public byte[] getData() {
-        return ("00" + this.username).getBytes();
+        return ("00" + this.username+","+x+","+ y+","+dir ).getBytes();
     }
     
 }

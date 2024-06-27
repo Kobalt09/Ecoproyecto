@@ -1,9 +1,13 @@
 package ep.ecoproyecto.logica;
-
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.entidades.Jugador;
 import java.awt.Color;
 import java.awt.Graphics2D;
+
+/**
+ *
+ * @author C-A-F
+ */
 
 public class ControladorEventos {
     PanelJuego gp;

@@ -1,10 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ep.ecoproyecto.logica;
-
-
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.Interfaces.Dibujado;
 import ep.ecoproyecto.logica.objetos.ObjetoCofre;
@@ -13,12 +7,11 @@ import ep.ecoproyecto.logica.objetos.ObjetoMesa;
 import ep.ecoproyecto.logica.objetos.ObjetoMoneda;
 import ep.ecoproyecto.logica.objetos.ObjetoPuerta;
 import ep.ecoproyecto.logica.objetos.ObjetoRecogible;
-import java.awt.Color;
 import java.awt.Graphics2D;
 
 /**
  *
- * @author Cris
+ * @author C-A-F
  */
 public class EmisorObjetos  implements Dibujado{
     
@@ -62,6 +55,7 @@ public class EmisorObjetos  implements Dibujado{
     }*/
     
     
+    @Override
     public void dibujado(Graphics2D g2){
         
             for(int i=0;i<gp.obj[0].length;i++){

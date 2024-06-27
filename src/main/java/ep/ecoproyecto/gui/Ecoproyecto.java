@@ -1,13 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-//
 package ep.ecoproyecto.gui;
 import javax.swing.JFrame;
 
 /**
  *
- * @author Cris
+ * @author C-A-F
  */
 public class Ecoproyecto {
     

@@ -1,7 +1,9 @@
 package ep.ecoproyecto.logica.net.packets;
-
 import ep.ecoproyecto.logica.net.*;
-
+/**
+ *
+ * @author C-A-F
+ */
 public abstract class Packet {
     public static enum PacketTypes{
         INVALID(-1), LOGIN(00), DISCONNECT(01),MOVE(02);

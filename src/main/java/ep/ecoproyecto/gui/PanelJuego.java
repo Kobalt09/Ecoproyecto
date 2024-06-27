@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ep.ecoproyecto.gui;
 import ep.ecoproyecto.logica.ControladorEventos;
 import ep.ecoproyecto.logica.InterfazJugador;
@@ -21,18 +17,15 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
-import ep.ecoproyecto.logica.objetos.Objetosclase;
 import java.util.LinkedList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- * @author Cris
+ * @author C-A-F
  */
 
 public class PanelJuego extends JPanel implements Runnable{
@@ -42,8 +35,8 @@ public class PanelJuego extends JPanel implements Runnable{
     final int escala = 2; //escala los sprites de 32x32 a 64x64
     
     public final int tamanioCasilla= tamanioCasillaOrig*escala; //casillas 64x64 
-    public final int maxColumnasPantalla= 16;
-    public final int maxFilasPantalla = 10;
+    public final int maxColumnasPantalla= 8;
+    public final int maxFilasPantalla = 6;
     public final int screenWidth=tamanioCasilla *maxColumnasPantalla; // resoluciom en x 1024
     public final int screenHeight=tamanioCasilla *maxFilasPantalla; //  resoluciom en x  640
     
@@ -132,7 +125,7 @@ public class PanelJuego extends JPanel implements Runnable{
         jugador = new JugadorMP(null,-1,this,keyH,JOptionPane.showInputDialog(this, "Por favor, introduzca su nombre de usuario:"));
         jugadores.add((JugadorMP)jugador);
         
-        Packet00Login loginpacket = new Packet00Login(jugador.getUsername());
+        Packet00Login loginpacket = new Packet00Login(jugador.getUsername(),jugador.xMapa,jugador.yMapa,jugador.direction);
         if (socketserver!=null){
             socketserver.addConnection((JugadorMP)jugador, loginpacket);
         }
@@ -155,6 +148,7 @@ public class PanelJuego extends JPanel implements Runnable{
             socketserver = new Server(this);
             socketserver.start();
         }
+        
         //-------------------------------------------------//
         
         socketcliente = new Cliente("localhost",this);
