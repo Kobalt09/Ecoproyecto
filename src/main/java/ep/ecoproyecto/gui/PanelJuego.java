@@ -252,7 +252,7 @@ public class PanelJuego extends JPanel implements Runnable{
     }
     
     public void efectos(int i){
-        j.reproducirefecto(i);
+        efectossonido.reproducirefecto(i);
     }
     
     private int getIndiceJugador(String user){
