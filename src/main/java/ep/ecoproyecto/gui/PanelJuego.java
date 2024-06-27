@@ -278,7 +278,7 @@ public class PanelJuego extends JPanel implements Runnable{
                     {this.jugadores.get(indice).spriteNum=1;}
                     else{
                     if (this.jugadores.get(indice).spriteNum == 1)
-                    this.jugadores.get(indice).spriteNum=2;
+                        this.jugadores.get(indice).spriteNum=2;
                     }
                     this.jugadores.get(indice).spriteCounter = 0;
                 }

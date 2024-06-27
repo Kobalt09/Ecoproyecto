@@ -30,30 +30,6 @@ public class Tienda extends Entidad {
         movimiento=false;
     }
     
-    public void estableceraccion(){
-        if(movimiento==true){
-        contadordeaccion++;
-            if(contadordeaccion==120){
-                Random random = new Random();
-                int i= random.nextInt(100)+1;
-
-                if(i<=25){
-                    direction="up";
-                }
-                if((i<=50)&&(i>25)){
-                    direction="down";
-                }
-                if((i<=75)&&(i>50)){
-                    direction="left";
-                }
-                if((i<=100)&&(i>75)){
-                    direction="right";
-                }
-                
-                contadordeaccion=0;
-            }
-        }
-    }
     
     public void EstablecerTienda(){
         this.inventario[0]=new ObjetoEquipo("botas",16,6,gp);;

@@ -104,4 +104,8 @@ public class Entidad implements Actualizar{
             direction=directionoriginal;
         }
     }
+    
+    public Entidad retornar(){
+        return this;
+    }
 }

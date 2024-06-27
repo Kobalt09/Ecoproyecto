@@ -178,9 +178,10 @@ public class Jugador extends Entidad{
                             case "right" -> xMapa+=vel;
                     }
                 }
-  
+                    /*
                 Packet02Mov packet=new Packet02Mov(username, this.xMapa, this.yMapa,this.direction);
                 packet.writeData(PanelJuego.juego.socketcliente);
+                */
          
 
                     spriteCounter++;
@@ -195,6 +196,10 @@ public class Jugador extends Entidad{
                     }
     }
 
+    public void estadoTienda(){
+        gp.hud.mostrartienda();
+    }
+            
     public void recogerobjetos(int id){
         
         if(id!=999){
@@ -281,6 +286,11 @@ public class Jugador extends Entidad{
                 }
                 if(gp.NPC[gp.mapaActual][id] instanceof Tienda){
                     gp.hud.mostrarmensaje("tienda");
+                }
+                if(gp.NPC[gp.mapaActual][id] instanceof PuertaInteractuable Aux){
+                    //x,y,z de la casilla, x,y,z para salir
+                    
+                    gp.ControlEventos.tp(Aux.xMapa,Aux.xMapa, Aux.zMapa, Aux.Xtp, Aux.Ytp, Aux.Ztp);
                 }
             }
         }

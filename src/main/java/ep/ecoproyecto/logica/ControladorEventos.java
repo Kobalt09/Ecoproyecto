@@ -102,8 +102,8 @@ public class ControladorEventos {
     
     //desplazar al jugador
     public void tp(int x,int y, int mapa,int col, int fil,int mapacasilla){
-        gp.jugador.xMapa=x*gp.tamanioCasilla-gp.tamanioCasilla;
-        gp.jugador.yMapa=y*gp.tamanioCasilla-gp.tamanioCasilla;
+        gp.jugador.xMapa=(x*gp.tamanioCasilla)+gp.tamanioCasilla;
+        gp.jugador.yMapa=(y*gp.tamanioCasilla)+gp.tamanioCasilla;
         gp.mapaActual=mapa;
         rectanguloEvento[col][fil][mapacasilla].Activado=true;
     }

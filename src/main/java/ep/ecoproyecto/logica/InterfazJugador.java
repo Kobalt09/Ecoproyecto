@@ -19,6 +19,7 @@ public class InterfazJugador implements Dibujado{
     public Graphics2D g2;
     BufferedImage imagen;
     public boolean mensajeOn=false;
+    public boolean tiendaOn=false;
     public String mensaje="";
     int contmensajes=0;
     public boolean victoriamensaje=false;
@@ -32,6 +33,10 @@ public class InterfazJugador implements Dibujado{
     public void mostrarmensaje(String texto) {
         mensaje=texto;
         mensajeOn= true;
+    }
+    
+    public void mostrartienda() {
+        tiendaOn= true;
     }
 
     
@@ -84,6 +89,26 @@ public class InterfazJugador implements Dibujado{
                 }
                 cont=cont+gp.tamanioCasilla;
             }
+        }
+        
+        if(tiendaOn==true){
+            int MarcoX=gp.tamanioCasilla*4;
+            int MarcoY=gp.tamanioCasilla/4+gp.tamanioCasilla+30;
+            int MarcoAncho=gp.screenWidth/2;
+            int MarcoAlto=gp.tamanioCasilla;
+            
+            Color c= new Color(82,183,136);
+            g2.setColor(c);
+            g2.fillRect(MarcoX, MarcoY, MarcoAncho, MarcoAlto);
+            int cont=0;
+            /*
+            for(Entidad obj:jugador.inventario){
+                if(obj!=null){
+                    g2.drawImage(obj.down1, gp.tamanioCasilla*4+cont, gp.tamanioCasilla/4, gp.tamanioCasilla,gp.tamanioCasilla,null);
+                }
+                cont=cont+gp.tamanioCasilla;
+            }
+            */
         }
     }
 
