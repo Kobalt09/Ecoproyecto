@@ -44,10 +44,10 @@ public class Jugador extends Entidad{
         
         hitBox=new Rectangle();
         //donde empiza la hitbox en relacion a la esquina superior
-        hitBox.x=8;
-        hitBox.y=8;
+        hitBox.x=16;
+        hitBox.y=16;
         //tamanio de la hitbox
-        hitBox.height=48;
+        hitBox.height=52;
         hitBox.width=48;
         
         //area de colision
@@ -74,9 +74,9 @@ public class Jugador extends Entidad{
         hitBox=new Rectangle();
         //donde empiza la hitbox en relacion a la esquina superior
         hitBox.x=8;
-        hitBox.y=8;
+        hitBox.y=4;
         //tamanio de la hitbox
-        hitBox.height=48;
+        hitBox.height=56;
         hitBox.width=48;
         
         //area de colision
@@ -195,10 +195,26 @@ public class Jugador extends Entidad{
             
                 if(colision==false && interactuar==false){
                     switch (direction) {
-                            case "up" -> yMapa-=vel;
-                            case "left" -> xMapa-=vel;
-                            case "down" -> yMapa+=vel;
-                            case "right" -> xMapa+=vel;
+                            case "up" -> {yMapa-=vel;
+                                hitBox.x=16;
+                                hitBox.width=30;
+                            }
+                            case "left" -> {
+                                xMapa-=vel;
+                                hitBox.x=14;
+                                hitBox.width=36;
+                            }
+                                
+                            case "down" ->{ 
+                                yMapa+=vel;
+                                hitBox.x=14;                                                            
+                                hitBox.width=36;}
+                            
+                            case "right" -> {
+                                xMapa+=vel;
+                                hitBox.x=16;                              
+                                hitBox.width=30;
+                            }
                     }
                 }
                 /*

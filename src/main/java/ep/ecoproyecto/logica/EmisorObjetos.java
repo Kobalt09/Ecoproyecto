@@ -1,6 +1,7 @@
 package ep.ecoproyecto.logica;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.Interfaces.Dibujado;
+import ep.ecoproyecto.logica.objetos.Casa;
 import ep.ecoproyecto.logica.objetos.ObjetoCofre;
 import ep.ecoproyecto.logica.objetos.ObjetoEquipo;
 import ep.ecoproyecto.logica.objetos.ObjetoMesa;
@@ -32,6 +33,7 @@ public class EmisorObjetos  implements Dibujado{
         gp.obj[NumMap][4]=new ObjetoEquipo("botas",16,6,gp);
         gp.obj[NumMap][5]=new ObjetoMesa("mesa",9,9,gp);
         gp.obj[NumMap][6]=new ObjetoMoneda("coin",10,10,gp);
+        gp.obj[NumMap][7]=new Casa("casa",11,8,gp);
         /*
         //----MUNDO 2:-----//
         NumMap = 1;
@@ -66,7 +68,7 @@ public class EmisorObjetos  implements Dibujado{
                 
                     if((gp.obj[gp.mapaActual][i].xMapa+gp.tamanioCasilla > gp.jugador.xMapa-gp.jugador.pantallaX)&&(gp.obj[gp.mapaActual][i].xMapa-gp.tamanioCasilla < gp.jugador.xMapa+gp.jugador.pantallaX)&&
                        (gp.obj[gp.mapaActual][i].yMapa+gp.tamanioCasilla > gp.jugador.yMapa-gp.jugador.pantallaY)&&(gp.obj[gp.mapaActual][i].yMapa-gp.tamanioCasilla < gp.jugador.yMapa+gp.jugador.pantallaY)){     
-                        g2.drawImage(gp.obj[gp.mapaActual][i].down1, PantallaX, PantallaY, gp.tamanioCasilla,gp.tamanioCasilla,null);
+                        g2.drawImage(gp.obj[gp.mapaActual][i].down1, PantallaX, PantallaY, gp.obj[gp.mapaActual][i].hitBox.width,gp.obj[gp.mapaActual][i].hitBox.height,null);
                     }
                 }
             }

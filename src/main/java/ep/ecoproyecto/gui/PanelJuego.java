@@ -36,8 +36,8 @@ public class PanelJuego extends JPanel implements Runnable{
     final int escala = 2; //escala los sprites de 32x32 a 64x64
     
     public final int tamanioCasilla= tamanioCasillaOrig*escala; //casillas 64x64 
-    public final int maxColumnasPantalla= 8;
-    public final int maxFilasPantalla = 6;
+    public final int maxColumnasPantalla= 10;
+    public final int maxFilasPantalla = 10;
     public final int screenWidth=tamanioCasilla *maxColumnasPantalla; // resoluciom en x 1024
     public final int screenHeight=tamanioCasilla *maxFilasPantalla; //  resoluciom en x  640
     
