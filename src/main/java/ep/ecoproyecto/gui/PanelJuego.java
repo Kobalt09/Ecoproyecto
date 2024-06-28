@@ -13,6 +13,7 @@ import ep.ecoproyecto.logica.entidades.Jugador;
 import ep.ecoproyecto.logica.entidades.JugadorMP;
 import ep.ecoproyecto.logica.net.*;
 import ep.ecoproyecto.logica.net.packets.Packet00Login;
+import ep.ecoproyecto.logica.objetos.Objetosclase;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -77,7 +78,7 @@ public class PanelJuego extends JPanel implements Runnable{
     //Jugador, objetos y NPC
     public Jugador jugador;
     public LinkedList<JugadorMP> jugadores = new LinkedList<>(); 
-    public Entidad obj[][]= new Entidad[Maximomundos][10];
+    public Objetosclase obj[][]= new Objetosclase[Maximomundos][10];
     public Entidad NPC[][]= new Entidad[Maximomundos][10];
     //ArrayList<Entidad> Entidadlista= new ArrayList<>();
 
@@ -107,6 +108,8 @@ public class PanelJuego extends JPanel implements Runnable{
     //prepara todo para antes de dibujar y comenzar el juego
     public void configuraciondejuego(){
         juego=this;
+        
+        keyH.establecerPanel(this);
 
         objeto.establecerObj();     //envia los objetos definidos a un arreglo
         npcs.establecernpcs();      //igual pero con npcs

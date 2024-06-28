@@ -32,9 +32,12 @@ public class Tienda extends Entidad {
     
     
     public void EstablecerTienda(){
-        this.inventario[0]=new ObjetoEquipo("botas",16,6,gp);;
-        this.inventario[0]=new ObjetoMoneda("coin",10,10,gp);
-        this.inventario[0]=new ObjetoRecogible("llave",10,10,gp);
+        this.inventario[0]=new ObjetoEquipo("botas",16,6,gp);
+        this.inventario[0].setPrecio(10);
+        this.inventario[1]=new ObjetoMoneda("coin",10,10,gp);
+        this.inventario[1].setPrecio(0);
+        this.inventario[2]=new ObjetoRecogible("llave",10,10,gp);
+        this.inventario[2].setPrecio(1);
     }
     
 }

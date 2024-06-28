@@ -6,7 +6,7 @@ import java.awt.Rectangle;
  *
  * @author C-A-F
  */
-public class ObjetoPuerta extends Entidad{
+public class ObjetoPuerta extends Objetosclase{
     
 
 

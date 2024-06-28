@@ -7,7 +7,8 @@ import java.awt.Rectangle;
  *
  * @author C-A-F
  */
-public class ObjetoEquipo extends Entidad{
+public class ObjetoEquipo extends Objetosclase{
+    public int precio;
     
     public ObjetoEquipo(String nombre, int posicionX, int posicionY, PanelJuego gp) {
         super(gp);
@@ -19,6 +20,14 @@ public class ObjetoEquipo extends Entidad{
         hitBox= new Rectangle(0,0,64,64);
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
+    }
+    
+        public int getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
     }
     
     

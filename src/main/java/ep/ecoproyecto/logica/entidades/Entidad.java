@@ -2,6 +2,7 @@ package ep.ecoproyecto.logica.entidades;
 import ep.ecoproyecto.logica.Herramientas;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.Interfaces.Actualizar;
+import ep.ecoproyecto.logica.objetos.Objetosclase;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class Entidad implements Actualizar{
     public int areadefectoX, areadefectoY;
     
     public int contadordeaccion=0;
-    public Entidad inventario[]= new Entidad[10];
+    public Objetosclase inventario[]= new Objetosclase[10];
     
     //variables de dialogo
     public boolean dialogo=false;

@@ -23,6 +23,7 @@ public class InterfazJugador implements Dibujado{
     public String mensaje="";
     int contmensajes=0;
     public boolean victoriamensaje=false;
+    public int opcion=0;
     
 
     public InterfazJugador(PanelJuego gp) {
@@ -36,7 +37,15 @@ public class InterfazJugador implements Dibujado{
     }
     
     public void mostrartienda() {
-        tiendaOn= true;
+        if(tiendaOn==false){
+            tiendaOn=true;
+        }
+    }
+    
+    public void guardartienda() {
+        if(tiendaOn==true){
+            tiendaOn=false;
+        }
     }
 
     
@@ -64,7 +73,7 @@ public class InterfazJugador implements Dibujado{
             
             g2.drawString(mensaje, gp.screenWidth/3, gp.tamanioCasilla/2+5);   
             contmensajes++;
-            if(contmensajes>120){
+            if(contmensajes>60){
                 contmensajes=0;
                 mensajeOn=false;
             }
@@ -72,6 +81,16 @@ public class InterfazJugador implements Dibujado{
 
         //dibujado de inventario
         if(mensajeOn==false){
+            dibujadoinventario(g2,jugador); 
+            
+            if(tiendaOn==true ){
+                tienda(g2);
+            }
+        }
+    }
+    
+    
+    public void dibujadoinventario(Graphics2D g2,Jugador jugador){
             int MarcoX=gp.tamanioCasilla*4;
             int MarcoY=gp.tamanioCasilla/4;
             int MarcoAncho=gp.screenWidth/2;
@@ -88,29 +107,39 @@ public class InterfazJugador implements Dibujado{
                     g2.drawImage(obj.down1, gp.tamanioCasilla*4+cont, gp.tamanioCasilla/4, gp.tamanioCasilla,gp.tamanioCasilla,null);
                 }
                 cont=cont+gp.tamanioCasilla;
-            }
-        }
-        
-        if(tiendaOn==true){
-            int MarcoX=gp.tamanioCasilla*4;
-            int MarcoY=gp.tamanioCasilla/4+gp.tamanioCasilla+30;
-            int MarcoAncho=gp.screenWidth/2;
-            int MarcoAlto=gp.tamanioCasilla;
-            
-            Color c= new Color(82,183,136);
-            g2.setColor(c);
-            g2.fillRect(MarcoX, MarcoY, MarcoAncho, MarcoAlto);
-            int cont=0;
-            /*
-            for(Entidad obj:jugador.inventario){
-                if(obj!=null){
-                    g2.drawImage(obj.down1, gp.tamanioCasilla*4+cont, gp.tamanioCasilla/4, gp.tamanioCasilla,gp.tamanioCasilla,null);
-                }
-                cont=cont+gp.tamanioCasilla;
-            }
-            */
-        }
+            }    
     }
+    
+    public void tienda(Graphics2D g2){
+                int MarcoX=gp.tamanioCasilla*4;
+                int MarcoY=gp.tamanioCasilla/4+gp.tamanioCasilla+30;
+                int MarcoAncho=gp.screenWidth/2;
+                int MarcoAlto=gp.tamanioCasilla;
+
+                //Color c= new Color(9,28,21);
+                g2.setColor(Color.ORANGE);
+                g2.fillRect(MarcoX, MarcoY, MarcoAncho, MarcoAlto);
+                
+                int cont=1;
+                /*
+                for(Entidad obj:jugador.inventario){
+                    if(obj!=null){
+                        g2.drawImage(obj.down1, gp.tamanioCasilla*4+cont, gp.tamanioCasilla/4, gp.tamanioCasilla,gp.tamanioCasilla,null);
+                    }
+                    cont=cont+gp.tamanioCasilla;
+                }
+                */
+                g2.setColor(Color.WHITE);
+                g2.drawString("^", MarcoX+32+(opcion*32), MarcoY+MarcoAlto+32);
+                
+                g2.setColor(Color.ORANGE);
+                g2.fillRect(gp.tamanioCasilla, MarcoY, gp.tamanioCasilla*2, gp.tamanioCasilla);
+                g2.setColor(Color.WHITE);
+                g2.drawString("texto", gp.tamanioCasilla+5, MarcoY+32);
+                
+
+    }
+    
 
     @Override
     public void dibujado(Graphics2D g2) {

@@ -7,7 +7,7 @@ import java.awt.Rectangle;
  *
  * @author C-A-F
  */
-public class ObjetoMesa extends Entidad{
+public class ObjetoMesa extends Objetosclase{
     
     public ObjetoMesa(String nombre, int posicionX, int posicionY, PanelJuego gp) {
         super(gp);

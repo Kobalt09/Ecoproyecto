@@ -1,4 +1,5 @@
 package ep.ecoproyecto.logica;
+import ep.ecoproyecto.gui.PanelJuego;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
@@ -9,10 +10,13 @@ import java.awt.event.KeyEvent;
 public class KeyHandler implements KeyListener{
 
     public boolean upPressed, downPressed, leftPressed, rightPressed,PPressed,escPressed,ePressed;
- 
+    public PanelJuego gp;
     @Override
     public void keyTyped(KeyEvent e) {
-
+    }
+    
+    public void establecerPanel(PanelJuego gp){
+        this.gp=gp;
     }
 
     @Override
@@ -32,16 +36,12 @@ public class KeyHandler implements KeyListener{
         if(code==KeyEvent.VK_S){
             downPressed=true;
         }
-
         if(code==KeyEvent.VK_E){
             ePressed=true;
         }
-
         if(code==KeyEvent.VK_ESCAPE){
             escPressed=true;
         }
-        
-        
     }
 
     @Override

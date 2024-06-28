@@ -1,33 +1,21 @@
 package ep.ecoproyecto.logica.objetos;
 import ep.ecoproyecto.logica.Herramientas;
 import ep.ecoproyecto.gui.PanelJuego;
+import ep.ecoproyecto.logica.entidades.Entidad;
 import java.awt.Rectangle;
 
 /**
  *
  * @author C-A-F
  */
-public class Objetosclase {
-      
-    public int posicionX, posicionY;
-    public PanelJuego gp;
-    public Rectangle hitBox= new Rectangle(0,0,64,64);
-    public int areadefectoX=hitBox.x;
-    public int  areadefectoY=hitBox.y;
-    Herramientas herramienta= new Herramientas();
-    private final String nombre;
+public class Objetosclase extends Entidad{
 
-
-    public Objetosclase( String nombre, int posicionX, int posicionY, PanelJuego gp) {
-        
-        this.nombre = nombre;
-
-        this.posicionX = posicionX*gp.tamanioCasilla;
-        this.posicionY = posicionY*gp.tamanioCasilla;
-
-        this.gp = gp;
-        
+    public int precio;
+            
+    public Objetosclase(PanelJuego gp) {
+        super(gp);
     }
+      
     
 /*
     public void draw(Graphics2D g2) {
@@ -37,6 +25,14 @@ public class Objetosclase {
        g2.drawImage(image,this.posicionX, this.posicionY, gp.tamanioCasilla,gp.tamanioCasilla,null); 
     
     }*/
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
 
 }
 

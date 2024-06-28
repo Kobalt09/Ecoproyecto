@@ -29,6 +29,10 @@ public class Jugador extends Entidad{
     public int estadojuego=1;
     public int estadotienda=2;
     public int eventoprevio;
+    
+    //contador de culdaun en teclas
+    public int contador;
+    public boolean tecla=true;
 
     public Jugador(PanelJuego gp) {
         super(gp);
@@ -51,7 +55,6 @@ public class Jugador extends Entidad{
         areadefectoY=hitBox.y;
         
         estado=estadojuego;
-        
         valoresporDefecto();
         getPlayerImage();
     }
@@ -126,6 +129,40 @@ public class Jugador extends Entidad{
             interactuar=false;
             if (keyH.upPressed==true||keyH.leftPressed==true||keyH.downPressed==true||keyH.rightPressed==true||keyH.ePressed==true){
                 //actualizamos la posicion del jugador sumando o restando su velocidad
+
+                Packet02Mov packet=new Packet02Mov(username, this.xMapa, this.yMapa,this.direction);
+                packet.writeData(PanelJuego.juego.socketcliente);
+                
+                switch(estado){
+                    case 1:estadoJuego();
+                        break;
+                    case 2:estadoTienda();
+                        break;
+                }
+                
+                if(tecla==false){
+                    aumentarcontador();
+                }
+            }    
+        } 
+    }
+    //condatdor?
+    public void aumentarcontador(){
+        contador++;
+        
+        if(contador>10){
+            tecla=true;
+            contador=0;
+        }
+        
+    }
+    
+    
+    //la tienda se esta volviendo a abrir porque reconoce la precion de tecla mas de una vez asi que interactua denuevo con la tienda
+    
+    public void estadoJuego(){
+        gp.hud.guardartienda();
+        if(tecla==true){
                 if(keyH.upPressed==true){
                     direction="up";
                 }else if(keyH.leftPressed==true){
@@ -135,30 +172,16 @@ public class Jugador extends Entidad{
                 }else if(keyH.rightPressed==true){
                     direction="right";
                 }else if(keyH.ePressed==true){
+                    tecla=false;
                     interactuar=true;
                 }
-                Packet02Mov packet=new Packet02Mov(username, this.xMapa, this.yMapa,this.direction);
-                packet.writeData(PanelJuego.juego.socketcliente);
-                
-                switch(estado){
-                    case 1:estadoJuego();
-                        break;
-                    case 2:
-                        break;
-                }
-            }    
-        } 
-    }
+        }        
+        //colision Casillas
+        colision=false;
+        gp.colisiones.revisarColision(this);
     
-    
-    public void estadoJuego(){
-               
-                //colision Casillas
-                colision=false;
-                gp.colisiones.revisarColision(this);
-            
-                //colision NPC
-                   //int entidadID=gp.colisiones.chequeoEntidades(this, gp.NPC);
+        //colision NPC
+           //int entidadID=gp.colisiones.chequeoEntidades(this, gp.NPC);
                    //intereaccionNCP(entidadID);
                 intereaccionNCP(gp.colisiones.chequeoEntidades(this, gp.NPC));
                 //colision objetos
@@ -178,25 +201,49 @@ public class Jugador extends Entidad{
                             case "right" -> xMapa+=vel;
                     }
                 }
-                    /*
+                /*
                 Packet02Mov packet=new Packet02Mov(username, this.xMapa, this.yMapa,this.direction);
                 packet.writeData(PanelJuego.juego.socketcliente);
                 */
-         
 
-                    spriteCounter++;
-                    if (spriteCounter>10){
-                        if (spriteNum == 2 )
-                        {spriteNum=1;}
-                        else{
+                spriteCounter++;
+                if (spriteCounter>10){
+                    if (spriteNum == 2 ){
+                        spriteNum=1;
+                    }else{
                         if (spriteNum == 1)
                         spriteNum=2;
-                        }
-                        spriteCounter = 0;
                     }
+                    spriteCounter = 0;
+                }
     }
 
     public void estadoTienda(){
+        if(tecla==true){
+            if(keyH.upPressed==true){
+
+            }else if(keyH.downPressed==true){
+
+            }
+            if(keyH.rightPressed==true){
+                gp.hud.opcion++;
+                tecla=false;
+                if( gp.hud.opcion>5){
+                    gp.hud.opcion=0;
+                }
+            }else if(keyH.leftPressed==true){
+                gp.hud.opcion--;
+                tecla=false;
+                if( gp.hud.opcion<0){
+                    gp.hud.opcion=5;
+                }
+            }else if(keyH.ePressed==true){
+                tecla=false;
+                if(gp.hud.opcion==0){
+                    estado=estadojuego;
+                }
+            }
+        }    
         gp.hud.mostrartienda();
     }
             
@@ -286,6 +333,7 @@ public class Jugador extends Entidad{
                 }
                 if(gp.NPC[gp.mapaActual][id] instanceof Tienda){
                     gp.hud.mostrarmensaje("tienda");
+                    estado=estadotienda;
                 }
                 if(gp.NPC[gp.mapaActual][id] instanceof PuertaInteractuable Aux){
                     //x,y,z de la casilla, x,y,z para salir

@@ -6,7 +6,7 @@ import java.awt.Rectangle;
  *
  * @author C-A-F
  */
-public class ObjetoCofre extends Entidad{
+public class ObjetoCofre extends Objetosclase{
     
     public Rectangle areasolida = new Rectangle(0,0,64,64);
 
@@ -23,5 +23,6 @@ public class ObjetoCofre extends Entidad{
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
 
+        
     }
 }

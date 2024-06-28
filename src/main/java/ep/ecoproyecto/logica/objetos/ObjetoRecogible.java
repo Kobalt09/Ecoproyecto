@@ -6,8 +6,9 @@ import java.awt.Rectangle;
  *
  * @author C-A-F
  */
-public class ObjetoRecogible extends Entidad{
-
+public class ObjetoRecogible extends Objetosclase{
+    public int precio;
+    
     public ObjetoRecogible(String nombre, int posicionX, int posicionY, PanelJuego gp) {
         super(gp);
         this.nombre=nombre;
@@ -22,5 +23,12 @@ public class ObjetoRecogible extends Entidad{
     }
     
     
+    public int getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
     
 }
