@@ -17,7 +17,7 @@ public class JugadorMP extends Jugador{
         this.puerto = puerto;
     }
     
-    public JugadorMP(InetAddress direccionIP, int puerto, PanelJuego gp,String username,int xMapa, int yMapa,String dir) {
+    public JugadorMP(InetAddress direccionIP, int puerto, PanelJuego gp,String username,int xMapa, int yMapa,String dir,int mapa) {
         
         super(gp, null, username);
         this.direccionIP = direccionIP;
@@ -25,7 +25,7 @@ public class JugadorMP extends Jugador{
         this.xMapa=xMapa;
         this.yMapa=yMapa;
         this.direction=dir;
-        
+        this.mapa=mapa;
     }
      
     @Override
