@@ -2,7 +2,6 @@
 package ep.ecoproyecto.logica;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.Interfaces.Dibujado;
-import ep.ecoproyecto.logica.entidades.Entidad;
 import ep.ecoproyecto.logica.entidades.Jugador;
 import ep.ecoproyecto.logica.tipografia.Fuentes;
 import ep.ecoproyecto.logica.objetos.Objetosclase;
