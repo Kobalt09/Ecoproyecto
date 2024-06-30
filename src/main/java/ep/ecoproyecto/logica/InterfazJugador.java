@@ -2,8 +2,8 @@
 package ep.ecoproyecto.logica;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.Interfaces.Dibujado;
-import ep.ecoproyecto.logica.entidades.Entidad;
 import ep.ecoproyecto.logica.entidades.Jugador;
+import ep.ecoproyecto.logica.tipografia.Fuentes;
 import ep.ecoproyecto.logica.objetos.Objetosclase;
 import java.awt.Color;
 import java.awt.Font;
@@ -25,6 +25,8 @@ public class InterfazJugador implements Dibujado{
     public String mensaje="";
     int contmensajes=0;
     public int opcion=0;
+    public int opcionMenu=0;
+    public int subState = 0;
     
     
 
@@ -52,6 +54,7 @@ public class InterfazJugador implements Dibujado{
 
     
     public void dibujado(Graphics2D g2,Jugador jugador){
+        this.g2 = g2;
         
         g2.setFont(fuente);
         g2.setColor(Color.white);
@@ -62,6 +65,11 @@ public class InterfazJugador implements Dibujado{
         g2.drawString("Dinero: "+(gp.jugador.dinero),50, 50);
         //g2.drawImage(llaveimagen, gp.tamanioCasilla/2, gp.tamanioCasilla/2, gp.tamanioCasilla,gp.tamanioCasilla,null);
         //g2.drawString("x = "+gp.jugador.llaves, gp.tamanioCasilla*2, gp.tamanioCasilla);   
+        
+        if (gp.pause){
+            dibujadoFondo();
+            dibujadoMenuPausa();
+        }
         
         //mostrar mensajes de NPC
         if(mensajeOn==true){
@@ -92,6 +100,96 @@ public class InterfazJugador implements Dibujado{
         }
     }
     
+    public void dibujadoFondo(){
+        Color colorOscuro = new Color(0,0,0,150);
+        g2.setColor(colorOscuro);
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+    }
+    
+    public void dibujadoMenuPausa(){
+        
+        int frameX = gp.tamanioCasilla*5;
+        int frameY = gp.tamanioCasilla;
+        int frameWidth = gp.tamanioCasilla*8;
+        int frameHeight = gp.tamanioCasilla*10;
+    
+        switch(subState){
+            case 0-> opciones_Top(frameX,frameY);
+        }
+    }
+    
+    public void opciones_Top(int frameX, int frameY){
+        int textoX, textoY;
+        
+        //TITULO//
+        textoX = getXcentrado("Opciones:") - gp.tamanioCasilla/2;
+        textoY = frameY + gp.tamanioCasilla;
+        dibujadoLetras("Opciones:",textoX,textoY,true);
+        
+        //PANTALLA COMPLETA//
+        textoX = frameX;
+        textoY += gp.tamanioCasilla;
+        dibujadoLetras("Pantalla Completa",textoX,textoY,false);
+        if (opcionMenu == 0)
+            dibujadoLetras("+",textoX-25,textoY,false);
+    
+        //MUSICA//
+        textoY += gp.tamanioCasilla;
+        dibujadoLetras("Musica",textoX,textoY,false);
+        if (opcionMenu == 1)
+            dibujadoLetras("+",textoX-25,textoY,false);
+        
+        //EFECTOS DE SONIDO//
+        textoY += gp.tamanioCasilla;
+        dibujadoLetras("Efectos de Sonido",textoX,textoY,false);
+        if (opcionMenu == 2)
+            dibujadoLetras("+",textoX-25,textoY,false);
+        
+        //CONTROLES//
+        textoY += gp.tamanioCasilla;
+        dibujadoLetras("Controles",textoX,textoY,false);
+        if (opcionMenu == 3)
+            dibujadoLetras("+",textoX-25,textoY,false);
+    
+        //CERRAR JUEGO//
+        textoX = getXcentrado("Cerrar Juego");
+        textoY += gp.tamanioCasilla;
+        dibujadoLetras("Cerrar Juego",textoX,textoY,false);
+        if (opcionMenu == 4)
+            dibujadoLetras("+",textoX-25,textoY,false);
+    }
+    
+    public int getXcentrado(String texto){
+        int length = (int)g2.getFontMetrics().getStringBounds(texto, g2).getWidth();
+        return gp.screenWidth/2 - length/2;
+    }
+    
+    public void dibujadoLetras(String texto, int x, int y, boolean titulo){
+        Fuentes tipoFuente=new Fuentes();
+        int b;
+        if (titulo){
+            g2.setFont((tipoFuente.fuente(tipoFuente.upheaval,0,50)));
+            b=3;
+        }else{
+            g2.setFont((tipoFuente.fuente(tipoFuente.Pokemon,0,40)));
+            b=2;
+        }
+        
+        //Bordes Negros//
+        g2.setColor(Color.BLACK);
+        g2.drawString(texto, x - b, y - b);
+        g2.drawString(texto, x + b, y + b);
+        g2.drawString(texto, x + b, y - b);
+        g2.drawString(texto, x - b, y + b);
+        g2.drawString(texto, x, y + b);
+        g2.drawString(texto, x, y - b);
+        g2.drawString(texto, x + b, y);
+        g2.drawString(texto, x - b, y);
+        
+        //Letras Blancas//
+        g2.setColor(Color.WHITE);
+        g2.drawString(texto, x, y);
+    }
     
     public void dibujadoinventario(Graphics2D g2,Jugador jugador){
             int MarcoX=gp.tamanioCasilla*4;
