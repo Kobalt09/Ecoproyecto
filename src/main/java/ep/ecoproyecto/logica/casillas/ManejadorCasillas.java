@@ -112,8 +112,7 @@ public class ManejadorCasillas  implements Dibujado{
         int i=jugador.xMapa/64; 
         int j=jugador.yMapa/64;
 
-        cargarMapa(mapa[gp.mapaActual],i,j);  
-        
+        cargarMapa(mapa[gp.mapaActual],i,j);        
     
     }
     
