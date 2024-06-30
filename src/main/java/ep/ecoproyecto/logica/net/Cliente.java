@@ -8,6 +8,7 @@ import static ep.ecoproyecto.logica.net.packets.Packet.PacketTypes.LOGIN;
 import ep.ecoproyecto.logica.net.packets.Packet00Login;
 import ep.ecoproyecto.logica.net.packets.Packet02Mov;
 import ep.ecoproyecto.logica.net.packets.Packet01Disconnect;
+import ep.ecoproyecto.logica.net.packets.Paquete03Mapa;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -57,7 +58,7 @@ public class Cliente extends Thread{
             case LOGIN->{
                 packet = new Packet00Login(data); 
                 System.out.println("["+direccion.getHostAddress()+":"+puerto+"] "+((Packet00Login)packet).getUsername()+" se ha unido al juego.");
-                JugadorMP jugador = new JugadorMP(direccion,puerto,juego,((Packet00Login)packet).getUsername(),((Packet00Login)packet).getX(),((Packet00Login)packet).getY(),((Packet00Login)packet).getDir());
+                JugadorMP jugador = new JugadorMP(direccion,puerto,juego,((Packet00Login)packet).getUsername(),((Packet00Login)packet).getX(),((Packet00Login)packet).getY(),((Packet00Login)packet).getDir(),((Packet00Login)packet).getMapa());
                 juego.jugadores.add(jugador);
             }
             case DISCONNECT->{
@@ -68,6 +69,10 @@ public class Cliente extends Thread{
             case MOVE->{
                 packet = new Packet02Mov(data);
                 this.manejarMov((Packet02Mov)packet);
+            }
+             case CAMBIO->{
+                packet =new Paquete03Mapa(data);
+                this.cambioMapa((Paquete03Mapa)packet);
             }
             default->{
                 System.out.println("Paquete desconocido");
@@ -85,6 +90,10 @@ public class Cliente extends Thread{
     
     private void manejarMov(Packet02Mov packet) {
         this.juego.moverJugadores(packet.getUsername(), packet.getX(), packet.getY(),packet.getDir());          
+    }
+
+    private void cambioMapa(Paquete03Mapa paquete03Mapa) {
+       juego.cambiarMapa(paquete03Mapa.getUsername(),paquete03Mapa.getMapa());
     }
     
 }

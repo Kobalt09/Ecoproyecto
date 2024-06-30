@@ -1,9 +1,6 @@
 package ep.ecoproyecto.logica;
 import ep.ecoproyecto.gui.PanelJuego;
-import ep.ecoproyecto.logica.entidades.Jugador;
-import java.awt.Color;
-import java.awt.Graphics2D;
-
+import ep.ecoproyecto.logica.net.packets.Paquete03Mapa;
 /**
  *
  * @author C-A-F
@@ -51,7 +48,11 @@ public class ControladorEventos {
         if(colision(27,16,0,"right")==true){ eventSonido(2); }
         //if(colision(10,10,0,"any")==true){ musicatienda(); }
         //Se le entrega a tp (posicionX,PosicionY, mapa)para el jugador y (X,Y,mapa) de la casilla que se activo
-        if(colision(9,6,0,"any")==true){ tp(19, 6, 1, 9,6,0); } 
+        
+        if(colision(9,6,0,"any")==true){ tp(19, 6, 1, 9,6,0);
+        
+        } 
+        
         if(colision(10,10,0,"any")==true){ mensaje();}
 
     }
@@ -104,8 +105,10 @@ public class ControladorEventos {
     public void tp(int x,int y, int mapa,int col, int fil,int mapacasilla){
         gp.jugador.xMapa=(x*gp.tamanioCasilla)+gp.tamanioCasilla;
         gp.jugador.yMapa=(y*gp.tamanioCasilla)+gp.tamanioCasilla;
-        gp.mapaActual=mapacasilla;
-        
+        gp.mapaActual=mapa;
+        gp.jugador.setMapa(mapa);
+        Paquete03Mapa packet =new Paquete03Mapa(mapa, gp.jugador.getUsername());
+        packet.writeData(gp.socketcliente);
         //rectanguloEvento[col][fil][mapacasilla].Activado=true;
     }
     
