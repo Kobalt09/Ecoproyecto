@@ -28,14 +28,15 @@ public class EmisorNPC  implements Dibujado, Actualizar{
         int NumMap = 0;
         gp.NPC[NumMap][0]= new chiguire(gp,10,7);
         gp.NPC[NumMap][1]= new Tienda(gp,9,9);
-        gp.NPC[NumMap][2]= new PuertaInteractuable(gp,13,10,0,15, 15, 0);
+        gp.NPC[NumMap][2]= new PuertaInteractuable(gp,13,9,0,11, 15, 0);
         /*
         //----MUNDO 2:-----//
         NumMap = 1;
-        
+        */
         //----MUNDO 3:-----//
         NumMap = 2;
-        
+        gp.NPC[NumMap][0]= new PuertaInteractuable(gp,11, 16, 2, 14,10,0);
+        /*
         //----MUNDO 4:-----//
         NumMap = 3;
         

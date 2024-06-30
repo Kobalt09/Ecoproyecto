@@ -35,7 +35,7 @@ public class Colisionador {
                             if (gp.manCas.casilla[casilla1].colision==true ||gp.manCas.casilla[casilla2].colision==true){
                                 entidad.colision=true;
                             }
-            }
+                        }
                         case "left" -> {
                             columizquierda=(posiciojugadorizquierda-entidad.vel)/gp.tamanioCasilla;
                             casilla1=gp.manCas.numCasillaMapa[columizquierda][filaarriba];
@@ -43,7 +43,7 @@ public class Colisionador {
                             if (gp.manCas.casilla[casilla1].colision==true ||gp.manCas.casilla[casilla2].colision==true){
                                 entidad.colision=true;
                             }
-            }
+                        }
                         case "down" -> {
                             filaabajo=(posiciojugadorabajo+entidad.vel)/gp.tamanioCasilla;
                             casilla1=gp.manCas.numCasillaMapa[columizquierda][filaabajo];
@@ -51,7 +51,7 @@ public class Colisionador {
                             if (gp.manCas.casilla[casilla1].colision==true ||gp.manCas.casilla[casilla2].colision==true){
                                 entidad.colision=true;
                             }
-            }
+                        }
                         case "right" -> {
                             columderecha=(posiciojugadorderecha+entidad.vel)/gp.tamanioCasilla;
                             casilla1=gp.manCas.numCasillaMapa[columderecha][filaarriba];
@@ -59,8 +59,8 @@ public class Colisionador {
                             if (gp.manCas.casilla[casilla1].colision==true ||gp.manCas.casilla[casilla2].colision==true){
                                 entidad.colision=true;
                             }
-            }
-                    }
+                        }
+                }
     }
 
     //chequeo de colision con objetos

@@ -2,6 +2,9 @@ package ep.ecoproyecto.logica.entidades;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.KeyHandler;
 import ep.ecoproyecto.logica.net.packets.Packet02Mov;
+import ep.ecoproyecto.logica.objetos.ObjetoEquipo;
+import ep.ecoproyecto.logica.objetos.ObjetoRecogible;
+import ep.ecoproyecto.logica.objetos.Objetosclase;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -20,7 +23,7 @@ public class Jugador extends Entidad{
     public final int pantallaY;
     protected String username;
     
-    public Entidad inventario[]= new Entidad[10];
+    //public Entidad inventario[]= new Entidad[10];
     public int dinero=0;
     public int llaves=0;
     public boolean interactuar;
@@ -244,20 +247,53 @@ public class Jugador extends Entidad{
             if(keyH.rightPressed==true){
                 gp.hud.opcion++;
                 tecla=false;
-                if( gp.hud.opcion>5){
+                if( gp.hud.opcion>8){
                     gp.hud.opcion=0;
                 }
             }else if(keyH.leftPressed==true){
                 gp.hud.opcion--;
                 tecla=false;
                 if( gp.hud.opcion<0){
-                    gp.hud.opcion=5;
+                    gp.hud.opcion=8;
                 }
             }else if(keyH.ePressed==true){
                 tecla=false;
                 if(gp.hud.opcion==0){
                     estado=estadojuego;
-                }
+                }else{
+                    int cont=0;
+                    
+                    for(Objetosclase obj:gp.NPC[0][1].inventario){
+                        
+                        if(obj!=null && cont==(gp.hud.opcion-1) ){
+                            System.out.println(obj.nombre);
+                            switch(obj.nombre){
+                                case "llave" -> {
+                                    llaves++;
+                                    gp.efectos(2);
+                                    gp.hud.mostrarmensaje("conseguiste una llave");
+                                    this.inventario[1]=new ObjetoRecogible("llave", 0, 0, gp);
+                                    gp.NPC[0][1].inventario[cont]=null;
+                                }   
+                                case "botas" -> {
+                                    if(this.inventario[0]==null){
+                                        gp.efectos(4);
+                                        gp.hud.mostrarmensaje("conseguiste "+obj.nombre);
+                                        vel=vel+2;
+                                        this.inventario[0]=new ObjetoEquipo("Botas", 0, 0, gp);
+                                        gp.NPC[0][1].inventario[cont]=null;
+                                    }
+                                }
+                                case "coin" -> {
+                                    dinero++;
+                                    gp.efectos(2);
+                                    gp.NPC[0][1].inventario[cont]=null;
+                                }
+                            }
+                        }
+                        cont++;
+                    }
+                }    
             }
         }    
         gp.hud.mostrartienda();

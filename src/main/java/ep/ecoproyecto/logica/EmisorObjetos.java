@@ -15,7 +15,6 @@ import java.awt.Graphics2D;
  * @author C-A-F
  */
 public class EmisorObjetos  implements Dibujado{
-    
     PanelJuego gp;
     
     public EmisorObjetos(PanelJuego gp){
