@@ -130,9 +130,6 @@ public class Jugador extends Entidad{
             interactuar=false;
             if (keyH.upPressed==true||keyH.leftPressed==true||keyH.downPressed==true||keyH.rightPressed==true||keyH.ePressed==true){
                 //actualizamos la posicion del jugador sumando o restando su velocidad
-
-                Packet02Mov packet=new Packet02Mov(username, this.xMapa, this.yMapa,this.direction);
-                packet.writeData(PanelJuego.juego.socketcliente);
                 
                 switch(estado){
                     case 1:estadoJuego();
@@ -216,10 +213,10 @@ public class Jugador extends Entidad{
                             }
                     }
                 }
-                /*
+                
                 Packet02Mov packet=new Packet02Mov(username, this.xMapa, this.yMapa,this.direction);
                 packet.writeData(PanelJuego.juego.socketcliente);
-                */
+                
 
                 spriteCounter++;
                 if (spriteCounter>10){
