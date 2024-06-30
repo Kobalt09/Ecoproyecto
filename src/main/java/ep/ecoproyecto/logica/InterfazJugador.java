@@ -238,7 +238,7 @@ public class InterfazJugador implements Dibujado{
     }
     
     public void pantallaCompletaNotif(int frameX, int frameY){
-        int textoX = frameX + gp.tamanioCasilla;
+        int textoX = frameX;
         int textoY = frameY + gp.tamanioCasilla*3;
     
         mensaje = "El cambio tendra efecto \ncuando reinicies el juego";
@@ -249,6 +249,7 @@ public class InterfazJugador implements Dibujado{
         }
         
         //REGRESAR//
+        textoX += gp.tamanioCasilla; 
         textoY = gp.tamanioCasilla*6;
         dibujadoLetras("Regresar", textoX, textoY,false);
         if (opcionMenu == 0){
@@ -257,6 +258,10 @@ public class InterfazJugador implements Dibujado{
                 subState = 0;
             }
         }
+    }
+    
+    public void controlesMenu(){
+        
     }
     
     public void dibujadoinventario(Graphics2D g2,Jugador jugador){
