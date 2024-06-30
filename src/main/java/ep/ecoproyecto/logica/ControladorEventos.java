@@ -51,7 +51,7 @@ public class ControladorEventos {
         if(colision(27,16,0,"right")==true){ eventSonido(2); }
         //if(colision(10,10,0,"any")==true){ musicatienda(); }
         //Se le entrega a tp (posicionX,PosicionY, mapa)para el jugador y (X,Y,mapa) de la casilla que se activo
-        if(colision(9,6,0,"any")==true){ tp(19, 6, 0, 9,6,0); } 
+        if(colision(9,6,0,"any")==true){ tp(19, 6, 1, 9,6,0); } 
         if(colision(10,10,0,"any")==true){ mensaje();}
 
     }
