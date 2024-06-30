@@ -5,6 +5,7 @@ import ep.ecoproyecto.logica.Interfaces.Dibujado;
 import ep.ecoproyecto.logica.entidades.Entidad;
 import ep.ecoproyecto.logica.entidades.Jugador;
 import ep.ecoproyecto.logica.tipografia.Fuentes;
+import ep.ecoproyecto.logica.objetos.Objetosclase;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -18,13 +19,14 @@ public class InterfazJugador implements Dibujado{
     public PanelJuego gp;
     public Font fuente;
     public Graphics2D g2;
-    BufferedImage imagen;
+    public BufferedImage imagen;
     public boolean mensajeOn=false;
     public boolean tiendaOn=false;
+    public boolean victoriamensaje=false;
     public String mensaje="";
     int contmensajes=0;
-    public boolean victoriamensaje=false;
     public int opcion=0;
+    
     
 
     public InterfazJugador(PanelJuego gp) {
@@ -59,6 +61,7 @@ public class InterfazJugador implements Dibujado{
 
         g2.setFont(fuente);
         g2.setColor(Color.white);
+        g2.drawString("Dinero: "+(gp.jugador.dinero),50, 50);
         //g2.drawImage(llaveimagen, gp.tamanioCasilla/2, gp.tamanioCasilla/2, gp.tamanioCasilla,gp.tamanioCasilla,null);
         //g2.drawString("x = "+gp.jugador.llaves, gp.tamanioCasilla*2, gp.tamanioCasilla);   
         
@@ -136,7 +139,7 @@ public class InterfazJugador implements Dibujado{
             int cont=0;
 
             
-            for(Entidad obj:jugador.inventario){
+            for(Objetosclase obj:jugador.inventario){
                 if(obj!=null){
                     g2.drawImage(obj.down1, gp.tamanioCasilla*4+cont, gp.tamanioCasilla/4, gp.tamanioCasilla,gp.tamanioCasilla,null);
                 }
@@ -154,24 +157,39 @@ public class InterfazJugador implements Dibujado{
                 g2.setColor(Color.ORANGE);
                 g2.fillRect(MarcoX, MarcoY, MarcoAncho, MarcoAlto);
                 
-                int cont=1;
-                /*
-                for(Entidad obj:jugador.inventario){
+                int cont=0;
+                
+                for(Objetosclase obj:gp.NPC[0][1].inventario){
                     if(obj!=null){
-                        g2.drawImage(obj.down1, gp.tamanioCasilla*4+cont, gp.tamanioCasilla/4, gp.tamanioCasilla,gp.tamanioCasilla,null);
+                        g2.drawImage(obj.down1, gp.tamanioCasilla*4+(cont), MarcoY, gp.tamanioCasilla,gp.tamanioCasilla,null);
                     }
                     cont=cont+gp.tamanioCasilla;
                 }
-                */
-                g2.setColor(Color.WHITE);
-                g2.drawString("^", MarcoX+32+(opcion*32), MarcoY+MarcoAlto+32);
+                dibujadoinfo(g2,opcion,MarcoY);
                 
-                g2.setColor(Color.ORANGE);
-                g2.fillRect(gp.tamanioCasilla, MarcoY, gp.tamanioCasilla*2, gp.tamanioCasilla);
                 g2.setColor(Color.WHITE);
-                g2.drawString("texto", gp.tamanioCasilla+5, MarcoY+32);
-                
-
+                if(opcion>0){
+                    g2.drawString("^", MarcoX+27+((opcion-1)*64), MarcoY+MarcoAlto+32);
+                }else{
+                    g2.drawString("^", gp.tamanioCasilla/2+32, MarcoY+gp.tamanioCasilla*3);
+                }
+               
+    }
+    
+    public void dibujadoinfo(Graphics2D g2,int objselect ,int MarcoY){
+        int cont=0;
+        g2.setColor(Color.ORANGE);
+        g2.fillRect(gp.tamanioCasilla/2, MarcoY, gp.tamanioCasilla*3, gp.tamanioCasilla*3);
+        g2.setColor(Color.WHITE);
+        
+        for(Objetosclase obj:gp.NPC[0][1].inventario){
+            cont++;
+            if(obj!=null && cont==objselect){
+                g2.drawString(obj.nombre, gp.tamanioCasilla, MarcoY+32);
+                g2.drawString("Precio: "+obj.getPrecio(), gp.tamanioCasilla/2, MarcoY+32+gp.tamanioCasilla);
+            }
+        }
+        g2.drawString("Salir",gp.tamanioCasilla/2, MarcoY+32+gp.tamanioCasilla*2);
     }
     
 

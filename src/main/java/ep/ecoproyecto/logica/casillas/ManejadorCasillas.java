@@ -36,7 +36,7 @@ public class ManejadorCasillas  implements Dibujado{
         
         mapa[0]="/mapas/mapaprueba.txt";
         mapa[1]="/mapas/mapaprueba_1.txt";
-        
+        mapa[2]="/mapas/tienda.txt";
         
         cargarMapa(mapa[gp.mapaActual],0,0);
         getImagenCasilla();

@@ -28,6 +28,7 @@ public class Tienda extends Entidad {
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
         movimiento=false;
+        EstablecerTienda();
     }
     
     
