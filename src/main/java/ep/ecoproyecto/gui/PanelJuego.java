@@ -65,6 +65,7 @@ public class PanelJuego extends JPanel implements Runnable{
 
     public WindowHandler winH;
     public JFrame frame;
+    public boolean pantallaCompleta = false;
 
     public Colisionador colisiones =new Colisionador(this);
     public EmisorObjetos objeto= new EmisorObjetos(this);

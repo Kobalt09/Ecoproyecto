@@ -98,6 +98,34 @@ public class KeyHandler implements KeyListener{
             if (gp.hud.opcionMenu>maxOpcionMenu)
                 gp.hud.opcionMenu = 0;
         }
+        
+        if (code==KeyEvent.VK_A || code==KeyEvent.VK_LEFT){
+            if (gp.hud.subState == 0){
+                if (gp.hud.opcionMenu == 1 && gp.controlmusica.escalaVolumen>0){
+                    gp.controlmusica.escalaVolumen--;
+                    gp.controlmusica.chequearVolumen();
+                    gp.efectos(2);
+                }
+                if (gp.hud.opcionMenu == 2 && gp.efectossonido.escalaVolumen>0){
+                    gp.efectossonido.escalaVolumen--;
+                    gp.efectos(2);
+                }
+            }
+        }
+        
+        if (code==KeyEvent.VK_D || code==KeyEvent.VK_RIGHT){
+            if (gp.hud.subState == 0){
+                if (gp.hud.opcionMenu == 1 && gp.controlmusica.escalaVolumen<5){
+                    gp.controlmusica.escalaVolumen++;
+                    gp.controlmusica.chequearVolumen();
+                    gp.efectos(2);
+                }
+                if (gp.hud.opcionMenu == 2 && gp.efectossonido.escalaVolumen<5){
+                    gp.efectossonido.escalaVolumen++;
+                    gp.efectos(2);
+                }
+            }
+        }
     }
     
 }
