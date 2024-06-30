@@ -51,7 +51,7 @@ public class ControladorEventos {
         if(colision(27,16,0,"right")==true){ eventSonido(2); }
         //if(colision(10,10,0,"any")==true){ musicatienda(); }
         //Se le entrega a tp (posicionX,PosicionY, mapa)para el jugador y (X,Y,mapa) de la casilla que se activo
-        if(colision(9,6,0,"any")==true){ tp(19, 6, 0, 9,6,0); } 
+        if(colision(9,6,0,"any")==true){ tpcasilla(11, 15, 1, 0, 0, 0); } 
         if(colision(10,10,0,"any")==true){ mensaje();}
 
     }
@@ -64,7 +64,7 @@ public class ControladorEventos {
         rectanguloEvento[columna][fila][mapa].x=columna*gp.tamanioCasilla+rectanguloEvento[columna][fila][mapa].x;
         rectanguloEvento[columna][fila][mapa].y=fila*gp.tamanioCasilla+rectanguloEvento[columna][fila][mapa].y;
         
-        if((gp.jugador.hitBox.intersects(rectanguloEvento[columna][fila][mapa]))&&(rectanguloEvento[columna][fila][mapa].Activado==false)&&(Eventoprevio!=rectanguloEvento[columna][fila][mapa])){
+        if((gp.jugador.hitBox.intersects(rectanguloEvento[columna][fila][mapa]))&&(rectanguloEvento[columna][fila][mapa].Activado==false)&&(Eventoprevio!=rectanguloEvento[columna][fila][mapa])&&(gp.mapaActual==mapa)){
             if((gp.jugador.direction.equals(regdirecion)||regdirecion.contentEquals("any"))){
                 hit=true;
                 Eventoprevio=rectanguloEvento[columna][fila][mapa];
@@ -101,12 +101,19 @@ public class ControladorEventos {
     }
     
     //desplazar al jugador
-    public void tp(int x,int y, int mapa,int col, int fil,int mapacasilla){
+    public void tpcasilla(int x,int y, int mapa,int col, int fil,int mapacasilla){
         gp.jugador.xMapa=(x*gp.tamanioCasilla)+gp.tamanioCasilla;
         gp.jugador.yMapa=(y*gp.tamanioCasilla)+gp.tamanioCasilla;
-        gp.mapaActual=mapacasilla;
+        gp.mapaActual=mapa;
         
         //rectanguloEvento[col][fil][mapacasilla].Activado=true;
+    }
+    
+    public void tpinteractuar(int x,int y, int mapa){
+        gp.jugador.xMapa=(x*gp.tamanioCasilla)+gp.tamanioCasilla;
+        gp.jugador.yMapa=(y*gp.tamanioCasilla)+gp.tamanioCasilla;
+        gp.mapaActual=mapa;
+        ;
     }
     
 }

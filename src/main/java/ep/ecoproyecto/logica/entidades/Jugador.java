@@ -24,6 +24,7 @@ public class Jugador extends Entidad{
     protected String username;
     
     //public Entidad inventario[]= new Entidad[10];
+    public int semillas=0;
     public int dinero=0;
     public int llaves=0;
     public boolean interactuar;
@@ -31,7 +32,6 @@ public class Jugador extends Entidad{
     public int estado;
     public int estadojuego=1;
     public int estadotienda=2;
-    public int eventoprevio;
     
     //contador de culdaun en teclas
     public int contador;
@@ -61,8 +61,6 @@ public class Jugador extends Entidad{
         valoresporDefecto();
         getPlayerImage();
     }
-    
-   
     
     public Jugador(PanelJuego gp, KeyHandler keyH, String username){
         
@@ -152,12 +150,10 @@ public class Jugador extends Entidad{
     //condatdor?
     public void aumentarcontador(){
         contador++;
-        
         if(contador>10){
             tecla=true;
             contador=0;
         }
-        
     }
     
     
@@ -350,7 +346,12 @@ public class Jugador extends Entidad{
                     gp.hud.victoriamensaje=true;
                     gp.obj[gp.mapaActual][id]=null;
                 }
-
+                case "semilla" -> {
+                    semillas++;
+                    this.inventario[7]=gp.obj[gp.mapaActual][id];
+                    gp.hud.victoriamensaje=true;
+                    gp.obj[gp.mapaActual][id]=null;
+                }
             }
             
         }
@@ -389,8 +390,26 @@ public class Jugador extends Entidad{
                 }
                 if(gp.NPC[gp.mapaActual][id] instanceof PuertaInteractuable Aux){
                     //x,y,z de la casilla, x,y,z para salir
-                    
-                    gp.ControlEventos.tp(Aux.xMapa,Aux.xMapa, Aux.zMapa, Aux.Xtp, Aux.Ytp, Aux.Ztp);
+                    gp.ControlEventos.tpinteractuar(Aux.Xtp,Aux.Ytp, Aux.Ztp);
+                }
+                
+                if(gp.NPC[gp.mapaActual][id] instanceof Agujero agujero){
+                    if(agujero.estado=="Agujerovacio"){
+                        
+                        if(semillas!=0){
+                            semillas--;
+                            if(llaves==0){
+                                this.inventario[7]=null;
+                            }
+                            gp.hud.mostrarmensaje("Plantaste un Arbol");
+                            agujero.estado="Agujerolleno";
+                            agujero.getImage();
+                        }else{
+                            gp.hud.mostrarmensaje(agujero.Mensaje);
+                        }
+                    }else{
+                        gp.hud.mostrarmensaje("Espero que este Arbol cresca ");
+                    }
                 }
             }
         }

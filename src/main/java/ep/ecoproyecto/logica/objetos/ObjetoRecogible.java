@@ -14,8 +14,8 @@ public class ObjetoRecogible extends Objetosclase{
         this.nombre=nombre;
         this.xMapa=posicionX*gp.tamanioCasilla;
         this.yMapa=posicionY*gp.tamanioCasilla;
-        down1= this.configuracion("/objetos/llave1");
-        colision=true;
+        down1= this.configuracion("/objetos/"+nombre);
+        colision=false;
         
         hitBox= new Rectangle(0,0,64,64);
         areadefectoX=hitBox.x;
