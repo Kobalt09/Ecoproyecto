@@ -4,6 +4,7 @@ import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.Interfaces.Dibujado;
 import ep.ecoproyecto.logica.entidades.Entidad;
 import ep.ecoproyecto.logica.entidades.Jugador;
+import ep.ecoproyecto.logica.tipografia.Fuentes;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -50,6 +51,7 @@ public class InterfazJugador implements Dibujado{
 
     
     public void dibujado(Graphics2D g2,Jugador jugador){
+        this.g2 = g2;
         
         g2.setFont(fuente);
         g2.setColor(Color.white);
@@ -59,6 +61,10 @@ public class InterfazJugador implements Dibujado{
         g2.setColor(Color.white);
         //g2.drawImage(llaveimagen, gp.tamanioCasilla/2, gp.tamanioCasilla/2, gp.tamanioCasilla,gp.tamanioCasilla,null);
         //g2.drawString("x = "+gp.jugador.llaves, gp.tamanioCasilla*2, gp.tamanioCasilla);   
+        
+        if (gp.pause){
+            dibujadoMenuPausa();
+        }
         
         //mostrar mensajes de NPC
         if(mensajeOn==true){
@@ -87,6 +93,34 @@ public class InterfazJugador implements Dibujado{
                 tienda(g2);
             }
         }
+    }
+    
+    public void dibujadoMenuPausa(){
+        String texto = "PAUSA";
+        int x = getXcentrado(texto), y = gp.screenHeight/2;
+        
+        Fuentes tipoFuente=new Fuentes();
+        g2.setFont((tipoFuente.fuente(tipoFuente.upheaval,0,50)));
+        
+        //Bordes Negros//
+        g2.setColor(Color.BLACK);
+        g2.drawString(texto, x - 3, y - 3);
+        g2.drawString(texto, x + 3, y + 3);
+        g2.drawString(texto, x + 3, y - 3);
+        g2.drawString(texto, x - 3, y + 3);
+        g2.drawString(texto, x, y + 3);
+        g2.drawString(texto, x, y - 3);
+        g2.drawString(texto, x + 3, y);
+        g2.drawString(texto, x - 3, y);
+        
+        //Letras Blancas//
+        g2.setColor(Color.WHITE);
+        g2.drawString(texto, x, y);
+    }
+    
+    public int getXcentrado(String texto){
+        int length = (int)g2.getFontMetrics().getStringBounds(texto, g2).getWidth();
+        return gp.screenWidth/2 - length/2;
     }
     
     

@@ -84,7 +84,7 @@ public class PanelJuego extends JPanel implements Runnable{
 
 
     
-    //interfaz
+    //-----ESTADOS DE JUEGO------------//
     public boolean pause;
     
     //----ONLINE-----//
@@ -119,7 +119,7 @@ public class PanelJuego extends JPanel implements Runnable{
         this.jugador=new Jugador(this); //inicializa un jugador en blanco para las funciones que lo necesitan antes de darle valores
         //estado de juego
         
-        pause=true;
+        pause=false;
     }
     
     public void inicioJugador (){
@@ -212,8 +212,10 @@ public class PanelJuego extends JPanel implements Runnable{
     }
     
     public void actualizar(){
-       
-        jugador.update();
+        
+        if (!pause){
+            jugador.update();
+        }
         
         for (JugadorMP jug : jugadores) {
             if (jugador!=jug)jug.update();

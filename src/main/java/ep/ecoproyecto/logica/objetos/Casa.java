@@ -12,7 +12,7 @@ import java.awt.Rectangle;
  *
  * @author hp
  */
-public class Casa extends Entidad {
+public class Casa extends Objetosclase {
     
       public Casa(String nombre, int posicionX, int posicionY, PanelJuego gp) {
         super(gp);
