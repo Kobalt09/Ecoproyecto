@@ -227,7 +227,6 @@ public class PanelJuego extends JPanel implements Runnable{
         
 
         manCas.actualizar(jugador,screenWidth, screenHeight);
-        npcs.actualizar();
       
     }
     

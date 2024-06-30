@@ -126,7 +126,7 @@ public class InterfazJugador implements Dibujado{
         int textoX, textoY;
         
         //TITULO//
-        textoX = getXcentrado("Opciones:") - gp.tamanioCasilla/2;
+        textoX = getXcentrado("Opciones:") - gp.tamanioCasilla/2 - 1;
         textoY = frameY + gp.tamanioCasilla;
         dibujadoLetras("Opciones:",textoX,textoY,true);
         
