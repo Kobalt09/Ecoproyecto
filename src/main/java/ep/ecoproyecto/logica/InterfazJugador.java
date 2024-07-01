@@ -17,7 +17,7 @@ import java.awt.image.BufferedImage;
  */
 public class InterfazJugador implements Dibujado{
     public PanelJuego gp;
-    public Font fuente;
+    public Fuentes fuente= new Fuentes();
     public Graphics2D g2;
     public BufferedImage imagen;
     public boolean mensajeOn=false;
@@ -29,11 +29,11 @@ public class InterfazJugador implements Dibujado{
     public int opcionMenu=0;
     public int subState = 0;
     
-    
+            //titulo.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
 
     public InterfazJugador(PanelJuego gp) {
         this.gp = gp;
-        fuente=new Font("Arial",Font.PLAIN,40);
+        
     }
     
     public void mostrarmensaje(String texto) {
@@ -57,12 +57,11 @@ public class InterfazJugador implements Dibujado{
     public void dibujado(Graphics2D g2,Jugador jugador){
         this.g2 = g2;
         
-        g2.setFont(fuente);
-        g2.setColor(Color.white);
+        g2.setFont(fuente.fuente(fuente.upheaval,0,25));
+        g2.setColor(Color.BLACK);
         g2.drawString("posicion X:"+(gp.jugador.xMapa/64)+" Y "+(gp.jugador.yMapa/64), gp.screenWidth-800, gp.screenHeight-50);
 
-        g2.setFont(fuente);
-        g2.setColor(Color.white);
+        //g2.setFont(fuente);
         g2.drawString("Dinero: "+(gp.jugador.dinero),50, 50);
         //g2.drawImage(llaveimagen, gp.tamanioCasilla/2, gp.tamanioCasilla/2, gp.tamanioCasilla,gp.tamanioCasilla,null);
         //g2.drawString("x = "+gp.jugador.llaves, gp.tamanioCasilla*2, gp.tamanioCasilla);   
@@ -81,7 +80,7 @@ public class InterfazJugador implements Dibujado{
             g2.setColor(Color.black);
             g2.fillRect(gp.screenWidth/3-5, gp.tamanioCasilla/6, tarjeta*15, gp.tamanioCasilla-16);
             g2.setColor(Color.white);
-            g2.setFont(g2.getFont().deriveFont(30F));
+            //g2.setFont(g2.getFont().deriveFont(30F));
             
             g2.drawString(mensaje, gp.screenWidth/3, gp.tamanioCasilla/2+5);   
             contmensajes++;
