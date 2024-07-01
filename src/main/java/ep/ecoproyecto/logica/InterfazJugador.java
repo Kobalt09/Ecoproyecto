@@ -1,5 +1,6 @@
 
 package ep.ecoproyecto.logica;
+import ep.ecoproyecto.gui.Ecoproyecto;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.Interfaces.Dibujado;
 import ep.ecoproyecto.logica.entidades.Jugador;
@@ -110,12 +111,12 @@ public class InterfazJugador implements Dibujado{
         
         int frameX = gp.tamanioCasilla*5;
         int frameY = gp.tamanioCasilla;
-        int frameWidth = gp.tamanioCasilla*8;
-        int frameHeight = gp.tamanioCasilla*10;
     
         switch(subState){
             case 0-> opciones_Top(frameX,frameY);
             case 1-> pantallaCompletaNotif(frameX,frameY);
+            case 2-> controlesMenu(frameX,frameY);
+            case 3-> cerrarJuegoConfirm(frameX,frameY);
         }
         
         gp.keyH.enterPressed = false;
@@ -156,15 +157,25 @@ public class InterfazJugador implements Dibujado{
         //CONTROLES//
         textoY += gp.tamanioCasilla;
         dibujadoLetras("Controles",textoX,textoY,false);
-        if (opcionMenu == 3)
+        if (opcionMenu == 3){
             dibujadoLetras("+",textoX-25,textoY,false);
+            if (gp.keyH.enterPressed){
+                subState = 2;
+                opcionMenu = 0;
+            }
+        }
     
         //CERRAR JUEGO//
         textoX = getXcentrado("Cerrar Juego");
         textoY += gp.tamanioCasilla;
         dibujadoLetras("Cerrar Juego",textoX,textoY,false);
-        if (opcionMenu == 4)
+        if (opcionMenu == 4){
             dibujadoLetras("+",textoX-25,textoY,false);
+            if (gp.keyH.enterPressed){
+                subState = 3;
+                opcionMenu = 0;
+            }
+        }
     
         //CHECK BOX PANTALLA COMPLETA//
         textoX = frameX + gp.tamanioCasilla*6;
@@ -259,8 +270,73 @@ public class InterfazJugador implements Dibujado{
         }
     }
     
-    public void controlesMenu(){
+    public void controlesMenu(int frameX, int frameY){
+        int textoX = getXcentrado("CONTROLES:"),textoY = frameY + gp.tamanioCasilla;
         
+        //TITULO//
+        dibujadoLetras("CONTROLES:",textoX,textoY,true);
+    
+        //ACCIONES//
+        textoX = frameX;
+        textoY += gp.tamanioCasilla;
+        dibujadoLetras("Movimiento",textoX,textoY,false);textoY+=gp.tamanioCasilla;
+        dibujadoLetras("Interactuar",textoX,textoY,false);textoY+=gp.tamanioCasilla;
+        dibujadoLetras("Confirmar",textoX,textoY,false);textoY+=gp.tamanioCasilla;
+        dibujadoLetras("Abrir/Cerrar Menu",textoX,textoY,false);
+        
+        //CONTROLES//
+        textoX = frameX + gp.tamanioCasilla*5;
+        textoY = frameY + gp.tamanioCasilla*2;
+        dibujadoLetras("WASD/FLECHITAS",textoX,textoY,false);textoY+=gp.tamanioCasilla;
+        dibujadoLetras("E",textoX,textoY,false);textoY+=gp.tamanioCasilla;
+        dibujadoLetras("ENTER",textoX,textoY,false);textoY+=gp.tamanioCasilla;
+        dibujadoLetras("ESC/P",textoX,textoY,false);
+        
+        //REGRESAR//
+        textoX = frameX + gp.tamanioCasilla; 
+        textoY = gp.tamanioCasilla*7;
+        dibujadoLetras("Regresar", textoX, textoY,false);
+        if (opcionMenu == 0){
+            dibujadoLetras("+", textoX-25, textoY,false);
+            if (gp.keyH.enterPressed == true){
+                subState = 0;
+                opcionMenu = 3;
+            }
+        }
+    }
+    
+    public void cerrarJuegoConfirm(int frameX, int frameY){
+        int textoX = frameX;
+        int textoY = frameY + gp.tamanioCasilla*3;
+    
+        mensaje = "Deseas salir del juego y \nregresar a la pantalla de titulo?";
+        
+        for (String linea:mensaje.split("\n")){
+            dibujadoLetras(linea,textoX,textoY,false);
+            textoY += 40;
+        }
+        
+        //SI//
+        textoX += gp.tamanioCasilla; 
+        textoY = gp.tamanioCasilla*6;
+        dibujadoLetras("SI", textoX, textoY,false);
+        if (opcionMenu == 0){
+            dibujadoLetras("+", textoX-25, textoY,false);
+            if (gp.keyH.enterPressed == true){
+                gp.regresarAlMenuIni();
+            }
+        }
+        
+        //NO//
+        textoY += gp.tamanioCasilla;
+        dibujadoLetras("NO", textoX, textoY,false);
+        if (opcionMenu == 1){
+            dibujadoLetras("+", textoX-25, textoY,false);
+            if (gp.keyH.enterPressed == true){
+                subState = 0;
+                opcionMenu = 4;
+            }
+        }
     }
     
     public void dibujadoinventario(Graphics2D g2,Jugador jugador){
