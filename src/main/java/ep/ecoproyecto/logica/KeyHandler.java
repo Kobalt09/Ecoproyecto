@@ -83,6 +83,7 @@ public class KeyHandler implements KeyListener{
         int maxOpcionMenu = 0;
         switch(gp.hud.subState){
             case 0->maxOpcionMenu=4;
+            case 3->maxOpcionMenu=1;
         }
         
         if (code==KeyEvent.VK_W || code==KeyEvent.VK_UP){

@@ -214,6 +214,19 @@ public class PanelJuego extends JPanel implements Runnable{
         }
     }
     
+    public void regresarAlMenuIni(){
+        if (gameThread!=null){
+            gameThread.interrupt();
+        }
+        frame.setVisible(false);
+        frame.dispose();
+        
+        //MOSTRAR MENU INICIAL//
+        java.awt.EventQueue.invokeLater(() -> {
+            new MenuIni().setVisible(true);
+        });
+    }
+    
     public void actualizar(){
         
         if (!pause){
