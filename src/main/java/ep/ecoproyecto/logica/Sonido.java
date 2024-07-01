@@ -4,6 +4,7 @@ import java.net.URL;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 
 /**
  *
@@ -13,7 +14,9 @@ public class Sonido {
     //los archivos deben ser WAP de 16bits
     Clip clip;
     URL sonidoURL[]= new URL[30];
-    int sonidoanterior;
+    FloatControl fc;
+    int sonidoanterior, escalaVolumen = 3;
+    float volumen;
     
     public Sonido(){
         
@@ -68,6 +71,8 @@ public class Sonido {
                     AudioInputStream ais= AudioSystem.getAudioInputStream(sonidoURL[i]);
                     clip= AudioSystem.getClip();
                     clip.open(ais);
+                    fc = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
+                    chequearVolumen();
                     clip.start();
                     clip.loop(Clip.LOOP_CONTINUOUSLY);
             }catch(Exception e){}
@@ -78,8 +83,22 @@ public class Sonido {
             AudioInputStream ais= AudioSystem.getAudioInputStream(sonidoURL[i]);
             clip= AudioSystem.getClip();
             clip.open(ais);
+            fc = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
+            chequearVolumen();
             clip.start();
         }catch(Exception e){}
+    }
+    
+    public void chequearVolumen(){
+        switch(escalaVolumen){
+            case 0-> volumen = -80f;
+            case 1-> volumen = -20f;
+            case 2-> volumen = -12f;
+            case 3-> volumen = -5f;
+            case 4-> volumen = 1f;
+            case 5-> volumen = 6f;
+        }
+        fc.setValue(volumen);
     }
     
     

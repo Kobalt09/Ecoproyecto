@@ -1,5 +1,6 @@
 package ep.ecoproyecto.logica.net;
 
+import ep.ecoproyecto.logica.net.packets.Paquete03Mapa;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.entidades.JugadorMP;
 import ep.ecoproyecto.logica.net.packets.Packet;
@@ -61,7 +62,7 @@ public class Server extends Thread{
             case LOGIN->{
                 packet = new Packet00Login(data); 
                 System.out.println("["+direccion.getHostAddress()+":"+puerto+"] "+((Packet00Login)packet).getUsername()+" se ha conectado.");
-                JugadorMP jugador = new JugadorMP(direccion,puerto,juego,((Packet00Login)packet).getUsername(),((Packet00Login)packet).getX(),((Packet00Login)packet).getY(),((Packet00Login)packet).getDir());
+                JugadorMP jugador = new JugadorMP(direccion,puerto,juego,((Packet00Login)packet).getUsername(),((Packet00Login)packet).getX(),((Packet00Login)packet).getY(),((Packet00Login)packet).getDir(),((Packet00Login)packet).getMapa());
                 this.addConnection(jugador,((Packet00Login)packet));
             }
             case DISCONNECT->{
@@ -76,6 +77,12 @@ public class Server extends Thread{
                 this.manejarMov((Packet02Mov)packet);
             }
             
+            case CAMBIO->{
+                packet =new Paquete03Mapa(data);
+                System.out.println(((Paquete03Mapa)packet).getUsername()+" cambiado a mapa "+((Paquete03Mapa)packet).getMapa());
+                this.cambioMapa((Paquete03Mapa)packet);
+            }
+                       
             default->{
                 System.out.println("Paquete desconocido");
             }
@@ -95,7 +102,7 @@ public class Server extends Thread{
                 yaConectado = true;
             }else{
                 enviarData(packet.getData(),j.direccionIP,j.puerto);
-                packet = new Packet00Login(j.getUsername(),j.xMapa,j.yMapa,j.direction);
+                packet = new Packet00Login(j.getUsername(),j.xMapa,j.yMapa,j.direction,j.getMapa());
                 enviarData(packet.getData(),jugador.direccionIP,jugador.puerto);
             }
         }
@@ -164,6 +171,16 @@ public class Server extends Thread{
             this.jugadoresConectados.get(indice).xMapa=packet.getX();
             this.jugadoresConectados.get(indice).yMapa=packet.getY();
             this.jugadoresConectados.get(indice).direction=packet.getDir();
+            packet.writeData(this);
+        }
+    }
+
+    private void cambioMapa(Paquete03Mapa packet) {
+        if(getJugadorMP(packet.getUsername())!=null){
+            
+            int indice=this.getIndiceJugador(packet.getUsername());
+            this.jugadoresConectados.get(indice).setMapa(packet.getMapa());
+            
             packet.writeData(this);
         }
     }

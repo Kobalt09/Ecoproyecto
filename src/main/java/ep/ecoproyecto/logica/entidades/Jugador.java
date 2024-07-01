@@ -22,6 +22,7 @@ public class Jugador extends Entidad{
     public final int pantallaX;
     public final int pantallaY;
     protected String username;
+    protected int mapa;
     
     //public Entidad inventario[]= new Entidad[10];
     public int semillas=0;
@@ -68,7 +69,7 @@ public class Jugador extends Entidad{
         
         this.keyH=keyH;
         this.username=username;
-        
+        this.mapa=0;
         pantallaX=gp.screenWidth/2-(gp.tamanioCasilla/2);
         pantallaY=gp.screenHeight/2-(gp.tamanioCasilla/2);
         
@@ -88,6 +89,14 @@ public class Jugador extends Entidad{
         getPlayerImage();
         
     }
+
+    public int getMapa() {
+        return mapa;
+    }
+
+    public void setMapa(int mapa) {
+        this.mapa = mapa;
+    }
     
     private void valoresporDefecto(){
         //posicion del jugador en el arreglo +1,
@@ -99,9 +108,11 @@ public class Jugador extends Entidad{
         vel=4;
         veloriginal=vel;
         direction ="down"; 
+        
         if(gp.socketserver!=null){
         Packet02Mov packet=new Packet02Mov(username, this.xMapa, this.yMapa,this.direction);
-        packet.writeData(PanelJuego.juego.socketcliente);}
+        packet.writeData(PanelJuego.juego.socketcliente);
+        }
     }
 
     public String getDirection() {
@@ -450,67 +461,67 @@ public class Jugador extends Entidad{
             
         }
        
-        
-        if(gp.jugador.equals(this)) {
-            g2.drawImage(image,pantallaX,pantallaY,null);   
- 
-            if (username != null){
-                Fuentes tipoFuente=new Fuentes();
-                g2.setFont((tipoFuente.fuente(tipoFuente.upheaval,0,20)));
-                int textX = pantallaX + (image.getWidth() - g2.getFontMetrics().stringWidth(username))/2 ;
-                int textY = pantallaY - 5;
+        if (gp.jugador.getMapa()==this.mapa) {   
+            if(gp.jugador.equals(this)) {
+                g2.drawImage(image,pantallaX,pantallaY,null);   
 
-                //Bordes Negros//
-                 g2.setColor(Color.BLACK);
-                 g2.drawString(username, textX - 2, textY - 2);
-                 g2.drawString(username, textX - 2, textY + 2);
-                 g2.drawString(username, textX + 2, textY - 2);
-                 g2.drawString(username, textX + 2, textY + 2);
-                 g2.drawString(username, textX, textY - 2);
-                 g2.drawString(username, textX, textY + 2);
-                 g2.drawString(username, textX - 2, textY);
-                 g2.drawString(username, textX + 2, textY);
+                if (username != null){
+                    Fuentes tipoFuente=new Fuentes();
+                    g2.setFont((tipoFuente.fuente(tipoFuente.upheaval,0,20)));
+                    int textX = pantallaX + (image.getWidth() - g2.getFontMetrics().stringWidth(username))/2 ;
+                    int textY = pantallaY - 5;
 
-                 //Letras Blancas//
-                 g2.setColor(Color.WHITE);
-                 g2.drawString(username, textX, textY);
+                    //Bordes Negros//
+                     g2.setColor(Color.BLACK);
+                     g2.drawString(username, textX - 2, textY - 2);
+                     g2.drawString(username, textX - 2, textY + 2);
+                     g2.drawString(username, textX + 2, textY - 2);
+                     g2.drawString(username, textX + 2, textY + 2);
+                     g2.drawString(username, textX, textY - 2);
+                     g2.drawString(username, textX, textY + 2);
+                     g2.drawString(username, textX - 2, textY);
+                     g2.drawString(username, textX + 2, textY);
 
-            
-            
-            
+                     //Letras Blancas//
+                     g2.setColor(Color.WHITE);
+                     g2.drawString(username, textX, textY);
+
+
+
+
+                }
+            }else
+            {
+                int dibX=gp.jugador.pantallaX+this.xMapa-gp.jugador.xMapa;
+                int dibY=gp.jugador.pantallaY+this.yMapa-gp.jugador.yMapa;
+               // g2.drawImage(image,xMapa,yMapa,null);
+                g2.drawImage(image,dibX,dibY,null);
+
+
+                if (username != null){
+                    Fuentes tipoFuente=new Fuentes();
+                    g2.setFont((tipoFuente.fuente(tipoFuente.upheaval,0,20)));
+                    int textX = dibX + (image.getWidth() - g2.getFontMetrics().stringWidth(username))/2 ;
+                    int textY = dibY - 5;
+
+                    //Bordes Negros//
+                     g2.setColor(Color.BLACK);
+                     g2.drawString(username, textX - 2, textY - 2);
+                     g2.drawString(username, textX - 2, textY + 2);
+                     g2.drawString(username, textX + 2, textY - 2);
+                     g2.drawString(username, textX + 2, textY + 2);
+                     g2.drawString(username, textX, textY - 2);
+                     g2.drawString(username, textX, textY + 2);
+                     g2.drawString(username, textX - 2, textY);
+                     g2.drawString(username, textX + 2, textY);
+
+                     //Letras Blancas//
+                     g2.setColor(Color.WHITE);
+                     g2.drawString(username, textX, textY);
+                }
+
             }
-        }else
-        {
-            int dibX=gp.jugador.pantallaX+this.xMapa-gp.jugador.xMapa;
-            int dibY=gp.jugador.pantallaY+this.yMapa-gp.jugador.yMapa;
-           // g2.drawImage(image,xMapa,yMapa,null);
-            g2.drawImage(image,dibX,dibY,null);
-            
-            
-            if (username != null){
-                Fuentes tipoFuente=new Fuentes();
-                g2.setFont((tipoFuente.fuente(tipoFuente.upheaval,0,20)));
-                int textX = dibX + (image.getWidth() - g2.getFontMetrics().stringWidth(username))/2 ;
-                int textY = dibY - 5;
-
-                //Bordes Negros//
-                 g2.setColor(Color.BLACK);
-                 g2.drawString(username, textX - 2, textY - 2);
-                 g2.drawString(username, textX - 2, textY + 2);
-                 g2.drawString(username, textX + 2, textY - 2);
-                 g2.drawString(username, textX + 2, textY + 2);
-                 g2.drawString(username, textX, textY - 2);
-                 g2.drawString(username, textX, textY + 2);
-                 g2.drawString(username, textX - 2, textY);
-                 g2.drawString(username, textX + 2, textY);
-
-                 //Letras Blancas//
-                 g2.setColor(Color.WHITE);
-                 g2.drawString(username, textX, textY);
-            }
-            
         }
+
     }
-
-
 }

@@ -5,6 +5,7 @@ import ep.ecoproyecto.logica.Interfaces.Dibujado;
 import ep.ecoproyecto.logica.entidades.Jugador;
 import ep.ecoproyecto.logica.tipografia.Fuentes;
 import ep.ecoproyecto.logica.objetos.Objetosclase;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -115,14 +116,17 @@ public class InterfazJugador implements Dibujado{
     
         switch(subState){
             case 0-> opciones_Top(frameX,frameY);
+            case 1-> pantallaCompletaNotif(frameX,frameY);
         }
+        
+        gp.keyH.enterPressed = false;
     }
     
     public void opciones_Top(int frameX, int frameY){
         int textoX, textoY;
         
         //TITULO//
-        textoX = getXcentrado("Opciones:") - gp.tamanioCasilla/2;
+        textoX = getXcentrado("Opciones:") - gp.tamanioCasilla/2 - 1;
         textoY = frameY + gp.tamanioCasilla;
         dibujadoLetras("Opciones:",textoX,textoY,true);
         
@@ -130,9 +134,14 @@ public class InterfazJugador implements Dibujado{
         textoX = frameX;
         textoY += gp.tamanioCasilla;
         dibujadoLetras("Pantalla Completa",textoX,textoY,false);
-        if (opcionMenu == 0)
+        if (opcionMenu == 0){
             dibujadoLetras("+",textoX-25,textoY,false);
-    
+            if (gp.keyH.enterPressed){
+                gp.pantallaCompleta = !gp.pantallaCompleta;
+                subState = 1;
+            }
+        }
+        
         //MUSICA//
         textoY += gp.tamanioCasilla;
         dibujadoLetras("Musica",textoX,textoY,false);
@@ -157,14 +166,51 @@ public class InterfazJugador implements Dibujado{
         dibujadoLetras("Cerrar Juego",textoX,textoY,false);
         if (opcionMenu == 4)
             dibujadoLetras("+",textoX-25,textoY,false);
+    
+        //CHECK BOX PANTALLA COMPLETA//
+        textoX = frameX + gp.tamanioCasilla*6;
+        textoY = frameY + gp.tamanioCasilla + 35;
+        g2.setStroke(new BasicStroke(3));
+        
+        dibujadoRect(textoX,textoY,false,gp.pantallaCompleta ? 1 : 0);
+    
+        //VOLUMEN DE LA MUSICA //
+        textoY += gp.tamanioCasilla;
+        textoX -= gp.tamanioCasilla + 33;
+        
+        dibujadoRect(textoX,textoY,true,gp.controlmusica.escalaVolumen);
+        
+        //VOLUMEN DE LOS EFECTOS DE SONIDO//
+        textoY += gp.tamanioCasilla;
+        dibujadoRect(textoX,textoY,true,gp.efectossonido.escalaVolumen);
     }
     
-    public int getXcentrado(String texto){
+    private int getXcentrado(String texto){
         int length = (int)g2.getFontMetrics().getStringBounds(texto, g2).getWidth();
         return gp.screenWidth/2 - length/2;
     }
     
-    public void dibujadoLetras(String texto, int x, int y, boolean titulo){
+    private void dibujadoRect(int x,int y, boolean rect, int cantidad){
+        int dimX = 36, dimY = 36;
+        if (rect)
+            dimX += 96;
+        g2.setColor(Color.BLACK);
+        g2.drawRect(x, y, dimX, dimY);
+        g2.drawRect(x+6, y+6, dimX-12, dimY-12);
+    
+        g2.setColor(Color.WHITE);
+        g2.drawRect(x+3, y+3, dimX-6, dimY-6);
+        
+        dimX=36;
+        for (int i=0;i<cantidad;i++){
+            g2.setColor(Color.BLACK);
+            g2.drawRect(x+6+i*24, y+6, dimX-12, dimY-12);
+            g2.setColor(Color.WHITE);
+            g2.fillRect(x+8+i*24, y+8, dimX-15, dimY-15);
+        }
+    }
+    
+    private void dibujadoLetras(String texto, int x, int y, boolean titulo){
         Fuentes tipoFuente=new Fuentes();
         int b;
         if (titulo){
@@ -189,6 +235,33 @@ public class InterfazJugador implements Dibujado{
         //Letras Blancas//
         g2.setColor(Color.WHITE);
         g2.drawString(texto, x, y);
+    }
+    
+    public void pantallaCompletaNotif(int frameX, int frameY){
+        int textoX = frameX;
+        int textoY = frameY + gp.tamanioCasilla*3;
+    
+        mensaje = "El cambio tendra efecto \ncuando reinicies el juego";
+        
+        for (String linea:mensaje.split("\n")){
+            dibujadoLetras(linea,textoX,textoY,false);
+            textoY += 40;
+        }
+        
+        //REGRESAR//
+        textoX += gp.tamanioCasilla; 
+        textoY = gp.tamanioCasilla*6;
+        dibujadoLetras("Regresar", textoX, textoY,false);
+        if (opcionMenu == 0){
+            dibujadoLetras("+", textoX-25, textoY,false);
+            if (gp.keyH.enterPressed == true){
+                subState = 0;
+            }
+        }
+    }
+    
+    public void controlesMenu(){
+        
     }
     
     public void dibujadoinventario(Graphics2D g2,Jugador jugador){

@@ -65,6 +65,7 @@ public class PanelJuego extends JPanel implements Runnable{
 
     public WindowHandler winH;
     public JFrame frame;
+    public boolean pantallaCompleta = false;
 
     public Colisionador colisiones =new Colisionador(this);
     public EmisorObjetos objeto= new EmisorObjetos(this);
@@ -129,7 +130,7 @@ public class PanelJuego extends JPanel implements Runnable{
         jugador = new JugadorMP(null,-1,this,keyH,JOptionPane.showInputDialog(this, "Por favor, introduzca su nombre de usuario:"));
         jugadores.add((JugadorMP)jugador);
         
-        Packet00Login loginpacket = new Packet00Login(jugador.getUsername(),jugador.xMapa,jugador.yMapa,jugador.direction);
+        Packet00Login loginpacket = new Packet00Login(jugador.getUsername(),jugador.xMapa,jugador.yMapa,jugador.direction,jugador.getMapa());
         if (socketserver!=null){
             socketserver.addConnection((JugadorMP)jugador, loginpacket);
         }
@@ -224,8 +225,9 @@ public class PanelJuego extends JPanel implements Runnable{
             if (jugador!=jug)jug.update();
         }
         
-        
+
         manCas.actualizar(jugador,screenWidth, screenHeight);
+      
     }
     
     @Override
@@ -235,6 +237,7 @@ public class PanelJuego extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D)g; // estas dos clases son similares pero graphis2D tiene mas funciones para dibujar 
 
         //casillas
+        
         manCas.dibujado(g2);
         
         //objetos
@@ -242,6 +245,8 @@ public class PanelJuego extends JPanel implements Runnable{
         
         //npc
         npcs.dibujado(g2);
+        
+
         //jugadores
         for (JugadorMP jug : jugadores) {
             jug.dibujado(g2);
@@ -290,5 +295,12 @@ public class PanelJuego extends JPanel implements Runnable{
                     }
                     this.jugadores.get(indice).spriteCounter = 0;
                 }
+    }
+
+    public void cambiarMapa(String username, int mapa) {
+        int indice=getIndiceJugador(username);
+        this.jugadores.get(indice).setMapa(mapa);
+        
+        
     }
 }
