@@ -3,6 +3,7 @@ package ep.ecoproyecto.logica;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.Interfaces.Actualizar;
 import ep.ecoproyecto.logica.Interfaces.Dibujado;
+import ep.ecoproyecto.logica.entidades.Agujero;
 import ep.ecoproyecto.logica.entidades.PuertaInteractuable;
 import ep.ecoproyecto.logica.entidades.Tienda;
 import ep.ecoproyecto.logica.entidades.chiguire;
@@ -28,12 +29,15 @@ public class EmisorNPC  implements Dibujado, Actualizar{
         int NumMap = 0;
         gp.NPC[NumMap][0]= new chiguire(gp,10,7);
         gp.NPC[NumMap][1]= new Tienda(gp,9,9);
-        gp.NPC[NumMap][2]= new PuertaInteractuable(gp,13,9,0,11, 15, 0);
-        /*
+        gp.NPC[NumMap][2]= new PuertaInteractuable(gp,13,9,0,1, 1, 1);
+        
         //----MUNDO 2:-----//
         NumMap = 1;
-        */
+        gp.NPC[1][0]= new Agujero(gp,10, 10);
+        gp.NPC[1][1]= new Agujero(gp,1, 5);
         //----MUNDO 3:-----//
+        
+        
         NumMap = 2;
         gp.NPC[NumMap][0]= new PuertaInteractuable(gp,11, 16, 2, 14,10,0);
         /*

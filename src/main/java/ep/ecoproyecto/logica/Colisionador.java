@@ -77,7 +77,7 @@ public class Colisionador {
                     
                     gp.obj[gp.mapaActual][i].hitBox.x=gp.obj[gp.mapaActual][i].xMapa+gp.obj[gp.mapaActual][i].hitBox.x;
                     gp.obj[gp.mapaActual][i].hitBox.y=gp.obj[gp.mapaActual][i].yMapa+gp.obj[gp.mapaActual][i].hitBox.y;
-
+                    
                     switch (entidad.direction) {
                         case "up" -> {
                             entidad.hitBox.y-=entidad.vel;
