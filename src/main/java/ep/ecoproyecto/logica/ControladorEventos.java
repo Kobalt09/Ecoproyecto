@@ -112,10 +112,12 @@ public class ControladorEventos {
     }
     
     public void tpinteractuar(int x,int y, int mapa){
+        
         gp.jugador.xMapa=(x*gp.tamanioCasilla)+gp.tamanioCasilla;
         gp.jugador.yMapa=(y*gp.tamanioCasilla)+gp.tamanioCasilla;
         gp.mapaActual=mapa;
-        ;
+        gp.jugador.setMapa(mapa);
+        gp.manCas.actualizar(gp.jugador,gp.screenWidth ,gp.screenHeight );
     }
     
 }

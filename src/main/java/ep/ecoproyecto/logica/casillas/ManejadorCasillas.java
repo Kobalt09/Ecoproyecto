@@ -25,12 +25,7 @@ public class ManejadorCasillas  implements Dibujado{
         
         this.gp = gp;
         
-        casilla = new Casilla[10];
-        
-        numCasillaMapa= new int[gp.Maximocolumnas][gp.Maximofilas];
-        
-        
-        
+        casilla = new Casilla[10];        
         
         //-----AGREGAR MUNDOS AQUI----------//
         
@@ -80,25 +75,33 @@ public class ManejadorCasillas  implements Dibujado{
                 int colum=0;
                 int fila=0;
                 
+                String line= br.readLine();
+                
+                if(line != null){
+                    String[] arr=line.split(" ");
 
-                while(colum < gp.Maximocolumnas && fila < gp.Maximofilas){
-                    
-                    
-                    String line= br.readLine();
-                    
-                    while(colum < gp.Maximocolumnas){
-                        
-                        String numeros[] = line.split(" ");
-                        
-                        int num = Integer.parseInt(numeros[colum]);
-                        
-                        numCasillaMapa[colum][fila]=num;
-                        colum++;
+                    if(numCasillaMapa==null||numCasillaMapa.length != arr.length ){
+                        numCasillaMapa=new int[arr.length][arr.length]  ;
                     }
-                    if(colum==gp.Maximocolumnas){
-                        colum=0;
-                        fila++;
-                        
+
+                        while(line!=null &&colum <arr.length && fila < arr.length  ){
+
+                            while(colum < arr.length){
+
+                                String numeros[] = line.split(" ");
+
+                                int num = Integer.parseInt(numeros[colum]);
+
+                                numCasillaMapa[colum][fila]=num;
+                                colum++;
+                            }
+                            if(colum==arr.length ){
+                                colum=0;
+                                fila++;
+
+                            }
+                    
+                        line= br.readLine();
                     }
                 }
             }
@@ -123,7 +126,7 @@ public class ManejadorCasillas  implements Dibujado{
         int fila=0;
 
     
-        while (columna < gp.Maximocolumnas && fila <gp.Maximofilas){
+        while (columna < numCasillaMapa.length && fila < numCasillaMapa.length){
         
             int numCasilla = numCasillaMapa[columna][fila];
                 
@@ -140,7 +143,7 @@ public class ManejadorCasillas  implements Dibujado{
                 columna++;
 
 
-                if(columna==gp.Maximofilas){
+                if(columna==numCasillaMapa.length){
                     columna=0;
                     fila++;
                 }
