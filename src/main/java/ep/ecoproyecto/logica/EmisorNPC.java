@@ -30,25 +30,47 @@ public class EmisorNPC  implements Dibujado, Actualizar{
         int NumMap = 0;
         gp.NPC[NumMap][0]= new chiguire(gp,10,7);
         gp.NPC[NumMap][1]= new Tienda(gp,9,9);
-        gp.NPC[NumMap][2]= new PuertaInteractuable(gp,13,9,0,1, 1, 1);
         
-        //----MUNDO 2:-----//
+        //prueba
+        gp.NPC[NumMap][5]= new PuertaInteractuable(gp,19,34,0  ,15, 15, 1);
+        
+        //tienda
+        gp.NPC[NumMap][2]= new PuertaInteractuable(gp,13,9,0   ,6, 7, 2);
+        
+        //der
+        gp.NPC[NumMap][6]= new PuertaInteractuable(gp,32,19,0  ,8, 14, 3);
+        
+        //arr
+        gp.NPC[NumMap][3]= new PuertaInteractuable(gp,20,6,0   ,14, 24, 4);
+        
+        //iz
+        gp.NPC[NumMap][4]= new PuertaInteractuable(gp,7,20,0   ,20, 14, 5); 
+        
+        
+        //----MUNDO 2:----- pruebas//
         NumMap = 1;
         gp.NPC[NumMap][0]= new Agujero(gp,10, 10);
         gp.NPC[NumMap][1]= new Agujero(gp,1, 5);
         gp.NPC[NumMap][2]= new Papelera(gp,1, 1);
-        //----MUNDO 3:-----//
+        
+        gp.NPC[NumMap][0]= new PuertaInteractuable(gp,8, 8, 1, 20,30,0);
         
         
+        //----MUNDO 3:-----  tienda//   
         NumMap = 2;
-        gp.NPC[NumMap][0]= new PuertaInteractuable(gp,11, 16, 2, 14,10,0);
-        /*
-        //----MUNDO 4:-----//
-        NumMap = 3;
+        gp.NPC[NumMap][0]= new PuertaInteractuable(gp,8, 8, 2,   9,10,0);
         
-        //----MUNDO 5:-----//
+        //----MUNDO 4:-----derecha//
+        NumMap = 3;
+        gp.NPC[NumMap][0]= new PuertaInteractuable(gp,8, 14, 3,   30,18,0);
+        
+        //----MUNDO 5:-----arriba// 
         NumMap = 4;
-        */
+        gp.NPC[NumMap][0]= new PuertaInteractuable(gp,15, 25, 4,   20,9,0);
+        
+        //----MUNDO 6:-----izquierda//
+        NumMap = 5;
+        gp.NPC[NumMap][0]= new PuertaInteractuable(gp,22, 15, 5,   8,19,0);
         
     }
     
