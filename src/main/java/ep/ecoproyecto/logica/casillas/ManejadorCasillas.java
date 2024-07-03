@@ -19,19 +19,24 @@ public class ManejadorCasillas  implements Dibujado{
     PanelJuego gp;
     public Casilla[] casilla;
     public int numCasillaMapa[][];
-    public String mapa[]= new String[5];
+    public String mapa[]= new String[6];
 
     public ManejadorCasillas(PanelJuego gp) {
         
         this.gp = gp;
         
-        casilla = new Casilla[10];        
+        casilla = new Casilla[20];        
         
         //-----AGREGAR MUNDOS AQUI----------//
         
-        mapa[0]="/mapas/mapaprueba.txt";
-        mapa[1]="/mapas/mapaprueba_1.txt";
+        mapa[0]="/mapas/mapaCentro.txt";
+        mapa[1]="/mapas/mapapruebas.txt";
         mapa[2]="/mapas/tienda.txt";
+        mapa[3]="/mapas/mapaDerecha.txt";
+        mapa[4]="/mapas/mapaArriba.txt";
+        mapa[5]="/mapas/mapaIzquierda.txt";
+         
+        
         
         cargarMapa(mapa[gp.mapaActual],0,0);
         getImagenCasilla();
@@ -40,13 +45,22 @@ public class ManejadorCasillas  implements Dibujado{
     
     private void getImagenCasilla(){
 
-            configutacion(0, "pasto", false);
-            configutacion(1, "agua", true);
-            configutacion(2, "pared", false);
-            configutacion(3, "arbol", true);
-            configutacion(4, "arena", false);
-            configutacion(5, "asfalto", true);
             
+            configutacion(0, "agua", true);       
+            configutacion(1, "aguaA", true);
+            configutacion(2, "aguaAD", true);
+            configutacion(3, "aguaAb", true);
+            configutacion(4, "aguaAbI", true);
+            configutacion(5, "aguaD", true);
+            configutacion(6, "aguaDA", true);
+            configutacion(7, "aguaI", true);
+            configutacion(8, "aguaIA", true);
+            configutacion(9, "arbol", true);
+            configutacion(10, "arena", false);
+            configutacion(11, "asfalto", true);
+            configutacion(12, "pared", false);          
+            configutacion(13, "pasto", false);
+            configutacion(14, "lodo", false);
     }
     
     public void configutacion(int id,String ruta, boolean colision){
