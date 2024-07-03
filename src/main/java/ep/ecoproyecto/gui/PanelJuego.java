@@ -48,8 +48,8 @@ public class PanelJuego extends JPanel implements Runnable{
     
     //configuracion de mapa
     public final int Maximocolumnas=40;
-    public final int Maximofilas=34;
-    public final int Maximomundos=5;
+    public final int Maximofilas=40;
+    public final int Maximomundos=6;
     public int mapaActual=0;
     public static PanelJuego juego;
      

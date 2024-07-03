@@ -36,8 +36,7 @@ public class ControladorEventos {
                 //System.out.println(fila);
                 fila++;
             }
-            
-            if (columna == gp.Maximocolumnas-1&&fila == gp.Maximofilas-1){
+            if (columna == gp.Maximocolumnas - 1 &&fila == gp.Maximofilas-1){
                 columna = 0;
                 fila = 0;
                 mapa++;
@@ -47,6 +46,7 @@ public class ControladorEventos {
     
     public void chequeoEvento(){
         //NOTA LOS EVENTOS SOLO SE ACTIVAN 1 VEZ LUEGO ES NECESARIO ACTIVAR OTRO EVENTO
+        if (gp.mapaActual==0){
         //evento sonido
         if(colision(27,16,0,"right")==true){ eventSonido(2); }
         //if(colision(10,10,0,"any")==true){ musicatienda(); }
@@ -63,6 +63,7 @@ public class ControladorEventos {
         
         gp.jugador.hitBox.x=gp.jugador.xMapa+gp.jugador.hitBox.width;
         gp.jugador.hitBox.y=gp.jugador.yMapa+gp.jugador.hitBox.height;
+        
         rectanguloEvento[columna][fila][mapa].x=columna*gp.tamanioCasilla+rectanguloEvento[columna][fila][mapa].x;
         rectanguloEvento[columna][fila][mapa].y=fila*gp.tamanioCasilla+rectanguloEvento[columna][fila][mapa].y;
         
@@ -116,6 +117,7 @@ public class ControladorEventos {
     }
     
     public void tpinteractuar(int x,int y, int mapa){
+        
         gp.jugador.xMapa=(x*gp.tamanioCasilla)+gp.tamanioCasilla;
         gp.jugador.yMapa=(y*gp.tamanioCasilla)+gp.tamanioCasilla;
         gp.mapaActual=mapa;
