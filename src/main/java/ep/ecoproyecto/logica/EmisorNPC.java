@@ -30,13 +30,16 @@ public class EmisorNPC  implements Dibujado, Actualizar{
         int NumMap = 0;
         gp.NPC[NumMap][0]= new chiguire(gp,10,7);
         gp.NPC[NumMap][1]= new Tienda(gp,9,9);
-        gp.NPC[NumMap][2]= new PuertaInteractuable(gp,13,9,0,1, 1, 1);
+        //posicion de la puerta(x,y,z), luego posiciona a la que hara el tp(xyz)
+        gp.NPC[NumMap][2]= new PuertaInteractuable(gp,13,9,0,3, 1, 1);
         
         //----MUNDO 2:-----//
         NumMap = 1;
         gp.NPC[NumMap][0]= new Agujero(gp,10, 10);
         gp.NPC[NumMap][1]= new Agujero(gp,1, 5);
         gp.NPC[NumMap][2]= new Papelera(gp,1, 1);
+        gp.NPC[NumMap][3]= new PuertaInteractuable(gp,2, 1, 1, 14,9,0);
+        
         //----MUNDO 3:-----//
         
         
