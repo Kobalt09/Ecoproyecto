@@ -55,7 +55,9 @@ public class ControladorEventos {
         if(colision(9,6,0,"any")==true){ tpcasilla(11, 15, 1); } 
 
         //if(colision(10,10,0,"any")==true){ mensaje();}
-        if(colision(9,9,1,"any")==true){ mensaje();}
+        if(colision(9,9,1,"any")==true){ mensaje(); }
+        
+        }
     }
     
     public boolean colision(int columna, int fila,int mapa ,String regdirecion){
