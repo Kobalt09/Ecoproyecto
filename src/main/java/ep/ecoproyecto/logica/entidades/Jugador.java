@@ -152,10 +152,8 @@ public class Jugador extends Entidad{
                 //actualizamos la posicion del jugador sumando o restando su velocidad
                 
                 switch(estado){
-                    case 1:estadoJuego();
-                        break;
-                    case 2:estadoTienda();
-                        break;
+                    case 1 -> estadoJuego();
+                    case 2 -> estadoTienda();
                 }
                 
                 if(tecla==false){
