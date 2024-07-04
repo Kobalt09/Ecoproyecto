@@ -412,7 +412,12 @@ public class Jugador extends Entidad{
                         estado=estadotienda;
                         }
                     case PuertaInteractuable  aux -> {
-                        gp.ControlEventos.tpinteractuar(aux.Xtp,aux.Ytp, aux.Ztp);
+                            if(aux.Ztp==2){
+                                gp.ControlEventos.musicatienda();
+                            }else if(gp.mapaActual==2){
+                                gp.ControlEventos.musicatienda();
+                            }
+                            gp.ControlEventos.tpinteractuar(aux.Xtp,aux.Ytp, aux.Ztp);
                         }
                     case Papelera  aux -> {
                             if(this.cantInventario[2]!=0){

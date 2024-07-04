@@ -16,7 +16,7 @@ public class ObjetoMesa extends Objetosclase{
         this.yMapa=posicionY*gp.tamanioCasilla;
         down1= this.configuracion("/objetos/mesa");
         colision=false;
-        hitBox= new Rectangle(16,16,32,32);
+        hitBox= new Rectangle(0,0,64,64);
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
     }
