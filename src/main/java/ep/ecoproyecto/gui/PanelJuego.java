@@ -5,6 +5,7 @@ import ep.ecoproyecto.logica.EmisorObjetos;
 import ep.ecoproyecto.logica.EmisorNPC;
 import ep.ecoproyecto.logica.Sonido;
 import ep.ecoproyecto.logica.Colisionador;
+import ep.ecoproyecto.logica.Configuracion;
 import ep.ecoproyecto.logica.ControladorMinijuegos;
 import ep.ecoproyecto.logica.KeyHandler;
 import ep.ecoproyecto.logica.WindowHandler;
@@ -20,6 +21,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
@@ -43,8 +46,9 @@ public class PanelJuego extends JPanel implements Runnable{
     public final int maxColumnasPantalla= 16;
     //public final int maxColumnasPantalla= 10;
     public final int maxFilasPantalla = 10;
-    public final int screenWidth=tamanioCasilla *maxColumnasPantalla; // resoluciom en x 1024
-    public final int screenHeight=tamanioCasilla *maxFilasPantalla; //  resoluciom en x  640
+    public int screenWidth=tamanioCasilla *maxColumnasPantalla; // resoluciom en x 1024
+    public int screenHeight=tamanioCasilla *maxFilasPantalla; //  resoluciom en x  640
+    
     
     //configuracion de mapa
     public final int Maximocolumnas=40;
@@ -65,7 +69,7 @@ public class PanelJuego extends JPanel implements Runnable{
     public KeyHandler keyH= new KeyHandler();                    // detecta el teclado
     public Sonido controlmusica = new Sonido();
     public Sonido efectossonido = new Sonido();
-
+    public Configuracion config = new Configuracion(this);
     public WindowHandler winH;
     public JFrame frame;
     public boolean pantallaCompleta = false;
@@ -125,9 +129,24 @@ public class PanelJuego extends JPanel implements Runnable{
         this.reproducirmusica(musica);
         
         this.jugador=new Jugador(this); //inicializa un jugador en blanco para las funciones que lo necesitan antes de darle valores
-        //estado de juego
         
+        //ESTADO DE JUEGO//
         pause=false;
+        
+        if (pantallaCompleta){
+            setPantallaCompleta();
+        }
+    }
+    
+    public void setPantallaCompleta(){
+        //OBTENER DISPOSITIVO DE PANTALLA LOCAL//
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice gd = ge.getDefaultScreenDevice();
+        gd.setFullScreenWindow(frame);
+        
+        //CONSEGUIR LOS DATOS DE LA NUEVA RESOLUCION//
+        screenWidth = frame.getWidth();
+        screenHeight = frame.getHeight();
     }
     
     public void inicioJugador (){
@@ -220,8 +239,14 @@ public class PanelJuego extends JPanel implements Runnable{
     }
     
     public void regresarAlMenuIni(){
+        //DETENER MUSICA//
+        controlmusica.detenerMusica();
+        
+        //PAQUETE DE DESCONEXION//
         Packet01Disconnect packet = new Packet01Disconnect(this.jugador.getUsername());
         packet.writeData(this.socketcliente);
+        
+        //CERRAR JUEGO//
         if (gameThread!=null){
             gameThread.interrupt();
         }

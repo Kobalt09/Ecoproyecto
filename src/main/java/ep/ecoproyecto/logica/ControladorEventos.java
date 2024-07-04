@@ -46,16 +46,21 @@ public class ControladorEventos {
     
     public void chequeoEvento(){
         //NOTA LOS EVENTOS SOLO SE ACTIVAN 1 VEZ LUEGO ES NECESARIO ACTIVAR OTRO EVENTO
-        if (gp.mapaActual==0){
+        
         //evento sonido
-        if(colision(27,16,0,"right")==true){ eventSonido(2); }
-        //if(colision(10,10,0,"any")==true){ musicatienda(); }
+        //if(colision(27,16,0,"right")==true){ eventSonido(2); }
+        if(colision(15,15,0,"any")==true){ musicatienda(); }
         //Se le entrega a tp (posicionX,PosicionY, mapa)para el jugador y (X,Y,mapa) de la casilla que se activo
 
         if(colision(9,6,0,"any")==true){ tpcasilla(11, 15, 1); } 
 
         //if(colision(10,10,0,"any")==true){ mensaje();}
-        if(colision(9,9,1,"any")==true){ mensaje();}
+        if(colision(9,9,1,"any")==true){ mensaje(); }
+        
+        if (gp.mapaActual==2){
+            if(colision(5,5,2,"any")==true)
+            {mensaje();}
+        }
     }
     
     public boolean colision(int columna, int fila,int mapa ,String regdirecion){
@@ -111,6 +116,7 @@ public class ControladorEventos {
         gp.mini.activarmini(1, 1);
 
         gp.jugador.setMapa(mapa);
+        gp.manCas.actualizar(gp.jugador, gp.screenWidth, gp.screenHeight);
         Paquete03Mapa packet =new Paquete03Mapa(mapa, gp.jugador.getUsername());
         packet.writeData(gp.socketcliente);
         //rectanguloEvento[col][fil][mapacasilla].Activado=true;
@@ -120,9 +126,11 @@ public class ControladorEventos {
         
         gp.jugador.xMapa=(x*gp.tamanioCasilla)+gp.tamanioCasilla;
         gp.jugador.yMapa=(y*gp.tamanioCasilla)+gp.tamanioCasilla;
-        gp.mapaActual=mapa;
-        
+        gp.mapaActual=mapa;       
         gp.jugador.setMapa(mapa);
+        gp.manCas.actualizar(gp.jugador, gp.screenWidth, gp.screenHeight);
+        
+        
         Paquete03Mapa packet =new Paquete03Mapa(mapa, gp.jugador.getUsername());
         packet.writeData(gp.socketcliente);
         

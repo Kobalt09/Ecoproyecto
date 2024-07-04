@@ -1,4 +1,5 @@
 package ep.ecoproyecto.gui;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -12,9 +13,16 @@ public class Ecoproyecto {
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setResizable(false);
         ventana.setTitle("ECOPROYECTO");
+        ventana.setIconImage((new ImageIcon(getClass().getResource("/player/jg_abj_01.png"))).getImage());
      
         PanelJuego panelDeJuego= new PanelJuego(ventana);
-        ventana.add(panelDeJuego);        
+        ventana.add(panelDeJuego); 
+
+        panelDeJuego.config.cargarConfig();
+        if (panelDeJuego.pantallaCompleta){
+            ventana.setUndecorated(true);
+        }
+        
         ventana.pack();
         
         ventana.setLocationRelativeTo(null);

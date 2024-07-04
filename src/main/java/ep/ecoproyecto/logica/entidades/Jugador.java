@@ -152,10 +152,8 @@ public class Jugador extends Entidad{
                 //actualizamos la posicion del jugador sumando o restando su velocidad
                 
                 switch(estado){
-                    case 1:estadoJuego();
-                        break;
-                    case 2:estadoTienda();
-                        break;
+                    case 1 -> estadoJuego();
+                    case 2 -> estadoTienda();
                 }
                 
                 if(tecla==false){
@@ -414,9 +412,17 @@ public class Jugador extends Entidad{
                         gp.hud.mostrarmensaje("tienda");
                         estado=estadotienda;
                         }
+                    
+                    
                     case PuertaInteractuable  aux -> {
-                        gp.ControlEventos.tpinteractuar(aux.Xtp,aux.Ytp, aux.Ztp);
-                        gp.mini.activarmini(1, 0);
+                            if(aux.Ztp==2){
+                                gp.ControlEventos.musicatienda();
+                            }else if(gp.mapaActual==2){
+                                gp.ControlEventos.musicatienda();
+                            }
+                            gp.ControlEventos.tpinteractuar(aux.Xtp,aux.Ytp, aux.Ztp);
+                            gp.mini.activarmini(1, 0);
+
                         }
                     case Papelera  aux -> {
                             if(this.cantInventario[2]!=0){

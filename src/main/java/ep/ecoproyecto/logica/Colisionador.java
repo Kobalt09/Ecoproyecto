@@ -16,51 +16,53 @@ public class Colisionador {
     }
     
     public void revisarColision(Entidad entidad){
-            int posiciojugadorizquierda=entidad.xMapa+entidad.hitBox.x;
-            int posiciojugadorderecha=entidad.xMapa+entidad.hitBox.x+entidad.hitBox.width;
-            int posiciojugadorarriba=entidad.yMapa+entidad.hitBox.y;
-            int posiciojugadorabajo=entidad.yMapa+entidad.hitBox.y+entidad.hitBox.height;
-            
-            int columizquierda=posiciojugadorizquierda/gp.tamanioCasilla;
-            int columderecha=posiciojugadorderecha/gp.tamanioCasilla;
-            int filaarriba=posiciojugadorarriba/gp.tamanioCasilla;
-            int filaabajo=posiciojugadorabajo/gp.tamanioCasilla;
-           
-            int casilla1, casilla2;
-                switch (entidad.direction) {
-                        case "up" -> {  
-                            filaarriba=(posiciojugadorarriba-entidad.vel)/gp.tamanioCasilla;
-                            casilla1=gp.manCas.numCasillaMapa[columizquierda][filaarriba];
-                            casilla2=gp.manCas.numCasillaMapa[columderecha][filaarriba];
-                            if (gp.manCas.casilla[casilla1].colision==true ||gp.manCas.casilla[casilla2].colision==true){
-                                entidad.colision=true;
-                            }
-                        }
-                        case "left" -> {
-                            columizquierda=(posiciojugadorizquierda-entidad.vel)/gp.tamanioCasilla;
-                            casilla1=gp.manCas.numCasillaMapa[columizquierda][filaarriba];
-                            casilla2=gp.manCas.numCasillaMapa[columizquierda][filaabajo];
-                            if (gp.manCas.casilla[casilla1].colision==true ||gp.manCas.casilla[casilla2].colision==true){
-                                entidad.colision=true;
-                            }
-                        }
-                        case "down" -> {
-                            filaabajo=(posiciojugadorabajo+entidad.vel)/gp.tamanioCasilla;
-                            casilla1=gp.manCas.numCasillaMapa[columizquierda][filaabajo];
-                            casilla2=gp.manCas.numCasillaMapa[columderecha][filaabajo];
-                            if (gp.manCas.casilla[casilla1].colision==true ||gp.manCas.casilla[casilla2].colision==true){
-                                entidad.colision=true;
-                            }
-                        }
-                        case "right" -> {
-                            columderecha=(posiciojugadorderecha+entidad.vel)/gp.tamanioCasilla;
-                            casilla1=gp.manCas.numCasillaMapa[columderecha][filaarriba];
-                            casilla2=gp.manCas.numCasillaMapa[columderecha][filaabajo];
-                            if (gp.manCas.casilla[casilla1].colision==true ||gp.manCas.casilla[casilla2].colision==true){
-                                entidad.colision=true;
-                            }
-                        }
+        int posiciojugadorizquierda=entidad.xMapa+entidad.hitBox.x;
+        int posiciojugadorderecha=entidad.xMapa+entidad.hitBox.x+entidad.hitBox.width;
+        int posiciojugadorarriba=entidad.yMapa+entidad.hitBox.y;
+        int posiciojugadorabajo=entidad.yMapa+entidad.hitBox.y+entidad.hitBox.height;
+
+        int columizquierda=posiciojugadorizquierda/gp.tamanioCasilla;
+        int columderecha=posiciojugadorderecha/gp.tamanioCasilla;
+        int filaarriba=posiciojugadorarriba/gp.tamanioCasilla;
+        int filaabajo=posiciojugadorabajo/gp.tamanioCasilla;
+        
+        
+        int casilla1, casilla2;
+        switch (entidad.direction) {
+            case "up" -> {  
+                filaarriba=(posiciojugadorarriba-entidad.vel)/gp.tamanioCasilla;
+                casilla1=gp.manCas.numCasillaMapa[columizquierda][filaarriba];
+                casilla2=gp.manCas.numCasillaMapa[columderecha][filaarriba];
+                if (gp.manCas.casilla[casilla1].colision==true ||gp.manCas.casilla[casilla2].colision==true){
+                    entidad.colision=true;
                 }
+            }
+            case "left" -> {
+                columizquierda=(posiciojugadorizquierda-entidad.vel)/gp.tamanioCasilla;
+                casilla1=gp.manCas.numCasillaMapa[columizquierda][filaarriba];
+                casilla2=gp.manCas.numCasillaMapa[columizquierda][filaabajo];
+                if (gp.manCas.casilla[casilla1].colision==true ||gp.manCas.casilla[casilla2].colision==true){
+                    entidad.colision=true;
+                }
+            }
+            case "down" -> {
+                filaabajo=(posiciojugadorabajo+entidad.vel)/gp.tamanioCasilla;
+                casilla1=gp.manCas.numCasillaMapa[columizquierda][filaabajo];
+                casilla2=gp.manCas.numCasillaMapa[columderecha][filaabajo];
+                if (gp.manCas.casilla[casilla1].colision==true ||gp.manCas.casilla[casilla2].colision==true){
+                    entidad.colision=true;
+                }
+            }
+            case "right" -> {
+                columderecha=(posiciojugadorderecha+entidad.vel)/gp.tamanioCasilla;
+                casilla1=gp.manCas.numCasillaMapa[columderecha][filaarriba];
+                casilla2=gp.manCas.numCasillaMapa[columderecha][filaabajo];
+                if (gp.manCas.casilla[casilla1].colision==true ||gp.manCas.casilla[casilla2].colision==true){
+                    entidad.colision=true;
+                }
+            }
+            
+        }
     }
 
     //chequeo de colision con objetos

@@ -193,6 +193,9 @@ public class InterfazJugador implements Dibujado{
         //VOLUMEN DE LOS EFECTOS DE SONIDO//
         textoY += gp.tamanioCasilla;
         dibujadoRect(textoX,textoY,true,gp.efectossonido.escalaVolumen);
+    
+        //GUARDADO//
+        gp.config.guardarConfig();
     }
     
     private int getXcentrado(String texto){
@@ -371,7 +374,7 @@ public class InterfazJugador implements Dibujado{
                 
                 int cont=0;
                 
-                for(Objetosclase obj:gp.NPC[0][1].inventario){
+                for(Objetosclase obj:gp.NPC[2][1].inventario){
                     if(obj!=null){
                         g2.drawImage(obj.down1, gp.tamanioCasilla*4+(cont), MarcoY, gp.tamanioCasilla,gp.tamanioCasilla,null);
                     }
