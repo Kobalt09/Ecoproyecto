@@ -412,6 +412,8 @@ public class Jugador extends Entidad{
                         gp.hud.mostrarmensaje("tienda");
                         estado=estadotienda;
                         }
+                    
+                    
                     case PuertaInteractuable  aux -> {
                             if(aux.Ztp==2){
                                 gp.ControlEventos.musicatienda();

@@ -116,6 +116,7 @@ public class ControladorEventos {
         gp.mini.activarmini(1, 1);
 
         gp.jugador.setMapa(mapa);
+        gp.manCas.actualizar(gp.jugador, gp.screenWidth, gp.screenHeight);
         Paquete03Mapa packet =new Paquete03Mapa(mapa, gp.jugador.getUsername());
         packet.writeData(gp.socketcliente);
         //rectanguloEvento[col][fil][mapacasilla].Activado=true;
@@ -125,9 +126,11 @@ public class ControladorEventos {
         
         gp.jugador.xMapa=(x*gp.tamanioCasilla)+gp.tamanioCasilla;
         gp.jugador.yMapa=(y*gp.tamanioCasilla)+gp.tamanioCasilla;
-        gp.mapaActual=mapa;
-        
+        gp.mapaActual=mapa;       
         gp.jugador.setMapa(mapa);
+        gp.manCas.actualizar(gp.jugador, gp.screenWidth, gp.screenHeight);
+        
+        
         Paquete03Mapa packet =new Paquete03Mapa(mapa, gp.jugador.getUsername());
         packet.writeData(gp.socketcliente);
         
