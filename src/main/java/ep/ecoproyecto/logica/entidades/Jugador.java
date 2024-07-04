@@ -196,13 +196,11 @@ public class Jugador extends Entidad{
         colision=false;
         gp.colisiones.revisarColision(this);
     
-        //colision NPC
-           //int entidadID=gp.colisiones.chequeoEntidades(this, gp.NPC);
-                   //intereaccionNCP(entidadID);
+                //colision NPC
+
                 intereaccionNCP(gp.colisiones.chequeoEntidades(this, gp.NPC));
                 //colision objetos
-                    //int objID=gp.colisiones.chequeoObjetos(this, true);
-                    //recogerobjetos(objID);
+
                 recogerobjetos(gp.colisiones.chequeoObjetos(this, true));
             
                 //colision eventos
@@ -237,7 +235,6 @@ public class Jugador extends Entidad{
                 Packet02Mov packet=new Packet02Mov(username, this.xMapa, this.yMapa,this.direction);
                 packet.writeData(PanelJuego.juego.socketcliente);
                 
-
                 spriteCounter++;
                 if (spriteCounter>10){
                     if (spriteNum == 2 ){
@@ -279,30 +276,36 @@ public class Jugador extends Entidad{
                     for(Objetosclase obj:gp.NPC[0][1].inventario){
                         
                         if(obj!=null && cont==(gp.hud.opcion-1) ){
-                            System.out.println(obj.nombre);
-                            switch(obj.nombre){
-                                case "llave" -> {
-                                    this.cantInventario[1]++;
-                                    gp.efectos(2);
-                                    gp.hud.mostrarmensaje("conseguiste una llave");
-                                    this.inventario[1]=new ObjetoRecogible("llave", 0, 0, gp);
-                                    gp.NPC[0][1].inventario[cont]=null;
-                                }   
-                                case "botas" -> {
-                                    if(this.inventario[0]==null){
-                                        gp.efectos(4);
-                                        gp.hud.mostrarmensaje("conseguiste "+obj.nombre);
-                                        vel=vel+2;
-                                        this.inventario[0]=new ObjetoEquipo("Botas", 0, 0, gp);
+                            //System.out.println(obj.nombre);
+                            if(!(obj.getPrecio()>this.cantInventario[9])){
+                                
+                                this.cantInventario[9]=this.cantInventario[9]-obj.getPrecio();
+                                switch(obj.nombre){
+                                    case "llave" -> {
+                                        this.cantInventario[1]++;
+                                        gp.efectos(2);
+                                        gp.hud.mostrarmensaje("conseguiste una llave");
+                                        this.inventario[1]=new ObjetoRecogible("llave", 0, 0, gp);
+                                        gp.NPC[0][1].inventario[cont]=null;
+                                    }   
+                                    case "botas" -> {
+                                        if(this.inventario[0]==null){
+                                            gp.efectos(4);
+                                            gp.hud.mostrarmensaje("conseguiste "+obj.nombre);
+                                            vel=vel+2;
+                                            this.inventario[0]=new ObjetoEquipo("Botas", 0, 0, gp);
+                                            gp.NPC[0][1].inventario[cont]=null;
+                                        }
+                                    }
+                                    case "coin" -> {
+                                        this.cantInventario[9]++;
+                                        gp.efectos(2);
                                         gp.NPC[0][1].inventario[cont]=null;
                                     }
                                 }
-                                case "coin" -> {
-                                    this.cantInventario[9]++;
-                                    gp.efectos(2);
-                                    gp.NPC[0][1].inventario[cont]=null;
-                                }
-                            }
+                            }else{
+                                gp.hud.mostrarmensaje("ES MUY CARO NO PUEDES PAGARLO");
+                            }    
                         }
                         cont++;
                     }
@@ -413,6 +416,7 @@ public class Jugador extends Entidad{
                         }
                     case PuertaInteractuable  aux -> {
                         gp.ControlEventos.tpinteractuar(aux.Xtp,aux.Ytp, aux.Ztp);
+                        gp.mini.activarmini(1, 0);
                         }
                     case Papelera  aux -> {
                             if(this.cantInventario[2]!=0){
