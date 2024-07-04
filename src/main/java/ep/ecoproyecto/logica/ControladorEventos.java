@@ -46,10 +46,10 @@ public class ControladorEventos {
     
     public void chequeoEvento(){
         //NOTA LOS EVENTOS SOLO SE ACTIVAN 1 VEZ LUEGO ES NECESARIO ACTIVAR OTRO EVENTO
-        if (gp.mapaActual==0){
+        
         //evento sonido
-        if(colision(27,16,0,"right")==true){ eventSonido(2); }
-        //if(colision(10,10,0,"any")==true){ musicatienda(); }
+        //if(colision(27,16,0,"right")==true){ eventSonido(2); }
+        if(colision(15,15,0,"any")==true){ musicatienda(); }
         //Se le entrega a tp (posicionX,PosicionY, mapa)para el jugador y (X,Y,mapa) de la casilla que se activo
 
         if(colision(9,6,0,"any")==true){ tpcasilla(11, 15, 1); } 
@@ -57,6 +57,9 @@ public class ControladorEventos {
         //if(colision(10,10,0,"any")==true){ mensaje();}
         if(colision(9,9,1,"any")==true){ mensaje(); }
         
+        if (gp.mapaActual==2){
+            if(colision(5,5,2,"any")==true)
+            {mensaje();}
         }
     }
     

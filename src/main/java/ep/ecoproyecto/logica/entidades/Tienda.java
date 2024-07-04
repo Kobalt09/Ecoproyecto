@@ -41,4 +41,6 @@ public class Tienda extends Entidad {
         this.inventario[2].setPrecio(1);
     }
     
+    
+    
 }

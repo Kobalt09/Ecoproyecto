@@ -30,10 +30,10 @@ public class EmisorObjetos  implements Dibujado{
         gp.obj[NumMap][2]=new ObjetoPuerta("puerta",7,8,gp);
         gp.obj[NumMap][3]=new ObjetoCofre("cofre",3,7,gp);
         gp.obj[NumMap][4]=new ObjetoEquipo("botas",16,6,gp);
-        gp.obj[NumMap][5]=new ObjetoMesa("mesa",9,9,gp);
+        //gp.obj[NumMap][5]=new ObjetoMesa("mesa",9,9,gp);
         gp.obj[NumMap][6]=new ObjetoMoneda("coin",10,10,gp);
         gp.obj[NumMap][7]=new Casa("casa",11,8,gp);
-        //----MUNDO 2:-----//
+        //----MUNDO 2:----- pruebas//
         NumMap = 1;
         
         gp.obj[NumMap][0]=new ObjetoRecogible("semilla",20,9,gp);
@@ -41,16 +41,18 @@ public class EmisorObjetos  implements Dibujado{
         gp.obj[NumMap][2]=new ObjetoRecogible("semilla",6,10,gp);
         
         gp.obj[NumMap][3]=new ObjetoRecogible("basura",8,8,gp);
-        /*
-        //----MUNDO 3:-----//
-        NumMap = 2;
         
-        //----MUNDO 4:-----//
+        //----MUNDO 3:-----  tienda//   
+        NumMap = 2;
+        gp.obj[NumMap][5]=new ObjetoMesa("mesa",9,1,gp);
+        /*
+        //----MUNDO 4:-----derecha//
         NumMap = 3;
         
-        //----MUNDO 5:-----//
+        //----MUNDO 5:-----arriba// 
         NumMap = 4;
         */
+        
     }
     /*
     public void Agregar(){

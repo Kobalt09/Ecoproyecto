@@ -58,22 +58,22 @@ public class EmisorNPC  implements Dibujado, Actualizar{
         gp.NPC[NumMap][3]= new PuertaInteractuable(gp,2, 1, 1, 14,9,0);
         
         
-        
         //----MUNDO 3:-----  tienda//   
-        NumMap = 2;
-        gp.NPC[NumMap][0]= new PuertaInteractuable(gp,8, 8, 2,   9,10,0);
+            NumMap = 2;
+            gp.NPC[NumMap][1]= new Tienda(gp,9,1);
+            gp.NPC[NumMap][0]= new PuertaInteractuable(gp,8, 8, 2,   9,10,0);
         
         //----MUNDO 4:-----derecha//
-        NumMap = 3;
-        gp.NPC[NumMap][0]= new PuertaInteractuable(gp,8, 14, 3,   30,18,0);
+            NumMap = 3;
+            gp.NPC[NumMap][0]= new PuertaInteractuable(gp,8, 14, 3,   30,18,0);
         
         //----MUNDO 5:-----arriba// 
-        NumMap = 4;
-        gp.NPC[NumMap][0]= new PuertaInteractuable(gp,15, 25, 4,   20,9,0);
+            NumMap = 4;
+            gp.NPC[NumMap][0]= new PuertaInteractuable(gp,15, 25, 4,   20,9,0);
         
         //----MUNDO 6:-----izquierda//
-        NumMap = 5;
-        gp.NPC[NumMap][0]= new PuertaInteractuable(gp,22, 15, 5,   8,19,0);
+            NumMap = 5;
+            gp.NPC[NumMap][0]= new PuertaInteractuable(gp,22, 15, 5,   8,19,0);
         
     }
     
