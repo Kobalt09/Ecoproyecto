@@ -5,6 +5,7 @@ import ep.ecoproyecto.logica.EmisorObjetos;
 import ep.ecoproyecto.logica.EmisorNPC;
 import ep.ecoproyecto.logica.Sonido;
 import ep.ecoproyecto.logica.Colisionador;
+import ep.ecoproyecto.logica.ControladorMinijuegos;
 import ep.ecoproyecto.logica.KeyHandler;
 import ep.ecoproyecto.logica.WindowHandler;
 import ep.ecoproyecto.logica.entidades.Entidad;
@@ -13,6 +14,7 @@ import ep.ecoproyecto.logica.entidades.Jugador;
 import ep.ecoproyecto.logica.entidades.JugadorMP;
 import ep.ecoproyecto.logica.net.*;
 import ep.ecoproyecto.logica.net.packets.Packet00Login;
+import ep.ecoproyecto.logica.net.packets.Packet01Disconnect;
 import ep.ecoproyecto.logica.objetos.Objetosclase;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -24,6 +26,7 @@ import javax.swing.JPanel;
 import java.util.LinkedList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import minijuegos.Minijuego;
 
 /**
  * @author C-A-F
@@ -70,6 +73,7 @@ public class PanelJuego extends JPanel implements Runnable{
     public Colisionador colisiones =new Colisionador(this);
     public EmisorObjetos objeto= new EmisorObjetos(this);
     public EmisorNPC npcs= new EmisorNPC(this);
+    public ControladorMinijuegos mini= new ControladorMinijuegos(this);
     public InterfazJugador hud = new InterfazJugador(this);
     public ControladorEventos ControlEventos= new ControladorEventos(this);
     Thread gameThread;
@@ -81,8 +85,9 @@ public class PanelJuego extends JPanel implements Runnable{
     //Jugador, objetos y NPC
     public Jugador jugador;
     public LinkedList<JugadorMP> jugadores = new LinkedList<>(); 
-    public Objetosclase obj[][]= new Objetosclase[Maximomundos][10];
-    public Entidad NPC[][]= new Entidad[Maximomundos][10];
+    public Objetosclase obj[][]= new Objetosclase[Maximomundos][20];
+    public Entidad NPC[][]= new Entidad[Maximomundos][20];
+    public Minijuego Minijuego[][]=new Minijuego[Maximomundos][10];
     //ArrayList<Entidad> Entidadlista= new ArrayList<>();
 
 
@@ -116,7 +121,7 @@ public class PanelJuego extends JPanel implements Runnable{
 
         objeto.establecerObj();     //envia los objetos definidos a un arreglo
         npcs.establecernpcs();      //igual pero con npcs
-        
+        mini.establecerminijuegos();
         this.reproducirmusica(musica);
         
         this.jugador=new Jugador(this); //inicializa un jugador en blanco para las funciones que lo necesitan antes de darle valores
@@ -215,6 +220,8 @@ public class PanelJuego extends JPanel implements Runnable{
     }
     
     public void regresarAlMenuIni(){
+        Packet01Disconnect packet = new Packet01Disconnect(this.jugador.getUsername());
+        packet.writeData(this.socketcliente);
         if (gameThread!=null){
             gameThread.interrupt();
         }
