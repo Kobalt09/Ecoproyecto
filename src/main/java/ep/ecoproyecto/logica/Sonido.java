@@ -41,6 +41,11 @@ public class Sonido {
     }
     */
     
+    public void detenerMusica(){
+        if(clip!=null && clip.isRunning())
+            clip.stop();
+    }
+    
     public int musicatienda(int i) {
         int actual=9999;
         try{

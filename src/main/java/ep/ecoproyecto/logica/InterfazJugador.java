@@ -193,6 +193,9 @@ public class InterfazJugador implements Dibujado{
         //VOLUMEN DE LOS EFECTOS DE SONIDO//
         textoY += gp.tamanioCasilla;
         dibujadoRect(textoX,textoY,true,gp.efectossonido.escalaVolumen);
+    
+        //GUARDADO//
+        gp.config.guardarConfig();
     }
     
     private int getXcentrado(String texto){
