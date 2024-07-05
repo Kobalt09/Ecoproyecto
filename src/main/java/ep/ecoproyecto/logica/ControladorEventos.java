@@ -117,6 +117,7 @@ public class ControladorEventos {
 
         gp.jugador.setMapa(mapa);
         gp.manCas.actualizar(gp.jugador, gp.screenWidth, gp.screenHeight);
+        
         Paquete03Mapa packet =new Paquete03Mapa(mapa, gp.jugador.getUsername());
         packet.writeData(gp.socketcliente);
         //rectanguloEvento[col][fil][mapacasilla].Activado=true;

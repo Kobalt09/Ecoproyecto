@@ -1,8 +1,6 @@
 package ep.ecoproyecto.gui;
 import ep.ecoproyecto.logica.tipografia.Fuentes;
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.util.List;
+import java.awt.Color;
 import javax.swing.ImageIcon;
 /**
  *
@@ -21,8 +19,9 @@ public class MenuIni extends javax.swing.JFrame {
         initComponents();     
         titulo.setFont(tipoFuente.fuente(tipoFuente.upheaval,0,60));
         this.setTitle("ECOPROYECTO");
+        titulo.setBackground(Color.white);
         this.setLocationRelativeTo(null);
-        JpanelImagen jImg= new JpanelImagen(jPanel1,"/fondo/ARBUL.jpg" );
+        JpanelImagen jImg= new JpanelImagen(jPanel1,"/fondo/ecocrosin.jpg" );
         jPanel1.add(jImg).repaint();
         
     }
@@ -50,6 +49,9 @@ public class MenuIni extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage((new ImageIcon(getClass().getResource("/player/jg_abj_01.png"))).getImage());
 
+        jPanel1.setPreferredSize(new java.awt.Dimension(1024, 640));
+
+        titulo.setBackground(new java.awt.Color(204, 204, 204));
         titulo.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
         titulo.setText("ECO CROSSING");
 
@@ -117,9 +119,9 @@ public class MenuIni extends javax.swing.JFrame {
                             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(363, 363, 363)
+                        .addGap(315, 315, 315)
                         .addComponent(titulo)
-                        .addGap(18, 18, 18)
+                        .addGap(66, 66, 66)
                         .addComponent(jButton5)))
                 .addContainerGap(315, Short.MAX_VALUE))
         );
@@ -145,11 +147,11 @@ public class MenuIni extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1039, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
         );
 
         pack();
