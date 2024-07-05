@@ -61,6 +61,7 @@ public class ManejadorCasillas  implements Dibujado{
             configutacion(12, "pared", false);          
             configutacion(13, "pasto", false);
             configutacion(14, "lodo", false);
+            configutacion(15, "pared", true);
     }
     
     public void configutacion(int id,String ruta, boolean colision){
@@ -138,8 +139,8 @@ public class ManejadorCasillas  implements Dibujado{
         
         int columna=0;
         int fila=0;
-
-    
+        
+        
         while (columna < numCasillaMapa.length && fila < numCasillaMapa.length){
         
             int numCasilla = numCasillaMapa[columna][fila];
@@ -149,11 +150,15 @@ public class ManejadorCasillas  implements Dibujado{
                 int PantallaX=PosicionX- gp.jugador.xMapa+gp.jugador.pantallaX;
                 int PantallaY=PosicionY- gp.jugador.yMapa+gp.jugador.pantallaY;
                 
-                if((PosicionX+gp.tamanioCasilla > gp.jugador.xMapa-gp.jugador.pantallaX)&&(PosicionX-gp.tamanioCasilla < gp.jugador.xMapa+gp.jugador.pantallaX)&&
-                   (PosicionY+gp.tamanioCasilla > gp.jugador.yMapa-gp.jugador.pantallaY)&&(PosicionY-gp.tamanioCasilla < gp.jugador.yMapa+gp.jugador.pantallaY)){     
+                if((PosicionX+gp.tamanioCasilla > gp.jugador.xMapa-gp.jugador.pantallaX)&&
+                        (PosicionX-gp.tamanioCasilla < gp.jugador.xMapa+gp.jugador.pantallaX)&&
+                   (PosicionY+gp.tamanioCasilla > gp.jugador.yMapa-gp.jugador.pantallaY)&&
+                        (PosicionY-gp.tamanioCasilla < gp.jugador.yMapa+gp.jugador.pantallaY)){     
                 
                     g2.drawImage(casilla[numCasilla].imagen, PantallaX, PantallaY,null);
+                    
                 }
+                
                 columna++;
 
 
