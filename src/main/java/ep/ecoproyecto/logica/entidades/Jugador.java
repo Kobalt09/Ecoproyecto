@@ -450,6 +450,26 @@ public class Jugador extends Entidad{
                                 gp.hud.mostrarmensaje("Espero que este Arbol cresca ");
                             }
                         }
+                    case Tonina  aux -> {
+                            if(gp.Minijuego[3][0].Terminado==true){
+                                if(aux.misioncumplida==false){
+                                    gp.hud.mostrarmensaje("Muchas gracias, ten estas U.N.D");
+                                    aux.misioncumplida=true;
+                                    this.cantInventario[9]=this.cantInventario[9]+10;
+                                }else{
+                                    gp.hud.mostrarmensaje("Muchas gracias de nuevo");
+                                }
+                                    
+                            }else{
+                                if(gp.Minijuego[3][0].Empezado==false){
+                                    gp.hud.mostrarmensaje("Hola, me ayudas a plantar estos arboles?");
+                                    gp.mini.activarmini(3, 0);
+                                }else if(gp.Minijuego[3][0].Empezado==true){
+                                    gp.Minijuego[3][0].interacion();
+                                }
+                            }
+
+                        }
                     default -> {
                         gp.hud.mostrarmensaje(gp.NPC[gp.mapaActual][id].Mensaje);
                     }   

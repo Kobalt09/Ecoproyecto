@@ -44,7 +44,7 @@ public class EmisorObjetos  implements Dibujado{
         
         //----MUNDO 3:-----  tienda//   
         NumMap = 2;
-        gp.obj[NumMap][5]=new ObjetoMesa("mesa",9,1,gp);
+        gp.obj[NumMap][5]=new ObjetoMesa("mesa",7,1,gp);
         /*
         //----MUNDO 4:-----derecha//
         NumMap = 3;

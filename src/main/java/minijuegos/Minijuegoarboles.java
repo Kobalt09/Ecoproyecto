@@ -6,6 +6,7 @@ package minijuegos;
 
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.entidades.Agujero;
+import ep.ecoproyecto.logica.objetos.ObjetoEquipo;
 import ep.ecoproyecto.logica.objetos.ObjetoRecogible;
 
 /**
@@ -37,18 +38,18 @@ public class Minijuegoarboles extends Minijuego{
     
     @Override
     public void generarobjetos(){
-        //objetos
-        gp.obj[gp.mapaActual][5]=new ObjetoRecogible("semilla", 3, 3, gp);
-        gp.obj[gp.mapaActual][6]=new ObjetoRecogible("semilla", 4, 3, gp);
-        gp.obj[gp.mapaActual][7]=new ObjetoRecogible("semilla", 3, 3, gp);
-        gp.obj[gp.mapaActual][8]=new ObjetoRecogible("semilla", 4, 3, gp);
         
+        //objetos
+        gp.obj[3][5]=new ObjetoRecogible("semilla", 10, 16, gp);
+        gp.obj[3][6]=new ObjetoRecogible("semilla", 9, 20, gp);
+        gp.obj[3][7]=new ObjetoRecogible("semilla", 15, 22, gp);
+        gp.obj[3][8]=new ObjetoRecogible("semilla", 15, 5, gp);
         //Npc
         
-        gp.NPC[gp.mapaActual][5]=new Agujero(gp,4,5);
-        gp.NPC[gp.mapaActual][6]=new Agujero(gp,5,5);
-        gp.NPC[gp.mapaActual][7]=new Agujero(gp,6,5);
-        gp.NPC[gp.mapaActual][8]=new Agujero(gp,7,5);
+        gp.NPC[3][5]=new Agujero(gp,10,6);
+        gp.NPC[3][6]=new Agujero(gp,14,9);
+        gp.NPC[3][7]=new Agujero(gp,18,20);
+        gp.NPC[3][8]=new Agujero(gp,21,10);
     }
     
     @Override

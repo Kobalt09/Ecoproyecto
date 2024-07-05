@@ -28,7 +28,7 @@ public class PuertaInteractuable extends Entidad{
         right1=right2=up1=up2=left1=left2=down2=down1= this.configuracion("/objetos/puerta1");
         colision=true;
         
-        hitBox= new Rectangle(0,0,64,64);
+        hitBox= new Rectangle(-1,-1,gp.tamanioCasilla+2,gp.tamanioCasilla+2);
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
         

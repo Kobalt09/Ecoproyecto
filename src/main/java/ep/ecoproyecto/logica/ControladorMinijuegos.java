@@ -33,17 +33,19 @@ public class ControladorMinijuegos {
         //----MUNDO 2:-----//
         NumMap = 1;
         gp.Minijuego[NumMap][0]= new Minijuegoarboles(gp);
-        gp.Minijuego[NumMap][1]= new Minijuegobasura(gp);
+        //gp.Minijuego[NumMap][1]= new Minijuegobasura(gp);
         /*
         //----MUNDO 3:-----//
         
         
         NumMap = 2;
 
-        
+         */
         //----MUNDO 4:-----//
         NumMap = 3;
+        gp.Minijuego[NumMap][0]= new Minijuegoarboles(gp);
         
+        /*
         //----MUNDO 5:-----//
         NumMap = 4;
         */           

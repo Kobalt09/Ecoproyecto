@@ -7,7 +7,8 @@ import ep.ecoproyecto.logica.entidades.Agujero;
 import ep.ecoproyecto.logica.entidades.Papelera;
 import ep.ecoproyecto.logica.entidades.PuertaInteractuable;
 import ep.ecoproyecto.logica.entidades.Tienda;
-import ep.ecoproyecto.logica.entidades.chiguire;
+import ep.ecoproyecto.logica.entidades.Chiguire;
+import ep.ecoproyecto.logica.entidades.Tonina;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
@@ -28,11 +29,11 @@ public class EmisorNPC  implements Dibujado, Actualizar{
         
         //----MUNDO 1:-----//
         int NumMap = 0;
-        gp.NPC[NumMap][0]= new chiguire(gp,10,7);
+        gp.NPC[NumMap][0]= new Chiguire(gp,10,7);
         gp.NPC[NumMap][1]= new Tienda(gp,9,9);
         
         //posicion de la puerta(x,y,z), luego posiciona a la que hara el tp(xyz)
-        gp.NPC[NumMap][2]= new PuertaInteractuable(gp,13,9,0,3, 1, 1);
+        //gp.NPC[NumMap][2]= new PuertaInteractuable(gp,13,9,0,3, 1, 1);
         
         //prueba
         gp.NPC[NumMap][5]= new PuertaInteractuable(gp,19,34,0  ,15, 15, 1);
@@ -44,10 +45,11 @@ public class EmisorNPC  implements Dibujado, Actualizar{
         gp.NPC[NumMap][6]= new PuertaInteractuable(gp,32,19,0  ,8, 14, 3);
         
         //arr
-        gp.NPC[NumMap][3]= new PuertaInteractuable(gp,20,6,0   ,14, 23, 4);
-        
+        gp.NPC[NumMap][3]= new PuertaInteractuable(gp,20,6,0   ,13, 23, 4);
+        gp.NPC[NumMap][4]= new PuertaInteractuable(gp,21,6,0   ,14, 23, 4);
+         
         //iz
-        gp.NPC[NumMap][4]= new PuertaInteractuable(gp,7,20,0   ,20, 14, 5); 
+        gp.NPC[NumMap][5]= new PuertaInteractuable(gp,7,20,0   ,20, 14, 5); 
         
         
         //----MUNDO 2:----- pruebas//
@@ -60,21 +62,23 @@ public class EmisorNPC  implements Dibujado, Actualizar{
         
         //----MUNDO 3:-----  tienda//   
             NumMap = 2;
-            gp.NPC[NumMap][1]= new Tienda(gp,2,2);
+            gp.NPC[NumMap][1]= new Tienda(gp,7,1);
             gp.NPC[NumMap][0]= new PuertaInteractuable(gp,8, 8, 2,   9,10,0);
         
         //----MUNDO 4:-----derecha//
             NumMap = 3;
             gp.NPC[NumMap][0]= new PuertaInteractuable(gp,8, 14, 3,  30,18,0);
+            gp.NPC[NumMap][1]= new PuertaInteractuable(gp,8, 14, 3,  30,18,0);
+            gp.NPC[NumMap][2]= new Tonina(gp,14,14);
         
         //----MUNDO 5:-----arriba// 
             NumMap = 4;
-            gp.NPC[NumMap][0]= new PuertaInteractuable(gp,15, 24, 4,   20,9,0);
-        
+            gp.NPC[NumMap][0]= new PuertaInteractuable(gp,14, 25, 4,   20,9,0);
+            gp.NPC[NumMap][1]= new PuertaInteractuable(gp,15, 25, 4,   21,9,0);
         //----MUNDO 6:-----izquierda//
             NumMap = 5;
             gp.NPC[NumMap][0]= new PuertaInteractuable(gp,22, 15, 5,   8,19,0);
-        
+            
     }
     
     /*
