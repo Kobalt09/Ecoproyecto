@@ -36,7 +36,7 @@ public class EmisorNPC  implements Dibujado, Actualizar{
         //gp.NPC[NumMap][2]= new PuertaInteractuable(gp,13,9,0,3, 1, 1);
         
         //prueba
-        gp.NPC[NumMap][5]= new PuertaInteractuable(gp,19,34,0  ,15, 15, 1);
+        gp.NPC[NumMap][7]= new PuertaInteractuable(gp,20,35,0  ,15, 15, 1);
         
         //tienda
         gp.NPC[NumMap][2]= new PuertaInteractuable(gp,13,9,0   ,6, 7, 2);
@@ -45,8 +45,8 @@ public class EmisorNPC  implements Dibujado, Actualizar{
         gp.NPC[NumMap][6]= new PuertaInteractuable(gp,32,19,0  ,8, 14, 3);
         
         //arr
-        gp.NPC[NumMap][3]= new PuertaInteractuable(gp,20,6,0   ,13, 23, 4);
-        gp.NPC[NumMap][4]= new PuertaInteractuable(gp,21,6,0   ,14, 23, 4);
+        gp.NPC[NumMap][3]= new PuertaInteractuable(gp,20,5,0   ,13, 23, 4);
+        gp.NPC[NumMap][4]= new PuertaInteractuable(gp,21,5,0   ,14, 23, 4);
          
         //iz
         gp.NPC[NumMap][5]= new PuertaInteractuable(gp,7,20,0   ,20, 14, 5); 
@@ -69,7 +69,7 @@ public class EmisorNPC  implements Dibujado, Actualizar{
             NumMap = 3;
             gp.NPC[NumMap][0]= new PuertaInteractuable(gp,8, 14, 3,  30,18,0);
             gp.NPC[NumMap][1]= new PuertaInteractuable(gp,8, 14, 3,  30,18,0);
-            gp.NPC[NumMap][2]= new Tonina(gp,14,14);
+            gp.NPC[NumMap][2]= new Tonina(gp,17,14);
         
         //----MUNDO 5:-----arriba// 
             NumMap = 4;

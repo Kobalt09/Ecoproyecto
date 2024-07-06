@@ -46,31 +46,32 @@ public class ManejadorCasillas  implements Dibujado{
     private void getImagenCasilla(){
 
             
-            configutacion(0, "agua", true);       
-            configutacion(1, "aguaA", true);
-            configutacion(2, "aguaAD", true);
-            configutacion(3, "aguaAb", true);
-            configutacion(4, "aguaAbI", true);
-            configutacion(5, "aguaD", true);
-            configutacion(6, "aguaDA", true);
-            configutacion(7, "aguaI", true);
-            configutacion(8, "aguaIA", true);
-            configutacion(9, "arbol", true);
-            configutacion(10, "arena", false);
-            configutacion(11, "asfalto", true);
-            configutacion(12, "pared", false);          
-            configutacion(13, "pasto", false);
-            configutacion(14, "lodo", false);
+            configuracion(0, "agua", true);       
+            configuracion(1, "aguaA", true);
+            configuracion(2, "aguaAD", true);
+            configuracion(3, "aguaAb", true);
+            configuracion(4, "aguaAbI", true);
+            configuracion(5, "aguaD", true);
+            configuracion(6, "aguaDA", true);
+            configuracion(7, "aguaI", true);
+            configuracion(8, "aguaIA", true);
+            configuracion(9, "arbol", true);
+             configuracion(10, "arena", false);
+            configuracion(11, "asfalto", true);
+            configuracion(12, "piso", false);          
+            configuracion(13, "pasto", false);
+            configuracion(14, "lodo", false);
+            configuracion(15, "pared", true);
     }
     
-    public void configutacion(int id,String ruta, boolean colision){
+    public void configuracion(int id,String ruta, boolean colision){
         
         Herramientas herramienta = new Herramientas();
         
         try{
 
             casilla[id] = new Casilla();
-            casilla[id].imagen= ImageIO.read(getClass().getResource("/casillas/"+ruta+".png"));
+            casilla[id].imagen= ImageIO.read(getClass().getResource("/casillas/"+ruta+".jpg"));
             casilla[id].imagen = herramienta.imagenEscalada(casilla[id].imagen, gp.tamanioCasilla, gp.tamanioCasilla);
             casilla[id].colision = colision;
             
@@ -138,8 +139,8 @@ public class ManejadorCasillas  implements Dibujado{
         
         int columna=0;
         int fila=0;
-
-    
+        
+        
         while (columna < numCasillaMapa.length && fila < numCasillaMapa.length){
         
             int numCasilla = numCasillaMapa[columna][fila];
@@ -149,11 +150,15 @@ public class ManejadorCasillas  implements Dibujado{
                 int PantallaX=PosicionX- gp.jugador.xMapa+gp.jugador.pantallaX;
                 int PantallaY=PosicionY- gp.jugador.yMapa+gp.jugador.pantallaY;
                 
-                if((PosicionX+gp.tamanioCasilla > gp.jugador.xMapa-gp.jugador.pantallaX)&&(PosicionX-gp.tamanioCasilla < gp.jugador.xMapa+gp.jugador.pantallaX)&&
-                   (PosicionY+gp.tamanioCasilla > gp.jugador.yMapa-gp.jugador.pantallaY)&&(PosicionY-gp.tamanioCasilla < gp.jugador.yMapa+gp.jugador.pantallaY)){     
+                if((PosicionX+gp.tamanioCasilla > gp.jugador.xMapa-gp.jugador.pantallaX)&&
+                        (PosicionX-gp.tamanioCasilla < gp.jugador.xMapa+gp.jugador.pantallaX)&&
+                   (PosicionY+gp.tamanioCasilla > gp.jugador.yMapa-gp.jugador.pantallaY)&&
+                        (PosicionY-gp.tamanioCasilla < gp.jugador.yMapa+gp.jugador.pantallaY)){     
                 
                     g2.drawImage(casilla[numCasilla].imagen, PantallaX, PantallaY,null);
+                    
                 }
+                
                 columna++;
 
 
