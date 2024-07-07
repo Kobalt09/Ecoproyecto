@@ -1,7 +1,11 @@
 package ep.ecoproyecto.gui;
+import ep.ecoproyecto.logica.net.Cliente;
+import ep.ecoproyecto.logica.net.Server;
 import ep.ecoproyecto.logica.tipografia.Fuentes;
 import java.awt.Color;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 /**
  *
  * @author C-A-F
@@ -39,10 +43,9 @@ public class MenuIni extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         titulo = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
 
         jMenu1.setText("jMenu1");
 
@@ -56,52 +59,69 @@ public class MenuIni extends javax.swing.JFrame {
         titulo.setText("ECO CROSSING");
 
         jButton1.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        jButton1.setText("Jugar");
+        jButton1.setForeground(new java.awt.Color(60, 63, 65));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/jugar.jpg"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setIconTextGap(0);
+        jButton1.setLabel("");
+        jButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButton1.setMaximumSize(new java.awt.Dimension(170, 55));
+        jButton1.setMinimumSize(new java.awt.Dimension(170, 60));
+        jButton1.setPreferredSize(new java.awt.Dimension(170, 60));
+        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/jugarSelec.jpg"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        jButton2.setText("Salir");
-        jButton2.setToolTipText("");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButton6.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(60, 63, 65));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/salir.jpg"))); // NOI18N
+        jButton6.setBorder(null);
+        jButton6.setBorderPainted(false);
+        jButton6.setContentAreaFilled(false);
+        jButton6.setIconTextGap(0);
+        jButton6.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButton6.setMaximumSize(new java.awt.Dimension(170, 55));
+        jButton6.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/salirSelec.jpg"))); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton6ActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        jButton3.setText("Ayuda");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButton7.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(60, 63, 65));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/acerca.jpg"))); // NOI18N
+        jButton7.setBorder(null);
+        jButton7.setBorderPainted(false);
+        jButton7.setContentAreaFilled(false);
+        jButton7.setIconTextGap(0);
+        jButton7.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButton7.setMaximumSize(new java.awt.Dimension(170, 55));
+        jButton7.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/acercaSelec.jpg"))); // NOI18N
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButton7ActionPerformed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        jButton4.setText("Acerca de");
-        jButton4.setToolTipText("");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButton8.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(60, 63, 65));
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/ayuda.jpg"))); // NOI18N
+        jButton8.setBorder(null);
+        jButton8.setBorderPainted(false);
+        jButton8.setContentAreaFilled(false);
+        jButton8.setIconTextGap(0);
+        jButton8.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButton8.setMaximumSize(new java.awt.Dimension(170, 55));
+        jButton8.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/ayudaSelec.jpg"))); // NOI18N
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        jButton5.setFont(new java.awt.Font("Dialog", 0, 8)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/casillas/agua.png"))); // NOI18N
-        jButton5.setAlignmentY(0.0F);
-        jButton5.setBorder(null);
-        jButton5.setBorderPainted(false);
-        jButton5.setContentAreaFilled(false);
-        jButton5.setFocusPainted(false);
-        jButton5.setIconTextGap(0);
-        jButton5.setInheritsPopupMenu(true);
-        jButton5.setMargin(null);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jButton8ActionPerformed(evt);
             }
         });
 
@@ -110,38 +130,41 @@ public class MenuIni extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(315, 315, 315)
+                .addComponent(titulo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(411, 411, 411)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(411, 411, 411)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(198, 458, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(315, 315, 315)
-                        .addComponent(titulo)
-                        .addGap(66, 66, 66)
-                        .addComponent(jButton5)))
-                .addContainerGap(315, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(90, 90, 90)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(56, 56, 56))
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46))
         );
+
+        jButton1.getAccessibleContext().setAccessibleName("");
+        jButton1.getAccessibleContext().setAccessibleDescription("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,29 +182,68 @@ public class MenuIni extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        Ecoproyecto juego=new Ecoproyecto();
+       /* Ecoproyecto juego=new Ecoproyecto();
+        
+        
+        juego.iniciarJuego();*/
+       
+        JFrame ventana= new JFrame();
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setResizable(false);
+        ventana.setTitle("ECOPROYECTO");
+        ventana.setIconImage((new ImageIcon(getClass().getResource("/player/jg_abj_01.png"))).getImage());
+     
+        PanelJuego panelDeJuego= new PanelJuego(ventana);
+        ventana.add(panelDeJuego); 
+
+        panelDeJuego.config.cargarConfig();
+        if (panelDeJuego.pantallaCompleta){
+            ventana.setUndecorated(true);
+        }
+        
+        ventana.pack();
+        
+        ventana.setLocationRelativeTo(null);
+        ventana.setVisible(true);
+        
+        panelDeJuego.configuraciondejuego();
+        
+      //  panelDeJuego.startGameThread();
+      {  //Se puede adaptar como una funcion dentro del MENU//
+        if(JOptionPane.showConfirmDialog(this, "Quieres iniciar el server?") == JOptionPane.YES_OPTION){
+            panelDeJuego.socketserver = new Server(panelDeJuego);
+            panelDeJuego.socketserver.start();
+        }
+        
+        //-------------------------------------------------//
+        
+        panelDeJuego.socketcliente = new Cliente("localhost",panelDeJuego);
+        panelDeJuego.socketcliente.start();
+        
+        panelDeJuego.inicioJugador();
+        
+        panelDeJuego.gameThread = new Thread(panelDeJuego);
+        panelDeJuego.gameThread.start();
+    
         this.setVisible(false);
-        juego.iniciarJuego();
+    
+        }
+       
         
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      
-    this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,10 +287,9 @@ public class MenuIni extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel titulo;

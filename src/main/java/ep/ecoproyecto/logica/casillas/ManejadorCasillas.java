@@ -62,6 +62,7 @@ public class ManejadorCasillas  implements Dibujado{
             configuracion(13, "pasto", false);
             configuracion(14, "lodo", false);
             configuracion(15, "pared", true);
+            configuracion(16, "pastoAma",false);
     }
     
     public void configuracion(int id,String ruta, boolean colision){

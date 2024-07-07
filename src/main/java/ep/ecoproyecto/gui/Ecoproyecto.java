@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 public class Ecoproyecto {
     
     public void iniciarJuego() {
+        
         JFrame ventana= new JFrame();
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setResizable(false);
@@ -29,6 +30,7 @@ public class Ecoproyecto {
         ventana.setVisible(true);
         
         panelDeJuego.configuraciondejuego();
+        
         panelDeJuego.startGameThread();
     }
 }
