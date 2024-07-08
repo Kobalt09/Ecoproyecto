@@ -36,14 +36,14 @@ public class Minijuegobasura extends Minijuego{
     @Override
     public void generarobjetos(){
         //objetos
-        gp.obj[gp.mapaActual][9]=new ObjetoRecogible("basura", 20, 20, gp);
-        gp.obj[gp.mapaActual][10]=new ObjetoRecogible("basura", 23,25, gp);
-        gp.obj[gp.mapaActual][11]=new ObjetoRecogible("basura", 19, 21, gp);
-        gp.obj[gp.mapaActual][12]=new ObjetoRecogible("basura", 24, 28, gp);
+        gp.obj[4][9]=new ObjetoRecogible("basura", 20, 20, gp);
+        gp.obj[4][10]=new ObjetoRecogible("basura", 15,15, gp);
+        gp.obj[4][11]=new ObjetoRecogible("basura", 19, 21, gp);
+        gp.obj[4][12]=new ObjetoRecogible("basura", 14, 13, gp);
         
         //Npc
         
-        gp.NPC[gp.mapaActual][5]=new Papelera(gp,15,25);
+        gp.NPC[4][5]=new Papelera(gp,15,20);
     }
     
     @Override

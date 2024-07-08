@@ -9,6 +9,8 @@ import ep.ecoproyecto.logica.entidades.PuertaInteractuable;
 import ep.ecoproyecto.logica.entidades.Tienda;
 import ep.ecoproyecto.logica.entidades.Chiguire;
 import ep.ecoproyecto.logica.entidades.Tonina;
+import ep.ecoproyecto.logica.entidades.Turpial;
+import ep.ecoproyecto.logica.entidades.Zamuro;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
@@ -75,19 +77,13 @@ public class EmisorNPC  implements Dibujado, Actualizar{
             NumMap = 4;
             gp.NPC[NumMap][0]= new PuertaInteractuable(gp,14, 25, 4,   20,9,0);
             gp.NPC[NumMap][1]= new PuertaInteractuable(gp,15, 25, 4,   21,9,0);
+            gp.NPC[NumMap][2]= new Zamuro(gp,13,23);
+            
         //----MUNDO 6:-----izquierda//
             NumMap = 5;
             gp.NPC[NumMap][0]= new PuertaInteractuable(gp,22, 15, 5,   8,19,0);
-            
+            gp.NPC[NumMap][3]= new Turpial(gp,18,14);
     }
-    
-    /*
-    public void Agregar(){
-            for(int i=0;i<gp.NPC[0].length;i++){
-                    gp.Entidadlista.add(gp.NPC[0][i]);
-            }
-        
-    }*/
     
     
     @Override

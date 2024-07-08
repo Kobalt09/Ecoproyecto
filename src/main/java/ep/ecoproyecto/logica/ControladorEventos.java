@@ -136,11 +136,10 @@ public class ControladorEventos {
         packet.writeData(gp.socketcliente);
         
     }
-    
+    /*
     public void interacturarEvento(int i){
-        gp.hud.mostrarmensaje("Siembra de arboles ");
         gp.Minijuego[gp.mapaActual][i].interacion();
-        System.out.println(gp.mapaActual);
     }
+    */
     
 }

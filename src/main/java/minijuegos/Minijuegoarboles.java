@@ -40,16 +40,16 @@ public class Minijuegoarboles extends Minijuego{
     public void generarobjetos(){
         
         //objetos
-        gp.obj[3][5]=new ObjetoRecogible("semilla", 10, 16, gp);
-        gp.obj[3][6]=new ObjetoRecogible("semilla", 9, 20, gp);
-        gp.obj[3][7]=new ObjetoRecogible("semilla", 15, 22, gp);
-        gp.obj[3][8]=new ObjetoRecogible("semilla", 15, 5, gp);
+        gp.obj[5][5]=new ObjetoRecogible("semilla", 10, 16, gp);
+        gp.obj[5][6]=new ObjetoRecogible("semilla", 9, 20, gp);
+        gp.obj[5][7]=new ObjetoRecogible("semilla", 15, 22, gp);
+        gp.obj[5][8]=new ObjetoRecogible("semilla", 15, 5, gp);
         //Npc
         
-        gp.NPC[3][5]=new Agujero(gp,10,6);
-        gp.NPC[3][6]=new Agujero(gp,14,9);
-        gp.NPC[3][7]=new Agujero(gp,18,20);
-        gp.NPC[3][8]=new Agujero(gp,21,10);
+        gp.NPC[5][5]=new Agujero(gp,10,6);
+        gp.NPC[5][6]=new Agujero(gp,14,9);
+        gp.NPC[5][7]=new Agujero(gp,18,20);
+        gp.NPC[5][8]=new Agujero(gp,21,10);
     }
     
     @Override

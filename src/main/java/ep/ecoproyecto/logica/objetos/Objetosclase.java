@@ -15,16 +15,6 @@ public class Objetosclase extends Entidad{
     public Objetosclase(PanelJuego gp) {
         super(gp);
     }
-      
-    
-/*
-    public void draw(Graphics2D g2) {
-        
-        image = null;
-  
-       g2.drawImage(image,this.posicionX, this.posicionY, gp.tamanioCasilla,gp.tamanioCasilla,null); 
-    
-    }*/
 
     public int getPrecio() {
         return precio;
