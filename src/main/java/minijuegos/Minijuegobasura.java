@@ -36,14 +36,18 @@ public class Minijuegobasura extends Minijuego{
     @Override
     public void generarobjetos(){
         //objetos
-        gp.obj[gp.mapaActual][9]=new ObjetoRecogible("basura", 20, 20, gp);
-        gp.obj[gp.mapaActual][10]=new ObjetoRecogible("basura", 23,25, gp);
-        gp.obj[gp.mapaActual][11]=new ObjetoRecogible("basura", 19, 21, gp);
-        gp.obj[gp.mapaActual][12]=new ObjetoRecogible("basura", 24, 28, gp);
-        
+        gp.obj[5][9]=new ObjetoRecogible("basura",  20, 6, gp);
+        gp.obj[5][10]=new ObjetoRecogible("basura", 16,12, gp);
+        gp.obj[5][11]=new ObjetoRecogible("basura", 13,11, gp);
+        gp.obj[5][12]=new ObjetoRecogible("basura", 14,13, gp);
+        gp.obj[5][13]=new ObjetoRecogible("basura", 9,9, gp);
+        gp.obj[5][14]=new ObjetoRecogible("basura", 8,17, gp);
+        gp.obj[5][15]=new ObjetoRecogible("basura", 13,19, gp);
+        gp.obj[5][16]=new ObjetoRecogible("basura", 10,22, gp);
+        gp.obj[5][17]=new ObjetoRecogible("basura", 15,23, gp);
         //Npc
         
-        gp.NPC[gp.mapaActual][5]=new Papelera(gp,15,25);
+        //gp.NPC[5][5]=new Papelera(gp,15,20);
     }
     
     @Override
@@ -51,7 +55,7 @@ public class Minijuegobasura extends Minijuego{
         Terminado=true;
        
         
-        for(int i=9;i<12;i++){
+        for(int i=9;i<=17;i++){
             if(gp.obj[gp.mapaActual][i] !=null){
                 Terminado=false;
             }

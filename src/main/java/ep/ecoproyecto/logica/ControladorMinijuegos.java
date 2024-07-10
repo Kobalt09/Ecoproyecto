@@ -33,7 +33,7 @@ public class ControladorMinijuegos {
         
         //----MUNDO 2:-----//
         NumMap = 1;
-        gp.Minijuego[NumMap][0]= new Minijuegoarboles(gp);
+        //gp.Minijuego[NumMap][0]= new Minijuegoarboles(gp);
         //gp.Minijuego[NumMap][1]= new Minijuegobasura(gp);
         /*
         //----MUNDO 3:-----//
@@ -42,14 +42,18 @@ public class ControladorMinijuegos {
         NumMap = 2;
 
          */
-        //----MUNDO 4:-----//
+        //----MUNDO 4:-----derecha//
         NumMap = 3;
         gp.Minijuego[NumMap][0]= new Minijuegoagua(gp);
         
-        /*
-        //----MUNDO 5:-----//
+        
+        //----MUNDO 5:-----arriba// 
         NumMap = 4;
-        */           
+        gp.Minijuego[NumMap][0]= new Minijuegobasura(gp);
+        //----MUNDO 6:-----izquierda//
+            NumMap = 5;
+        gp.Minijuego[NumMap][0]= new Minijuegoarboles(gp);
+                  
     }
     
     public void activarmini(int mapa, int num){

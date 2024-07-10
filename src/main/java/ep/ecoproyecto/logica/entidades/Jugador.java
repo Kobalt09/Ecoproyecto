@@ -1,5 +1,6 @@
 package ep.ecoproyecto.logica.entidades;
 import ep.ecoproyecto.gui.PanelJuego;
+import ep.ecoproyecto.logica.Herramientas;
 import ep.ecoproyecto.logica.KeyHandler;
 import ep.ecoproyecto.logica.net.packets.Packet02Mov;
 import ep.ecoproyecto.logica.objetos.ObjetoEquipo;
@@ -10,6 +11,8 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import ep.ecoproyecto.logica.tipografia.Fuentes;
 import java.awt.Color;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -24,19 +27,14 @@ public class Jugador extends Entidad{
     protected String username;
     protected int mapa;
     
-    //public Entidad inventario[]= new Entidad[10];
+    public Objetosclase sombreros[]= new Objetosclase[10];
     // 1 llaves
     // 2 basura
     // 7 semillas
     // 9 dinero
-    
+    // 8 red
     public int cantInventario[]= new int[10];
-    
-    /*
-    public int dinero=0;
-    public int llaves=0;
-    public int semillas=0;
-    */
+
     public boolean interactuar;
     
     public int estado;
@@ -46,7 +44,11 @@ public class Jugador extends Entidad{
     //contador de culdaun en teclas
     public int contador;
     public boolean tecla=true;
+    
+    public BufferedImage sombrero;
+    public String sombreroactual;
 
+    
     public Jugador(PanelJuego gp) {
         super(gp);
         this.keyH=new KeyHandler();
@@ -93,10 +95,12 @@ public class Jugador extends Entidad{
         //area de colision
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
+        sombreroactual="ninguno";
+        
         
         valoresporDefecto();
         getPlayerImage();
-        
+        getsombre();
     }
 
     public int getMapa() {
@@ -144,6 +148,28 @@ public class Jugador extends Entidad{
         right2=configuracion("/player/jg_der_02");
         
     }
+    
+    private void getsombre(){
+        if(sombreroactual!="ninguno"){
+            sombrero=configuracionsombrero("/gorros/"+sombreroactual);
+        }
+    }
+    
+    public BufferedImage configuracionsombrero(String nombre){
+        
+        Herramientas herramienta = new Herramientas();
+        BufferedImage imagen= null;
+        
+        try{
+            imagen=ImageIO.read(getClass().getResourceAsStream(nombre+".png"));
+            imagen= herramienta.imagenEscalada(imagen, gp.tamanioCasilla, gp.tamanioCasilla);
+            
+        }catch(IOException e){
+        }
+        
+        return imagen;
+    }
+    
     
     public void update(){
         if(keyH != null){        
@@ -279,26 +305,37 @@ public class Jugador extends Entidad{
                                 
                                 this.cantInventario[9]=this.cantInventario[9]-obj.getPrecio();
                                 switch(obj.nombre){
-                                    case "llave" -> {
-                                        this.cantInventario[1]++;
-                                        gp.efectos(2);
-                                        gp.hud.mostrarmensaje("conseguiste una llave");
-                                        this.inventario[1]=new ObjetoRecogible("llave", 0, 0, gp);
-                                        gp.NPC[0][1].inventario[cont]=null;
-                                    }   
+                                    case "calvo" -> {
+                                        this.sombreros[0]= new ObjetoRecogible("calvo",10,10,gp);
+                                        gp.NPC[2][1].inventario[cont]=null;
+                                        this.sombreroactual=this.sombreros[0].nombre;
+                                        getsombre();
+                                    }  /*
+                                    case "botas" -> {
+                                        this.sombreros[1]=new ObjetoEquipo("Botas", 0, 0, gp);
+                                        gp.NPC[2][1].inventario[cont]=null;
+                                        
+                                    }*/
+                                    case "gCopa" -> {
+                                        this.sombreros[1]=new ObjetoRecogible("gCopa",10,10,gp);
+                                        gp.NPC[2][1].inventario[cont]=null;
+                                        this.sombreroactual=this.sombreros[1].nombre;
+                                        getsombre();
+                                    }
+                                    case "gPlaya" -> {
+                                        this.sombreros[2]=new ObjetoRecogible("gPlaya",10,10,gp);
+                                        gp.NPC[2][1].inventario[cont]=null;
+                                        this.sombreroactual=this.sombreros[2].nombre;
+                                        getsombre();
+                                    }
                                     case "botas" -> {
                                         if(this.inventario[0]==null){
                                             gp.efectos(4);
                                             gp.hud.mostrarmensaje("conseguiste "+obj.nombre);
                                             vel=vel+2;
                                             this.inventario[0]=new ObjetoEquipo("Botas", 0, 0, gp);
-                                            gp.NPC[0][1].inventario[cont]=null;
+                                            gp.NPC[2][1].inventario[cont]=null;
                                         }
-                                    }
-                                    case "coin" -> {
-                                        this.cantInventario[9]++;
-                                        gp.efectos(2);
-                                        gp.NPC[0][1].inventario[cont]=null;
                                     }
                                 }
                             }else{
@@ -412,8 +449,6 @@ public class Jugador extends Entidad{
                         gp.hud.mostrarmensaje("tienda");
                         estado=estadotienda;
                         }
-                    
-                    
                     case PuertaInteractuable  aux -> {
                             if(aux.Ztp==2){
                                 gp.ControlEventos.musicatienda();
@@ -421,8 +456,6 @@ public class Jugador extends Entidad{
                                 gp.ControlEventos.musicatienda();
                             }
                             gp.ControlEventos.tpinteractuar(aux.Xtp,aux.Ytp, aux.Ztp);
-                            gp.mini.activarmini(1, 0);
-
                         }
                     case Papelera  aux -> {
                             if(this.cantInventario[2]!=0){
@@ -458,21 +491,56 @@ public class Jugador extends Entidad{
                                     this.cantInventario[9]=this.cantInventario[9]+10;
                                 }else{
                                     gp.hud.mostrarmensaje("Muchas gracias de nuevo");
-                                }
-                                    
+                                }   
                             }else{
                                 if(gp.Minijuego[3][0].Empezado==false){
                                     gp.hud.mostrarmensaje("Hola, me ayudas a limpiar el agua? Usa esta red");
-                                    this.inventario[8]= new ObjetoRecogible("Red", 1, 1, gp);
+                                    this.inventario[6]= new ObjetoRecogible("Red", 1, 1, gp);
                                     gp.mini.activarmini(3, 0);
                                 }else if(gp.Minijuego[3][0].Empezado==true){
                                     gp.Minijuego[3][0].interacion();
                                 }
                             }
-
+                        }
+                    case Turpial  aux -> {
+                            if(gp.Minijuego[5][0].Terminado==true){
+                                if(aux.misioncumplida==false){
+                                    gp.hud.mostrarmensaje("Gracias, toma estas U.N.D");
+                                    aux.misioncumplida=true;
+                                    this.cantInventario[9]=this.cantInventario[9]+10;
+                                }else{
+                                    gp.hud.mostrarmensaje("Gracias de nuevo");
+                                }
+                            }else{
+                                if(gp.Minijuego[5][0].Empezado==false){
+                                    gp.hud.mostrarmensaje("Hola, Podrias sembrar algunos arboles?");
+                                    gp.mini.activarmini(5, 0);
+                                }else if(gp.Minijuego[5][0].Empezado==true){
+                                    gp.Minijuego[5][0].interacion();
+                                }
+                            }
+                        }
+                    case Zamuro  aux -> {
+                            if(gp.Minijuego[4][0].Terminado==true){
+                                if(aux.misioncumplida==false){
+                                    gp.hud.mostrarmensaje("Toma estas U.N.D");
+                                    aux.misioncumplida=true;
+                                    this.cantInventario[9]=this.cantInventario[9]+10;
+                                }else{
+                                    gp.hud.mostrarmensaje("Ahora esa basura es toda mia");
+                                }
+                                    
+                            }else{
+                                if(gp.Minijuego[4][0].Empezado==false){
+                                    gp.hud.mostrarmensaje("Oye, recoge esa basura por mi te dare U.N.D");
+                                    gp.mini.activarmini(4, 0);
+                                }else if(gp.Minijuego[4][0].Empezado==true){
+                                    gp.Minijuego[4][0].interacion();
+                                }
+                            }
                         }
                     case Aguaconbasura aux ->{
-                            if(aux.estado=="Aguasucia" && this.inventario[8]!=null){
+                            if(aux.estado=="Aguasucia" && this.inventario[6]!=null){
                                 
                                     gp.hud.mostrarmensaje("Recogiste la basura");
                                     aux.estado="Agua";
@@ -484,6 +552,7 @@ public class Jugador extends Entidad{
                     }
                     default -> {
                         gp.hud.mostrarmensaje(gp.NPC[gp.mapaActual][id].Mensaje);
+                        this.cantInventario[9]=this.cantInventario[9]+20;
                     }   
                        
                 }
@@ -495,7 +564,7 @@ public class Jugador extends Entidad{
     public void dibujado(Graphics2D g2){
 
         BufferedImage image = null;  
-
+        
         switch(direction){
             case "up" -> {     
                 if (spriteNum==1){
@@ -532,8 +601,11 @@ public class Jugador extends Entidad{
        
         if (gp.jugador.getMapa()==this.mapa) {   
             if(gp.jugador.equals(this)) {
-                g2.drawImage(image,pantallaX,pantallaY,null);   
-
+                g2.drawImage(image,pantallaX,pantallaY,null);  
+                    if(sombreroactual!="ninguno"){
+                        g2.drawImage(sombrero,pantallaX,pantallaY,null);
+                    }
+                
                 if (username != null){
                     Fuentes tipoFuente=new Fuentes();
                     g2.setFont((tipoFuente.fuente(tipoFuente.upheaval,0,20)));
