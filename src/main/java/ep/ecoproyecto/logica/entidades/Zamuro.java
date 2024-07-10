@@ -20,7 +20,7 @@ public class Zamuro extends Entidad {
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
         movimiento=true;
-        this.mensaje="Hola, soy un Zamuro";
+        this.Mensaje="Hola, soy un Zamuro";
         
         getImage();
     }

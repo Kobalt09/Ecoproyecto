@@ -21,7 +21,7 @@ public class Papelera extends Entidad{
         this.hitBox=new Rectangle(0,0,gp.tamanioCasilla,gp.tamanioCasilla);
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
-        this.mensaje="Una papelera, aqui podria dejar la basura";
+        this.Mensaje="Una papelera, aqui podria dejar la basura";
         
         getImage();
     }

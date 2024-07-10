@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
  *
  * @author Cris
  */
-public final class Aguaconbasura extends Entidad{
+public class Aguaconbasura extends Entidad{
 
     public String estado;
 
@@ -29,7 +29,7 @@ public final class Aguaconbasura extends Entidad{
         areadefectoY=hitBox.y;
         estado="Aguasucia";
         
-        this.mensaje="Cuanta basura en el agua";
+        this.Mensaje="Cuanta basura en el agua";
         
         getImage();
     }
@@ -39,7 +39,6 @@ public final class Aguaconbasura extends Entidad{
         right1=right2=up1=up2=left1=left2=down2=down1=this.configuracion("/objetos/agua/"+estado);
     }
     
-    @Override
     public BufferedImage configuracion(String nombre){
         
         Herramientas herramienta = new Herramientas();
