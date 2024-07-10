@@ -109,7 +109,7 @@ public class InterfazJugador implements Dibujado{
     
     public void dibujadoMenuPausa(){
         
-        int frameX = gp.tamanioCasilla*5;
+        int frameX = getXcentrado("Opciones:") - gp.tamanioCasilla;
         int frameY = gp.tamanioCasilla;
     
         switch(subState){
@@ -126,12 +126,12 @@ public class InterfazJugador implements Dibujado{
         int textoX, textoY;
         
         //TITULO//
-        textoX = getXcentrado("Opciones:") - gp.tamanioCasilla/2 - 1;
+        textoX = frameX;
         textoY = frameY + gp.tamanioCasilla;
         dibujadoLetras("Opciones:",textoX,textoY,true);
         
         //PANTALLA COMPLETA//
-        textoX = frameX;
+        textoX = textoX - gp.tamanioCasilla*2;
         textoY += gp.tamanioCasilla;
         dibujadoLetras("Pantalla Completa",textoX,textoY,false);
         if (opcionMenu == 0){
@@ -178,7 +178,7 @@ public class InterfazJugador implements Dibujado{
         }
     
         //CHECK BOX PANTALLA COMPLETA//
-        textoX = frameX + gp.tamanioCasilla*6;
+        textoX = getXcentrado("Opciones:") + gp.tamanioCasilla*4;
         textoY = frameY + gp.tamanioCasilla + 35;
         g2.setStroke(new BasicStroke(3));
         
@@ -251,10 +251,10 @@ public class InterfazJugador implements Dibujado{
     }
     
     public void pantallaCompletaNotif(int frameX, int frameY){
-        int textoX = frameX;
+        int textoX = frameX - gp.tamanioCasilla*2;
         int textoY = frameY + gp.tamanioCasilla*3;
     
-        mensaje = "El cambio tendra efecto \ncuando reinicies el juego";
+        mensaje = "El cambio tendra efecto cuando \nreinicies el juego";
         
         for (String linea:mensaje.split("\n")){
             dibujadoLetras(linea,textoX,textoY,false);
@@ -274,13 +274,14 @@ public class InterfazJugador implements Dibujado{
     }
     
     public void controlesMenu(int frameX, int frameY){
-        int textoX = getXcentrado("CONTROLES:"),textoY = frameY + gp.tamanioCasilla;
+        int textoX = getXcentrado("CONTROLES:") - gp.tamanioCasilla,
+        textoY = frameY + gp.tamanioCasilla;
         
         //TITULO//
         dibujadoLetras("CONTROLES:",textoX,textoY,true);
     
         //ACCIONES//
-        textoX = frameX;
+        textoX = frameX - gp.tamanioCasilla*2;
         textoY += gp.tamanioCasilla;
         dibujadoLetras("Movimiento",textoX,textoY,false);textoY+=gp.tamanioCasilla;
         dibujadoLetras("Interactuar",textoX,textoY,false);textoY+=gp.tamanioCasilla;
@@ -288,7 +289,7 @@ public class InterfazJugador implements Dibujado{
         dibujadoLetras("Abrir/Cerrar Menu",textoX,textoY,false);
         
         //CONTROLES//
-        textoX = frameX + gp.tamanioCasilla*5;
+        textoX = frameX + gp.tamanioCasilla*3;
         textoY = frameY + gp.tamanioCasilla*2;
         dibujadoLetras("WASD/FLECHITAS",textoX,textoY,false);textoY+=gp.tamanioCasilla;
         dibujadoLetras("E",textoX,textoY,false);textoY+=gp.tamanioCasilla;
@@ -309,7 +310,7 @@ public class InterfazJugador implements Dibujado{
     }
     
     public void cerrarJuegoConfirm(int frameX, int frameY){
-        int textoX = frameX;
+        int textoX = frameX - gp.tamanioCasilla*2;
         int textoY = frameY + gp.tamanioCasilla*3;
     
         mensaje = "Deseas salir del juego y \nregresar a la pantalla de titulo?";
