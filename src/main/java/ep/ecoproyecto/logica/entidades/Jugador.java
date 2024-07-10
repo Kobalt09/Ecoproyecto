@@ -540,7 +540,7 @@ public class Jugador extends Entidad{
                             }
                         }
                     case Aguaconbasura aux ->{
-                            if(aux.estado=="Aguasucia" && this.inventario[6]!=null){
+                            if("Aguasucia".equals(aux.estado) && this.inventario[6]!=null){
                                 
                                     gp.hud.mostrarmensaje("Recogiste la basura");
                                     aux.estado="Agua";

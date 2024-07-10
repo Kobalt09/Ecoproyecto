@@ -8,6 +8,7 @@ import ep.ecoproyecto.logica.entidades.Papelera;
 import ep.ecoproyecto.logica.entidades.PuertaInteractuable;
 import ep.ecoproyecto.logica.entidades.Tienda;
 import ep.ecoproyecto.logica.entidades.Chiguire;
+import ep.ecoproyecto.logica.entidades.Mono;
 import ep.ecoproyecto.logica.entidades.Tonina;
 import ep.ecoproyecto.logica.entidades.Turpial;
 import ep.ecoproyecto.logica.entidades.Zamuro;
@@ -31,7 +32,7 @@ public class EmisorNPC  implements Dibujado, Actualizar{
         
         //----MUNDO 1:-----//
         int NumMap = 0;
-        gp.NPC[NumMap][0]= new Chiguire(gp,10,7);
+        gp.NPC[NumMap][0]= new Chiguire(gp,20,20);
         gp.NPC[NumMap][1]= new Tienda(gp,9,9);
         
         //posicion de la puerta(x,y,z), luego posiciona a la que hara el tp(xyz)
@@ -39,7 +40,7 @@ public class EmisorNPC  implements Dibujado, Actualizar{
         //prueba
         gp.NPC[NumMap][7]= new PuertaInteractuable(gp,"Ar",20,35,0  ,15, 15, 1);
         //tienda
-        gp.NPC[NumMap][2]= new PuertaInteractuable(gp,"puerta",13,9,0   ,6, 7, 2);
+        gp.NPC[NumMap][2]= new PuertaInteractuable(gp,"puerta",13,9,0   ,4, 9, 2);
         
         //der
         gp.NPC[NumMap][6]= new PuertaInteractuable(gp,"De",32,19,0  ,8, 14, 3);
@@ -58,10 +59,12 @@ public class EmisorNPC  implements Dibujado, Actualizar{
         gp.NPC[NumMap][3]= new PuertaInteractuable(gp,"Iz",2, 1, 1, 14,9,0);
         
         
+        
         //----MUNDO 3:-----  tienda//   
             NumMap = 2;
+            gp.NPC[NumMap][2]= new Mono(gp, 5, 5);
             gp.NPC[NumMap][1]= new Tienda(gp,7,1);
-            gp.NPC[NumMap][0]= new PuertaInteractuable(gp,"Ab",8, 8, 2,   9,10,0);
+            gp.NPC[NumMap][0]= new PuertaInteractuable(gp,"Ab",5, 11, 2,   12,11,0);
         
         //----MUNDO 4:-----derecha//
             NumMap = 3;

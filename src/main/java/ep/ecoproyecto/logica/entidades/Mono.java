@@ -6,11 +6,11 @@ import java.util.Random;
  *
  * @author C-A-F
  */
-public class Chiguire extends Entidad {
+public class Mono extends Entidad {
     
     public boolean misioncumplida=false;
 
-    public Chiguire(PanelJuego gp, int x, int y) {
+    public Mono(PanelJuego gp, int x, int y) {
         super(gp);
         this.xMapa=x*gp.tamanioCasilla;
         this.yMapa=y*gp.tamanioCasilla;
@@ -21,14 +21,14 @@ public class Chiguire extends Entidad {
         areadefectoY=hitBox.y;
         movimiento=true;
         
-        this.Mensaje="Hola, Gracias por aceptar \nayudarnos con la limpieza ";
+        this.Mensaje="hola bienvenido a mi tienda";
         
         getImage();
     }
     
     public void getImage(){
-        right1=up1=left1=down1= this.configuracion("/NPC/chigu");
-        right2=up2=left2=down2=this.configuracion("/NPC/chigu2");
+        right1=up1=left1=down1= this.configuracion("/NPC/mono");
+        right2=up2=left2=down2=this.configuracion("/NPC/mono1");
     }
 
     

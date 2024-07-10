@@ -126,7 +126,7 @@ public class PanelJuego extends JPanel implements Runnable{
         objetos.establecerObj();     //envia los objetos definidos a un arreglo
         npcs.establecernpcs();      //igual pero con npcs
         mini.establecerminijuegos();
-        this.reproducirmusica(musica);
+        
         
         this.jugador=new Jugador(this); //inicializa un jugador en blanco para las funciones que lo necesitan antes de darle valores
         
@@ -169,25 +169,7 @@ public class PanelJuego extends JPanel implements Runnable{
             }
         }
     }
-    
-    public void startGameThread(){
-        
-        //Se puede adaptar como una funcion dentro del MENU//
-        if(JOptionPane.showConfirmDialog(this, "Quieres iniciar el server?") == JOptionPane.YES_OPTION){
-            socketserver = new Server(this);
-            socketserver.start();
-        }
-        
-        //-------------------------------------------------//
-        
-        socketcliente = new Cliente("localhost",this);
-        socketcliente.start();
-        
-        inicioJugador();
-        
-        gameThread = new Thread(this);
-        gameThread.start();
-    }
+   
 
     @Override
     public void run() {

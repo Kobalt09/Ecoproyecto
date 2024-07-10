@@ -39,6 +39,7 @@ public class Aguaconbasura extends Entidad{
         right1=right2=up1=up2=left1=left2=down2=down1=this.configuracion("/objetos/agua/"+estado);
     }
     
+    @Override
     public BufferedImage configuracion(String nombre){
         
         Herramientas herramienta = new Herramientas();
