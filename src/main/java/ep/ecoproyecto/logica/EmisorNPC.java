@@ -3,6 +3,7 @@ package ep.ecoproyecto.logica;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.Interfaces.Actualizar;
 import ep.ecoproyecto.logica.Interfaces.Dibujado;
+import ep.ecoproyecto.logica.entidades.Aguaconbasura;
 import ep.ecoproyecto.logica.entidades.Agujero;
 import ep.ecoproyecto.logica.entidades.Papelera;
 import ep.ecoproyecto.logica.entidades.PuertaInteractuable;
@@ -42,14 +43,14 @@ public class EmisorNPC  implements Dibujado, Actualizar{
         gp.NPC[NumMap][2]= new PuertaInteractuable(gp,"puerta",13,9,0   ,6, 7, 2);
         
         //der
-        gp.NPC[NumMap][6]= new PuertaInteractuable(gp,"De",32,19,0  ,8, 14, 3);
-        
+        gp.NPC[NumMap][6]= new PuertaInteractuable(gp,"De",32,19,0  ,8, 13, 3);
+        gp.NPC[NumMap][10]= new PuertaInteractuable(gp,"De",32,20,0  ,8, 14, 3);
         //arr
         gp.NPC[NumMap][3]= new PuertaInteractuable(gp,"Ar",20,5,0   ,13, 23, 4);
         gp.NPC[NumMap][4]= new PuertaInteractuable(gp,"Ar",21,5,0   ,14, 23, 4);
         //iz
         gp.NPC[NumMap][5]= new PuertaInteractuable(gp,"Iz",7,20,0   ,20, 14, 5); 
-        
+        gp.NPC[NumMap][9]= new PuertaInteractuable(gp,"Iz",7,19,0   ,20, 13, 5); 
         //----MUNDO 2:----- pruebas//
         NumMap = 1;
         gp.NPC[NumMap][0]= new Agujero(gp,10, 10);
@@ -61,13 +62,18 @@ public class EmisorNPC  implements Dibujado, Actualizar{
         //----MUNDO 3:-----  tienda//   
             NumMap = 2;
             gp.NPC[NumMap][1]= new Tienda(gp,7,1);
-            gp.NPC[NumMap][0]= new PuertaInteractuable(gp,"Ab",8, 8, 2,   9,10,0);
+            gp.NPC[NumMap][0]= new PuertaInteractuable(gp,"Ab",8, 9, 2,   9,10,0);
         
         //----MUNDO 4:-----derecha//
             NumMap = 3;
-            gp.NPC[NumMap][0]= new PuertaInteractuable(gp,"Ar",8, 14, 3,  30,18,0);
-            gp.NPC[NumMap][1]= new PuertaInteractuable(gp,"Ar",8, 14, 3,  30,18,0);
+            gp.NPC[NumMap][0]= new PuertaInteractuable(gp,"Iz",8, 14, 3,  30,19,0);
+            gp.NPC[NumMap][1]= new PuertaInteractuable(gp,"Iz",8, 15, 3,  30,20,0);
             gp.NPC[NumMap][2]= new Tonina(gp,17,14);
+            
+            gp.NPC[NumMap][5]=new Aguaconbasura(gp,10,6);
+            gp.NPC[NumMap][6]=new Aguaconbasura(gp,14,9);
+            gp.NPC[NumMap][7]=new Aguaconbasura(gp,18,20);
+            gp.NPC[NumMap][8]=new Aguaconbasura(gp,21,10);
         
         //----MUNDO 5:-----arriba// 
             NumMap = 4;
@@ -81,13 +87,13 @@ public class EmisorNPC  implements Dibujado, Actualizar{
             gp.NPC[NumMap][8]=new Agujero(gp,11,16);
             gp.NPC[NumMap][9]=new Agujero(gp,20,12);
             gp.NPC[NumMap][10]=new Agujero(gp,14,10);
-            //gp.NPC[NumMap][11]=new Agujero(gp,18,20);
-            //gp.NPC[NumMap][8]=new Agujero(gp,21,10);
+
             
             
         //----MUNDO 6:-----izquierda//
             NumMap = 5;
-            gp.NPC[NumMap][0]= new PuertaInteractuable(gp,"Ar",22, 15, 5,   8,19,0);
+            gp.NPC[NumMap][0]= new PuertaInteractuable(gp,"De",22, 15, 5,   8,19,0);
+            gp.NPC[NumMap][1]= new PuertaInteractuable(gp,"De",22, 14, 5,   8,18,0);
             gp.NPC[NumMap][3]= new Zamuro(gp,18,14);
             gp.NPC[NumMap][5]=new Papelera(gp,21,16);
     }

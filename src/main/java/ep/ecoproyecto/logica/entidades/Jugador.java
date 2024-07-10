@@ -33,7 +33,8 @@ public class Jugador extends Entidad{
     // 7 semillas
     // 9 dinero
     // 8 red
-    public int cantInventario[]= new int[10];
+    public int cantInventario[]= new int[5];
+    public Objetosclase inventario[]= new Objetosclase[5];
 
     public boolean interactuar;
     
@@ -188,7 +189,6 @@ public class Jugador extends Entidad{
             }    
         } 
     }
-    //condatdor?
     public void aumentarcontador(){
         contador++;
         if(contador>10){
@@ -279,18 +279,21 @@ public class Jugador extends Entidad{
 
             }
             if(keyH.rightPressed==true){
+                gp.efectos(7);
                 gp.hud.opcion++;
                 tecla=false;
-                if( gp.hud.opcion>8){
+                if( gp.hud.opcion>4){
                     gp.hud.opcion=0;
                 }
             }else if(keyH.leftPressed==true){
+                gp.efectos(7);
                 gp.hud.opcion--;
                 tecla=false;
                 if( gp.hud.opcion<0){
-                    gp.hud.opcion=8;
+                    gp.hud.opcion=4;
                 }
             }else if(keyH.ePressed==true){
+                gp.efectos(7);
                 tecla=false;
                 if(gp.hud.opcion==0){
                     estado=estadojuego;
@@ -301,9 +304,9 @@ public class Jugador extends Entidad{
                         
                         if(obj!=null && cont==(gp.hud.opcion-1) ){
                             //System.out.println(obj.nombre);
-                            if(!(obj.getPrecio()>this.cantInventario[9])){
+                            if(!(obj.getPrecio()>this.cantInventario[4])){
                                 
-                                this.cantInventario[9]=this.cantInventario[9]-obj.getPrecio();
+                                this.cantInventario[4]=this.cantInventario[4]-obj.getPrecio();
                                 switch(obj.nombre){
                                     case "calvo" -> {
                                         this.sombreros[0]= new ObjetoRecogible("calvo",10,10,gp);
@@ -358,7 +361,7 @@ public class Jugador extends Entidad{
             
             //switch para el nombre
             //nota se puede usar un getclass para saber el tipo o usar 
-            switch(objnombre){
+            switch(objnombre){/*
                 case "llave" -> {
                     //llaves++;
                     
@@ -384,7 +387,7 @@ public class Jugador extends Entidad{
                                 this.inventario[1]=null;
                             }
                         }
-                    }    
+                    } */   
                 case "botas" -> {
                     if(this.inventario[0]==null){
                         gp.efectos(4);
@@ -399,18 +402,21 @@ public class Jugador extends Entidad{
                     gp.obj[gp.mapaActual][id]=null;
                 }
                 case "coin" -> {
-                    this.cantInventario[9]++;
+                    this.cantInventario[4]++;
+                    gp.efectos(2);
                     gp.hud.victoriamensaje=true;
                     gp.obj[gp.mapaActual][id]=null;
                 }
                 case "semilla" -> {
-                    this.cantInventario[7]++;
-                    this.inventario[7]=gp.obj[gp.mapaActual][id];
+                    this.cantInventario[1]++;
+                    gp.efectos(6);
+                    this.inventario[1]=gp.obj[gp.mapaActual][id];
                     gp.hud.victoriamensaje=true;
                     gp.obj[gp.mapaActual][id]=null;
                 }
                 case "basura" -> {
                     this.cantInventario[2]++;
+                    gp.efectos(6);
                     this.inventario[2]=gp.obj[gp.mapaActual][id];
                     gp.hud.victoriamensaje=true;
                     gp.obj[gp.mapaActual][id]=null;
@@ -430,6 +436,7 @@ public class Jugador extends Entidad{
     public void intereaccionNCP(int id) {
         if(id!=999){
             if (interactuar==true){
+                gp.efectos(7);
                 if(gp.NPC[gp.mapaActual][id].movimiento==true){
                     if("right".equals(direction)){
                         gp.NPC[gp.mapaActual][id].direction="left";
@@ -468,10 +475,10 @@ public class Jugador extends Entidad{
                         }
                     case Agujero  aux -> {
                             if(aux.estado=="Agujerovacio"){
-                                if(this.cantInventario[7]!=0){
-                                    this.cantInventario[7]--;
-                                    if(this.cantInventario[7]==0){
-                                        this.inventario[7]=null;
+                                if(this.cantInventario[1]!=0){
+                                    this.cantInventario[1]--;
+                                    if(this.cantInventario[1]==0){
+                                        this.inventario[1]=null;
                                     }
                                     gp.hud.mostrarmensaje("Plantaste un Arbol");
                                     aux.estado="Agujerolleno";
@@ -488,14 +495,14 @@ public class Jugador extends Entidad{
                                 if(aux.misioncumplida==false){
                                     gp.hud.mostrarmensaje("Muchas gracias, ten estas U.N.D");
                                     aux.misioncumplida=true;
-                                    this.cantInventario[9]=this.cantInventario[9]+10;
+                                    this.cantInventario[4]=this.cantInventario[4]+10;
                                 }else{
                                     gp.hud.mostrarmensaje("Muchas gracias de nuevo");
                                 }   
                             }else{
                                 if(gp.minijuego[3][0].Empezado==false){
                                     gp.hud.mostrarmensaje("Hola, me ayudas a limpiar el agua? Usa esta red");
-                                    this.inventario[6]= new ObjetoRecogible("Red", 1, 1, gp);
+                                    this.inventario[3]= new ObjetoRecogible("Red", 1, 1, gp);
                                     gp.mini.activarmini(3, 0);
                                 }else if(gp.minijuego[3][0].Empezado==true){
                                     gp.minijuego[3][0].interacion();
@@ -507,7 +514,7 @@ public class Jugador extends Entidad{
                                 if(aux.misioncumplida==false){
                                     gp.hud.mostrarmensaje("Gracias, toma estas U.N.D");
                                     aux.misioncumplida=true;
-                                    this.cantInventario[9]=this.cantInventario[9]+10;
+                                    this.cantInventario[4]=this.cantInventario[4]+10;
                                 }else{
                                     gp.hud.mostrarmensaje("Gracias de nuevo");
                                 }
@@ -525,7 +532,7 @@ public class Jugador extends Entidad{
                                 if(aux.misioncumplida==false){
                                     gp.hud.mostrarmensaje("Toma estas U.N.D");
                                     aux.misioncumplida=true;
-                                    this.cantInventario[9]=this.cantInventario[9]+10;
+                                    this.cantInventario[4]=this.cantInventario[4]+10;
                                 }else{
                                     gp.hud.mostrarmensaje("Ahora esa basura es toda mia");
                                 }
@@ -540,7 +547,7 @@ public class Jugador extends Entidad{
                             }
                         }
                     case Aguaconbasura aux ->{
-                            if(aux.estado=="Aguasucia" && this.inventario[6]!=null){
+                            if(aux.estado=="Aguasucia" && this.inventario[3]!=null){
                                 
                                     gp.hud.mostrarmensaje("Recogiste la basura");
                                     aux.estado="Agua";
