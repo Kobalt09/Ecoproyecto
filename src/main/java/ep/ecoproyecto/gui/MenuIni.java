@@ -20,10 +20,11 @@ public class MenuIni extends javax.swing.JFrame {
     ImageIcon img = new ImageIcon("/player/jg_abj_01.png");
     
     public MenuIni() {
-        initComponents();     
+        initComponents();  
+        
         titulo.setFont(tipoFuente.fuente(tipoFuente.upheaval,0,60));
         this.setTitle("ECOPROYECTO");
-        titulo.setBackground(Color.white);
+        titulo.setForeground(Color.white);
         this.setLocationRelativeTo(null);
         JpanelImagen jImg= new JpanelImagen(jPanel1,"/fondo/ecocrosin.jpg" );
         jPanel1.add(jImg).repaint();
@@ -234,15 +235,18 @@ public class MenuIni extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        String mensaje = "<html><body>" + "<h2>ECOCROSSING</h2>" + "<p><b>Versión:</b> 0.1.0</p>" + "<p><b>Desarrollado por:</b> Cristian Baczek, Alfonso Palma y Fernando Pérez</p>" + "<p><b>Descripción:</b> EcoCrossing es una iniciativa para concientizar sobre el medio ambiente a través de un juego interactivo.</p>" + "<p><b>Agradecimientos especiales a:</b> RyiSnow y vanZeben.</p>" + "</body></html>";
+    
+        // Mostrar el cuadro de diálogo con la información
+        JOptionPane.showMessageDialog(this, mensaje, "Acerca de ECOPROYECTO", JOptionPane.INFORMATION_MESSAGE, img);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
