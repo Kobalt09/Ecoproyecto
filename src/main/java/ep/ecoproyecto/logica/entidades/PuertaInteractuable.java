@@ -4,7 +4,6 @@
  */
 package ep.ecoproyecto.logica.entidades;
 
-import com.sun.source.util.Plugin;
 import ep.ecoproyecto.gui.PanelJuego;
 import java.awt.Rectangle;
 
@@ -12,8 +11,7 @@ import java.awt.Rectangle;
  *
  * @author Cris
  */
-public class PuertaInteractuable extends Entidad{
-    int zMapa;
+public final class PuertaInteractuable extends Entidad{
     int Xtp;
     int Ytp;
     int Ztp;
@@ -34,7 +32,6 @@ public class PuertaInteractuable extends Entidad{
         this.Xtp=Xtp;
         this.Ytp=Ytp;
         this.Ztp=Ztp;
-        this.zMapa=z;
         getImage();
     }
 

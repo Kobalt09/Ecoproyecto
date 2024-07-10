@@ -31,7 +31,7 @@ public class Jugador extends Entidad{
     // 1 llaves
     // 2 basura
     // 7 semillas
-    // 9 dinero
+    // 9 dinero                                                                     
     // 8 red
     public int cantInventario[]= new int[5];
     public boolean interactuar;
