@@ -104,7 +104,7 @@ public class ControladorEventos {
     }
     
     public void mensaje(){
-        gp.hud.mostrarmensaje(gp.NPC[0][0].Mensaje);
+        gp.hud.mostrarmensaje(gp.NPC[0][0].mensaje);
     }
     
     //desplazar al jugador
