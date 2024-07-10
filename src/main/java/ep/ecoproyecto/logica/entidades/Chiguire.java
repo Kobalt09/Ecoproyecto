@@ -21,7 +21,7 @@ public final class Chiguire extends Entidad {
         areadefectoY=hitBox.y;
         movimiento=true;
         
-        this.mensaje="Hola, Gracias por aceptar \nayudarnos con la limpieza ";
+        this.mensaje="Hola, Gracias por limpiar";
         
         getImage();
     }
