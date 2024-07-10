@@ -1,7 +1,6 @@
 package ep.ecoproyecto.logica;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.net.packets.Paquete03Mapa;
-import minijuegos.Minijuegoarboles;
 /**
  *
  * @author C-A-F
@@ -10,7 +9,7 @@ import minijuegos.Minijuegoarboles;
 public class ControladorEventos {
     PanelJuego gp;
     CasillaEventos rectanguloEvento[][][];
-    CasillaEventos Eventoprevio;
+    CasillaEventos eventoprevio;
     
     public ControladorEventos(PanelJuego gp){
         this.gp=gp;
@@ -63,7 +62,7 @@ public class ControladorEventos {
         }
     }
     
-    public boolean colision(int columna, int fila,int mapa ,String regdirecion){
+    public boolean colision(int columna, int fila,int mapa ,String regdireccion){
         boolean hit= false;
         
         gp.jugador.hitBox.x=gp.jugador.xMapa+gp.jugador.hitBox.width;
@@ -72,10 +71,10 @@ public class ControladorEventos {
         rectanguloEvento[columna][fila][mapa].x=columna*gp.tamanioCasilla+rectanguloEvento[columna][fila][mapa].x;
         rectanguloEvento[columna][fila][mapa].y=fila*gp.tamanioCasilla+rectanguloEvento[columna][fila][mapa].y;
         
-        if((gp.jugador.hitBox.intersects(rectanguloEvento[columna][fila][mapa]))&&(rectanguloEvento[columna][fila][mapa].Activado==false)&&(Eventoprevio!=rectanguloEvento[columna][fila][mapa])&&(gp.mapaActual==mapa)){
-            if((gp.jugador.direction.equals(regdirecion)||regdirecion.contentEquals("any"))){
+        if((gp.jugador.hitBox.intersects(rectanguloEvento[columna][fila][mapa]))&&(rectanguloEvento[columna][fila][mapa].Activado==false)&&(eventoprevio!=rectanguloEvento[columna][fila][mapa])&&(gp.mapaActual==mapa)){
+            if((gp.jugador.direction.equals(regdireccion)||regdireccion.contentEquals("any"))){
                 hit=true;
-                Eventoprevio=rectanguloEvento[columna][fila][mapa];
+                eventoprevio=rectanguloEvento[columna][fila][mapa];
             }
         }
         

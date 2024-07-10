@@ -4,7 +4,6 @@
  */
 package ep.ecoproyecto.logica;
 
-import ep.ecoproyecto.gui.PanelJuego;
 import java.awt.Rectangle;
 
 /**
@@ -13,7 +12,7 @@ import java.awt.Rectangle;
  */
 public class CasillaEventos extends Rectangle{
     
-    int posicionDefectoX, posicionDefectoY,z;
+    int posicionDefectoX, posicionDefectoY;
     boolean Activado=false;
 
 }

@@ -6,9 +6,9 @@ package ep.ecoproyecto.logica;
 
 import ep.ecoproyecto.gui.PanelJuego;
 import java.awt.Panel;
-import minijuegos.Minijuegoagua;
-import minijuegos.Minijuegoarboles;
-import minijuegos.Minijuegobasura;
+import ep.ecoproyecto.logica.minijuegos.Minijuegoagua;
+import ep.ecoproyecto.logica.minijuegos.Minijuegoarboles;
+import ep.ecoproyecto.logica.minijuegos.Minijuegobasura;
 
 /**
  *

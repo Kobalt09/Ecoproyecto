@@ -29,7 +29,7 @@ import javax.swing.JPanel;
 import java.util.LinkedList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import minijuegos.Minijuego;
+import ep.ecoproyecto.logica.minijuegos.Minijuego;
 
 /**
  * @author C-A-F
