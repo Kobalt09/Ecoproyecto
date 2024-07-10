@@ -30,6 +30,7 @@ public class Chiguire extends Entidad {
         right1=up1=left1=down1= this.configuracion("/NPC/chigu");
         right2=up2=left2=down2=this.configuracion("/NPC/chigu2");
     }
+
     
     public void estableceraccion(){
         if(movimiento==true){

@@ -462,7 +462,8 @@ public class Jugador extends Entidad{
                                     
                             }else{
                                 if(gp.Minijuego[3][0].Empezado==false){
-                                    gp.hud.mostrarmensaje("Hola, me ayudas a plantar estos arboles?");
+                                    gp.hud.mostrarmensaje("Hola, me ayudas a limpiar el agua? Usa esta red");
+                                    this.inventario[8]= new ObjetoRecogible("Red", 1, 1, gp);
                                     gp.mini.activarmini(3, 0);
                                 }else if(gp.Minijuego[3][0].Empezado==true){
                                     gp.Minijuego[3][0].interacion();
@@ -470,6 +471,17 @@ public class Jugador extends Entidad{
                             }
 
                         }
+                    case Aguaconbasura aux ->{
+                            if(aux.estado=="Aguasucia" && this.inventario[8]!=null){
+                                
+                                    gp.hud.mostrarmensaje("Recogiste la basura");
+                                    aux.estado="Agua";
+                                    aux.getImage();
+                                
+                            }else{
+                                gp.hud.mostrarmensaje(aux.Mensaje);
+                            }
+                    }
                     default -> {
                         gp.hud.mostrarmensaje(gp.NPC[gp.mapaActual][id].Mensaje);
                     }   

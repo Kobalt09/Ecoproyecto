@@ -6,6 +6,7 @@ package ep.ecoproyecto.logica;
 
 import ep.ecoproyecto.gui.PanelJuego;
 import java.awt.Panel;
+import minijuegos.Minijuegoagua;
 import minijuegos.Minijuegoarboles;
 import minijuegos.Minijuegobasura;
 
@@ -43,7 +44,7 @@ public class ControladorMinijuegos {
          */
         //----MUNDO 4:-----//
         NumMap = 3;
-        gp.Minijuego[NumMap][0]= new Minijuegoarboles(gp);
+        gp.Minijuego[NumMap][0]= new Minijuegoagua(gp);
         
         /*
         //----MUNDO 5:-----//
