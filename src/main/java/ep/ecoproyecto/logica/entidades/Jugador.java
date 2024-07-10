@@ -563,7 +563,7 @@ public class Jugador extends Entidad{
                     }
                     default -> {
                         gp.hud.mostrarmensaje(gp.NPC[gp.mapaActual][id].mensaje);
-                        this.cantInventario[9]=this.cantInventario[9]+20;
+                        this.cantInventario[4]=this.cantInventario[4]+20;
                     }   
                        
                 }
