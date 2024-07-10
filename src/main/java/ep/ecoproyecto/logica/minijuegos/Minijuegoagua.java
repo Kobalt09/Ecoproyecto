@@ -41,9 +41,9 @@ public class Minijuegoagua extends Minijuego{
     }
     
     @Override
-    public void comprobante(){    
+    public void comprobante(){
         terminado=true;
-        for(int i=5;i<8;i++){
+        for(int i=5;i<=8;i++){
             if(gp.NPC[gp.mapaActual][i] instanceof Agujero Aux){
                 if(Aux.estado.equals("Aguasucia")){
                     terminado=false;
