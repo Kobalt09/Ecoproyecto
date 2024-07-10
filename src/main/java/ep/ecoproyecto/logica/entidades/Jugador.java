@@ -302,7 +302,7 @@ public class Jugador extends Entidad{
                         
                         if(obj!=null && cont==(gp.hud.opcion-1) ){
                             //System.out.println(obj.nombre);
-                            if(!(obj.getPrecio()>this.cantInventario[4])){
+                            if(!(obj.getPrecio()>this.cantInventario[4])&&(gp.NPC[2][1].inventario[cont]!=null)){
                                 
                                 this.cantInventario[4]=this.cantInventario[4]-obj.getPrecio();
                                 switch(obj.nombre){
@@ -335,7 +335,12 @@ public class Jugador extends Entidad{
                                     }
                                 }
                             }else{
-                                gp.hud.mostrarmensaje("ES MUY CARO NO PUEDES PAGARLO");
+                                
+                                if(gp.NPC[2][1].inventario[cont]==null){
+                                    gp.hud.mostrarmensaje("Ya compraste esto");
+                                }else{
+                                    gp.hud.mostrarmensaje("Es muy caro");
+                                }
                             }    
                         }
                         cont++;
