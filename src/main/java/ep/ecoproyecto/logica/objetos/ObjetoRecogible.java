@@ -1,17 +1,11 @@
 package ep.ecoproyecto.logica.objetos;
-import ep.ecoproyecto.logica.entidades.Entidad;
 import ep.ecoproyecto.gui.PanelJuego;
-import ep.ecoproyecto.logica.Herramientas;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 /**
  *
  * @author C-A-F
  */
 public class ObjetoRecogible extends Objetosclase{
-    public int precio;
     
     public ObjetoRecogible(String nombre, int posicionX, int posicionY, PanelJuego gp) {
         super(gp);
@@ -31,10 +25,12 @@ public class ObjetoRecogible extends Objetosclase{
     }
     
     
+    @Override
     public int getPrecio() {
         return precio;
     }
 
+    @Override
     public void setPrecio(int precio) {
         this.precio = precio;
     }

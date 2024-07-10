@@ -11,11 +11,11 @@ import ep.ecoproyecto.logica.net.Server;
  *
  * @author C-A-F
  */
-public class Paquete03Mapa extends Packet {
+public class Packet03Mapa extends Packet {
     private String username;
     private int mapa;
 
-    public Paquete03Mapa(byte[] data) {
+    public Packet03Mapa(byte[] data) {
         super(03);
         String[] datos=readData(data).split(",");
         this.mapa=Integer.parseInt(datos[0]);
@@ -31,7 +31,7 @@ public class Paquete03Mapa extends Packet {
         this.username = username;
     }
 
-    public Paquete03Mapa(int mapa,String username) {
+    public Packet03Mapa(int mapa,String username) {
         super(03);
         this.mapa = mapa;
         this.username=username;
