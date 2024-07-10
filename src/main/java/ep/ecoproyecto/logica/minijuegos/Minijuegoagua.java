@@ -23,7 +23,7 @@ public class Minijuegoagua extends Minijuego{
         public void interacion(){
         if(Terminado==false && Empezado==false){
             Empezado=true;
-            generarobjetos();
+            //generarobjetos();
         }else if(Empezado==true){
             comprobante();
             if(Terminado==true){
@@ -38,10 +38,7 @@ public class Minijuegoagua extends Minijuego{
     @Override
     public void generarobjetos(){
         //Npc
-        gp.NPC[3][5]=new Aguaconbasura(gp,10,6);
-        gp.NPC[3][6]=new Aguaconbasura(gp,14,9);
-        gp.NPC[3][7]=new Aguaconbasura(gp,18,20);
-        gp.NPC[3][8]=new Aguaconbasura(gp,21,10);
+
     }
     
     @Override
