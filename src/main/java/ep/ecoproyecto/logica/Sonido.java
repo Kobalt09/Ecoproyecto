@@ -54,6 +54,8 @@ public class Sonido {
                 AudioInputStream ais= AudioSystem.getAudioInputStream(sonidoURL[1]);
                 clip= AudioSystem.getClip();
                 clip.open(ais);
+                fc = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
+                chequearVolumen();
                 clip.start();
                 clip.loop(Clip.LOOP_CONTINUOUSLY);
                 sonidoanterior=i;
@@ -63,6 +65,8 @@ public class Sonido {
                 AudioInputStream ais= AudioSystem.getAudioInputStream(sonidoURL[sonidoanterior]);
                 clip= AudioSystem.getClip();
                 clip.open(ais);
+                fc = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
+                chequearVolumen();
                 clip.start();
                 clip.loop(Clip.LOOP_CONTINUOUSLY);
                 actual= sonidoanterior;
