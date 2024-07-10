@@ -56,7 +56,7 @@ public class ControladorMinijuegos {
     }
     
     public void activarmini(int mapa, int num){
-        gp.minijuego[mapa][num].interacion();
+        gp.minijuego[mapa][num].interaccion();
     }
     
     

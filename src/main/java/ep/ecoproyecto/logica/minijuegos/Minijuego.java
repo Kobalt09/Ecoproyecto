@@ -12,18 +12,18 @@ import ep.ecoproyecto.gui.PanelJuego;
  */
 public abstract class Minijuego {
     PanelJuego gp;
-    public boolean Empezado, Terminado;
+    public boolean empezado, terminado;
     
     
     public Minijuego(PanelJuego gp) {
         this.gp = gp;
-        Empezado=false;
-        Terminado=false;
+        empezado=false;
+        terminado=false;
     }
     
     
     
-    public abstract void interacion();
+    public abstract void interaccion();
     
     public abstract void generarobjetos();
     
