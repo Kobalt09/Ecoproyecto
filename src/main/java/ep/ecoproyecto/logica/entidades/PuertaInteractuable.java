@@ -4,6 +4,7 @@
  */
 package ep.ecoproyecto.logica.entidades;
 
+import com.sun.source.util.Plugin;
 import ep.ecoproyecto.gui.PanelJuego;
 import java.awt.Rectangle;
 
@@ -17,15 +18,13 @@ public class PuertaInteractuable extends Entidad{
     int Ytp;
     int Ztp;
     
-    public PuertaInteractuable(PanelJuego gp, int x, int y,int z ,int Xtp, int Ytp, int Ztp) {
+    public PuertaInteractuable(PanelJuego gp,String nombre, int x, int y,int z ,int Xtp, int Ytp, int Ztp) {
         super(gp);
+        this.nombre=nombre;
         this.xMapa=x*gp.tamanioCasilla;
         this.yMapa=y*gp.tamanioCasilla;
         this.direction="down";
         this.vel=0;
-
-        this.
-        right1=right2=up1=up2=left1=left2=down2=down1= this.configuracion("/objetos/puerta1Invis");
         colision=true;
         
         hitBox= new Rectangle(-1,-1,gp.tamanioCasilla+2,gp.tamanioCasilla+2);
@@ -36,8 +35,19 @@ public class PuertaInteractuable extends Entidad{
         this.Ytp=Ytp;
         this.Ztp=Ztp;
         this.zMapa=z;
+        getImage();
     }
 
+    public void getImage(){
+        if(this.nombre.equals("puerta")){
+            right1=up1=left1=down1=right2=up2=left2=down2= this.configuracion("/objetos/puerta1Invis");
+            
+        }else{
+            right1=up1=left1=down1= this.configuracion("/Flechas/Flecha"+this.nombre+"1");
+            right2=up2=left2=down2= this.configuracion("/Flechas/Flecha"+this.nombre+"2");
+            movimiento=true;
+        }
+    }   
     
     
 }

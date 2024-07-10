@@ -40,16 +40,15 @@ public class Minijuegoarboles extends Minijuego{
     public void generarobjetos(){
         
         //objetos
-        gp.obj[5][5]=new ObjetoRecogible("semilla", 10, 16, gp);
-        gp.obj[5][6]=new ObjetoRecogible("semilla", 9, 20, gp);
-        gp.obj[5][7]=new ObjetoRecogible("semilla", 15, 22, gp);
-        gp.obj[5][8]=new ObjetoRecogible("semilla", 15, 5, gp);
+        gp.obj[4][5]=new ObjetoRecogible("semilla", 16, 21, gp);
+        gp.obj[4][6]=new ObjetoRecogible("semilla", 10, 23, gp);
+        gp.obj[4][7]=new ObjetoRecogible("semilla", 13, 17, gp);
+        gp.obj[4][8]=new ObjetoRecogible("semilla", 18, 15, gp);
+        gp.obj[4][9]=new ObjetoRecogible("semilla", 15, 13, gp);
+        gp.obj[4][10]=new ObjetoRecogible("semilla",11, 8, gp);
         //Npc
         
-        gp.NPC[5][5]=new Agujero(gp,10,6);
-        gp.NPC[5][6]=new Agujero(gp,14,9);
-        gp.NPC[5][7]=new Agujero(gp,18,20);
-        gp.NPC[5][8]=new Agujero(gp,21,10);
+
     }
     
     @Override
@@ -57,7 +56,7 @@ public class Minijuegoarboles extends Minijuego{
         Terminado=true;
        
         
-        for(int i=5;i<8;i++){
+        for(int i=5;i<=10;i++){
             if(gp.NPC[gp.mapaActual][i] instanceof Agujero Aux){
                 if(Aux.estado.equals("Agujerovacio")){
                     Terminado=false;
