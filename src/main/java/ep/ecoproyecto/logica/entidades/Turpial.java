@@ -20,7 +20,7 @@ public class Turpial extends Entidad {
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
         movimiento=true;
-        this.Mensaje="Hola, soy un Turpial";
+        this.mensaje="Hola, soy un Turpial";
         getImage();
     }
     

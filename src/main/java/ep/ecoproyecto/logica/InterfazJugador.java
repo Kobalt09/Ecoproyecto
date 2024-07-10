@@ -425,11 +425,6 @@ public class InterfazJugador{
         }
         g2.drawString("Salir",100, MarcoY+gp.tamanioCasilla*2);
     }
-
-   
-    public void dibujado(Graphics2D g2) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
     
     public BufferedImage configuracion(String nombre){
         

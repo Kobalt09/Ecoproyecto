@@ -21,7 +21,7 @@ public class Mono extends Entidad {
         areadefectoY=hitBox.y;
         movimiento=true;
         
-        this.Mensaje="hola bienvenido a mi tienda";
+        this.mensaje="hola bienvenido a mi tienda";
         
         getImage();
     }

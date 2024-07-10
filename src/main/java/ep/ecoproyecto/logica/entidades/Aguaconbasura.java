@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
  *
  * @author Cris
  */
-public class Aguaconbasura extends Entidad{
+public final class Aguaconbasura extends Entidad{
 
     public String estado;
 
@@ -29,7 +29,7 @@ public class Aguaconbasura extends Entidad{
         areadefectoY=hitBox.y;
         estado="Aguasucia";
         
-        this.Mensaje="Cuanta basura en el agua";
+        this.mensaje="Cuanta basura en el agua";
         
         getImage();
     }

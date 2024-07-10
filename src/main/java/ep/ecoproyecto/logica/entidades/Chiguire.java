@@ -6,7 +6,7 @@ import java.util.Random;
  *
  * @author C-A-F
  */
-public class Chiguire extends Entidad {
+public final class Chiguire extends Entidad {
     
     public boolean misioncumplida=false;
 
@@ -21,7 +21,7 @@ public class Chiguire extends Entidad {
         areadefectoY=hitBox.y;
         movimiento=true;
         
-        this.Mensaje="Hola, Gracias por aceptar \nayudarnos con la limpieza ";
+        this.mensaje="Hola, Gracias por aceptar \nayudarnos con la limpieza ";
         
         getImage();
     }
