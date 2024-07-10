@@ -151,22 +151,11 @@ public class Server extends Thread{
         }
     }
    
-    public int getIndiceJugador(String user){
-        int indice=0;
-        for (JugadorMP jug:jugadoresConectados){
-            if (jug.getUsername().equals(user)){
-                break;
-            }
-        indice++;
-        } 
-        return indice;
-    }
-    
     private void manejarMov(Packet02Mov packet) {
         
         if(getJugadorMP(packet.getUsername())!=null){
             
-            int indice=this.getIndiceJugador(packet.getUsername());
+            int indice=this.getJugadorMPindex(packet.getUsername());
             
             this.jugadoresConectados.get(indice).xMapa=packet.getX();
             this.jugadoresConectados.get(indice).yMapa=packet.getY();
@@ -178,7 +167,7 @@ public class Server extends Thread{
     private void cambioMapa(Packet03Mapa packet) {
         if(getJugadorMP(packet.getUsername())!=null){
             
-            int indice=this.getIndiceJugador(packet.getUsername());
+            int indice=this.getJugadorMPindex(packet.getUsername());
             this.jugadoresConectados.get(indice).setMapa(packet.getMapa());
             
             packet.writeData(this);
