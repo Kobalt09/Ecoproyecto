@@ -254,7 +254,7 @@ public class MenuIni extends javax.swing.JFrame {
                 "<p>- Usa <b>ESC</b> o <b>P</b> para ingresar al menu de opciones." +
                 "<p>- Usa <b>E</b> para interactuar con elementos de tu entorno.</p>" +
                 "<p>- Usa <b>ENTER</b> para confirmar alguna opción.</p>" +
-                "<p>- Viaja a otras islas y ve completando las misiones para conseguir dinero." +
+                "<p>- Viaja a otras islas y ve completando las misiones para conseguir Unidades de Credito" +
                 "<p></p>" +
                 "<p><b>MENÚ PRINCIPAL</b></p>" +
                 "<p>- <b>Jugar:</b> Inicia el Juego.</p>" +

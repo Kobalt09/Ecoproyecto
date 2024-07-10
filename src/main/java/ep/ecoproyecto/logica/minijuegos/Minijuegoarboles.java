@@ -6,7 +6,6 @@ package ep.ecoproyecto.logica.minijuegos;
 
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.entidades.Agujero;
-import ep.ecoproyecto.logica.objetos.ObjetoEquipo;
 import ep.ecoproyecto.logica.objetos.ObjetoRecogible;
 
 /**
@@ -21,6 +20,7 @@ public class Minijuegoarboles extends Minijuego{
     
     
     
+    @Override
     public void interacion(){
         if(Terminado==false && Empezado==false){
             Empezado=true;

@@ -9,7 +9,7 @@ import java.awt.Rectangle;
  *
  * @author C-A-F
  */
-public class Tienda extends Entidad {
+public final class Tienda extends Entidad {
     
     
     public Tienda(PanelJuego gp, int x, int y) {

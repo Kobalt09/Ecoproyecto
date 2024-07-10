@@ -5,7 +5,6 @@
 package ep.ecoproyecto.logica.minijuegos;
 
 import ep.ecoproyecto.gui.PanelJuego;
-import ep.ecoproyecto.logica.entidades.Papelera;
 import ep.ecoproyecto.logica.objetos.ObjetoRecogible;
 
 /**
@@ -18,7 +17,8 @@ public class Minijuegobasura extends Minijuego{
         super(gp);
     }
     
-        public void interacion(){
+    @Override
+    public void interacion(){
         if(Terminado==false && Empezado==false){
             Empezado=true;
             generarobjetos();
@@ -29,9 +29,6 @@ public class Minijuegobasura extends Minijuego{
             }
         }     
     }
-   
-    
-    
     
     @Override
     public void generarobjetos(){
