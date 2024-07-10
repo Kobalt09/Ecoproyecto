@@ -34,8 +34,6 @@ public class Jugador extends Entidad{
     // 9 dinero
     // 8 red
     public int cantInventario[]= new int[5];
-    public Objetosclase inventario[]= new Objetosclase[5];
-
     public boolean interactuar;
     
     public int estado;
@@ -427,7 +425,7 @@ public class Jugador extends Entidad{
         
     }
     
-    public void RecogerObjeto(int i){
+    public void recogerObjeto(int i){
         if(i!=999){
             gp.obj[gp.mapaActual][i]=null;
         }
