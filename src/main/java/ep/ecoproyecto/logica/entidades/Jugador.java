@@ -228,7 +228,7 @@ public class Jugador extends Entidad{
                 recogerobjetos(gp.colisiones.chequeoObjetos(this, true));
             
                 //colision eventos
-                gp.ControlEventos.chequeoEvento();
+                gp.controlEventos.chequeoEvento();
             
             
                 if(colision==false && interactuar==false){
@@ -458,11 +458,11 @@ public class Jugador extends Entidad{
                         }
                     case PuertaInteractuable  aux -> {
                             if(aux.Ztp==2){
-                                gp.ControlEventos.musicatienda();
+                                gp.controlEventos.musicatienda();
                             }else if(gp.mapaActual==2){
-                                gp.ControlEventos.musicatienda();
+                                gp.controlEventos.musicatienda();
                             }
-                            gp.ControlEventos.tpinteractuar(aux.Xtp,aux.Ytp, aux.Ztp);
+                            gp.controlEventos.tpinteractuar(aux.Xtp,aux.Ytp, aux.Ztp);
                         }
                     case Papelera  aux -> {
                             if(this.cantInventario[2]!=0){
@@ -491,7 +491,7 @@ public class Jugador extends Entidad{
                             }
                         }
                     case Tonina  aux -> {
-                            if(gp.Minijuego[3][0].Terminado==true){
+                            if(gp.minijuego[3][0].Terminado==true){
                                 if(aux.misioncumplida==false){
                                     gp.hud.mostrarmensaje("Muchas gracias, ten estas U.N.D");
                                     aux.misioncumplida=true;
@@ -500,17 +500,17 @@ public class Jugador extends Entidad{
                                     gp.hud.mostrarmensaje("Muchas gracias de nuevo");
                                 }   
                             }else{
-                                if(gp.Minijuego[3][0].Empezado==false){
+                                if(gp.minijuego[3][0].Empezado==false){
                                     gp.hud.mostrarmensaje("Hola, me ayudas a limpiar el agua? Usa esta red");
                                     this.inventario[3]= new ObjetoRecogible("Red", 1, 1, gp);
                                     gp.mini.activarmini(3, 0);
-                                }else if(gp.Minijuego[3][0].Empezado==true){
-                                    gp.Minijuego[3][0].interacion();
+                                }else if(gp.minijuego[3][0].Empezado==true){
+                                    gp.minijuego[3][0].interacion();
                                 }
                             }
                         }
                     case Turpial  aux -> {
-                            if(gp.Minijuego[5][0].Terminado==true){
+                            if(gp.minijuego[5][0].Terminado==true){
                                 if(aux.misioncumplida==false){
                                     gp.hud.mostrarmensaje("Gracias, toma estas U.N.D");
                                     aux.misioncumplida=true;
@@ -519,16 +519,16 @@ public class Jugador extends Entidad{
                                     gp.hud.mostrarmensaje("Gracias de nuevo");
                                 }
                             }else{
-                                if(gp.Minijuego[5][0].Empezado==false){
+                                if(gp.minijuego[5][0].Empezado==false){
                                     gp.hud.mostrarmensaje("Hola, Podrias sembrar algunos arboles?");
                                     gp.mini.activarmini(5, 0);
-                                }else if(gp.Minijuego[5][0].Empezado==true){
-                                    gp.Minijuego[5][0].interacion();
+                                }else if(gp.minijuego[5][0].Empezado==true){
+                                    gp.minijuego[5][0].interacion();
                                 }
                             }
                         }
                     case Zamuro  aux -> {
-                            if(gp.Minijuego[4][0].Terminado==true){
+                            if(gp.minijuego[4][0].Terminado==true){
                                 if(aux.misioncumplida==false){
                                     gp.hud.mostrarmensaje("Toma estas U.N.D");
                                     aux.misioncumplida=true;
@@ -538,11 +538,11 @@ public class Jugador extends Entidad{
                                 }
                                     
                             }else{
-                                if(gp.Minijuego[4][0].Empezado==false){
+                                if(gp.minijuego[4][0].Empezado==false){
                                     gp.hud.mostrarmensaje("Oye, recoge esa basura por mi te dare U.N.D");
                                     gp.mini.activarmini(4, 0);
-                                }else if(gp.Minijuego[4][0].Empezado==true){
-                                    gp.Minijuego[4][0].interacion();
+                                }else if(gp.minijuego[4][0].Empezado==true){
+                                    gp.minijuego[4][0].interacion();
                                 }
                             }
                         }

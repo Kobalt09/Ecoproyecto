@@ -1,7 +1,6 @@
 package ep.ecoproyecto.logica;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.net.packets.Paquete03Mapa;
-import minijuegos.Minijuegoarboles;
 /**
  *
  * @author C-A-F
@@ -10,15 +9,15 @@ import minijuegos.Minijuegoarboles;
 public class ControladorEventos {
     PanelJuego gp;
     CasillaEventos rectanguloEvento[][][];
-    CasillaEventos Eventoprevio;
+    CasillaEventos eventoprevio;
     
     public ControladorEventos(PanelJuego gp){
         this.gp=gp;
         
-        rectanguloEvento = new CasillaEventos[gp.Maximocolumnas][gp.Maximofilas][gp.Maximomundos];
+        rectanguloEvento = new CasillaEventos[gp.maximocolumnas][gp.maximofilas][gp.maximomundos];
         int columna = 0, fila = 0,  mapa=0;
         
-        while(columna < gp.Maximocolumnas && fila < gp.Maximofilas && mapa < gp.Maximomundos){
+        while(columna < gp.maximocolumnas && fila < gp.maximofilas && mapa < gp.maximomundos){
             
             rectanguloEvento[columna][fila][mapa] = new CasillaEventos();
             rectanguloEvento[columna][fila][mapa].x=0;
@@ -31,12 +30,12 @@ public class ControladorEventos {
 
             
             columna++;
-            if (columna == gp.Maximocolumnas){
+            if (columna == gp.maximocolumnas){
                 columna = 0;
                 //System.out.println(fila);
                 fila++;
             }
-            if (columna == gp.Maximocolumnas - 1 &&fila == gp.Maximofilas-1){
+            if (columna == gp.maximocolumnas - 1 &&fila == gp.maximofilas-1){
                 columna = 0;
                 fila = 0;
                 mapa++;
@@ -61,7 +60,7 @@ public class ControladorEventos {
         }*/
     }
     
-    public boolean colision(int columna, int fila,int mapa ,String regdirecion){
+    public boolean colision(int columna, int fila,int mapa ,String regdireccion){
         boolean hit= false;
         
         gp.jugador.hitBox.x=gp.jugador.xMapa+gp.jugador.hitBox.width;
@@ -70,10 +69,10 @@ public class ControladorEventos {
         rectanguloEvento[columna][fila][mapa].x=columna*gp.tamanioCasilla+rectanguloEvento[columna][fila][mapa].x;
         rectanguloEvento[columna][fila][mapa].y=fila*gp.tamanioCasilla+rectanguloEvento[columna][fila][mapa].y;
         
-        if((gp.jugador.hitBox.intersects(rectanguloEvento[columna][fila][mapa]))&&(rectanguloEvento[columna][fila][mapa].Activado==false)&&(Eventoprevio!=rectanguloEvento[columna][fila][mapa])&&(gp.mapaActual==mapa)){
-            if((gp.jugador.direction.equals(regdirecion)||regdirecion.contentEquals("any"))){
+        if((gp.jugador.hitBox.intersects(rectanguloEvento[columna][fila][mapa]))&&(rectanguloEvento[columna][fila][mapa].Activado==false)&&(eventoprevio!=rectanguloEvento[columna][fila][mapa])&&(gp.mapaActual==mapa)){
+            if((gp.jugador.direction.equals(regdireccion)||regdireccion.contentEquals("any"))){
                 hit=true;
-                Eventoprevio=rectanguloEvento[columna][fila][mapa];
+                eventoprevio=rectanguloEvento[columna][fila][mapa];
             }
         }
         

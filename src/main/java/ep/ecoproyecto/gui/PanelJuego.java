@@ -29,7 +29,7 @@ import javax.swing.JPanel;
 import java.util.LinkedList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import minijuegos.Minijuego;
+import ep.ecoproyecto.logica.minijuegos.Minijuego;
 
 /**
  * @author C-A-F
@@ -51,9 +51,9 @@ public class PanelJuego extends JPanel implements Runnable{
     
     
     //configuracion de mapa
-    public final int Maximocolumnas=40;
-    public final int Maximofilas=40;
-    public final int Maximomundos=6;
+    public final int maximocolumnas=40;
+    public final int maximofilas=40;
+    public final int maximomundos=6;
     public int mapaActual=0;
     public static PanelJuego juego;
      
@@ -68,18 +68,18 @@ public class PanelJuego extends JPanel implements Runnable{
     public ManejadorCasillas manCas=new ManejadorCasillas(this); // maneja los mapas 
     public KeyHandler keyH= new KeyHandler();                    // detecta el teclado
     public Sonido controlmusica = new Sonido();
-    public Sonido efectossonido = new Sonido();
+    public Sonido controlsonido = new Sonido();
     public Configuracion config = new Configuracion(this);
     public WindowHandler winH;
     public JFrame frame;
     public boolean pantallaCompleta = false;
 
     public Colisionador colisiones =new Colisionador(this);
-    public EmisorObjetos objeto= new EmisorObjetos(this);
+    public EmisorObjetos objetos= new EmisorObjetos(this);
     public EmisorNPC npcs= new EmisorNPC(this);
     public ControladorMinijuegos mini= new ControladorMinijuegos(this);
     public InterfazJugador hud = new InterfazJugador(this);
-    public ControladorEventos ControlEventos= new ControladorEventos(this);
+    public ControladorEventos controlEventos= new ControladorEventos(this);
     Thread gameThread;
 
     //manejador de efectos de sonido
@@ -89,9 +89,9 @@ public class PanelJuego extends JPanel implements Runnable{
     //Jugador, objetos y NPC
     public Jugador jugador;
     public LinkedList<JugadorMP> jugadores = new LinkedList<>(); 
-    public Objetosclase obj[][]= new Objetosclase[Maximomundos][20];
-    public Entidad NPC[][]= new Entidad[Maximomundos][20];
-    public Minijuego Minijuego[][]=new Minijuego[Maximomundos][10];
+    public Objetosclase obj[][]= new Objetosclase[maximomundos][20];
+    public Entidad NPC[][]= new Entidad[maximomundos][20];
+    public Minijuego[][] minijuego=new Minijuego[maximomundos][10];
     //ArrayList<Entidad> Entidadlista= new ArrayList<>();
 
 
@@ -123,7 +123,7 @@ public class PanelJuego extends JPanel implements Runnable{
         
         keyH.establecerPanel(this);
 
-        objeto.establecerObj();     //envia los objetos definidos a un arreglo
+        objetos.establecerObj();     //envia los objetos definidos a un arreglo
         npcs.establecernpcs();      //igual pero con npcs
         mini.establecerminijuegos();
         this.reproducirmusica(musica);
@@ -286,7 +286,7 @@ public class PanelJuego extends JPanel implements Runnable{
         manCas.dibujado(g2);
         
         //objetos
-        objeto.dibujado(g2);
+        objetos.dibujado(g2);
         
         //npc
         npcs.dibujado(g2);
@@ -310,7 +310,7 @@ public class PanelJuego extends JPanel implements Runnable{
     }
     
     public void efectos(int i){
-        efectossonido.reproducirefecto(i);
+        controlsonido.reproducirefecto(i);
     }
     
     private int getIndiceJugador(String user){

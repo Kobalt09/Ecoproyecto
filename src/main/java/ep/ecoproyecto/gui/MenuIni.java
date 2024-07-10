@@ -20,10 +20,10 @@ public class MenuIni extends javax.swing.JFrame {
     ImageIcon img = new ImageIcon("/player/jg_abj_01.png");
     
     public MenuIni() {
-        initComponents();     
+        initComponents();
         titulo.setFont(tipoFuente.fuente(tipoFuente.upheaval,0,60));
         this.setTitle("ECOPROYECTO");
-        titulo.setBackground(Color.white);
+        titulo.setForeground(Color.white);
         this.setLocationRelativeTo(null);
         JpanelImagen jImg= new JpanelImagen(jPanel1,"/fondo/ecocrosin.jpg" );
         jPanel1.add(jImg).repaint();
@@ -42,10 +42,10 @@ public class MenuIni extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         titulo = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        jugarButton = new javax.swing.JButton();
+        salirButton = new javax.swing.JButton();
+        acercadeButton = new javax.swing.JButton();
+        ayudaButton = new javax.swing.JButton();
 
         jMenu1.setText("jMenu1");
 
@@ -58,70 +58,67 @@ public class MenuIni extends javax.swing.JFrame {
         titulo.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
         titulo.setText("ECO CROSSING");
 
-        jButton1.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(60, 63, 65));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/jugar.jpg"))); // NOI18N
-        jButton1.setBorder(null);
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setIconTextGap(0);
-        jButton1.setLabel("");
-        jButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton1.setMaximumSize(new java.awt.Dimension(170, 55));
-        jButton1.setMinimumSize(new java.awt.Dimension(170, 60));
-        jButton1.setPreferredSize(new java.awt.Dimension(170, 60));
-        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/jugarSelec.jpg"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jugarButton.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        jugarButton.setForeground(new java.awt.Color(60, 63, 65));
+        jugarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/jugar.jpg"))); // NOI18N
+        jugarButton.setBorder(null);
+        jugarButton.setBorderPainted(false);
+        jugarButton.setContentAreaFilled(false);
+        jugarButton.setIconTextGap(0);
+        jugarButton.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jugarButton.setMaximumSize(new java.awt.Dimension(170, 55));
+        jugarButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/jugarSelec.jpg"))); // NOI18N
+        jugarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jugarButtonActionPerformed(evt);
             }
         });
 
-        jButton6.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(60, 63, 65));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/salir.jpg"))); // NOI18N
-        jButton6.setBorder(null);
-        jButton6.setBorderPainted(false);
-        jButton6.setContentAreaFilled(false);
-        jButton6.setIconTextGap(0);
-        jButton6.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton6.setMaximumSize(new java.awt.Dimension(170, 55));
-        jButton6.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/salirSelec.jpg"))); // NOI18N
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        salirButton.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        salirButton.setForeground(new java.awt.Color(60, 63, 65));
+        salirButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/salir.jpg"))); // NOI18N
+        salirButton.setBorder(null);
+        salirButton.setBorderPainted(false);
+        salirButton.setContentAreaFilled(false);
+        salirButton.setIconTextGap(0);
+        salirButton.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        salirButton.setMaximumSize(new java.awt.Dimension(170, 55));
+        salirButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/salirSelec.jpg"))); // NOI18N
+        salirButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                salirButtonActionPerformed(evt);
             }
         });
 
-        jButton7.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(60, 63, 65));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/acerca.jpg"))); // NOI18N
-        jButton7.setBorder(null);
-        jButton7.setBorderPainted(false);
-        jButton7.setContentAreaFilled(false);
-        jButton7.setIconTextGap(0);
-        jButton7.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton7.setMaximumSize(new java.awt.Dimension(170, 55));
-        jButton7.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/acercaSelec.jpg"))); // NOI18N
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        acercadeButton.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        acercadeButton.setForeground(new java.awt.Color(60, 63, 65));
+        acercadeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/acerca.jpg"))); // NOI18N
+        acercadeButton.setBorder(null);
+        acercadeButton.setBorderPainted(false);
+        acercadeButton.setContentAreaFilled(false);
+        acercadeButton.setIconTextGap(0);
+        acercadeButton.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        acercadeButton.setMaximumSize(new java.awt.Dimension(170, 55));
+        acercadeButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/acercaSelec.jpg"))); // NOI18N
+        acercadeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                acercadeButtonActionPerformed(evt);
             }
         });
 
-        jButton8.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(60, 63, 65));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/ayuda.jpg"))); // NOI18N
-        jButton8.setBorder(null);
-        jButton8.setBorderPainted(false);
-        jButton8.setContentAreaFilled(false);
-        jButton8.setIconTextGap(0);
-        jButton8.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton8.setMaximumSize(new java.awt.Dimension(170, 55));
-        jButton8.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/ayudaSelec.jpg"))); // NOI18N
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        ayudaButton.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        ayudaButton.setForeground(new java.awt.Color(60, 63, 65));
+        ayudaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/ayuda.jpg"))); // NOI18N
+        ayudaButton.setBorder(null);
+        ayudaButton.setBorderPainted(false);
+        ayudaButton.setContentAreaFilled(false);
+        ayudaButton.setIconTextGap(0);
+        ayudaButton.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        ayudaButton.setMaximumSize(new java.awt.Dimension(170, 55));
+        ayudaButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/menu/ayudaSelec.jpg"))); // NOI18N
+        ayudaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                ayudaButtonActionPerformed(evt);
             }
         });
 
@@ -138,13 +135,13 @@ public class MenuIni extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ayudaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(acercadeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(198, 458, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(salirButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jugarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -153,18 +150,17 @@ public class MenuIni extends javax.swing.JFrame {
                 .addGap(90, 90, 90)
                 .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jugarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ayudaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(acercadeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(salirButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
         );
 
-        jButton1.getAccessibleContext().setAccessibleName("");
-        jButton1.getAccessibleContext().setAccessibleDescription("");
+        jugarButton.getAccessibleContext().setAccessibleDescription("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -180,7 +176,7 @@ public class MenuIni extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jugarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarButtonActionPerformed
         
        /* Ecoproyecto juego=new Ecoproyecto();
         
@@ -231,19 +227,45 @@ public class MenuIni extends javax.swing.JFrame {
        
         
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jugarButtonActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void salirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_salirButtonActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private void acercadeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercadeButtonActionPerformed
+        String mensaje = "<html><body>" +
+                "<h2>ECOCROSSING</h2>" +
+                "<p><b>Versión:</b> 0.1.0</p>" +
+                "<p><b>Desarrollado por:</b> Cristian Baczek, Alfonso Palma y Fernando Pérez</p>" +
+                "<p><b>Descripción:</b> EcoCrossing es una iniciativa para concientizar sobre las ODS a través de un juego interactivo.</p>" +
+                "<p><b>Agradecimientos especiales a:</b> RyiSnow y vanZeben.</p>" +
+                "</body></html>";
+        
+        // Cuadro de Dialogo//
+        JOptionPane.showMessageDialog(this, mensaje, "Acerca de ECOCROSSING", JOptionPane.INFORMATION_MESSAGE, img);
+    }//GEN-LAST:event_acercadeButtonActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    private void ayudaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ayudaButtonActionPerformed
+        String mensaje = "<html><body>" +
+                "<h2>Ayuda - ECOCROSSING</h2>" +
+                "<p><b>CÓMO JUGAR:</b></p>" +
+                "<p>- Usa las <b>teclas de flechas</b> o el <b>WASD</b> para mover tu personaje.</p>" +
+                "<p>- Usa <b>ESC</b> o <b>P</b> para ingresar al menu de opciones." +
+                "<p>- Usa <b>E</b> para interactuar con elementos de tu entorno.</p>" +
+                "<p>- Usa <b>ENTER</b> para confirmar alguna opción.</p>" +
+                "<p>- Viaja a otras islas y ve completando las misiones para conseguir dinero." +
+                "<p></p>" +
+                "<p><b>MENÚ PRINCIPAL</b></p>" +
+                "<p>- <b>Jugar:</b> Inicia el Juego.</p>" +
+                "<p>- <b>Ayuda:</b> Muestra esta pantalla de ayuda.</p>" +
+                "<p>- <b>Acerca de:</b> Muestra informacion sobre el juego y los desarrolladores.</p>" +
+                "<p>- <b>Salir:</b> Cierra la aplicación.</p>" +
+                "</body></html>";
+        
+        // Cuadro de Dialogo//
+        JOptionPane.showMessageDialog(this, mensaje, "Ayuda ECOCROSSING", JOptionPane.INFORMATION_MESSAGE, img);
+    }//GEN-LAST:event_ayudaButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,12 +308,12 @@ public class MenuIni extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton acercadeButton;
+    private javax.swing.JButton ayudaButton;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jugarButton;
+    private javax.swing.JButton salirButton;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 

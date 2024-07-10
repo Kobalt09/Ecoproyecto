@@ -3,12 +3,9 @@ package ep.ecoproyecto.logica;
 import ep.ecoproyecto.gui.PanelJuego;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -16,7 +13,7 @@ import java.util.logging.Logger;
  */
 public class Configuracion {
     
-    PanelJuego gp;
+    private final PanelJuego gp;
 
     public Configuracion(PanelJuego gp) {
         this.gp = gp;
@@ -37,7 +34,7 @@ public class Configuracion {
                 bw.newLine();
                 
                 //EFECTOS DE SONIDO VOLUMEN//
-                bw.write(String.valueOf(gp.efectossonido.escalaVolumen));
+                bw.write(String.valueOf(gp.controlsonido.escalaVolumen));
                 bw.newLine();
             }
             
@@ -62,7 +59,7 @@ public class Configuracion {
                 
                 //EFECTOS DE SONIDO VOLUMEN//
                 s = br.readLine();
-                gp.efectossonido.escalaVolumen = Integer.parseInt(s);
+                gp.controlsonido.escalaVolumen = Integer.parseInt(s);
             }
         } catch (Exception e) {
         }

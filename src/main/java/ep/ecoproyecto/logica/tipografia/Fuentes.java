@@ -12,8 +12,8 @@ public class Fuentes {
     Font fuente=null;
     
     public String upheaval="/fuente/upheavtt.ttf";
-    public String Roboto="/fuente/Roboto-Regular.ttf";
-    public String Pokemon="/fuente/pokemon_pixel_font.ttf";
+    public String roboto="/fuente/Roboto-Regular.ttf";
+    public String pokemon="/fuente/pokemon_pixel_font.ttf";
     
     public Font fuente(String nFuente, int estilo, float tamanio){
         
@@ -30,7 +30,7 @@ public class Fuentes {
         
         Font tfont = fuente.deriveFont(estilo,tamanio);
         return tfont;
-    } 
+    }
     
     
     

@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
  * @author C-A-F
  */
 public class Herramientas {
-    public  BufferedImage imagenEscalada(BufferedImage original, int ancho, int alto){
+    public BufferedImage imagenEscalada(BufferedImage original, int ancho, int alto){
         
         BufferedImage imagenescalada= new BufferedImage(ancho,alto, original.getType());
         Graphics2D g2 = imagenescalada.createGraphics();
