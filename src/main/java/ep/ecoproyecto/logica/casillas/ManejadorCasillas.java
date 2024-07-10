@@ -56,7 +56,7 @@ public class ManejadorCasillas  implements Dibujado{
             configuracion(7, "aguaI", true);
             configuracion(8, "aguaIA", true);
             configuracion(9, "arbol", true);
-             configuracion(10, "arena", false);
+            configuracion(10, "arena", false);
             configuracion(11, "asfalto", true);
             configuracion(12, "piso", false);          
             configuracion(13, "pasto", false);

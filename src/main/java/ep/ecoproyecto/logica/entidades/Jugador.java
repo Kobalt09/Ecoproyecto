@@ -547,7 +547,10 @@ public class Jugador extends Entidad{
                             }
                         }
                     case Aguaconbasura aux ->{
+                            if("Aguasucia".equals(aux.estado) && this.inventario[6]!=null){
+
                             if(aux.estado=="Aguasucia" && this.inventario[3]!=null){
+
                                 
                                     gp.hud.mostrarmensaje("Recogiste la basura");
                                     aux.estado="Agua";
@@ -556,6 +559,7 @@ public class Jugador extends Entidad{
                             }else{
                                 gp.hud.mostrarmensaje(aux.mensaje);
                             }
+                        }
                     }
                     default -> {
                         gp.hud.mostrarmensaje(gp.NPC[gp.mapaActual][id].mensaje);

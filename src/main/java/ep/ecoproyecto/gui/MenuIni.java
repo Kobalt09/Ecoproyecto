@@ -19,6 +19,9 @@ public class MenuIni extends javax.swing.JFrame {
     Fuentes tipoFuente=new Fuentes();
     ImageIcon img = new ImageIcon("/player/jg_abj_01.png");
     
+    JFrame ventana= new JFrame();
+    PanelJuego panelDeJuego= new PanelJuego(ventana);
+
     public MenuIni() {
         initComponents();
         titulo.setFont(tipoFuente.fuente(tipoFuente.upheaval,0,60));
@@ -177,53 +180,49 @@ public class MenuIni extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jugarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarButtonActionPerformed
+   
         
-       /* Ecoproyecto juego=new Ecoproyecto();
+        //Se puede adaptar como una funcion dentro del MENU//
+        int resp=JOptionPane.showConfirmDialog(this, "Quieres iniciar el server?");
+        if( resp == JOptionPane.YES_OPTION){
+            panelDeJuego.socketserver = new Server(panelDeJuego);
+            panelDeJuego.socketserver.start();
+        }
+        if(resp==JOptionPane.CANCEL_OPTION){
+            panelDeJuego=new PanelJuego(ventana);
+            return;
+        }
+        //-------------------------------------------------//
         
-        
-        juego.iniciarJuego();*/
-       
-        JFrame ventana= new JFrame();
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setResizable(false);
         ventana.setTitle("ECOPROYECTO");
         ventana.setIconImage((new ImageIcon(getClass().getResource("/player/jg_abj_01.png"))).getImage());
      
-        PanelJuego panelDeJuego= new PanelJuego(ventana);
-        ventana.add(panelDeJuego); 
-
         panelDeJuego.config.cargarConfig();
         if (panelDeJuego.pantallaCompleta){
             ventana.setUndecorated(true);
         }
         
-        ventana.pack();
-        
-        ventana.setLocationRelativeTo(null);
-        ventana.setVisible(true);
-        
-        panelDeJuego.configuraciondejuego();
-        
-      //  panelDeJuego.startGameThread();
-      {  //Se puede adaptar como una funcion dentro del MENU//
-        if(JOptionPane.showConfirmDialog(this, "Quieres iniciar el server?") == JOptionPane.YES_OPTION){
-            panelDeJuego.socketserver = new Server(panelDeJuego);
-            panelDeJuego.socketserver.start();
-        }
-        
-        //-------------------------------------------------//
-        
         panelDeJuego.socketcliente = new Cliente("localhost",panelDeJuego);
         panelDeJuego.socketcliente.start();
         
+        panelDeJuego.configuraciondejuego();
         panelDeJuego.inicioJugador();
         
         panelDeJuego.gameThread = new Thread(panelDeJuego);
         panelDeJuego.gameThread.start();
-    
+        
+       
         this.setVisible(false);
-    
-        }
+        ventana.add(panelDeJuego); 
+        ventana.pack();       
+        ventana.setLocationRelativeTo(null);
+        ventana.setVisible(true);
+        panelDeJuego.reproducirmusica(panelDeJuego.musica);
+        
+        
+            
        
         
         // TODO add your handling code here:
@@ -231,6 +230,7 @@ public class MenuIni extends javax.swing.JFrame {
 
     private void salirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirButtonActionPerformed
         this.dispose();
+        ventana.dispose();
     }//GEN-LAST:event_salirButtonActionPerformed
 
     private void acercadeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercadeButtonActionPerformed
