@@ -39,8 +39,8 @@ public class Jugador extends Entidad{
     public boolean interactuar;
     
     public int estado;
-    public int estadojuego=1;
-    public int estadotienda=2;
+    public final int estadojuego=1;
+    public final int estadotienda=2;
     
     //contador de culdaun en teclas
     public int contador;
