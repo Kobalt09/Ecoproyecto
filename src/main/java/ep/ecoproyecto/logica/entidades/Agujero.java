@@ -11,7 +11,7 @@ import java.awt.Rectangle;
  *
  * @author Cris
  */
-public class Agujero extends Entidad{
+public final class Agujero extends Entidad{
     public String estado;
     
     public Agujero(PanelJuego gp, int x, int y) {
@@ -24,7 +24,7 @@ public class Agujero extends Entidad{
         areadefectoY=hitBox.y;
         estado="Agujerovacio";
         
-        this.Mensaje="Es un agujero, perfecto para plantar un Arbol";
+        this.mensaje="Es un agujero, perfecto para plantar un Arbol";
         
         getImage();
     }

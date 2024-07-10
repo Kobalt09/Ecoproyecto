@@ -31,16 +31,14 @@ public class Jugador extends Entidad{
     // 1 llaves
     // 2 basura
     // 7 semillas
-    // 9 dinero
+    // 9 dinero                                                                     
     // 8 red
     public int cantInventario[]= new int[5];
-    public Objetosclase inventario[]= new Objetosclase[5];
-
     public boolean interactuar;
     
     public int estado;
-    public int estadojuego=1;
-    public int estadotienda=2;
+    public final int estadojuego=1;
+    public final int estadotienda=2;
     
     //contador de culdaun en teclas
     public int contador;
@@ -427,7 +425,7 @@ public class Jugador extends Entidad{
         
     }
     
-    public void RecogerObjeto(int i){
+    public void recogerObjeto(int i){
         if(i!=999){
             gp.obj[gp.mapaActual][i]=null;
         }
@@ -470,7 +468,7 @@ public class Jugador extends Entidad{
                                 this.inventario[2]=null;
                                 this.cantInventario[2]=0;
                             }else{
-                                gp.hud.mostrarmensaje(gp.NPC[gp.mapaActual][id].Mensaje);
+                                gp.hud.mostrarmensaje(gp.NPC[gp.mapaActual][id].mensaje);
                             }
                         }
                     case Agujero  aux -> {
@@ -484,7 +482,7 @@ public class Jugador extends Entidad{
                                     aux.estado="Agujerolleno";
                                     aux.getImage();
                                 }else{
-                                    gp.hud.mostrarmensaje(aux.Mensaje);
+                                    gp.hud.mostrarmensaje(aux.mensaje);
                                 }
                             }else{
                                 gp.hud.mostrarmensaje("Espero que este Arbol cresca ");
@@ -547,18 +545,22 @@ public class Jugador extends Entidad{
                             }
                         }
                     case Aguaconbasura aux ->{
+                            if("Aguasucia".equals(aux.estado) && this.inventario[6]!=null){
+
                             if(aux.estado=="Aguasucia" && this.inventario[3]!=null){
+
                                 
                                     gp.hud.mostrarmensaje("Recogiste la basura");
                                     aux.estado="Agua";
                                     aux.getImage();
                                 
                             }else{
-                                gp.hud.mostrarmensaje(aux.Mensaje);
+                                gp.hud.mostrarmensaje(aux.mensaje);
                             }
+                        }
                     }
                     default -> {
-                        gp.hud.mostrarmensaje(gp.NPC[gp.mapaActual][id].Mensaje);
+                        gp.hud.mostrarmensaje(gp.NPC[gp.mapaActual][id].mensaje);
                         this.cantInventario[4]=this.cantInventario[4]+20;
                     }   
                        

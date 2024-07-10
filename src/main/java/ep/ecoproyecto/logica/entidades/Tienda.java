@@ -1,12 +1,9 @@
 package ep.ecoproyecto.logica.entidades;
 import ep.ecoproyecto.gui.PanelJuego;
 
-import ep.ecoproyecto.logica.entidades.Entidad;
 import ep.ecoproyecto.logica.objetos.ObjetoEquipo;
-import ep.ecoproyecto.logica.objetos.ObjetoMoneda;
 import ep.ecoproyecto.logica.objetos.ObjetoRecogible;
 import java.awt.Rectangle;
-import java.util.Random;
 
 /**
  *
@@ -29,11 +26,11 @@ public class Tienda extends Entidad {
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
         movimiento=false;
-        EstablecerTienda();
+        establecerTienda();
     }
     
     
-    public void EstablecerTienda(){
+    public void establecerTienda(){
         this.inventario[0]=new ObjetoEquipo("botas",16,6,gp);
         this.inventario[0].setPrecio(10);
         this.inventario[1]=new ObjetoRecogible("calvo",10,10,gp);

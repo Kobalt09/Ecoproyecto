@@ -21,7 +21,7 @@ public class Tonina extends Entidad {
         areadefectoY=hitBox.y;
         movimiento=true;
         
-        this.Mensaje="Hola, soy una Tonina";
+        this.mensaje="Hola, soy una Tonina";
         
         getImage();
     }

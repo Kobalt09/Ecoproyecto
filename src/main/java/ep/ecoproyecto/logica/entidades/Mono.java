@@ -6,28 +6,31 @@ import java.util.Random;
  *
  * @author C-A-F
  */
-public class Turpial extends Entidad {
+public class Mono extends Entidad {
     
     public boolean misioncumplida=false;
 
-    public Turpial(PanelJuego gp, int x, int y) {
+    public Mono(PanelJuego gp, int x, int y) {
         super(gp);
         this.xMapa=x*gp.tamanioCasilla;
         this.yMapa=y*gp.tamanioCasilla;
         this.direction="down";
         this.vel=0;
-        this.hitBox=new Rectangle(-1,-1,gp.tamanioCasilla+2,gp.tamanioCasilla+2);
+        this.hitBox=new Rectangle(0,0,gp.tamanioCasilla,gp.tamanioCasilla);
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
         movimiento=true;
-        this.mensaje="Hola, soy un Turpial";
+        
+        this.mensaje="hola bienvenido a mi tienda";
+        
         getImage();
     }
     
     public void getImage(){
-        right1=up1=left1=down1=this.configuracion("/NPC/turpial");
-        right2=up2=left2=down2=this.configuracion("/NPC/turpial1");
+        right1=up1=left1=down1= this.configuracion("/NPC/mono");
+        right2=up2=left2=down2=this.configuracion("/NPC/mono1");
     }
+
     
     public void estableceraccion(){
         if(movimiento==true){
@@ -52,9 +55,5 @@ public class Turpial extends Entidad {
                 contadordeaccion=0;
             }
         }
-    }
-
-    public void interactuar(){
-        
-    }
+    }    
 }
