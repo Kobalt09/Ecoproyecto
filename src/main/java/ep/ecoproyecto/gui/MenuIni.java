@@ -234,7 +234,7 @@ public class MenuIni extends javax.swing.JFrame {
     }//GEN-LAST:event_salirButtonActionPerformed
 
     private void acercadeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercadeButtonActionPerformed
-        String mensaje = "<html><body style='font-family: Arial, sans-serif;'>" +
+        String mensaje = "<html><body>" +
                 "<h2>ECOCROSSING</h2>" +
                 "<p><b>Versión:</b> 0.1.0</p>" +
                 "<p><b>Desarrollado por:</b> Cristian Baczek, Alfonso Palma y Fernando Pérez</p>" +
