@@ -1,6 +1,6 @@
 package ep.ecoproyecto.logica.net;
 
-import ep.ecoproyecto.logica.net.packets.Paquete03Mapa;
+import ep.ecoproyecto.logica.net.packets.Packet03Mapa;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.entidades.JugadorMP;
 import ep.ecoproyecto.logica.net.packets.Packet;
@@ -78,9 +78,9 @@ public class Server extends Thread{
             }
             
             case CAMBIO->{
-                packet =new Paquete03Mapa(data);
-                System.out.println(((Paquete03Mapa)packet).getUsername()+" cambiado a mapa "+((Paquete03Mapa)packet).getMapa());
-                this.cambioMapa((Paquete03Mapa)packet);
+                packet =new Packet03Mapa(data);
+                System.out.println(((Packet03Mapa)packet).getUsername()+" cambiado a mapa "+((Packet03Mapa)packet).getMapa());
+                this.cambioMapa((Packet03Mapa)packet);
             }
                        
             default->{
@@ -175,7 +175,7 @@ public class Server extends Thread{
         }
     }
 
-    private void cambioMapa(Paquete03Mapa packet) {
+    private void cambioMapa(Packet03Mapa packet) {
         if(getJugadorMP(packet.getUsername())!=null){
             
             int indice=this.getIndiceJugador(packet.getUsername());

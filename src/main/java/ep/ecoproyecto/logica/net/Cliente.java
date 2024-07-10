@@ -8,7 +8,7 @@ import static ep.ecoproyecto.logica.net.packets.Packet.PacketTypes.LOGIN;
 import ep.ecoproyecto.logica.net.packets.Packet00Login;
 import ep.ecoproyecto.logica.net.packets.Packet02Mov;
 import ep.ecoproyecto.logica.net.packets.Packet01Disconnect;
-import ep.ecoproyecto.logica.net.packets.Paquete03Mapa;
+import ep.ecoproyecto.logica.net.packets.Packet03Mapa;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -71,8 +71,8 @@ public class Cliente extends Thread{
                 this.manejarMov((Packet02Mov)packet);
             }
              case CAMBIO->{
-                packet =new Paquete03Mapa(data);
-                this.cambioMapa((Paquete03Mapa)packet);
+                packet =new Packet03Mapa(data);
+                this.cambioMapa((Packet03Mapa)packet);
             }
             default->{
                 System.out.println("Paquete desconocido");
@@ -92,8 +92,8 @@ public class Cliente extends Thread{
         this.juego.moverJugadores(packet.getUsername(), packet.getX(), packet.getY(),packet.getDir());          
     }
 
-    private void cambioMapa(Paquete03Mapa paquete03Mapa) {
-       juego.cambiarMapa(paquete03Mapa.getUsername(),paquete03Mapa.getMapa());
+    private void cambioMapa(Packet03Mapa packet) {
+       juego.cambiarMapa(packet.getUsername(),packet.getMapa());
     }
     
 }
