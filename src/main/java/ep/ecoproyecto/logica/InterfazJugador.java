@@ -230,7 +230,7 @@ public class InterfazJugador implements Dibujado{
             g2.setFont((tipoFuente.fuente(tipoFuente.upheaval,0,50)));
             b=3;
         }else{
-            g2.setFont((tipoFuente.fuente(tipoFuente.Pokemon,0,40)));
+            g2.setFont((tipoFuente.fuente(tipoFuente.pokemon,0,40)));
             b=2;
         }
         
