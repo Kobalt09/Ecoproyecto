@@ -293,7 +293,7 @@ public class PanelJuego extends JPanel implements Runnable{
         
 
         //jugadores
-        for (JugadorMP jug : jugadores) {
+        for (JugadorMP jug : jugadores.reversed()) {
             jug.dibujado(g2);
             hud.dibujado(g2,jug);
         }
