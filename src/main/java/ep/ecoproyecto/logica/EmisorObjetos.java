@@ -2,11 +2,8 @@ package ep.ecoproyecto.logica;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.Interfaces.Dibujado;
 import ep.ecoproyecto.logica.objetos.Casa;
-import ep.ecoproyecto.logica.objetos.ObjetoCofre;
 import ep.ecoproyecto.logica.objetos.ObjetoEquipo;
 import ep.ecoproyecto.logica.objetos.ObjetoMesa;
-import ep.ecoproyecto.logica.objetos.ObjetoMoneda;
-import ep.ecoproyecto.logica.objetos.ObjetoPuerta;
 import ep.ecoproyecto.logica.objetos.ObjetoRecogible;
 import java.awt.Graphics2D;
 
@@ -70,10 +67,7 @@ public class EmisorObjetos  implements Dibujado{
                 if(gp.obj[gp.mapaActual][i]!=null){
                     int PantallaX=gp.obj[gp.mapaActual][i].xMapa- gp.jugador.xMapa+gp.jugador.pantallaX;
                     int PantallaY=gp.obj[gp.mapaActual][i].yMapa- gp.jugador.yMapa+gp.jugador.pantallaY;
-                    
-                    int PantallaX2=gp.obj[gp.mapaActual][i].xMapa- gp.jugador.xMapa+gp.jugador.pantallaX+gp.obj[gp.mapaActual][i].hitBox.height;
-                    int PantallaY2=gp.obj[gp.mapaActual][i].yMapa- gp.jugador.yMapa+gp.jugador.pantallaY+gp.obj[gp.mapaActual][i].hitBox.width;
-                    
+                                        
                     if((gp.obj[gp.mapaActual][i].xMapa+gp.tamanioCasilla+gp.obj[gp.mapaActual][i].hitBox.width > gp.jugador.xMapa-gp.jugador.pantallaX)&&(gp.obj[gp.mapaActual][i].xMapa-gp.tamanioCasilla < gp.jugador.xMapa+gp.jugador.pantallaX)&&
                        (gp.obj[gp.mapaActual][i].yMapa+gp.tamanioCasilla+gp.obj[gp.mapaActual][i].hitBox.height > gp.jugador.yMapa-gp.jugador.pantallaY)&&(gp.obj[gp.mapaActual][i].yMapa-gp.tamanioCasilla < gp.jugador.yMapa+gp.jugador.pantallaY)){     
                         g2.drawImage(gp.obj[gp.mapaActual][i].down1, PantallaX, PantallaY, gp.obj[gp.mapaActual][i].hitBox.width,gp.obj[gp.mapaActual][i].hitBox.height,null);
