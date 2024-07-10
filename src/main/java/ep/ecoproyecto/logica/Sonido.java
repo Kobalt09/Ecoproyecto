@@ -26,6 +26,8 @@ public class Sonido {
         sonidoURL[3]=getClass().getResource("/efectos/caminar.wav");
         sonidoURL[4]=getClass().getResource("/efectos/equipo.wav");
         sonidoURL[5]=getClass().getResource("/efectos/powerup.wav");
+        sonidoURL[6]=getClass().getResource("/efectos/Recoger.wav");
+        sonidoURL[7]=getClass().getResource("/efectos/Select.wav");
     }
     
     /*

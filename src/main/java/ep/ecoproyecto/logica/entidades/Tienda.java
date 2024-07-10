@@ -14,6 +14,7 @@ import java.util.Random;
  */
 public class Tienda extends Entidad {
     
+    
     public Tienda(PanelJuego gp, int x, int y) {
         super(gp);
         this.xMapa=x*gp.tamanioCasilla;

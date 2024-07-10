@@ -11,6 +11,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -59,13 +61,12 @@ public class InterfazJugador implements Dibujado{
         this.g2 = g2;
         
         g2.setFont(fuente.fuente(fuente.upheaval,0,25));
-        g2.setColor(Color.BLACK);
+        g2.setColor(Color.WHITE);
         g2.drawString("posicion X:"+(gp.jugador.xMapa/64)+" Y "+(gp.jugador.yMapa/64), gp.screenWidth-800, gp.screenHeight-50);
 
         //g2.setFont(fuente);
-        g2.drawString("Dinero: "+(gp.jugador.cantInventario[9]),50, 50);
-        //g2.drawImage(llaveimagen, gp.tamanioCasilla/2, gp.tamanioCasilla/2, gp.tamanioCasilla,gp.tamanioCasilla,null);
-        //g2.drawString("x = "+gp.jugador.llaves, gp.tamanioCasilla*2, gp.tamanioCasilla);   
+        g2.drawString("Unidades de credito: "+(gp.jugador.cantInventario[4]),50, 50);
+        
         
         if (gp.pause){
             dibujadoFondo();
@@ -343,74 +344,109 @@ public class InterfazJugador implements Dibujado{
     }
     
     public void dibujadoinventario(Graphics2D g2,Jugador jugador){
-            int MarcoX=gp.tamanioCasilla*4;
-            int MarcoY=gp.tamanioCasilla/4;
-            int MarcoAncho=gp.screenWidth/2;
+            int MarcoX=(gp.screenWidth/2)-128;
+            int MarcoY=gp.tamanioCasilla/6;
+            int MarcoAncho=gp.tamanioCasilla;
             int MarcoAlto=gp.tamanioCasilla;
-    
-            Color c= new Color(82,183,136);
-            g2.setColor(c);
-            g2.fillRect(MarcoX, MarcoY, MarcoAncho, MarcoAlto);
+            
+            BufferedImage casilla=this.configuracion("/objetos/casilla");
             int cont=0;
 
             
             for(Objetosclase obj:jugador.inventario){
+                
+                if(cont<4*gp.tamanioCasilla){
+                    g2.drawImage(casilla, MarcoX+(cont), MarcoY, MarcoAncho,MarcoAncho,null);
+                }
                 if(obj!=null){
-                    g2.drawImage(obj.down1, gp.tamanioCasilla*4+cont, gp.tamanioCasilla/4, gp.tamanioCasilla,gp.tamanioCasilla,null);
+                    g2.drawImage(obj.down1, MarcoX+(cont), MarcoY, MarcoAncho,MarcoAncho,null);
+                
+                    //g2.drawImage(obj.down1, gp.tamanioCasilla*4+cont, gp.tamanioCasilla/4, gp.tamanioCasilla,gp.tamanioCasilla,null);
                 }
                 cont=cont+gp.tamanioCasilla;
             }    
     }
     
     public void tienda(Graphics2D g2){
-                int MarcoX=gp.tamanioCasilla*4;
-                int MarcoY=gp.tamanioCasilla/4+gp.tamanioCasilla+30;
-                int MarcoAncho=gp.screenWidth/2;
-                int MarcoAlto=gp.tamanioCasilla;
-
-                //Color c= new Color(9,28,21);
+            int MarcoX=(gp.screenWidth/2)-128;
+            int MarcoY=gp.tamanioCasilla/6+124;
+            int MarcoAncho=gp.tamanioCasilla;
+            int MarcoAlto=gp.tamanioCasilla;
+                /*
+                //Color c= new Color(9,28,21);/
                 g2.setColor(Color.ORANGE);
                 g2.fillRect(MarcoX, MarcoY, MarcoAncho, MarcoAlto);
+                */
+            BufferedImage casilla=this.configuracion("/objetos/casilla");
+            int cont=0;
                 
-                int cont=0;
-                
-                for(Objetosclase obj:gp.NPC[2][1].inventario){
+            for(Objetosclase obj:gp.NPC[2][1].inventario){
+                if(cont<gp.tamanioCasilla*4){
+                    g2.drawImage(casilla, MarcoX+(cont), MarcoY, MarcoAncho,MarcoAncho,null);
+
                     if(obj!=null){
-                        g2.drawImage(obj.down1, gp.tamanioCasilla*4+(cont), MarcoY, gp.tamanioCasilla,gp.tamanioCasilla,null);
+                        if(obj.nombre.equals("botas")){
+                            g2.drawImage(obj.down1, MarcoX+(cont), MarcoY, MarcoAncho,MarcoAncho,null);
+                        }else{
+                            g2.drawImage(obj.down1, MarcoX+(cont), MarcoY+10, MarcoAncho,MarcoAncho+10,null);
+                        }
                     }
-                    cont=cont+gp.tamanioCasilla;
                 }
-                dibujadoinfo(g2,opcion,MarcoY);
+                cont=cont+gp.tamanioCasilla;
+            }
+            //casilla de informacion
+            
+            g2.drawImage(casilla, 60, MarcoY, gp.tamanioCasilla*4,gp.tamanioCasilla*3,null);
+                
+            dibujadoinfo(g2,opcion,MarcoY+10);
                 
                 g2.setColor(Color.WHITE);
                 if(opcion>0){
                     g2.drawString("^", MarcoX+27+((opcion-1)*64), MarcoY+MarcoAlto+32);
                 }else{
-                    g2.drawString("^", gp.tamanioCasilla/2+32, MarcoY+gp.tamanioCasilla*3);
+                    g2.drawString("^", 100+20, MarcoY+gp.tamanioCasilla*2+40);
                 }
                
     }
     
     public void dibujadoinfo(Graphics2D g2,int objselect ,int MarcoY){
         int cont=0;
+        /*
         g2.setColor(Color.ORANGE);
         g2.fillRect(gp.tamanioCasilla/2, MarcoY, gp.tamanioCasilla*3, gp.tamanioCasilla*3);
+        */
+        
         g2.setColor(Color.WHITE);
         
         for(Objetosclase obj:gp.NPC[0][1].inventario){
             cont++;
             if(obj!=null && cont==objselect){
-                g2.drawString(obj.nombre, gp.tamanioCasilla, MarcoY+32);
-                g2.drawString("Precio: "+obj.getPrecio(), gp.tamanioCasilla/2, MarcoY+32+gp.tamanioCasilla);
+                g2.drawString(obj.nombre, 100, MarcoY+gp.tamanioCasilla/2);
+                g2.drawString("Precio: "+obj.getPrecio(), 100, MarcoY+gp.tamanioCasilla);
             }
         }
-        g2.drawString("Salir",gp.tamanioCasilla/2, MarcoY+32+gp.tamanioCasilla*2);
+        g2.drawString("Salir",100, MarcoY+gp.tamanioCasilla*2);
     }
     
 
     @Override
     public void dibujado(Graphics2D g2) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public BufferedImage configuracion(String nombre){
+        
+        Herramientas herramienta = new Herramientas();
+        BufferedImage imagen= null;
+        
+        try{
+            imagen=ImageIO.read(getClass().getResourceAsStream(nombre+".png"));
+            imagen= herramienta.imagenEscalada(imagen, gp.tamanioCasilla, gp.tamanioCasilla);
+            
+        }catch(IOException e){
+        }
+        
+        return imagen;
     }
 
 }
