@@ -40,7 +40,7 @@ public class Entidad implements Actualizar{
     public int veloriginal;
     public String directionoriginal;
     
-    public String Mensaje;
+    public String mensaje;
     public boolean movimiento;
     
     
@@ -49,6 +49,7 @@ public class Entidad implements Actualizar{
     }
     
     
+    @Override
     public void actualizar(){
         
         colision=false;

@@ -470,7 +470,7 @@ public class Jugador extends Entidad{
                                 this.inventario[2]=null;
                                 this.cantInventario[2]=0;
                             }else{
-                                gp.hud.mostrarmensaje(gp.NPC[gp.mapaActual][id].Mensaje);
+                                gp.hud.mostrarmensaje(gp.NPC[gp.mapaActual][id].mensaje);
                             }
                         }
                     case Agujero  aux -> {
@@ -484,7 +484,7 @@ public class Jugador extends Entidad{
                                     aux.estado="Agujerolleno";
                                     aux.getImage();
                                 }else{
-                                    gp.hud.mostrarmensaje(aux.Mensaje);
+                                    gp.hud.mostrarmensaje(aux.mensaje);
                                 }
                             }else{
                                 gp.hud.mostrarmensaje("Espero que este Arbol cresca ");
@@ -554,11 +554,11 @@ public class Jugador extends Entidad{
                                     aux.getImage();
                                 
                             }else{
-                                gp.hud.mostrarmensaje(aux.Mensaje);
+                                gp.hud.mostrarmensaje(aux.mensaje);
                             }
                     }
                     default -> {
-                        gp.hud.mostrarmensaje(gp.NPC[gp.mapaActual][id].Mensaje);
+                        gp.hud.mostrarmensaje(gp.NPC[gp.mapaActual][id].mensaje);
                         this.cantInventario[9]=this.cantInventario[9]+20;
                     }   
                        
