@@ -6,7 +6,7 @@ import java.util.Random;
  *
  * @author C-A-F
  */
-public class Tonina extends Entidad {
+public final class Tonina extends Entidad {
     
     public boolean misioncumplida=false;
 
@@ -54,9 +54,5 @@ public class Tonina extends Entidad {
                 contadordeaccion=0;
             }
         }
-    }
-
-    public void interactuar(){
-        
     }
 }

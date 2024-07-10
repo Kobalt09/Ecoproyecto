@@ -20,7 +20,8 @@ public class Minijuegoagua extends Minijuego{
         super(gp);
     }
     
-        public void interacion(){
+    @Override
+    public void interacion(){
         if(Terminado==false && Empezado==false){
             Empezado=true;
             //generarobjetos();
@@ -32,8 +33,6 @@ public class Minijuegoagua extends Minijuego{
         }     
     }
    
-    
-    
     
     @Override
     public void generarobjetos(){

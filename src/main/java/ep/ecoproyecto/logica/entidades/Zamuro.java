@@ -6,7 +6,7 @@ import java.util.Random;
  *
  * @author C-A-F
  */
-public class Zamuro extends Entidad {
+public final class Zamuro extends Entidad {
     
     public boolean misioncumplida=false;
 
@@ -53,9 +53,5 @@ public class Zamuro extends Entidad {
                 contadordeaccion=0;
             }
         }
-    }
-
-    public void interactuar(){
-        
     }
 }

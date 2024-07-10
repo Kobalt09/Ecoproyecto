@@ -6,7 +6,7 @@ import java.util.Random;
  *
  * @author C-A-F
  */
-public class Turpial extends Entidad {
+public final class Turpial extends Entidad {
     
     public boolean misioncumplida=false;
 
@@ -52,9 +52,5 @@ public class Turpial extends Entidad {
                 contadordeaccion=0;
             }
         }
-    }
-
-    public void interactuar(){
-        
     }
 }

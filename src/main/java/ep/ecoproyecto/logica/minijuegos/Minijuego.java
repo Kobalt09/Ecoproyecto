@@ -5,13 +5,12 @@
 package ep.ecoproyecto.logica.minijuegos;
 
 import ep.ecoproyecto.gui.PanelJuego;
-import ep.ecoproyecto.logica.objetos.ObjetoRecogible;
 
 /**
  *
  * @author fabif
  */
-public class Minijuego {
+public abstract class Minijuego {
     PanelJuego gp;
     public boolean Empezado, Terminado;
     
@@ -24,9 +23,9 @@ public class Minijuego {
     
     
     
-    public void interacion(){}
+    public abstract void interacion();
     
-    public void generarobjetos(){}
+    public abstract void generarobjetos();
     
-    public void comprobante(){}
+    public abstract void comprobante();
 }
