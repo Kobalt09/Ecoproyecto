@@ -22,10 +22,10 @@ import java.net.UnknownHostException;
 public class Cliente extends Thread{
     private InetAddress direccionIP;
     private DatagramSocket socket;
-    private PanelJuego juego;
+    private PanelJuego gp;
 
-    public Cliente(String direccionIP, PanelJuego juego) {
-        this.juego = juego;
+    public Cliente(String direccionIP, PanelJuego gp) {
+        this.gp = gp;
         try {
             this.socket = new DatagramSocket();
             this.direccionIP = InetAddress.getByName(direccionIP);
@@ -58,13 +58,13 @@ public class Cliente extends Thread{
             case LOGIN->{
                 packet = new Packet00Login(data); 
                 System.out.println("["+direccion.getHostAddress()+":"+puerto+"] "+((Packet00Login)packet).getUsername()+" se ha unido al juego.");
-                JugadorMP jugador = new JugadorMP(direccion,puerto,juego,((Packet00Login)packet).getUsername(),((Packet00Login)packet).getX(),((Packet00Login)packet).getY(),((Packet00Login)packet).getDir(),((Packet00Login)packet).getMapa());
-                juego.jugadores.add(jugador);
+                JugadorMP jugador = new JugadorMP(direccion,puerto,gp,((Packet00Login)packet).getUsername(),((Packet00Login)packet).getX(),((Packet00Login)packet).getY(),((Packet00Login)packet).getDir(),((Packet00Login)packet).getMapa());
+                gp.jugadores.add(jugador);
             }
             case DISCONNECT->{
                 packet = new Packet01Disconnect(data); 
                 System.out.println("["+direccion.getHostAddress()+":"+puerto+"] "+((Packet01Disconnect)packet).getUsername()+" se ha ido del juego.");
-                juego.removePlayerMP(((Packet01Disconnect)packet).getUsername());
+                gp.removePlayerMP(((Packet01Disconnect)packet).getUsername());
             }
             case MOVE->{
                 packet = new Packet02Mov(data);
@@ -89,11 +89,11 @@ public class Cliente extends Thread{
     }
     
     private void manejarMov(Packet02Mov packet) {
-        this.juego.moverJugadores(packet.getUsername(), packet.getX(), packet.getY(),packet.getDir());          
+        this.gp.moverJugadores(packet.getUsername(), packet.getX(), packet.getY(),packet.getDir());          
     }
 
     private void cambioMapa(Packet03Mapa packet) {
-       juego.cambiarMapa(packet.getUsername(),packet.getMapa());
+       gp.cambiarMapa(packet.getUsername(),packet.getMapa());
     }
     
 }
