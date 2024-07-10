@@ -1,6 +1,5 @@
 
 package ep.ecoproyecto.logica;
-import ep.ecoproyecto.gui.Ecoproyecto;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.Interfaces.Dibujado;
 import ep.ecoproyecto.logica.entidades.Jugador;
@@ -192,7 +191,7 @@ public class InterfazJugador implements Dibujado{
         
         //VOLUMEN DE LOS EFECTOS DE SONIDO//
         textoY += gp.tamanioCasilla;
-        dibujadoRect(textoX,textoY,true,gp.efectossonido.escalaVolumen);
+        dibujadoRect(textoX,textoY,true,gp.controlsonido.escalaVolumen);
     
         //GUARDADO//
         gp.config.guardarConfig();

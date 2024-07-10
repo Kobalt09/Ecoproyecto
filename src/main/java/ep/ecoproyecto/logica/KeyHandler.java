@@ -107,8 +107,8 @@ public class KeyHandler implements KeyListener{
                     gp.controlmusica.chequearVolumen();
                     gp.efectos(2);
                 }
-                if (gp.hud.opcionMenu == 2 && gp.efectossonido.escalaVolumen>0){
-                    gp.efectossonido.escalaVolumen--;
+                if (gp.hud.opcionMenu == 2 && gp.controlsonido.escalaVolumen>0){
+                    gp.controlsonido.escalaVolumen--;
                     gp.efectos(2);
                 }
             }
@@ -121,8 +121,8 @@ public class KeyHandler implements KeyListener{
                     gp.controlmusica.chequearVolumen();
                     gp.efectos(2);
                 }
-                if (gp.hud.opcionMenu == 2 && gp.efectossonido.escalaVolumen<5){
-                    gp.efectossonido.escalaVolumen++;
+                if (gp.hud.opcionMenu == 2 && gp.controlsonido.escalaVolumen<5){
+                    gp.controlsonido.escalaVolumen++;
                     gp.efectos(2);
                 }
             }

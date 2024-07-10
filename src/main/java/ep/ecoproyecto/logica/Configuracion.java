@@ -37,7 +37,7 @@ public class Configuracion {
                 bw.newLine();
                 
                 //EFECTOS DE SONIDO VOLUMEN//
-                bw.write(String.valueOf(gp.efectossonido.escalaVolumen));
+                bw.write(String.valueOf(gp.controlsonido.escalaVolumen));
                 bw.newLine();
             }
             
@@ -62,7 +62,7 @@ public class Configuracion {
                 
                 //EFECTOS DE SONIDO VOLUMEN//
                 s = br.readLine();
-                gp.efectossonido.escalaVolumen = Integer.parseInt(s);
+                gp.controlsonido.escalaVolumen = Integer.parseInt(s);
             }
         } catch (Exception e) {
         }

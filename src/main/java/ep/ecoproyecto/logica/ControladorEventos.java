@@ -15,10 +15,10 @@ public class ControladorEventos {
     public ControladorEventos(PanelJuego gp){
         this.gp=gp;
         
-        rectanguloEvento = new CasillaEventos[gp.Maximocolumnas][gp.Maximofilas][gp.Maximomundos];
+        rectanguloEvento = new CasillaEventos[gp.maximocolumnas][gp.maximofilas][gp.maximomundos];
         int columna = 0, fila = 0,  mapa=0;
         
-        while(columna < gp.Maximocolumnas && fila < gp.Maximofilas && mapa < gp.Maximomundos){
+        while(columna < gp.maximocolumnas && fila < gp.maximofilas && mapa < gp.maximomundos){
             
             rectanguloEvento[columna][fila][mapa] = new CasillaEventos();
             rectanguloEvento[columna][fila][mapa].x=0;
@@ -31,12 +31,12 @@ public class ControladorEventos {
 
             
             columna++;
-            if (columna == gp.Maximocolumnas){
+            if (columna == gp.maximocolumnas){
                 columna = 0;
                 //System.out.println(fila);
                 fila++;
             }
-            if (columna == gp.Maximocolumnas - 1 &&fila == gp.Maximofilas-1){
+            if (columna == gp.maximocolumnas - 1 &&fila == gp.maximofilas-1){
                 columna = 0;
                 fila = 0;
                 mapa++;

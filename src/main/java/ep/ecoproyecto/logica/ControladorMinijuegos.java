@@ -44,20 +44,20 @@ public class ControladorMinijuegos {
          */
         //----MUNDO 4:-----derecha//
         NumMap = 3;
-        gp.Minijuego[NumMap][0]= new Minijuegoagua(gp);
+        gp.minijuego[NumMap][0]= new Minijuegoagua(gp);
         
         
         //----MUNDO 5:-----arriba// 
         NumMap = 4;
-        gp.Minijuego[NumMap][0]= new Minijuegobasura(gp);
+        gp.minijuego[NumMap][0]= new Minijuegobasura(gp);
         //----MUNDO 6:-----izquierda//
             NumMap = 5;
-        gp.Minijuego[NumMap][0]= new Minijuegoarboles(gp);
+        gp.minijuego[NumMap][0]= new Minijuegoarboles(gp);
                   
     }
     
     public void activarmini(int mapa, int num){
-        gp.Minijuego[mapa][num].interacion();
+        gp.minijuego[mapa][num].interacion();
     }
     
     
