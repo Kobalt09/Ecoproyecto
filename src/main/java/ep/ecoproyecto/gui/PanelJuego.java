@@ -75,7 +75,7 @@ public class PanelJuego extends JPanel implements Runnable{
     public boolean pantallaCompleta = false;
 
     public Colisionador colisiones =new Colisionador(this);
-    public EmisorObjetos objeto= new EmisorObjetos(this);
+    public EmisorObjetos objetos= new EmisorObjetos(this);
     public EmisorNPC npcs= new EmisorNPC(this);
     public ControladorMinijuegos mini= new ControladorMinijuegos(this);
     public InterfazJugador hud = new InterfazJugador(this);
@@ -123,7 +123,7 @@ public class PanelJuego extends JPanel implements Runnable{
         
         keyH.establecerPanel(this);
 
-        objeto.establecerObj();     //envia los objetos definidos a un arreglo
+        objetos.establecerObj();     //envia los objetos definidos a un arreglo
         npcs.establecernpcs();      //igual pero con npcs
         mini.establecerminijuegos();
         this.reproducirmusica(musica);
@@ -286,7 +286,7 @@ public class PanelJuego extends JPanel implements Runnable{
         manCas.dibujado(g2);
         
         //objetos
-        objeto.dibujado(g2);
+        objetos.dibujado(g2);
         
         //npc
         npcs.dibujado(g2);
