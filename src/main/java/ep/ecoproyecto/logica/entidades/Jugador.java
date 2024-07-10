@@ -559,6 +559,7 @@ public class Jugador extends Entidad{
                             }else{
                                 gp.hud.mostrarmensaje(aux.Mensaje);
                             }
+                        }
                     }
                     default -> {
                         gp.hud.mostrarmensaje(gp.NPC[gp.mapaActual][id].Mensaje);

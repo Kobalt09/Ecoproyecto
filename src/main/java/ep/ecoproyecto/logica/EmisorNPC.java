@@ -32,7 +32,7 @@ public class EmisorNPC  implements Dibujado, Actualizar{
         
         //----MUNDO 1:-----//
         int NumMap = 0;
-        gp.NPC[NumMap][0]= new Chiguire(gp,20,20);
+        gp.NPC[NumMap][0]= new Chiguire(gp,20,15);
         gp.NPC[NumMap][1]= new Tienda(gp,9,9);
         
         //posicion de la puerta(x,y,z), luego posiciona a la que hara el tp(xyz)
