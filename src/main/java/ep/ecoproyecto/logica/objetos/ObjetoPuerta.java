@@ -8,8 +8,6 @@ import java.awt.Rectangle;
  */
 public class ObjetoPuerta extends Objetosclase{
     
-
-
     public ObjetoPuerta(String nombre, int posicionX, int posicionY, PanelJuego gp) {
         super(gp);
         this.nombre=nombre;
