@@ -27,7 +27,7 @@ public class Jugador extends Entidad{
     protected String username;
     protected int mapa;
     
-    public Objetosclase sombreros[]= new Objetosclase[10];
+    public String sombreros[]= new String[10];
     // 1 llaves
     // 2 basura
     // 7 semillas
@@ -307,26 +307,21 @@ public class Jugador extends Entidad{
                                 this.cantInventario[4]=this.cantInventario[4]-obj.getPrecio();
                                 switch(obj.nombre){
                                     case "calvo" -> {
-                                        this.sombreros[0]= new ObjetoRecogible("calvo",10,10,gp);
+                                        this.sombreros[0]= "calvo";
                                         gp.NPC[2][1].inventario[cont]=null;
-                                        this.sombreroactual=this.sombreros[0].nombre;
+                                        this.sombreroactual=this.sombreros[0];
                                         getsombre();
-                                    }  /*
-                                    case "botas" -> {
-                                        this.sombreros[1]=new ObjetoEquipo("Botas", 0, 0, gp);
-                                        gp.NPC[2][1].inventario[cont]=null;
-                                        
-                                    }*/
+                                    }
                                     case "gCopa" -> {
-                                        this.sombreros[1]=new ObjetoRecogible("gCopa",10,10,gp);
+                                        this.sombreros[1]="gCopa";
                                         gp.NPC[2][1].inventario[cont]=null;
-                                        this.sombreroactual=this.sombreros[1].nombre;
+                                        this.sombreroactual=this.sombreros[1];
                                         getsombre();
                                     }
                                     case "gPlaya" -> {
-                                        this.sombreros[2]=new ObjetoRecogible("gPlaya",10,10,gp);
+                                        this.sombreros[2]="gPlaya";
                                         gp.NPC[2][1].inventario[cont]=null;
-                                        this.sombreroactual=this.sombreros[2].nombre;
+                                        this.sombreroactual=this.sombreros[2];
                                         getsombre();
                                     }
                                     case "botas" -> {
@@ -352,14 +347,14 @@ public class Jugador extends Entidad{
     }
             
     public void recogerobjetos(int id){
-        
         if(id!=999){
             //usa el nombre del objeto para saber con cual objeto colisiona 
             String objnombre=gp.obj[gp.mapaActual][id].nombre;
             
             //switch para el nombre
             //nota se puede usar un getclass para saber el tipo o usar 
-            switch(objnombre){/*
+            switch(objnombre){
+                /*
                 case "llave" -> {
                     //llaves++;
                     
@@ -420,9 +415,7 @@ public class Jugador extends Entidad{
                     gp.obj[gp.mapaActual][id]=null;
                 }
             }
-            
         }
-        
     }
     
     public void recogerObjeto(int i){
@@ -534,7 +527,6 @@ public class Jugador extends Entidad{
                                 }else{
                                     gp.hud.mostrarmensaje("Ahora esa basura es toda mia");
                                 }
-                                    
                             }else{
                                 if(gp.minijuego[4][0].Empezado==false){
                                     gp.hud.mostrarmensaje("Oye, recoge esa basura por mi te dare U.N.D");
@@ -545,23 +537,17 @@ public class Jugador extends Entidad{
                             }
                         }
                     case Aguaconbasura aux ->{
-                            if("Aguasucia".equals(aux.estado) && this.inventario[6]!=null){
-
-                            if(aux.estado=="Aguasucia" && this.inventario[3]!=null){
-
-                                
+                        if("Aguasucia".equals(aux.estado) && this.inventario[3]!=null){
                                     gp.hud.mostrarmensaje("Recogiste la basura");
                                     aux.estado="Agua";
                                     aux.getImage();
-                                
-                            }else{
+                        }else{
                                 gp.hud.mostrarmensaje(aux.mensaje);
-                            }
+                            
                         }
                     }
                     default -> {
                         gp.hud.mostrarmensaje(gp.NPC[gp.mapaActual][id].mensaje);
-                        this.cantInventario[4]=this.cantInventario[4]+20;
                     }   
                        
                 }
