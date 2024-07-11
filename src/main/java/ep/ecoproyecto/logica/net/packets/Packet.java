@@ -8,7 +8,7 @@ public abstract class Packet {
     public static enum PacketTypes{
         INVALID(-1), LOGIN(00), DISCONNECT(01),MOVE(02),CAMBIO(03);
     
-        private int packetid;
+        private final int packetid;
 
         private PacketTypes(int packetid) {
             this.packetid = packetid;
@@ -30,7 +30,6 @@ public abstract class Packet {
     public abstract void writeData(Cliente cliente);
     public abstract void writeData(Server server);
     public String readData(byte[] data){
-        
         String mensaje = new String(data).trim();
         return mensaje.substring(2);
     }
