@@ -21,14 +21,14 @@ public class Minijuegoagua extends Minijuego{
     }
     
     @Override
-    public void interacion(){
-        if(Terminado==false && Empezado==false){
-            Empezado=true;
+    public void interaccion(){
+        if(terminado==false && empezado==false){
+            empezado=true;
             //generarobjetos();
-        }else if(Empezado==true){
+        }else if(empezado==true){
             comprobante();
-            if(Terminado==true){
-                Empezado=false;
+            if(terminado==true){
+                empezado=false;
             }
         }     
     }
@@ -41,12 +41,12 @@ public class Minijuegoagua extends Minijuego{
     }
     
     @Override
-    public void comprobante(){    
-        Terminado=true;
+    public void comprobante(){
+        terminado=true;
         for(int i=5;i<=8;i++){
             if(gp.NPC[gp.mapaActual][i] instanceof Agujero Aux){
                 if(Aux.estado.equals("Aguasucia")){
-                    Terminado=false;
+                    terminado=false;
                 }
             }
         }

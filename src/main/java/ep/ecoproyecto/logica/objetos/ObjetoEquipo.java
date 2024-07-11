@@ -8,7 +8,6 @@ import java.awt.Rectangle;
  * @author C-A-F
  */
 public class ObjetoEquipo extends Objetosclase{
-    public int precio;
     
     public ObjetoEquipo(String nombre, int posicionX, int posicionY, PanelJuego gp) {
         super(gp);
@@ -22,10 +21,12 @@ public class ObjetoEquipo extends Objetosclase{
         areadefectoY=hitBox.y;
     }
     
-        public int getPrecio() {
+    @Override
+    public int getPrecio() {
         return precio;
     }
 
+    @Override
     public void setPrecio(int precio) {
         this.precio = precio;
     }

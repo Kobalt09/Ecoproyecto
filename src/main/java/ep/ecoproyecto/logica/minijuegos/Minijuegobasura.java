@@ -18,14 +18,14 @@ public class Minijuegobasura extends Minijuego{
     }
     
     @Override
-    public void interacion(){
-        if(Terminado==false && Empezado==false){
-            Empezado=true;
+    public void interaccion(){
+        if(terminado==false && empezado==false){
+            empezado=true;
             generarobjetos();
-        }else if(Empezado==true){
+        }else if(empezado==true){
             comprobante();
-            if(Terminado==true){
-                Empezado=false;
+            if(terminado==true){
+                empezado=false;
             }
         }     
     }
@@ -49,12 +49,12 @@ public class Minijuegobasura extends Minijuego{
     
     @Override
     public void comprobante(){    
-        Terminado=true;
+        terminado=true;
        
         
         for(int i=9;i<=17;i++){
             if(gp.obj[gp.mapaActual][i] !=null){
-                Terminado=false;
+                terminado=false;
             }
         }
     }

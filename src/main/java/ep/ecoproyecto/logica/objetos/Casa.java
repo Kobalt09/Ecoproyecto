@@ -13,7 +13,7 @@ import java.awt.Rectangle;
  */
 public class Casa extends Objetosclase {
     
-      public Casa(String nombre, int posicionX, int posicionY, PanelJuego gp) {
+    public Casa(String nombre, int posicionX, int posicionY, PanelJuego gp) {
         super(gp);
         this.nombre=nombre;
         this.xMapa=posicionX*gp.tamanioCasilla;

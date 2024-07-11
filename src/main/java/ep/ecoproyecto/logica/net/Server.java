@@ -1,6 +1,6 @@
 package ep.ecoproyecto.logica.net;
 
-import ep.ecoproyecto.logica.net.packets.Paquete03Mapa;
+import ep.ecoproyecto.logica.net.packets.Packet03Mapa;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.entidades.JugadorMP;
 import ep.ecoproyecto.logica.net.packets.Packet;
@@ -20,13 +20,13 @@ import java.util.LinkedList;
  */
 public class Server extends Thread{
     private DatagramSocket socket;
-    private PanelJuego juego;
+    private PanelJuego gp;
     private LinkedList<JugadorMP> jugadoresConectados = new LinkedList<>();
     public static int refresco=0;
     
     
-    public Server(PanelJuego juego) {
-        this.juego = juego;
+    public Server(PanelJuego gp) {
+        this.gp = gp;
         try {
             this.socket = new DatagramSocket(1234);
         } catch (SocketException ex) {
@@ -62,7 +62,7 @@ public class Server extends Thread{
             case LOGIN->{
                 packet = new Packet00Login(data); 
                 System.out.println("["+direccion.getHostAddress()+":"+puerto+"] "+((Packet00Login)packet).getUsername()+" se ha conectado.");
-                JugadorMP jugador = new JugadorMP(direccion,puerto,juego,((Packet00Login)packet).getUsername(),((Packet00Login)packet).getX(),((Packet00Login)packet).getY(),((Packet00Login)packet).getDir(),((Packet00Login)packet).getMapa());
+                JugadorMP jugador = new JugadorMP(direccion,puerto,gp,((Packet00Login)packet).getUsername(),((Packet00Login)packet).getX(),((Packet00Login)packet).getY(),((Packet00Login)packet).getDir(),((Packet00Login)packet).getMapa());
                 this.addConnection(jugador,((Packet00Login)packet));
             }
             case DISCONNECT->{
@@ -78,9 +78,9 @@ public class Server extends Thread{
             }
             
             case CAMBIO->{
-                packet =new Paquete03Mapa(data);
-                System.out.println(((Paquete03Mapa)packet).getUsername()+" cambiado a mapa "+((Paquete03Mapa)packet).getMapa());
-                this.cambioMapa((Paquete03Mapa)packet);
+                packet =new Packet03Mapa(data);
+                System.out.println(((Packet03Mapa)packet).getUsername()+" cambiado a mapa "+((Packet03Mapa)packet).getMapa());
+                this.cambioMapa((Packet03Mapa)packet);
             }
                        
             default->{
@@ -151,22 +151,11 @@ public class Server extends Thread{
         }
     }
    
-    public int getIndiceJugador(String user){
-        int indice=0;
-        for (JugadorMP jug:jugadoresConectados){
-            if (jug.getUsername().equals(user)){
-                break;
-            }
-        indice++;
-        } 
-        return indice;
-    }
-    
     private void manejarMov(Packet02Mov packet) {
         
         if(getJugadorMP(packet.getUsername())!=null){
             
-            int indice=this.getIndiceJugador(packet.getUsername());
+            int indice=this.getJugadorMPindex(packet.getUsername());
             
             this.jugadoresConectados.get(indice).xMapa=packet.getX();
             this.jugadoresConectados.get(indice).yMapa=packet.getY();
@@ -175,10 +164,10 @@ public class Server extends Thread{
         }
     }
 
-    private void cambioMapa(Paquete03Mapa packet) {
+    private void cambioMapa(Packet03Mapa packet) {
         if(getJugadorMP(packet.getUsername())!=null){
             
-            int indice=this.getIndiceJugador(packet.getUsername());
+            int indice=this.getJugadorMPindex(packet.getUsername());
             this.jugadoresConectados.get(indice).setMapa(packet.getMapa());
             
             packet.writeData(this);

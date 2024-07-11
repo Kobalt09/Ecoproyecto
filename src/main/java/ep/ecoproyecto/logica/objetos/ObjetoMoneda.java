@@ -1,5 +1,4 @@
 package ep.ecoproyecto.logica.objetos;
-import ep.ecoproyecto.logica.entidades.Entidad;
 import ep.ecoproyecto.gui.PanelJuego;
 import java.awt.Rectangle;
 
@@ -8,8 +7,6 @@ import java.awt.Rectangle;
  * @author C-A-F
  */
 public class ObjetoMoneda extends Objetosclase{
-    
-    public int precio;
     
     public ObjetoMoneda(String nombre, int posicionX, int posicionY, PanelJuego gp) {
         super(gp);
@@ -23,10 +20,12 @@ public class ObjetoMoneda extends Objetosclase{
         areadefectoY=hitBox.y;
     }
 
+    @Override
     public int getPrecio() {
         return precio;
     }
 
+    @Override
     public void setPrecio(int precio) {
         this.precio = precio;
     }
