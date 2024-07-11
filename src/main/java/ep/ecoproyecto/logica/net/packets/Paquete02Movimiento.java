@@ -1,17 +1,17 @@
 package ep.ecoproyecto.logica.net.packets;
 import ep.ecoproyecto.logica.net.Cliente;
-import ep.ecoproyecto.logica.net.Server;
+import ep.ecoproyecto.logica.net.Servidor;
 /**
  *
  * @author C-A-F
  */
-public class Packet02Mov extends Packet{
+public class Paquete02Movimiento extends Paquete{
     
     private String username,dir;
     private int x,y;
     
     
-    public Packet02Mov(byte[] data) {
+    public Paquete02Movimiento(byte[] data) {
         super(02);
         String[] dataArray=readData(data).split(",");
         
@@ -22,7 +22,7 @@ public class Packet02Mov extends Packet{
         
     }
 
-    public Packet02Mov(String username,int x,int y,String dir) {
+    public Paquete02Movimiento(String username,int x,int y,String dir) {
         super(02);
         this.username = username;
         this.x=x;
@@ -69,7 +69,7 @@ public class Packet02Mov extends Packet{
     }
 
     @Override
-    public void writeData(Server server) {
+    public void writeData(Servidor server) {
         server.enviarDataClientes(getData());
     }
 

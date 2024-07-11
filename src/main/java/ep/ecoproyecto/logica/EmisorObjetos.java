@@ -22,7 +22,7 @@ public class EmisorObjetos  implements Dibujado{
         
         //----MUNDO 1:-----//
         int NumMap = 0;
-        pJuego.obj[NumMap][4]=new ObjetoEquipo("botas",16,6,pJuego);
+        
         pJuego.obj[NumMap][7]=new Casa("casa",11,8,pJuego);
         //----MUNDO 2:----- pruebas//
         NumMap = 1;

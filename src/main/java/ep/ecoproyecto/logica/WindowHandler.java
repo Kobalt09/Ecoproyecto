@@ -1,6 +1,6 @@
 package ep.ecoproyecto.logica;
 import ep.ecoproyecto.gui.PanelJuego;
-import ep.ecoproyecto.logica.net.packets.Packet01Disconnect;
+import ep.ecoproyecto.logica.net.packets.Paquete01Desconectar;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 /**
@@ -22,7 +22,7 @@ public class WindowHandler implements WindowListener{
 
     @Override
     public void windowClosing(WindowEvent e) {
-        Packet01Disconnect packet = new Packet01Disconnect(this.pJuego.jugador.getUsername());
+        Paquete01Desconectar packet = new Paquete01Desconectar(this.pJuego.jugador.getUsername());
         packet.writeData(this.pJuego.socketCliente);
     }
 

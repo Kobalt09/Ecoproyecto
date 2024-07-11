@@ -1,17 +1,17 @@
 package ep.ecoproyecto.logica.net.packets;
 import ep.ecoproyecto.logica.net.Cliente;
-import ep.ecoproyecto.logica.net.Server;
+import ep.ecoproyecto.logica.net.Servidor;
 /**
  *
  * @author C-A-F
  */
-public class Packet00Login extends Packet{
+public class Paquete00Login extends Paquete{
     
     private String username,dir;
     private int x,y,mapa;
     
     
-    public Packet00Login(byte[] data) {
+    public Paquete00Login(byte[] data) {
         super(00);
         String[] datos = readData(data).split(",");
         this.username = datos[0];
@@ -21,7 +21,7 @@ public class Packet00Login extends Packet{
         this.mapa=Integer.parseInt(datos[4]);
     }
 
-    public Packet00Login(String username,int x,int y,String dir,int mapa) {
+    public Paquete00Login(String username,int x,int y,String dir,int mapa) {
         super(00);
         this.username = username;
         this.x=x;
@@ -76,7 +76,7 @@ public class Packet00Login extends Packet{
     }
 
     @Override
-    public void writeData(Server server) {
+    public void writeData(Servidor server) {
         server.enviarDataClientes(getData());
     }
 
