@@ -12,8 +12,8 @@ public class Objetosclase extends Entidad{
 
     public int precio;
             
-    public Objetosclase(PanelJuego gp) {
-        super(gp);
+    public Objetosclase(PanelJuego pJuego) {
+        super(pJuego);
     }
 
     public int getPrecio() {

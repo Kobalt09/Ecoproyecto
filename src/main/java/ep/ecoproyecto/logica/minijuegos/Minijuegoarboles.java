@@ -14,8 +14,8 @@ import ep.ecoproyecto.logica.objetos.ObjetoRecogible;
  */
 public class Minijuegoarboles extends Minijuego{
 
-    public Minijuegoarboles(PanelJuego gp) {
-        super(gp);
+    public Minijuegoarboles(PanelJuego pJuego) {
+        super(pJuego);
     }
     
     
@@ -40,12 +40,12 @@ public class Minijuegoarboles extends Minijuego{
     public void generarobjetos(){
         
         //objetos
-        gp.obj[4][5]=new ObjetoRecogible("semilla", 16, 21, gp);
-        gp.obj[4][6]=new ObjetoRecogible("semilla", 10, 23, gp);
-        gp.obj[4][7]=new ObjetoRecogible("semilla", 13, 17, gp);
-        gp.obj[4][8]=new ObjetoRecogible("semilla", 18, 15, gp);
-        gp.obj[4][9]=new ObjetoRecogible("semilla", 15, 13, gp);
-        gp.obj[4][10]=new ObjetoRecogible("semilla",11, 8, gp);
+        pJuego.obj[4][5]=new ObjetoRecogible("semilla", 16, 21, pJuego);
+        pJuego.obj[4][6]=new ObjetoRecogible("semilla", 10, 23, pJuego);
+        pJuego.obj[4][7]=new ObjetoRecogible("semilla", 13, 17, pJuego);
+        pJuego.obj[4][8]=new ObjetoRecogible("semilla", 18, 15, pJuego);
+        pJuego.obj[4][9]=new ObjetoRecogible("semilla", 15, 13, pJuego);
+        pJuego.obj[4][10]=new ObjetoRecogible("semilla",11, 8, pJuego);
         //Npc
         
 
@@ -57,7 +57,7 @@ public class Minijuegoarboles extends Minijuego{
        
         
         for(int i=5;i<=10;i++){
-            if(gp.NPC[gp.mapaActual][i] instanceof Agujero Aux){
+            if(pJuego.NPC[pJuego.mapaActual][i] instanceof Agujero Aux){
                 if(Aux.estado.equals("Agujerovacio")){
                     terminado=false;
                 }

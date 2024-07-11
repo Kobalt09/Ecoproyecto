@@ -5,10 +5,7 @@
 package ep.ecoproyecto.logica.minijuegos;
 
 import ep.ecoproyecto.gui.PanelJuego;
-import ep.ecoproyecto.logica.entidades.Aguaconbasura;
 import ep.ecoproyecto.logica.entidades.Agujero;
-import ep.ecoproyecto.logica.entidades.Papelera;
-import ep.ecoproyecto.logica.objetos.ObjetoRecogible;
 
 /**
  *
@@ -16,8 +13,8 @@ import ep.ecoproyecto.logica.objetos.ObjetoRecogible;
  */
 public class Minijuegoagua extends Minijuego{
     
-    public Minijuegoagua(PanelJuego gp) {
-        super(gp);
+    public Minijuegoagua(PanelJuego pJuego) {
+        super(pJuego);
     }
     
     @Override
@@ -44,7 +41,7 @@ public class Minijuegoagua extends Minijuego{
     public void comprobante(){
         terminado=true;
         for(int i=5;i<=8;i++){
-            if(gp.NPC[gp.mapaActual][i] instanceof Agujero Aux){
+            if(pJuego.NPC[pJuego.mapaActual][i] instanceof Agujero Aux){
                 if(Aux.estado.equals("Aguasucia")){
                     terminado=false;
                 }

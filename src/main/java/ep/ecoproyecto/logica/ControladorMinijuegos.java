@@ -11,14 +11,14 @@ import ep.ecoproyecto.logica.minijuegos.Minijuegobasura;
 
 /**
  *
- * @author fabif
+ * @author C-A-F
  */
 public class ControladorMinijuegos {
     //public Minijuego minijuegos;
-    public PanelJuego gp;
+    public PanelJuego pJuego;
 
-    public ControladorMinijuegos(PanelJuego gp) {
-        this.gp = gp;
+    public ControladorMinijuegos(PanelJuego pJuego) {
+        this.pJuego = pJuego;
     }
     
     public void establecerminijuegos(){
@@ -26,37 +26,30 @@ public class ControladorMinijuegos {
         
                 //----MUNDO 1:-----//
         int NumMap = 0;
-        /*
-        gp.Minijuego[NumMap][0];= new chiguire(gp,10,7);
-        */
+       
         
         //----MUNDO 2:-----//
         NumMap = 1;
-        //gp.Minijuego[NumMap][0]= new Minijuegoarboles(gp);
-        //gp.Minijuego[NumMap][1]= new Minijuegobasura(gp);
-        /*
+       
         //----MUNDO 3:-----//
-        
-        
+              
         NumMap = 2;
-
-         */
         //----MUNDO 4:-----derecha//
         NumMap = 3;
-        gp.minijuego[NumMap][0]= new Minijuegoagua(gp);
+        pJuego.minijuego[NumMap][0]= new Minijuegoagua(pJuego);
         
         
         //----MUNDO 5:-----arriba// 
         NumMap = 4;
-        gp.minijuego[NumMap][0]= new Minijuegobasura(gp);
+        pJuego.minijuego[NumMap][0]= new Minijuegobasura(pJuego);
         //----MUNDO 6:-----izquierda//
             NumMap = 5;
-        gp.minijuego[NumMap][0]= new Minijuegoarboles(gp);
+        pJuego.minijuego[NumMap][0]= new Minijuegoarboles(pJuego);
                   
     }
     
-    public void activarmini(int mapa, int num){
-        gp.minijuego[mapa][num].interaccion();
+    public void activarMini(int mapa, int num){
+        pJuego.minijuego[mapa][num].interaccion();
     }
     
     

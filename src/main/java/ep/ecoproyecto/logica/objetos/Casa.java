@@ -13,11 +13,11 @@ import java.awt.Rectangle;
  */
 public class Casa extends Objetosclase {
     
-    public Casa(String nombre, int posicionX, int posicionY, PanelJuego gp) {
-        super(gp);
+    public Casa(String nombre, int posicionX, int posicionY, PanelJuego pJuego) {
+        super(pJuego);
         this.nombre=nombre;
-        this.xMapa=posicionX*gp.tamanioCasilla;
-        this.yMapa=posicionY*gp.tamanioCasilla;
+        this.xMapa=posicionX*pJuego.tamanioCasilla;
+        this.yMapa=posicionY*pJuego.tamanioCasilla;
         down1= this.configuracion("/objetos/casa");
         colision=true;
         hitBox= new Rectangle(0,0,256,128);

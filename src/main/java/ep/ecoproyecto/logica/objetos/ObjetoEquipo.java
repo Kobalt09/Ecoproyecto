@@ -9,11 +9,11 @@ import java.awt.Rectangle;
  */
 public class ObjetoEquipo extends Objetosclase{
     
-    public ObjetoEquipo(String nombre, int posicionX, int posicionY, PanelJuego gp) {
-        super(gp);
+    public ObjetoEquipo(String nombre, int posicionX, int posicionY, PanelJuego pJuego) {
+        super(pJuego);
         this.nombre=nombre;
-        this.xMapa=posicionX*gp.tamanioCasilla;
-        this.yMapa=posicionY*gp.tamanioCasilla;
+        this.xMapa=posicionX*pJuego.tamanioCasilla;
+        this.yMapa=posicionY*pJuego.tamanioCasilla;
         down1= this.configuracion("/objetos/bota1");
         colision=true;
         hitBox= new Rectangle(0,0,64,64);

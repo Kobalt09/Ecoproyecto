@@ -13,12 +13,12 @@ import java.awt.Rectangle;
  */
 public class Papelera extends Entidad{
     
-    public Papelera(PanelJuego gp, int x, int y) {
-        super(gp);
-        this.xMapa=x*gp.tamanioCasilla;
-        this.yMapa=y*gp.tamanioCasilla;
+    public Papelera(PanelJuego pJuego, int x, int y) {
+        super(pJuego);
+        this.xMapa=x*pJuego.tamanioCasilla;
+        this.yMapa=y*pJuego.tamanioCasilla;
         this.vel=0;
-        this.hitBox=new Rectangle(0,0,gp.tamanioCasilla,gp.tamanioCasilla);
+        this.hitBox=new Rectangle(0,0,pJuego.tamanioCasilla,pJuego.tamanioCasilla);
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
         this.mensaje="Una papelera, aqui podria dejar la basura";

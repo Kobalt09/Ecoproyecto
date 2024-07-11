@@ -1,4 +1,5 @@
 package ep.ecoproyecto.gui;
+
 import ep.ecoproyecto.logica.net.Cliente;
 import ep.ecoproyecto.logica.net.Server;
 import ep.ecoproyecto.logica.tipografia.Fuentes;
@@ -6,22 +7,25 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author C-A-F
  */
+
 public class MenuIni extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Menu
-     */
    
     Fuentes tipoFuente=new Fuentes();
     ImageIcon img = new ImageIcon("/player/jg_abj_01.png");
     
     JFrame ventana= new JFrame();
     PanelJuego panelDeJuego= new PanelJuego(ventana);
-
+    
+    /**
+     * Creates new form Menu
+     */
+    
     public MenuIni() {
         initComponents();
         titulo.setFont(tipoFuente.fuente(tipoFuente.upheaval,0,60));
@@ -204,10 +208,10 @@ public class MenuIni extends javax.swing.JFrame {
             ventana.setUndecorated(true);
         }
         
-        panelDeJuego.socketcliente = new Cliente("localhost",panelDeJuego);
-        panelDeJuego.socketcliente.start();
+        panelDeJuego.socketCliente = new Cliente("localhost",panelDeJuego);
+        panelDeJuego.socketCliente.start();
         
-        panelDeJuego.configuraciondejuego();
+        panelDeJuego.configuracionDeJuego();
         panelDeJuego.inicioJugador();
         
         panelDeJuego.gameThread = new Thread(panelDeJuego);
@@ -219,7 +223,7 @@ public class MenuIni extends javax.swing.JFrame {
         ventana.pack();       
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
-        panelDeJuego.reproducirmusica(panelDeJuego.musica);
+        panelDeJuego.reproducirMusica(panelDeJuego.musica);
         
         
             

@@ -11,12 +11,12 @@ import ep.ecoproyecto.gui.PanelJuego;
  * @author fabif
  */
 public abstract class Minijuego {
-    PanelJuego gp;
+    PanelJuego pJuego;
     public boolean empezado, terminado;
     
     
-    public Minijuego(PanelJuego gp) {
-        this.gp = gp;
+    public Minijuego(PanelJuego pJuego) {
+        this.pJuego = pJuego;
         empezado=false;
         terminado=false;
     }

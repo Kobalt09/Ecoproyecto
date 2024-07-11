@@ -19,12 +19,12 @@ public final class Aguaconbasura extends Entidad{
 
     public String estado;
 
-    public Aguaconbasura(PanelJuego gp, int x, int y) {
-        super(gp);
-        this.xMapa=x*gp.tamanioCasilla;
-        this.yMapa=y*gp.tamanioCasilla;
+    public Aguaconbasura(PanelJuego pJuego, int x, int y) {
+        super(pJuego);
+        this.xMapa=x*pJuego.tamanioCasilla;
+        this.yMapa=y*pJuego.tamanioCasilla;
         this.vel=0;
-        this.hitBox=new Rectangle(0,0,gp.tamanioCasilla,gp.tamanioCasilla);
+        this.hitBox=new Rectangle(0,0,pJuego.tamanioCasilla,pJuego.tamanioCasilla);
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
         estado="Aguasucia";
@@ -47,7 +47,7 @@ public final class Aguaconbasura extends Entidad{
         
         try{
             imagen=ImageIO.read(getClass().getResourceAsStream(nombre+".jpg"));
-            imagen= herramienta.imagenEscalada(imagen, gp.tamanioCasilla, gp.tamanioCasilla);
+            imagen= herramienta.imagenEscalada(imagen, pJuego.tamanioCasilla, pJuego.tamanioCasilla);
             
         }catch(IOException e){
         }

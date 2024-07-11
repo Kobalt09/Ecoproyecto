@@ -10,28 +10,28 @@ import java.awt.event.KeyEvent;
 public class KeyHandler implements KeyListener{
 
     public boolean upPressed, downPressed, leftPressed, rightPressed,PPressed,escPressed,ePressed, enterPressed;
-    public PanelJuego gp;
+    public PanelJuego pJuego;
     @Override
     public void keyTyped(KeyEvent e) {
     }
     
-    public void establecerPanel(PanelJuego gp){
-        this.gp=gp;
+    public void establecerPanel(PanelJuego pJuego){
+        this.pJuego=pJuego;
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         int code=e.getKeyCode();
         
-        if (!gp.pause){
+        if (!pJuego.pause){
             juegoState(code);
         }else{
             opcionesState(code);
         }
         
         if(code==KeyEvent.VK_ESCAPE || code==KeyEvent.VK_P){
-            if (!gp.hud.tiendaOn)
-                gp.pause = !gp.pause;
+            if (!pJuego.hud.tiendaOn)
+                pJuego.pause = !pJuego.pause;
         }
     }
 
@@ -82,49 +82,49 @@ public class KeyHandler implements KeyListener{
         }
         
         int maxOpcionMenu = 0;
-        switch(gp.hud.subState){
+        switch(pJuego.hud.subState){
             case 0->maxOpcionMenu=4;
             case 3->maxOpcionMenu=1;
         }
         
         if (code==KeyEvent.VK_W || code==KeyEvent.VK_UP){
-            gp.hud.opcionMenu--;
-            gp.efectos(2);
-            if (gp.hud.opcionMenu<0)
-                gp.hud.opcionMenu = maxOpcionMenu;
+            pJuego.hud.opcionMenu--;
+            pJuego.efectos(2);
+            if (pJuego.hud.opcionMenu<0)
+                pJuego.hud.opcionMenu = maxOpcionMenu;
         }
         
         if (code==KeyEvent.VK_S || code==KeyEvent.VK_DOWN){
-            gp.hud.opcionMenu++;
-            gp.efectos(2);
-            if (gp.hud.opcionMenu>maxOpcionMenu)
-                gp.hud.opcionMenu = 0;
+            pJuego.hud.opcionMenu++;
+            pJuego.efectos(2);
+            if (pJuego.hud.opcionMenu>maxOpcionMenu)
+                pJuego.hud.opcionMenu = 0;
         }
         
         if (code==KeyEvent.VK_A || code==KeyEvent.VK_LEFT){
-            if (gp.hud.subState == 0){
-                if (gp.hud.opcionMenu == 1 && gp.controlmusica.escalaVolumen>0){
-                    gp.controlmusica.escalaVolumen--;
-                    gp.controlmusica.chequearVolumen();
-                    gp.efectos(2);
+            if (pJuego.hud.subState == 0){
+                if (pJuego.hud.opcionMenu == 1 && pJuego.controlmusica.escalaVolumen>0){
+                    pJuego.controlmusica.escalaVolumen--;
+                    pJuego.controlmusica.chequearVolumen();
+                    pJuego.efectos(2);
                 }
-                if (gp.hud.opcionMenu == 2 && gp.controlsonido.escalaVolumen>0){
-                    gp.controlsonido.escalaVolumen--;
-                    gp.efectos(2);
+                if (pJuego.hud.opcionMenu == 2 && pJuego.controlsonido.escalaVolumen>0){
+                    pJuego.controlsonido.escalaVolumen--;
+                    pJuego.efectos(2);
                 }
             }
         }
         
         if (code==KeyEvent.VK_D || code==KeyEvent.VK_RIGHT){
-            if (gp.hud.subState == 0){
-                if (gp.hud.opcionMenu == 1 && gp.controlmusica.escalaVolumen<5){
-                    gp.controlmusica.escalaVolumen++;
-                    gp.controlmusica.chequearVolumen();
-                    gp.efectos(2);
+            if (pJuego.hud.subState == 0){
+                if (pJuego.hud.opcionMenu == 1 && pJuego.controlmusica.escalaVolumen<5){
+                    pJuego.controlmusica.escalaVolumen++;
+                    pJuego.controlmusica.chequearVolumen();
+                    pJuego.efectos(2);
                 }
-                if (gp.hud.opcionMenu == 2 && gp.controlsonido.escalaVolumen<5){
-                    gp.controlsonido.escalaVolumen++;
-                    gp.efectos(2);
+                if (pJuego.hud.opcionMenu == 2 && pJuego.controlsonido.escalaVolumen<5){
+                    pJuego.controlsonido.escalaVolumen++;
+                    pJuego.efectos(2);
                 }
             }
         }

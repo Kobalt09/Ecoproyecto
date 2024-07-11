@@ -20,13 +20,13 @@ import java.util.LinkedList;
  */
 public class Server extends Thread{
     private DatagramSocket socket;
-    private PanelJuego gp;
+    private PanelJuego pJuego;
     private LinkedList<JugadorMP> jugadoresConectados = new LinkedList<>();
     public static int refresco=0;
     
     
-    public Server(PanelJuego gp) {
-        this.gp = gp;
+    public Server(PanelJuego pJuego) {
+        this.pJuego = pJuego;
         try {
             this.socket = new DatagramSocket(1234);
         } catch (SocketException ex) {
@@ -62,7 +62,7 @@ public class Server extends Thread{
             case LOGIN->{
                 packet = new Packet00Login(data); 
                 System.out.println("["+direccion.getHostAddress()+":"+puerto+"] "+((Packet00Login)packet).getUsername()+" se ha conectado.");
-                JugadorMP jugador = new JugadorMP(direccion,puerto,gp,((Packet00Login)packet).getUsername(),((Packet00Login)packet).getX(),((Packet00Login)packet).getY(),((Packet00Login)packet).getDir(),((Packet00Login)packet).getMapa());
+                JugadorMP jugador = new JugadorMP(direccion,puerto,pJuego,((Packet00Login)packet).getUsername(),((Packet00Login)packet).getX(),((Packet00Login)packet).getY(),((Packet00Login)packet).getDir(),((Packet00Login)packet).getMapa());
                 this.addConnection(jugador,((Packet00Login)packet));
             }
             case DISCONNECT->{

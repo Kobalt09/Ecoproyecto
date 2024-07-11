@@ -19,7 +19,7 @@ public class Entidad implements Actualizar{
     public String nombre;
     public boolean colision=false;
     //
-    PanelJuego gp;
+    PanelJuego pJuego;
     public int xMapa,yMapa;
     public int vel;
     
@@ -44,8 +44,8 @@ public class Entidad implements Actualizar{
     public boolean movimiento;
     
     
-    public Entidad(PanelJuego gp){
-        this.gp=gp;
+    public Entidad(PanelJuego pJuego){
+        this.pJuego=pJuego;
     }
     
     
@@ -53,10 +53,10 @@ public class Entidad implements Actualizar{
     public void actualizar(){
         
         colision=false;
-        gp.colisiones.revisarColision(this);
-        gp.colisiones.chequeoObjetos(this, colision);
+        pJuego.colisiones.revisarColision(this);
+        pJuego.colisiones.chequeoObjetos(this, colision);
         
-        gp.colisiones.chequeojugador(this);
+        pJuego.colisiones.chequeojugador(this);
         
         if(colision==false){
                 switch (direction) {
@@ -86,7 +86,7 @@ public class Entidad implements Actualizar{
         
         try{
             imagen=ImageIO.read(getClass().getResourceAsStream(nombre+".png"));
-            imagen= herramienta.imagenEscalada(imagen, gp.tamanioCasilla, gp.tamanioCasilla);
+            imagen= herramienta.imagenEscalada(imagen, pJuego.tamanioCasilla, pJuego.tamanioCasilla);
             
         }catch(IOException e){
         }

@@ -7,11 +7,11 @@ import java.awt.Rectangle;
  */
 public class ObjetoRecogible extends Objetosclase{
     
-    public ObjetoRecogible(String nombre, int posicionX, int posicionY, PanelJuego gp) {
-        super(gp);
+    public ObjetoRecogible(String nombre, int posicionX, int posicionY, PanelJuego pJuego) {
+        super(pJuego);
         this.nombre=nombre;
-        this.xMapa=posicionX*gp.tamanioCasilla;
-        this.yMapa=posicionY*gp.tamanioCasilla;
+        this.xMapa=posicionX*pJuego.tamanioCasilla;
+        this.yMapa=posicionY*pJuego.tamanioCasilla;
         if(nombre.equals("calvo")||nombre.equals("gCopa")||nombre.equals("gPlaya")){
             down1= this.configuracion("/gorros/"+nombre);
         }else {

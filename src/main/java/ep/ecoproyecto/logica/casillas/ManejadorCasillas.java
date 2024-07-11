@@ -16,14 +16,14 @@ import javax.imageio.ImageIO;
  */
 public class ManejadorCasillas  implements Dibujado{
     
-    PanelJuego gp;
+    PanelJuego pJuego;
     public Casilla[] casilla;
     public int numCasillaMapa[][];
     public String mapa[]= new String[6];
 
-    public ManejadorCasillas(PanelJuego gp) {
+    public ManejadorCasillas(PanelJuego pJuego) {
         
-        this.gp = gp;
+        this.pJuego = pJuego;
         
         casilla = new Casilla[20];        
         
@@ -38,7 +38,7 @@ public class ManejadorCasillas  implements Dibujado{
          
         
         
-        cargarMapa(mapa[gp.mapaActual],0,0);
+        cargarMapa(mapa[pJuego.mapaActual],0,0);
         getImagenCasilla();
         
     }
@@ -73,7 +73,7 @@ public class ManejadorCasillas  implements Dibujado{
 
             casilla[id] = new Casilla();
             casilla[id].imagen= ImageIO.read(getClass().getResource("/casillas/"+ruta+".jpg"));
-            casilla[id].imagen = herramienta.imagenEscalada(casilla[id].imagen, gp.tamanioCasilla, gp.tamanioCasilla);
+            casilla[id].imagen = herramienta.imagenEscalada(casilla[id].imagen, pJuego.tamanioCasilla, pJuego.tamanioCasilla);
             casilla[id].colision = colision;
             
         }catch(IOException e){
@@ -131,7 +131,7 @@ public class ManejadorCasillas  implements Dibujado{
         int i=jugador.xMapa/64; 
         int j=jugador.yMapa/64;
 
-        cargarMapa(mapa[gp.mapaActual],i,j);        
+        cargarMapa(mapa[pJuego.mapaActual],i,j);        
     
     }
     
@@ -146,15 +146,15 @@ public class ManejadorCasillas  implements Dibujado{
         
             int numCasilla = numCasillaMapa[columna][fila];
                 
-                int PosicionX=columna*gp.tamanioCasilla;
-                int PosicionY=fila*gp.tamanioCasilla;
-                int PantallaX=PosicionX- gp.jugador.xMapa+gp.jugador.pantallaX;
-                int PantallaY=PosicionY- gp.jugador.yMapa+gp.jugador.pantallaY;
+                int PosicionX=columna*pJuego.tamanioCasilla;
+                int PosicionY=fila*pJuego.tamanioCasilla;
+                int PantallaX=PosicionX- pJuego.jugador.xMapa+pJuego.jugador.pantallaX;
+                int PantallaY=PosicionY- pJuego.jugador.yMapa+pJuego.jugador.pantallaY;
                 
-                if((PosicionX+gp.tamanioCasilla > gp.jugador.xMapa-gp.jugador.pantallaX)&&
-                        (PosicionX-gp.tamanioCasilla < gp.jugador.xMapa+gp.jugador.pantallaX)&&
-                   (PosicionY+gp.tamanioCasilla > gp.jugador.yMapa-gp.jugador.pantallaY)&&
-                        (PosicionY-gp.tamanioCasilla < gp.jugador.yMapa+gp.jugador.pantallaY)){     
+                if((PosicionX+pJuego.tamanioCasilla > pJuego.jugador.xMapa-pJuego.jugador.pantallaX)&&
+                        (PosicionX-pJuego.tamanioCasilla < pJuego.jugador.xMapa+pJuego.jugador.pantallaX)&&
+                   (PosicionY+pJuego.tamanioCasilla > pJuego.jugador.yMapa-pJuego.jugador.pantallaY)&&
+                        (PosicionY-pJuego.tamanioCasilla < pJuego.jugador.yMapa+pJuego.jugador.pantallaY)){     
                 
                     g2.drawImage(casilla[numCasilla].imagen, PantallaX, PantallaY,null);
                     

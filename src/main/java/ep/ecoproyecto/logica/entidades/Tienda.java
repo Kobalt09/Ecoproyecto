@@ -12,10 +12,10 @@ import java.awt.Rectangle;
 public final class Tienda extends Entidad {
     
     
-    public Tienda(PanelJuego gp, int x, int y) {
-        super(gp);
-        this.xMapa=x*gp.tamanioCasilla;
-        this.yMapa=y*gp.tamanioCasilla;
+    public Tienda(PanelJuego pJuego, int x, int y) {
+        super(pJuego);
+        this.xMapa=x*pJuego.tamanioCasilla;
+        this.yMapa=y*pJuego.tamanioCasilla;
         this.direction="down";
         this.vel=0;
 
@@ -31,13 +31,13 @@ public final class Tienda extends Entidad {
     
     
     public void establecerTienda(){
-        this.inventario[0]=new ObjetoEquipo("botas",16,6,gp);
+        this.inventario[0]=new ObjetoEquipo("botas",16,6,pJuego);
         this.inventario[0].setPrecio(10);
-        this.inventario[1]=new ObjetoRecogible("calvo",10,10,gp);
+        this.inventario[1]=new ObjetoRecogible("calvo",10,10,pJuego);
         this.inventario[1].setPrecio(0);
-        this.inventario[2]=new ObjetoRecogible("gCopa",10,10,gp);
+        this.inventario[2]=new ObjetoRecogible("gCopa",10,10,pJuego);
         this.inventario[2].setPrecio(5);
-        this.inventario[3]=new ObjetoRecogible("gPlaya",10,10,gp);
+        this.inventario[3]=new ObjetoRecogible("gPlaya",10,10,pJuego);
         this.inventario[3].setPrecio(5);
     }
     

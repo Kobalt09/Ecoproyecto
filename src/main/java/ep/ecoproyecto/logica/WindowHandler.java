@@ -9,11 +9,11 @@ import java.awt.event.WindowListener;
  */
 public class WindowHandler implements WindowListener{
     
-    private final PanelJuego gp;
+    private final PanelJuego pJuego;
 
-    public WindowHandler(PanelJuego gp) {
-        this.gp = gp;
-        this.gp.frame.addWindowListener(this);
+    public WindowHandler(PanelJuego pJuego) {
+        this.pJuego = pJuego;
+        this.pJuego.frame.addWindowListener(this);
     }
     
     @Override
@@ -22,8 +22,8 @@ public class WindowHandler implements WindowListener{
 
     @Override
     public void windowClosing(WindowEvent e) {
-        Packet01Disconnect packet = new Packet01Disconnect(this.gp.jugador.getUsername());
-        packet.writeData(this.gp.socketcliente);
+        Packet01Disconnect packet = new Packet01Disconnect(this.pJuego.jugador.getUsername());
+        packet.writeData(this.pJuego.socketCliente);
     }
 
     @Override

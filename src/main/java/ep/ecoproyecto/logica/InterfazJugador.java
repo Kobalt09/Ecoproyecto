@@ -16,23 +16,21 @@ import javax.imageio.ImageIO;
  * @author C-A-F
  */
 public class InterfazJugador{
-    public PanelJuego gp;
+    public PanelJuego pJuego;
     public Fuentes fuente= new Fuentes();
     public Graphics2D g2;
     public BufferedImage imagen;
     public boolean mensajeOn=false;
     public boolean tiendaOn=false;
-    public boolean victoriamensaje=false;
+    public boolean victoriaMensaje=false;
     public String mensaje="";
-    int contmensajes=0;
+    int contMensajes=0;
     public int opcion=0;
     public int opcionMenu=0;
     public int subState = 0;
     
-            //titulo.setFont(new java.awt.Font("Arial", 0, 40)); // NOI18N
-
-    public InterfazJugador(PanelJuego gp) {
-        this.gp = gp;
+    public InterfazJugador(PanelJuego pJuego) {
+        this.pJuego = pJuego;
         
     }
     
@@ -59,13 +57,13 @@ public class InterfazJugador{
         
         g2.setFont(fuente.fuente(fuente.upheaval,0,25));
         g2.setColor(Color.WHITE);
-        g2.drawString("posicion X:"+(gp.jugador.xMapa/64)+" Y "+(gp.jugador.yMapa/64), gp.screenWidth-800, gp.screenHeight-50);
+        g2.drawString("posicion X:"+(pJuego.jugador.xMapa/64)+" Y "+(pJuego.jugador.yMapa/64), pJuego.screenWidth-800, pJuego.screenHeight-50);
 
         //g2.setFont(fuente);
-        g2.drawString("Unidades de credito: "+(gp.jugador.cantInventario[4]),50, 50);
+        g2.drawString("Unidades de credito: "+(pJuego.jugador.cantInventario[4]),50, 50);
         
         
-        if (gp.pause){
+        if (pJuego.pause){
             dibujadoFondo();
             dibujadoMenuPausa();
         }
@@ -74,24 +72,25 @@ public class InterfazJugador{
         if(mensajeOn==true){
             int tarjeta=mensaje.length();
             g2.setColor(Color.blue);
-            g2.fillRect(gp.screenWidth/3-8, gp.tamanioCasilla/6-5, tarjeta*15+8, gp.tamanioCasilla-6);
+            g2.fillRect(pJuego.screenWidth/3-8, pJuego.tamanioCasilla/6-5, tarjeta*15+8, pJuego.tamanioCasilla-6);
             
             g2.setColor(Color.black);
-            g2.fillRect(gp.screenWidth/3-5, gp.tamanioCasilla/6, tarjeta*15, gp.tamanioCasilla-16);
+            g2.fillRect(pJuego.screenWidth/3-5, pJuego.tamanioCasilla/6, tarjeta*15, pJuego.tamanioCasilla-16);
             g2.setColor(Color.white);
             //g2.setFont(g2.getFont().deriveFont(30F));
             
-            g2.drawString(mensaje, gp.screenWidth/3, gp.tamanioCasilla/2+5);   
-            contmensajes++;
-            if(contmensajes>60){
-                contmensajes=0;
+            g2.drawString(mensaje, pJuego.screenWidth/3, pJuego.tamanioCasilla/2+5);   
+            contMensajes++;
+            if(contMensajes>60){
+                contMensajes=0;
                 mensajeOn=false;
             }
         }
 
         //dibujado de inventario
         if(mensajeOn==false){
-            dibujadoinventario(g2,jugador); 
+            if(pJuego.jugador==jugador)
+                dibujadoinventario(g2,jugador); 
             
             if(tiendaOn==true ){
                 tienda(g2);
@@ -102,13 +101,13 @@ public class InterfazJugador{
     public void dibujadoFondo(){
         Color colorOscuro = new Color(0,0,0,150);
         g2.setColor(colorOscuro);
-        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        g2.fillRect(0, 0, pJuego.screenWidth, pJuego.screenHeight);
     }
     
     public void dibujadoMenuPausa(){
         
-        int frameX = getXcentrado("Opciones:") - gp.tamanioCasilla;
-        int frameY = gp.tamanioCasilla;
+        int frameX = getXcentrado("Opciones:") - pJuego.tamanioCasilla;
+        int frameY = pJuego.tamanioCasilla;
     
         switch(subState){
             case 0-> opciones_Top(frameX,frameY);
@@ -117,7 +116,7 @@ public class InterfazJugador{
             case 3-> cerrarJuegoConfirm(frameX,frameY);
         }
         
-        gp.keyH.enterPressed = false;
+        pJuego.keyH.enterPressed = false;
     }
     
     public void opciones_Top(int frameX, int frameY){
@@ -125,39 +124,39 @@ public class InterfazJugador{
         
         //TITULO//
         textoX = frameX;
-        textoY = frameY + gp.tamanioCasilla;
+        textoY = frameY + pJuego.tamanioCasilla;
         dibujadoLetras("Opciones:",textoX,textoY,true);
         
         //PANTALLA COMPLETA//
-        textoX = textoX - gp.tamanioCasilla*2;
-        textoY += gp.tamanioCasilla;
+        textoX = textoX - pJuego.tamanioCasilla*2;
+        textoY += pJuego.tamanioCasilla;
         dibujadoLetras("Pantalla Completa",textoX,textoY,false);
         if (opcionMenu == 0){
             dibujadoLetras("+",textoX-25,textoY,false);
-            if (gp.keyH.enterPressed){
-                gp.pantallaCompleta = !gp.pantallaCompleta;
+            if (pJuego.keyH.enterPressed){
+                pJuego.pantallaCompleta = !pJuego.pantallaCompleta;
                 subState = 1;
             }
         }
         
         //MUSICA//
-        textoY += gp.tamanioCasilla;
+        textoY += pJuego.tamanioCasilla;
         dibujadoLetras("Musica",textoX,textoY,false);
         if (opcionMenu == 1)
             dibujadoLetras("+",textoX-25,textoY,false);
         
         //EFECTOS DE SONIDO//
-        textoY += gp.tamanioCasilla;
+        textoY += pJuego.tamanioCasilla;
         dibujadoLetras("Efectos de Sonido",textoX,textoY,false);
         if (opcionMenu == 2)
             dibujadoLetras("+",textoX-25,textoY,false);
         
         //CONTROLES//
-        textoY += gp.tamanioCasilla;
+        textoY += pJuego.tamanioCasilla;
         dibujadoLetras("Controles",textoX,textoY,false);
         if (opcionMenu == 3){
             dibujadoLetras("+",textoX-25,textoY,false);
-            if (gp.keyH.enterPressed){
+            if (pJuego.keyH.enterPressed){
                 subState = 2;
                 opcionMenu = 0;
             }
@@ -165,40 +164,40 @@ public class InterfazJugador{
     
         //CERRAR JUEGO//
         textoX = getXcentrado("Cerrar Juego");
-        textoY += gp.tamanioCasilla;
+        textoY += pJuego.tamanioCasilla;
         dibujadoLetras("Cerrar Juego",textoX,textoY,false);
         if (opcionMenu == 4){
             dibujadoLetras("+",textoX-25,textoY,false);
-            if (gp.keyH.enterPressed){
+            if (pJuego.keyH.enterPressed){
                 subState = 3;
                 opcionMenu = 0;
             }
         }
     
         //CHECK BOX PANTALLA COMPLETA//
-        textoX = getXcentrado("Opciones:") + gp.tamanioCasilla*4;
-        textoY = frameY + gp.tamanioCasilla + 35;
+        textoX = getXcentrado("Opciones:") + pJuego.tamanioCasilla*4;
+        textoY = frameY + pJuego.tamanioCasilla + 35;
         g2.setStroke(new BasicStroke(3));
         
-        dibujadoRect(textoX,textoY,false,gp.pantallaCompleta ? 1 : 0);
+        dibujadoRect(textoX,textoY,false,pJuego.pantallaCompleta ? 1 : 0);
     
         //VOLUMEN DE LA MUSICA //
-        textoY += gp.tamanioCasilla;
-        textoX -= gp.tamanioCasilla + 33;
+        textoY += pJuego.tamanioCasilla;
+        textoX -= pJuego.tamanioCasilla + 33;
         
-        dibujadoRect(textoX,textoY,true,gp.controlmusica.escalaVolumen);
+        dibujadoRect(textoX,textoY,true,pJuego.controlmusica.escalaVolumen);
         
         //VOLUMEN DE LOS EFECTOS DE SONIDO//
-        textoY += gp.tamanioCasilla;
-        dibujadoRect(textoX,textoY,true,gp.controlsonido.escalaVolumen);
+        textoY += pJuego.tamanioCasilla;
+        dibujadoRect(textoX,textoY,true,pJuego.controlsonido.escalaVolumen);
     
         //GUARDADO//
-        gp.config.guardarConfig();
+        pJuego.config.guardarConfig();
     }
     
     private int getXcentrado(String texto){
         int length = (int)g2.getFontMetrics().getStringBounds(texto, g2).getWidth();
-        return gp.screenWidth/2 - length/2;
+        return pJuego.screenWidth/2 - length/2;
     }
     
     private void dibujadoRect(int x,int y, boolean rect, int cantidad){
@@ -249,8 +248,8 @@ public class InterfazJugador{
     }
     
     public void pantallaCompletaNotif(int frameX, int frameY){
-        int textoX = frameX - gp.tamanioCasilla*2;
-        int textoY = frameY + gp.tamanioCasilla*3;
+        int textoX = frameX - pJuego.tamanioCasilla*2;
+        int textoY = frameY + pJuego.tamanioCasilla*3;
     
         mensaje = "El cambio tendra efecto cuando \nreinicies el juego";
         
@@ -260,47 +259,47 @@ public class InterfazJugador{
         }
         
         //REGRESAR//
-        textoX += gp.tamanioCasilla; 
-        textoY = gp.tamanioCasilla*6;
+        textoX += pJuego.tamanioCasilla; 
+        textoY = pJuego.tamanioCasilla*6;
         dibujadoLetras("Regresar", textoX, textoY,false);
         if (opcionMenu == 0){
             dibujadoLetras("+", textoX-25, textoY,false);
-            if (gp.keyH.enterPressed == true){
+            if (pJuego.keyH.enterPressed == true){
                 subState = 0;
             }
         }
     }
     
     public void controlesMenu(int frameX, int frameY){
-        int textoX = getXcentrado("CONTROLES:") - gp.tamanioCasilla,
-        textoY = frameY + gp.tamanioCasilla;
+        int textoX = getXcentrado("CONTROLES:") - pJuego.tamanioCasilla,
+        textoY = frameY + pJuego.tamanioCasilla;
         
         //TITULO//
         dibujadoLetras("CONTROLES:",textoX,textoY,true);
     
         //ACCIONES//
-        textoX = frameX - gp.tamanioCasilla*2;
-        textoY += gp.tamanioCasilla;
-        dibujadoLetras("Movimiento",textoX,textoY,false);textoY+=gp.tamanioCasilla;
-        dibujadoLetras("Interactuar",textoX,textoY,false);textoY+=gp.tamanioCasilla;
-        dibujadoLetras("Confirmar",textoX,textoY,false);textoY+=gp.tamanioCasilla;
+        textoX = frameX - pJuego.tamanioCasilla*2;
+        textoY += pJuego.tamanioCasilla;
+        dibujadoLetras("Movimiento",textoX,textoY,false);textoY+=pJuego.tamanioCasilla;
+        dibujadoLetras("Interactuar",textoX,textoY,false);textoY+=pJuego.tamanioCasilla;
+        dibujadoLetras("Confirmar",textoX,textoY,false);textoY+=pJuego.tamanioCasilla;
         dibujadoLetras("Abrir/Cerrar Menu",textoX,textoY,false);
         
         //CONTROLES//
-        textoX = frameX + gp.tamanioCasilla*3;
-        textoY = frameY + gp.tamanioCasilla*2;
-        dibujadoLetras("WASD/FLECHITAS",textoX,textoY,false);textoY+=gp.tamanioCasilla;
-        dibujadoLetras("E",textoX,textoY,false);textoY+=gp.tamanioCasilla;
-        dibujadoLetras("ENTER",textoX,textoY,false);textoY+=gp.tamanioCasilla;
+        textoX = frameX + pJuego.tamanioCasilla*3;
+        textoY = frameY + pJuego.tamanioCasilla*2;
+        dibujadoLetras("WASD/FLECHITAS",textoX,textoY,false);textoY+=pJuego.tamanioCasilla;
+        dibujadoLetras("E",textoX,textoY,false);textoY+=pJuego.tamanioCasilla;
+        dibujadoLetras("ENTER",textoX,textoY,false);textoY+=pJuego.tamanioCasilla;
         dibujadoLetras("ESC/P",textoX,textoY,false);
         
         //REGRESAR//
-        textoX = frameX + gp.tamanioCasilla; 
-        textoY = gp.tamanioCasilla*7;
+        textoX = frameX + pJuego.tamanioCasilla; 
+        textoY = pJuego.tamanioCasilla*7;
         dibujadoLetras("Regresar", textoX, textoY,false);
         if (opcionMenu == 0){
             dibujadoLetras("+", textoX-25, textoY,false);
-            if (gp.keyH.enterPressed == true){
+            if (pJuego.keyH.enterPressed == true){
                 subState = 0;
                 opcionMenu = 3;
             }
@@ -308,8 +307,8 @@ public class InterfazJugador{
     }
     
     public void cerrarJuegoConfirm(int frameX, int frameY){
-        int textoX = frameX - gp.tamanioCasilla*2;
-        int textoY = frameY + gp.tamanioCasilla*3;
+        int textoX = frameX - pJuego.tamanioCasilla*2;
+        int textoY = frameY + pJuego.tamanioCasilla*3;
     
         mensaje = "Deseas salir del juego y \nregresar a la pantalla de titulo?";
         
@@ -319,22 +318,22 @@ public class InterfazJugador{
         }
         
         //SI//
-        textoX += gp.tamanioCasilla; 
-        textoY = gp.tamanioCasilla*6;
+        textoX += pJuego.tamanioCasilla; 
+        textoY = pJuego.tamanioCasilla*6;
         dibujadoLetras("SI", textoX, textoY,false);
         if (opcionMenu == 0){
             dibujadoLetras("+", textoX-25, textoY,false);
-            if (gp.keyH.enterPressed == true){
-                gp.regresarAlMenuIni();
+            if (pJuego.keyH.enterPressed == true){
+                pJuego.regresarAlMenuIni();
             }
         }
         
         //NO//
-        textoY += gp.tamanioCasilla;
+        textoY += pJuego.tamanioCasilla;
         dibujadoLetras("NO", textoX, textoY,false);
         if (opcionMenu == 1){
             dibujadoLetras("+", textoX-25, textoY,false);
-            if (gp.keyH.enterPressed == true){
+            if (pJuego.keyH.enterPressed == true){
                 subState = 0;
                 opcionMenu = 4;
             }
@@ -342,10 +341,10 @@ public class InterfazJugador{
     }
     
     public void dibujadoinventario(Graphics2D g2,Jugador jugador){
-            int MarcoX=(gp.screenWidth/2)-128;
-            int MarcoY=gp.tamanioCasilla/6;
-            int MarcoAncho=gp.tamanioCasilla;
-            int MarcoAlto=gp.tamanioCasilla;
+            int MarcoX=(pJuego.screenWidth/2)-128;
+            int MarcoY=pJuego.tamanioCasilla/6;
+            int MarcoAncho=pJuego.tamanioCasilla;
+            int MarcoAlto=pJuego.tamanioCasilla;
             
             BufferedImage casilla=this.configuracion("/objetos/casilla");
             int cont=0;
@@ -353,23 +352,23 @@ public class InterfazJugador{
             
             for(Objetosclase obj:jugador.inventario){
                 
-                if(cont<4*gp.tamanioCasilla){
+                if(cont<4*pJuego.tamanioCasilla){
                     g2.drawImage(casilla, MarcoX+(cont), MarcoY, MarcoAncho,MarcoAncho,null);
                 }
                 if(obj!=null){
                     g2.drawImage(obj.down1, MarcoX+(cont), MarcoY, MarcoAncho,MarcoAncho,null);
                 
-                    //g2.drawImage(obj.down1, gp.tamanioCasilla*4+cont, gp.tamanioCasilla/4, gp.tamanioCasilla,gp.tamanioCasilla,null);
+                    //g2.drawImage(obj.down1, pJuego.tamanioCasilla*4+cont, pJuego.tamanioCasilla/4, pJuego.tamanioCasilla,pJuego.tamanioCasilla,null);
                 }
-                cont=cont+gp.tamanioCasilla;
+                cont=cont+pJuego.tamanioCasilla;
             }    
     }
     
     public void tienda(Graphics2D g2){
-            int MarcoX=(gp.screenWidth/2)-128;
-            int MarcoY=gp.tamanioCasilla/6+124;
-            int MarcoAncho=gp.tamanioCasilla;
-            int MarcoAlto=gp.tamanioCasilla;
+            int MarcoX=(pJuego.screenWidth/2)-128;
+            int MarcoY=pJuego.tamanioCasilla/6+124;
+            int MarcoAncho=pJuego.tamanioCasilla;
+            int MarcoAlto=pJuego.tamanioCasilla;
                 /*
                 //Color c= new Color(9,28,21);/
                 g2.setColor(Color.ORANGE);
@@ -378,8 +377,8 @@ public class InterfazJugador{
             BufferedImage casilla=this.configuracion("/objetos/casilla");
             int cont=0;
                 
-            for(Objetosclase obj:gp.NPC[2][1].inventario){
-                if(cont<gp.tamanioCasilla*4){
+            for(Objetosclase obj:pJuego.NPC[2][1].inventario){
+                if(cont<pJuego.tamanioCasilla*4){
                     g2.drawImage(casilla, MarcoX+(cont), MarcoY, MarcoAncho,MarcoAncho,null);
 
                     if(obj!=null){
@@ -390,11 +389,11 @@ public class InterfazJugador{
                         }
                     }
                 }
-                cont=cont+gp.tamanioCasilla;
+                cont=cont+pJuego.tamanioCasilla;
             }
             //casilla de informacion
             
-            g2.drawImage(casilla, 60, MarcoY, gp.tamanioCasilla*4,gp.tamanioCasilla*3,null);
+            g2.drawImage(casilla, 60, MarcoY, pJuego.tamanioCasilla*4,pJuego.tamanioCasilla*3,null);
                 
             dibujadoinfo(g2,opcion,MarcoY+10);
                 
@@ -402,28 +401,25 @@ public class InterfazJugador{
                 if(opcion>0){
                     g2.drawString("^", MarcoX+27+((opcion-1)*64), MarcoY+MarcoAlto+32);
                 }else{
-                    g2.drawString("^", 100+20, MarcoY+gp.tamanioCasilla*2+40);
+                    g2.drawString("^", 100+20, MarcoY+pJuego.tamanioCasilla*2+40);
                 }
                
     }
     
     public void dibujadoinfo(Graphics2D g2,int objselect ,int MarcoY){
         int cont=0;
-        /*
-        g2.setColor(Color.ORANGE);
-        g2.fillRect(gp.tamanioCasilla/2, MarcoY, gp.tamanioCasilla*3, gp.tamanioCasilla*3);
-        */
+      
         
         g2.setColor(Color.WHITE);
         
-        for(Objetosclase obj:gp.NPC[0][1].inventario){
+        for(Objetosclase obj:pJuego.NPC[0][1].inventario){
             cont++;
             if(obj!=null && cont==objselect){
-                g2.drawString(obj.nombre, 100, MarcoY+gp.tamanioCasilla/2);
-                g2.drawString("Precio: "+obj.getPrecio(), 100, MarcoY+gp.tamanioCasilla);
+                g2.drawString(obj.nombre, 100, MarcoY+pJuego.tamanioCasilla/2);
+                g2.drawString("Precio: "+obj.getPrecio(), 100, MarcoY+pJuego.tamanioCasilla);
             }
         }
-        g2.drawString("Salir",100, MarcoY+gp.tamanioCasilla*2);
+        g2.drawString("Salir",100, MarcoY+pJuego.tamanioCasilla*2);
     }
     
     public BufferedImage configuracion(String nombre){
@@ -433,7 +429,7 @@ public class InterfazJugador{
         
         try{
             imagen=ImageIO.read(getClass().getResourceAsStream(nombre+".png"));
-            imagen= herramienta.imagenEscalada(imagen, gp.tamanioCasilla, gp.tamanioCasilla);
+            imagen= herramienta.imagenEscalada(imagen, pJuego.tamanioCasilla, pJuego.tamanioCasilla);
             
         }catch(IOException e){
         }
