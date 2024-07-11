@@ -13,28 +13,28 @@ import java.io.IOException;
  */
 public class Configuracion {
     
-    private final PanelJuego gp;
+    private final PanelJuego pJuego;
 
-    public Configuracion(PanelJuego gp) {
-        this.gp = gp;
+    public Configuracion(PanelJuego pJuego) {
+        this.pJuego = pJuego;
     }
     
     public void guardarConfig(){
         try {
             try (BufferedWriter bw = new BufferedWriter(new FileWriter("config.txt"))) {
                 //PANTALLA COMPLETA//
-                if (gp.pantallaCompleta)
+                if (pJuego.pantallaCompleta)
                     bw.write("True");
                 else
                     bw.write("False");
                 bw.newLine();
                 
                 //MUSICA VOLUMEN//
-                bw.write(String.valueOf(gp.controlmusica.escalaVolumen));
+                bw.write(String.valueOf(pJuego.controlmusica.escalaVolumen));
                 bw.newLine();
                 
                 //EFECTOS DE SONIDO VOLUMEN//
-                bw.write(String.valueOf(gp.controlsonido.escalaVolumen));
+                bw.write(String.valueOf(pJuego.controlsonido.escalaVolumen));
                 bw.newLine();
             }
             
@@ -49,17 +49,17 @@ public class Configuracion {
                 
                 //PANTALLA COMPLETA//
                 if (s.equals("True"))
-                    gp.pantallaCompleta = true;
+                    pJuego.pantallaCompleta = true;
                 else if(s.equals("False"))
-                    gp.pantallaCompleta = false;
+                    pJuego.pantallaCompleta = false;
                 
                 //MUSICA VOLUMEN//
                 s = br.readLine();
-                gp.controlmusica.escalaVolumen = Integer.parseInt(s);
+                pJuego.controlmusica.escalaVolumen = Integer.parseInt(s);
                 
                 //EFECTOS DE SONIDO VOLUMEN//
                 s = br.readLine();
-                gp.controlsonido.escalaVolumen = Integer.parseInt(s);
+                pJuego.controlsonido.escalaVolumen = Integer.parseInt(s);
             }
         } catch (Exception e) {
         }

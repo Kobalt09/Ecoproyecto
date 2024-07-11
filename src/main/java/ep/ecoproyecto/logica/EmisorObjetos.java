@@ -12,36 +12,36 @@ import java.awt.Graphics2D;
  * @author C-A-F
  */
 public class EmisorObjetos  implements Dibujado{
-    PanelJuego gp;
+    PanelJuego pJuego;
     
-    public EmisorObjetos(PanelJuego gp){
-        this.gp=gp;
+    public EmisorObjetos(PanelJuego pJuego){
+        this.pJuego=pJuego;
     }
     
     public void establecerObj(){
         
         //----MUNDO 1:-----//
         int NumMap = 0;
-        gp.obj[NumMap][4]=new ObjetoEquipo("botas",16,6,gp);
-        gp.obj[NumMap][7]=new Casa("casa",11,8,gp);
+        pJuego.obj[NumMap][4]=new ObjetoEquipo("botas",16,6,pJuego);
+        pJuego.obj[NumMap][7]=new Casa("casa",11,8,pJuego);
         //----MUNDO 2:----- pruebas//
         NumMap = 1;
         
-        gp.obj[NumMap][0]=new ObjetoRecogible("semilla",20,9,gp);
-        gp.obj[NumMap][1]=new ObjetoRecogible("semilla",5,7,gp);
-        gp.obj[NumMap][2]=new ObjetoRecogible("semilla",6,10,gp);
+        pJuego.obj[NumMap][0]=new ObjetoRecogible("semilla",20,9,pJuego);
+        pJuego.obj[NumMap][1]=new ObjetoRecogible("semilla",5,7,pJuego);
+        pJuego.obj[NumMap][2]=new ObjetoRecogible("semilla",6,10,pJuego);
         
-        gp.obj[NumMap][3]=new ObjetoRecogible("basura",8,8,gp);
+        pJuego.obj[NumMap][3]=new ObjetoRecogible("basura",8,8,pJuego);
         
         //----MUNDO 3:-----  tienda//   
         NumMap = 2;
-        gp.obj[NumMap][1]=new ObjetoMesa("mesa",7,1,gp);
-        gp.obj[NumMap][2]=new ObjetoMesa("mesa",6,1,gp);
-        gp.obj[NumMap][3]=new ObjetoMesa("mesa",5,1,gp);
-        gp.obj[NumMap][4]=new ObjetoMesa("mesa",4,1,gp);
-        gp.obj[NumMap][5]=new ObjetoMesa("mesa",3,1,gp);
-        gp.obj[NumMap][6]=new ObjetoRecogible("coin",3,3,gp);
-        gp.obj[NumMap][6]=new ObjetoRecogible("coin",2,5,gp);
+        pJuego.obj[NumMap][1]=new ObjetoMesa("mesa",7,1,pJuego);
+        pJuego.obj[NumMap][2]=new ObjetoMesa("mesa",6,1,pJuego);
+        pJuego.obj[NumMap][3]=new ObjetoMesa("mesa",5,1,pJuego);
+        pJuego.obj[NumMap][4]=new ObjetoMesa("mesa",4,1,pJuego);
+        pJuego.obj[NumMap][5]=new ObjetoMesa("mesa",3,1,pJuego);
+        pJuego.obj[NumMap][6]=new ObjetoRecogible("coin",3,3,pJuego);
+        pJuego.obj[NumMap][6]=new ObjetoRecogible("coin",2,5,pJuego);
         
         /*
         //----MUNDO 4:-----derecha//
@@ -55,14 +55,14 @@ public class EmisorObjetos  implements Dibujado{
     @Override
     public void dibujado(Graphics2D g2){
         
-            for(int i=0;i<gp.obj[0].length;i++){
-                if(gp.obj[gp.mapaActual][i]!=null){
-                    int PantallaX=gp.obj[gp.mapaActual][i].xMapa- gp.jugador.xMapa+gp.jugador.pantallaX;
-                    int PantallaY=gp.obj[gp.mapaActual][i].yMapa- gp.jugador.yMapa+gp.jugador.pantallaY;
+            for(int i=0;i<pJuego.obj[0].length;i++){
+                if(pJuego.obj[pJuego.mapaActual][i]!=null){
+                    int PantallaX=pJuego.obj[pJuego.mapaActual][i].xMapa- pJuego.jugador.xMapa+pJuego.jugador.pantallaX;
+                    int PantallaY=pJuego.obj[pJuego.mapaActual][i].yMapa- pJuego.jugador.yMapa+pJuego.jugador.pantallaY;
                     
-                    if((gp.obj[gp.mapaActual][i].xMapa+gp.tamanioCasilla+gp.obj[gp.mapaActual][i].hitBox.width > gp.jugador.xMapa-gp.jugador.pantallaX)&&(gp.obj[gp.mapaActual][i].xMapa-gp.tamanioCasilla < gp.jugador.xMapa+gp.jugador.pantallaX)&&
-                       (gp.obj[gp.mapaActual][i].yMapa+gp.tamanioCasilla+gp.obj[gp.mapaActual][i].hitBox.height > gp.jugador.yMapa-gp.jugador.pantallaY)&&(gp.obj[gp.mapaActual][i].yMapa-gp.tamanioCasilla < gp.jugador.yMapa+gp.jugador.pantallaY)){     
-                        g2.drawImage(gp.obj[gp.mapaActual][i].down1, PantallaX, PantallaY, gp.obj[gp.mapaActual][i].hitBox.width,gp.obj[gp.mapaActual][i].hitBox.height,null);
+                    if((pJuego.obj[pJuego.mapaActual][i].xMapa+pJuego.tamanioCasilla+pJuego.obj[pJuego.mapaActual][i].hitBox.width > pJuego.jugador.xMapa-pJuego.jugador.pantallaX)&&(pJuego.obj[pJuego.mapaActual][i].xMapa-pJuego.tamanioCasilla < pJuego.jugador.xMapa+pJuego.jugador.pantallaX)&&
+                       (pJuego.obj[pJuego.mapaActual][i].yMapa+pJuego.tamanioCasilla+pJuego.obj[pJuego.mapaActual][i].hitBox.height > pJuego.jugador.yMapa-pJuego.jugador.pantallaY)&&(pJuego.obj[pJuego.mapaActual][i].yMapa-pJuego.tamanioCasilla < pJuego.jugador.yMapa+pJuego.jugador.pantallaY)){     
+                        g2.drawImage(pJuego.obj[pJuego.mapaActual][i].down1, PantallaX, PantallaY, pJuego.obj[pJuego.mapaActual][i].hitBox.width,pJuego.obj[pJuego.mapaActual][i].hitBox.height,null);
                     }
                     
                     

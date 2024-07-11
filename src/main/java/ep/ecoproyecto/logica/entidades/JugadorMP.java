@@ -10,16 +10,16 @@ public class JugadorMP extends Jugador{
     public InetAddress direccionIP;
     public int puerto;
 
-    public JugadorMP(InetAddress direccionIP, int puerto, PanelJuego gp, KeyHandler keyH, String username) {
-        super(gp, keyH, username);
+    public JugadorMP(InetAddress direccionIP, int puerto, PanelJuego pJuego, KeyHandler keyH, String username) {
+        super(pJuego, keyH, username);
         
         this.direccionIP = direccionIP;
         this.puerto = puerto;
     }
     
-    public JugadorMP(InetAddress direccionIP, int puerto, PanelJuego gp,String username,int xMapa, int yMapa,String dir,int mapa) {
+    public JugadorMP(InetAddress direccionIP, int puerto, PanelJuego pJuego,String username,int xMapa, int yMapa,String dir,int mapa) {
         
-        super(gp, null, username);
+        super(pJuego, null, username);
         this.direccionIP = direccionIP;
         this.puerto = puerto;
         this.xMapa=xMapa;

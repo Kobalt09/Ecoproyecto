@@ -48,13 +48,13 @@ public class Jugador extends Entidad{
     public String sombreroactual;
 
     
-    public Jugador(PanelJuego gp) {
-        super(gp);
+    public Jugador(PanelJuego pJuego) {
+        super(pJuego);
         this.keyH=new KeyHandler();
         this.username="";
         
-        pantallaX=gp.screenWidth/2-(gp.tamanioCasilla/2);
-        pantallaY=gp.screenHeight/2-(gp.tamanioCasilla/2);
+        pantallaX=pJuego.screenWidth/2-(pJuego.tamanioCasilla/2);
+        pantallaY=pJuego.screenHeight/2-(pJuego.tamanioCasilla/2);
         
         hitBox=new Rectangle();
         //donde empiza la hitbox en relacion a la esquina superior
@@ -73,15 +73,15 @@ public class Jugador extends Entidad{
         getPlayerImage();
     }
     
-    public Jugador(PanelJuego gp, KeyHandler keyH, String username){
+    public Jugador(PanelJuego pJuego, KeyHandler keyH, String username){
         
-        super(gp);
+        super(pJuego);
         
         this.keyH=keyH;
         this.username=username;
         this.mapa=0;
-        pantallaX=gp.screenWidth/2-(gp.tamanioCasilla/2);
-        pantallaY=gp.screenHeight/2-(gp.tamanioCasilla/2);
+        pantallaX=pJuego.screenWidth/2-(pJuego.tamanioCasilla/2);
+        pantallaY=pJuego.screenHeight/2-(pJuego.tamanioCasilla/2);
         
         hitBox=new Rectangle();
         //donde empiza la hitbox en relacion a la esquina superior
@@ -112,8 +112,8 @@ public class Jugador extends Entidad{
     
     private void valoresporDefecto(){
         //posicion del jugador en el arreglo +1,
-        xMapa=10*gp.tamanioCasilla+gp.tamanioCasilla;
-        yMapa=10*gp.tamanioCasilla+gp.tamanioCasilla;
+        xMapa=10*pJuego.tamanioCasilla+pJuego.tamanioCasilla;
+        yMapa=10*pJuego.tamanioCasilla+pJuego.tamanioCasilla;
         
         estado=estadojuego;
         
@@ -121,9 +121,9 @@ public class Jugador extends Entidad{
         veloriginal=vel;
         direction ="down"; 
         
-        if(gp.socketserver!=null){
+        if(pJuego.socketserver!=null){
         Packet02Mov packet=new Packet02Mov(username, this.xMapa, this.yMapa,this.direction);
-        packet.writeData(PanelJuego.juego.socketcliente);
+        packet.writeData(PanelJuego.juego.socketCliente);
         }
     }
 
@@ -161,7 +161,7 @@ public class Jugador extends Entidad{
         
         try{
             imagen=ImageIO.read(getClass().getResourceAsStream(nombre+".png"));
-            imagen= herramienta.imagenEscalada(imagen, gp.tamanioCasilla, gp.tamanioCasilla);
+            imagen= herramienta.imagenEscalada(imagen, pJuego.tamanioCasilla, pJuego.tamanioCasilla);
             
         }catch(IOException e){
         }
@@ -199,7 +199,7 @@ public class Jugador extends Entidad{
     //la tienda se esta volviendo a abrir porque reconoce la precion de tecla mas de una vez asi que interactua denuevo con la tienda
     
     public void estadoJuego(){
-        gp.hud.guardartienda();
+        pJuego.hud.guardartienda();
         if(tecla==true){
                 if(keyH.upPressed==true){
                     direction="up";
@@ -216,14 +216,14 @@ public class Jugador extends Entidad{
         }        
         //colision Casillas
         colision=false;
-        gp.colisiones.revisarColision(this);
+        pJuego.colisiones.revisarColision(this);
     
                 //colision NPC
 
-                intereaccionNCP(gp.colisiones.chequeoEntidades(this, gp.NPC));
+                intereaccionNCP(pJuego.colisiones.chequeoEntidades(this, pJuego.NPC));
                 //colision objetos
 
-                recogerobjetos(gp.colisiones.chequeoObjetos(this, true));
+                recogerobjetos(pJuego.colisiones.chequeoObjetos(this, true));
             
             
                 if(colision==false && interactuar==false){
@@ -252,7 +252,7 @@ public class Jugador extends Entidad{
                 }
                 
                 Packet02Mov packet=new Packet02Mov(username, this.xMapa, this.yMapa,this.direction);
-                packet.writeData(PanelJuego.juego.socketcliente);
+                packet.writeData(PanelJuego.juego.socketCliente);
                 
                 spriteCounter++;
                 if (spriteCounter>10){
@@ -274,69 +274,69 @@ public class Jugador extends Entidad{
 
             }
             if(keyH.rightPressed==true){
-                gp.efectos(7);
-                gp.hud.opcion++;
+                pJuego.efectos(7);
+                pJuego.hud.opcion++;
                 tecla=false;
-                if( gp.hud.opcion>4){
-                    gp.hud.opcion=0;
+                if( pJuego.hud.opcion>4){
+                    pJuego.hud.opcion=0;
                 }
             }else if(keyH.leftPressed==true){
-                gp.efectos(7);
-                gp.hud.opcion--;
+                pJuego.efectos(7);
+                pJuego.hud.opcion--;
                 tecla=false;
-                if( gp.hud.opcion<0){
-                    gp.hud.opcion=4;
+                if( pJuego.hud.opcion<0){
+                    pJuego.hud.opcion=4;
                 }
             }else if(keyH.ePressed==true){
-                gp.efectos(7);
+                pJuego.efectos(7);
                 tecla=false;
-                if(gp.hud.opcion==0){
+                if(pJuego.hud.opcion==0){
                     estado=estadojuego;
                 }else{
                     int cont=0;
                     
-                    for(Objetosclase obj:gp.NPC[0][1].inventario){
+                    for(Objetosclase obj:pJuego.NPC[0][1].inventario){
                         
-                        if(obj!=null && cont==(gp.hud.opcion-1) ){
+                        if(obj!=null && cont==(pJuego.hud.opcion-1) ){
                             //System.out.println(obj.nombre);
-                            if(!(obj.getPrecio()>this.cantInventario[4])&&(gp.NPC[2][1].inventario[cont]!=null)){
+                            if(!(obj.getPrecio()>this.cantInventario[4])&&(pJuego.NPC[2][1].inventario[cont]!=null)){
                                 
                                 this.cantInventario[4]=this.cantInventario[4]-obj.getPrecio();
                                 switch(obj.nombre){
                                     case "calvo" -> {
                                         this.sombreros[0]= "calvo";
-                                        gp.NPC[2][1].inventario[cont]=null;
+                                        pJuego.NPC[2][1].inventario[cont]=null;
                                         this.sombreroactual=this.sombreros[0];
                                         getsombre();
                                     }
                                     case "gCopa" -> {
                                         this.sombreros[1]="gCopa";
-                                        gp.NPC[2][1].inventario[cont]=null;
+                                        pJuego.NPC[2][1].inventario[cont]=null;
                                         this.sombreroactual=this.sombreros[1];
                                         getsombre();
                                     }
                                     case "gPlaya" -> {
                                         this.sombreros[2]="gPlaya";
-                                        gp.NPC[2][1].inventario[cont]=null;
+                                        pJuego.NPC[2][1].inventario[cont]=null;
                                         this.sombreroactual=this.sombreros[2];
                                         getsombre();
                                     }
                                     case "botas" -> {
                                         if(this.inventario[0]==null){
-                                            gp.efectos(4);
-                                            gp.hud.mostrarmensaje("conseguiste "+obj.nombre);
+                                            pJuego.efectos(4);
+                                            pJuego.hud.mostrarmensaje("conseguiste "+obj.nombre);
                                             vel=vel+2;
-                                            this.inventario[0]=new ObjetoEquipo("Botas", 0, 0, gp);
-                                            gp.NPC[2][1].inventario[cont]=null;
+                                            this.inventario[0]=new ObjetoEquipo("Botas", 0, 0, pJuego);
+                                            pJuego.NPC[2][1].inventario[cont]=null;
                                         }
                                     }
                                 }
                             }else{
                                 
-                                if(gp.NPC[2][1].inventario[cont]==null){
-                                    gp.hud.mostrarmensaje("Ya compraste esto");
+                                if(pJuego.NPC[2][1].inventario[cont]==null){
+                                    pJuego.hud.mostrarmensaje("Ya compraste esto");
                                 }else{
-                                    gp.hud.mostrarmensaje("Es muy caro");
+                                    pJuego.hud.mostrarmensaje("Es muy caro");
                                 }
                             }    
                         }
@@ -345,76 +345,50 @@ public class Jugador extends Entidad{
                 }    
             }
         }    
-        gp.hud.mostrartienda();
+        pJuego.hud.mostrartienda();
     }
             
     public void recogerobjetos(int id){
         if(id!=999){
             //usa el nombre del objeto para saber con cual objeto colisiona 
-            String objnombre=gp.obj[gp.mapaActual][id].nombre;
+            String objnombre=pJuego.obj[pJuego.mapaActual][id].nombre;
             
             //switch para el nombre
             //nota se puede usar un getclass para saber el tipo o usar 
             switch(objnombre){
-                /*
-                case "llave" -> {
-                    //llaves++;
-                    
-                    this.cantInventario[1]++;
-                    gp.efectos(2);
-                    gp.hud.mostrarmensaje("conseguiste una llave");
-                    this.inventario[1]=gp.obj[gp.mapaActual][id];
-                    gp.obj[gp.mapaActual][id]=null;
-                    System.out.println("llaves: "+this.cantInventario[1]);
-                }
-                case "puerta" -> {
-                        if(this.cantInventario[1]>0){
-                            this.cantInventario[1]--;
-                            gp.efectos(5);
-                            gp.hud.mostrarmensaje("puerta abierta");
-                            gp.obj[gp.mapaActual][id]=null;
-                            if(this.cantInventario[1]==0){
-                                this.inventario[1]=null;
-                            }
-                        }else{
-                            gp.hud.mostrarmensaje("no tienes llaves para esta puerta");
-                            if(this.cantInventario[1]==0){
-                                this.inventario[1]=null;
-                            }
-                        }
-                    } */   
+              
                 case "botas" -> {
                     if(this.inventario[0]==null){
-                        gp.efectos(4);
-                        gp.hud.mostrarmensaje("conseguiste "+objnombre);
+                        pJuego.efectos(4);
+                        pJuego.hud.mostrarmensaje("conseguiste "+objnombre);
                         vel=vel+2;
-                        this.inventario[0]=gp.obj[gp.mapaActual][id];
-                        gp.obj[gp.mapaActual][id]=null;
+                        this.inventario[0]=pJuego.obj[pJuego.mapaActual][id];
+                        pJuego.obj[pJuego.mapaActual][id]=null;
                     }
                 }
                 case "cofre" -> {
-                    gp.hud.victoriamensaje=true;
-                    gp.obj[gp.mapaActual][id]=null;
+                    pJuego.hud.victoriaMensaje=true;
+                    pJuego.obj[pJuego.mapaActual][id]=null;
                 }
                 case "coin" -> {
                     this.cantInventario[4]++;
-                    gp.efectos(2);
-                    gp.hud.victoriamensaje=true;
-                    gp.obj[gp.mapaActual][id]=null;
+                    pJuego.efectos(2);
+                    pJuego.hud.victoriaMensaje=true;
+                    pJuego.obj[pJuego.mapaActual][id]=null;
                 }
                 case "semilla" -> {
                     this.cantInventario[1]++;
-                    gp.efectos(6);
-                    this.inventario[1]=gp.obj[gp.mapaActual][id];
-                    gp.hud.victoriamensaje=true;
-                    gp.obj[gp.mapaActual][id]=null;
+                    pJuego.efectos(6);
+                    this.inventario[1]=pJuego.obj[pJuego.mapaActual][id];
+                    pJuego.hud.victoriaMensaje=true;
+                    pJuego.obj[pJuego.mapaActual][id]=null;
                 }
                 case "basura" -> {
                     this.cantInventario[2]++;
-                    gp.efectos(6);
-                    this.inventario[2]=gp.obj[gp.mapaActual][id];
-                    gp.hud.victoriamensaje=true;
-                    gp.obj[gp.mapaActual][id]=null;
+                    pJuego.efectos(6);
+                    this.inventario[2]=pJuego.obj[pJuego.mapaActual][id];
+                    pJuego.hud.victoriaMensaje=true;
+                    pJuego.obj[pJuego.mapaActual][id]=null;
                 }
             }
         }
@@ -422,48 +396,48 @@ public class Jugador extends Entidad{
     
     public void recogerObjeto(int i){
         if(i!=999){
-            gp.obj[gp.mapaActual][i]=null;
+            pJuego.obj[pJuego.mapaActual][i]=null;
         }
     }
           
     public void intereaccionNCP(int id) {
         if(id!=999){
             if (interactuar==true){
-                gp.efectos(7);
-                if(gp.NPC[gp.mapaActual][id].movimiento==true){
+                pJuego.efectos(7);
+                if(pJuego.NPC[pJuego.mapaActual][id].movimiento==true){
                     if("right".equals(direction)){
-                        gp.NPC[gp.mapaActual][id].direction="left";
+                        pJuego.NPC[pJuego.mapaActual][id].direction="left";
                     }
                     if("left".equals(direction)){
-                        gp.NPC[gp.mapaActual][id].direction="right";
+                        pJuego.NPC[pJuego.mapaActual][id].direction="right";
                     }
                     if("up".equals(direction)){
-                        gp.NPC[gp.mapaActual][id].direction="down";
+                        pJuego.NPC[pJuego.mapaActual][id].direction="down";
                     }
                     if("down".equals(direction)){
-                        gp.NPC[gp.mapaActual][id].direction="up";
+                        pJuego.NPC[pJuego.mapaActual][id].direction="up";
                     }
                 }
-                switch (gp.NPC[gp.mapaActual][id]) {
+                switch (pJuego.NPC[pJuego.mapaActual][id]) {
                     case Tienda  aux -> {
-                        gp.hud.mostrarmensaje("tienda");
+                        pJuego.hud.mostrarmensaje("tienda");
                         estado=estadotienda;
                         }
                     case PuertaInteractuable  aux -> {
                             if(aux.Ztp==2){
-                                gp.controlEventos.musicatienda();
-                            }else if(gp.mapaActual==2){
-                                gp.controlEventos.musicatienda();
+                                pJuego.controlEventos.musicaTienda();
+                            }else if(pJuego.mapaActual==2){
+                                pJuego.controlEventos.musicaTienda();
                             }
-                            gp.controlEventos.tpinteractuar(aux.Xtp,aux.Ytp, aux.Ztp);
+                            pJuego.controlEventos.tpInteractuar(aux.Xtp,aux.Ytp, aux.Ztp);
                         }
                     case Papelera  aux -> {
                             if(this.cantInventario[2]!=0){
-                                gp.hud.mostrarmensaje("depositaste: "+this.cantInventario[2]+" bolsas de basura");
+                                pJuego.hud.mostrarmensaje("depositaste: "+this.cantInventario[2]+" bolsas de basura");
                                 this.inventario[2]=null;
                                 this.cantInventario[2]=0;
                             }else{
-                                gp.hud.mostrarmensaje(gp.NPC[gp.mapaActual][id].mensaje);
+                                pJuego.hud.mostrarmensaje(pJuego.NPC[pJuego.mapaActual][id].mensaje);
                             }
                         }
                     case Agujero  aux -> {
@@ -473,83 +447,83 @@ public class Jugador extends Entidad{
                                     if(this.cantInventario[1]==0){
                                         this.inventario[1]=null;
                                     }
-                                    gp.hud.mostrarmensaje("Plantaste un Arbol");
+                                    pJuego.hud.mostrarmensaje("Plantaste un Arbol");
                                     aux.estado="Agujerolleno";
                                     aux.getImage();
                                 }else{
-                                    gp.hud.mostrarmensaje(aux.mensaje);
+                                    pJuego.hud.mostrarmensaje(aux.mensaje);
                                 }
                             }else{
-                                gp.hud.mostrarmensaje("Espero que este Arbol cresca ");
+                                pJuego.hud.mostrarmensaje("Espero que este Arbol cresca ");
                             }
                         }
                     case Tonina  aux -> {
-                            if(gp.minijuego[3][0].terminado==true){
+                            if(pJuego.minijuego[3][0].terminado==true){
                                 if(aux.misioncumplida==false){
-                                    gp.hud.mostrarmensaje("Muchas gracias, ten estas U.N.D");
+                                    pJuego.hud.mostrarmensaje("Muchas gracias, ten estas U.N.D");
                                     aux.misioncumplida=true;
                                     this.cantInventario[4]=this.cantInventario[4]+10;
                                 }else{
-                                    gp.hud.mostrarmensaje("Muchas gracias de nuevo");
+                                    pJuego.hud.mostrarmensaje("Muchas gracias de nuevo");
                                 }   
                             }else{
-                                if(gp.minijuego[3][0].empezado==false){
-                                    gp.hud.mostrarmensaje("Hola, me ayudas a limpiar el agua? Usa esta red");
-                                    this.inventario[3]= new ObjetoRecogible("Red", 1, 1, gp);
-                                    gp.mini.activarmini(3, 0);
-                                }else if(gp.minijuego[3][0].empezado==true){
-                                    gp.minijuego[3][0].interaccion();
+                                if(pJuego.minijuego[3][0].empezado==false){
+                                    pJuego.hud.mostrarmensaje("Hola, me ayudas a limpiar el agua? Usa esta red");
+                                    this.inventario[3]= new ObjetoRecogible("Red", 1, 1, pJuego);
+                                    pJuego.mini.activarMini(3, 0);
+                                }else if(pJuego.minijuego[3][0].empezado==true){
+                                    pJuego.minijuego[3][0].interaccion();
                                 }
                             }
                         }
                     case Turpial  aux -> {
-                            if(gp.minijuego[5][0].terminado==true){
+                            if(pJuego.minijuego[5][0].terminado==true){
                                 if(aux.misioncumplida==false){
-                                    gp.hud.mostrarmensaje("Gracias, toma estas U.N.D");
+                                    pJuego.hud.mostrarmensaje("Gracias, toma estas U.N.D");
                                     aux.misioncumplida=true;
                                     this.cantInventario[4]=this.cantInventario[4]+10;
                                 }else{
-                                    gp.hud.mostrarmensaje("Gracias de nuevo");
+                                    pJuego.hud.mostrarmensaje("Gracias de nuevo");
                                 }
                             }else{
-                                if(gp.minijuego[5][0].empezado==false){
-                                    gp.hud.mostrarmensaje("Hola, Podrias sembrar algunos arboles?");
-                                    gp.mini.activarmini(5, 0);
-                                }else if(gp.minijuego[5][0].empezado==true){
-                                    gp.minijuego[5][0].interaccion();
+                                if(pJuego.minijuego[5][0].empezado==false){
+                                    pJuego.hud.mostrarmensaje("Hola, Podrias sembrar algunos arboles?");
+                                    pJuego.mini.activarMini(5, 0);
+                                }else if(pJuego.minijuego[5][0].empezado==true){
+                                    pJuego.minijuego[5][0].interaccion();
                                 }
                             }
                         }
                     case Zamuro  aux -> {
-                            if(gp.minijuego[4][0].terminado==true){
+                            if(pJuego.minijuego[4][0].terminado==true){
                                 if(aux.misioncumplida==false){
-                                    gp.hud.mostrarmensaje("Toma estas U.N.D");
+                                    pJuego.hud.mostrarmensaje("Toma estas U.N.D");
                                     aux.misioncumplida=true;
                                     this.cantInventario[4]=this.cantInventario[4]+10;
                                 }else{
-                                    gp.hud.mostrarmensaje("Ahora esa basura es toda mia");
+                                    pJuego.hud.mostrarmensaje("Ahora esa basura es toda mia");
                                 }
                             }else{
-                                if(gp.minijuego[4][0].empezado==false){
-                                    gp.hud.mostrarmensaje("Oye, recoge esa basura por mi te dare U.N.D");
-                                    gp.mini.activarmini(4, 0);
-                                }else if(gp.minijuego[4][0].empezado==true){
-                                    gp.minijuego[4][0].interaccion();
+                                if(pJuego.minijuego[4][0].empezado==false){
+                                    pJuego.hud.mostrarmensaje("Oye, recoge esa basura por mi te dare U.N.D");
+                                    pJuego.mini.activarMini(4, 0);
+                                }else if(pJuego.minijuego[4][0].empezado==true){
+                                    pJuego.minijuego[4][0].interaccion();
                                 }
                             }
                         }
                     case Aguaconbasura aux ->{
                         if("Aguasucia".equals(aux.estado) && this.inventario[3]!=null){
-                                    gp.hud.mostrarmensaje("Recogiste la basura");
+                                    pJuego.hud.mostrarmensaje("Recogiste la basura");
                                     aux.estado="agua";
                                     aux.getImage();
                         }else{
-                                gp.hud.mostrarmensaje(aux.mensaje);
+                                pJuego.hud.mostrarmensaje(aux.mensaje);
                             
                         }
                     }
                     default -> {
-                        gp.hud.mostrarmensaje(gp.NPC[gp.mapaActual][id].mensaje);
+                        pJuego.hud.mostrarmensaje(pJuego.NPC[pJuego.mapaActual][id].mensaje);
                     }   
                        
                 }
@@ -596,8 +570,8 @@ public class Jugador extends Entidad{
             
         }
        
-        if (gp.jugador.getMapa()==this.mapa) {   
-            if(gp.jugador.equals(this)) {
+        if (pJuego.jugador.getMapa()==this.mapa) {   
+            if(pJuego.jugador.equals(this)) {
                 g2.drawImage(image,pantallaX,pantallaY,null);  
                     if(sombreroactual!="ninguno"){
                         g2.drawImage(sombrero,pantallaX,pantallaY,null);
@@ -630,8 +604,8 @@ public class Jugador extends Entidad{
                 }
             }else
             {
-                int dibX=gp.jugador.pantallaX+this.xMapa-gp.jugador.xMapa;
-                int dibY=gp.jugador.pantallaY+this.yMapa-gp.jugador.yMapa;
+                int dibX=pJuego.jugador.pantallaX+this.xMapa-pJuego.jugador.xMapa;
+                int dibY=pJuego.jugador.pantallaY+this.yMapa-pJuego.jugador.yMapa;
                // g2.drawImage(image,xMapa,yMapa,null);
                 g2.drawImage(image,dibX,dibY,null);
 

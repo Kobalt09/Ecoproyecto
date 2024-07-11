@@ -7,53 +7,49 @@ import ep.ecoproyecto.logica.net.packets.Packet03Mapa;
  */
 
 public class ControladorEventos {
-    PanelJuego gp;
+    PanelJuego pJuego;
     
-    public ControladorEventos(PanelJuego gp){
-        this.gp=gp;   
+    public ControladorEventos(PanelJuego pJuego){
+        this.pJuego=pJuego;   
     }
 
     
     //efectos de sonido
     public void eventSonido(int i){
-        gp.efectos(2);
+        pJuego.efectos(2);
     }
     
  
-    public void musicatienda(){
-        gp.musica= gp.reproducirmusicatienda(gp.musica);
-    }
-    
-    public void mensaje(){
-        gp.hud.mostrarmensaje(gp.NPC[0][0].mensaje);
+    public void musicaTienda(){
+        pJuego.musica= pJuego.reproducirmusicatienda(pJuego.musica);
     }
     
     //desplazar al jugador
-    public void tpcasilla(int x,int y, int mapa){
-        gp.jugador.xMapa=(x*gp.tamanioCasilla)+gp.tamanioCasilla;
-        gp.jugador.yMapa=(y*gp.tamanioCasilla)+gp.tamanioCasilla;
-        gp.mapaActual=mapa;
-        gp.mini.activarmini(1, 1);
+    public void tpCasilla(int x,int y, int mapa){
+        pJuego.jugador.xMapa=(x*pJuego.tamanioCasilla)+pJuego.tamanioCasilla;
+        pJuego.jugador.yMapa=(y*pJuego.tamanioCasilla)+pJuego.tamanioCasilla;
+        pJuego.mapaActual=mapa;
+        pJuego.mini.activarMini(1, 1);
 
-        gp.jugador.setMapa(mapa);
-        gp.manCas.actualizar(gp.jugador, gp.screenWidth, gp.screenHeight);
+        pJuego.jugador.setMapa(mapa);
+        pJuego.manCas.actualizar(pJuego.jugador, pJuego.screenWidth, pJuego.screenHeight);
         
-        Packet03Mapa packet =new Packet03Mapa(mapa, gp.jugador.getUsername());
-        packet.writeData(gp.socketcliente);
-        //rectanguloEvento[col][fil][mapacasilla].Activado=true;
+        Packet03Mapa packet =new Packet03Mapa(mapa, pJuego.jugador.getUsername());
+        packet.writeData(pJuego.socketCliente);
+       
     }
     
-    public void tpinteractuar(int x,int y, int mapa){
+    public void tpInteractuar(int x,int y, int mapa){
         
-        gp.jugador.xMapa=(x*gp.tamanioCasilla)+gp.tamanioCasilla;
-        gp.jugador.yMapa=(y*gp.tamanioCasilla)+gp.tamanioCasilla;
-        gp.mapaActual=mapa;       
-        gp.jugador.setMapa(mapa);
-        gp.manCas.actualizar(gp.jugador, gp.screenWidth, gp.screenHeight);
+        pJuego.jugador.xMapa=(x*pJuego.tamanioCasilla)+pJuego.tamanioCasilla;
+        pJuego.jugador.yMapa=(y*pJuego.tamanioCasilla)+pJuego.tamanioCasilla;
+        pJuego.mapaActual=mapa;       
+        pJuego.jugador.setMapa(mapa);
+        pJuego.manCas.actualizar(pJuego.jugador, pJuego.screenWidth, pJuego.screenHeight);
         
         
-        Packet03Mapa packet =new Packet03Mapa(mapa, gp.jugador.getUsername());
-        packet.writeData(gp.socketcliente);
+        Packet03Mapa packet =new Packet03Mapa(mapa, pJuego.jugador.getUsername());
+        packet.writeData(pJuego.socketCliente);
         
     }
  

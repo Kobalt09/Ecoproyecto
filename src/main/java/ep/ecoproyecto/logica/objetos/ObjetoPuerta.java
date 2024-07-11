@@ -8,11 +8,11 @@ import java.awt.Rectangle;
  */
 public class ObjetoPuerta extends Objetosclase{
     
-    public ObjetoPuerta(String nombre, int posicionX, int posicionY, PanelJuego gp) {
-        super(gp);
+    public ObjetoPuerta(String nombre, int posicionX, int posicionY, PanelJuego pJuego) {
+        super(pJuego);
         this.nombre=nombre;
-        this.xMapa=posicionX*gp.tamanioCasilla;
-        this.yMapa=posicionY*gp.tamanioCasilla;
+        this.xMapa=posicionX*pJuego.tamanioCasilla;
+        this.yMapa=posicionY*pJuego.tamanioCasilla;
         down1= this.configuracion("/objetos/puerta1");
         colision=true;
         hitBox= new Rectangle(0,0,64,64);

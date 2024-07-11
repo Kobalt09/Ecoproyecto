@@ -30,18 +30,7 @@ public class Sonido {
         sonidoURL[7]=getClass().getResource("/efectos/Select.wav");
     }
     
-    /*
-    public void establecerArchivo(int i) {
-        try{
-            AudioInputStream ais= AudioSystem.getAudioInputStream(sonidoURL[i]);
-            clip= AudioSystem.getClip();
-            clip.open(ais);
-            clip.start();
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
-        }catch(Exception e){
-        }
-    }
-    */
+
     
     public void detenerMusica(){
         if(clip!=null && clip.isRunning())
@@ -112,18 +101,5 @@ public class Sonido {
         fc.setValue(volumen);
     }
     
-    
-    /*
-    public void reproducir() {
-        clip.start();
-    }
-
-    public void bucle() {
-        clip.loop(Clip.LOOP_CONTINUOUSLY);
-    }
-
-    public void parar() {
-        clip.stop();
-    }*/
-    
+  
 }

@@ -10,13 +10,13 @@ public final class Tonina extends Entidad {
     
     public boolean misioncumplida=false;
 
-    public Tonina(PanelJuego gp, int x, int y) {
-        super(gp);
-        this.xMapa=x*gp.tamanioCasilla;
-        this.yMapa=y*gp.tamanioCasilla;
+    public Tonina(PanelJuego pJuego, int x, int y) {
+        super(pJuego);
+        this.xMapa=x*pJuego.tamanioCasilla;
+        this.yMapa=y*pJuego.tamanioCasilla;
         this.direction="down";
         this.vel=0;
-        this.hitBox=new Rectangle(-1,-1,gp.tamanioCasilla+2,gp.tamanioCasilla+2);
+        this.hitBox=new Rectangle(-1,-1,pJuego.tamanioCasilla+2,pJuego.tamanioCasilla+2);
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
         movimiento=true;

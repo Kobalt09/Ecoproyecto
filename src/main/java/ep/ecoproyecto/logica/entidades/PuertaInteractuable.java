@@ -16,16 +16,16 @@ public final class PuertaInteractuable extends Entidad{
     int Ytp;
     int Ztp;
     
-    public PuertaInteractuable(PanelJuego gp,String nombre, int x, int y,int z ,int Xtp, int Ytp, int Ztp) {
-        super(gp);
+    public PuertaInteractuable(PanelJuego pJuego,String nombre, int x, int y,int z ,int Xtp, int Ytp, int Ztp) {
+        super(pJuego);
         this.nombre=nombre;
-        this.xMapa=x*gp.tamanioCasilla;
-        this.yMapa=y*gp.tamanioCasilla;
+        this.xMapa=x*pJuego.tamanioCasilla;
+        this.yMapa=y*pJuego.tamanioCasilla;
         this.direction="down";
         this.vel=0;
         colision=true;
         
-        hitBox= new Rectangle(-1,-1,gp.tamanioCasilla+2,gp.tamanioCasilla+2);
+        hitBox= new Rectangle(-1,-1,pJuego.tamanioCasilla+2,pJuego.tamanioCasilla+2);
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
         

@@ -2,7 +2,7 @@ package ep.ecoproyecto.gui;
 import ep.ecoproyecto.logica.ControladorEventos;
 import ep.ecoproyecto.logica.InterfazJugador;
 import ep.ecoproyecto.logica.EmisorObjetos;
-import ep.ecoproyecto.logica.EmisorNPC;
+import ep.ecoproyecto.logica.ManejadorEntidades;
 import ep.ecoproyecto.logica.Sonido;
 import ep.ecoproyecto.logica.Colisionador;
 import ep.ecoproyecto.logica.Configuracion;
@@ -51,9 +51,9 @@ public class PanelJuego extends JPanel implements Runnable{
     
     
     //configuracion de mapa
-    public final int maximocolumnas=40;
-    public final int maximofilas=40;
-    public final int maximomundos=6;
+    public final int maximoColumnas=40;
+    public final int maximoFilas=40;
+    public final int maximoMundos=6;
     public int mapaActual=0;
     public static PanelJuego juego;
      
@@ -76,7 +76,7 @@ public class PanelJuego extends JPanel implements Runnable{
 
     public Colisionador colisiones =new Colisionador(this);
     public EmisorObjetos objetos= new EmisorObjetos(this);
-    public EmisorNPC npcs= new EmisorNPC(this);
+    public ManejadorEntidades npcs= new ManejadorEntidades(this);
     public ControladorMinijuegos mini= new ControladorMinijuegos(this);
     public InterfazJugador hud = new InterfazJugador(this);
     public ControladorEventos controlEventos= new ControladorEventos(this);
@@ -89,9 +89,9 @@ public class PanelJuego extends JPanel implements Runnable{
     //Jugador, objetos y NPC
     public Jugador jugador;
     public LinkedList<JugadorMP> jugadores = new LinkedList<>(); 
-    public Objetosclase obj[][]= new Objetosclase[maximomundos][20];
-    public Entidad NPC[][]= new Entidad[maximomundos][20];
-    public Minijuego[][] minijuego=new Minijuego[maximomundos][10];
+    public Objetosclase obj[][]= new Objetosclase[maximoMundos][20];
+    public Entidad NPC[][]= new Entidad[maximoMundos][20];
+    public Minijuego[][] minijuego=new Minijuego[maximoMundos][10];
     //ArrayList<Entidad> Entidadlista= new ArrayList<>();
 
 
@@ -100,7 +100,7 @@ public class PanelJuego extends JPanel implements Runnable{
     public boolean pause;
     
     //----ONLINE-----//
-    public Cliente socketcliente;
+    public Cliente socketCliente;
     public Server socketserver;
     
 
@@ -118,13 +118,13 @@ public class PanelJuego extends JPanel implements Runnable{
     }
     
     //prepara todo para antes de dibujar y comenzar el juego
-    public void configuraciondejuego(){
+    public void configuracionDeJuego(){
         juego=this;
         
         keyH.establecerPanel(this);
 
         objetos.establecerObj();     //envia los objetos definidos a un arreglo
-        npcs.establecernpcs();      //igual pero con npcs
+        npcs.establecerEntidades();      //igual pero con npcs
         mini.establecerminijuegos();
         
         
@@ -150,15 +150,17 @@ public class PanelJuego extends JPanel implements Runnable{
     }
     
     public void inicioJugador (){
+        String nomb=JOptionPane.showInputDialog(this, "Por favor, introduzca su nombre de usuario:");        
         
-        jugador = new JugadorMP(null,-1,this,keyH,JOptionPane.showInputDialog(this, "Por favor, introduzca su nombre de usuario:"));
+        jugador = new JugadorMP(null,-1,this,keyH,nomb);
         jugadores.add((JugadorMP)jugador);
         
         Packet00Login loginpacket = new Packet00Login(jugador.getUsername(),jugador.xMapa,jugador.yMapa,jugador.direction,jugador.getMapa());
         if (socketserver!=null){
             socketserver.addConnection((JugadorMP)jugador, loginpacket);
         }
-        loginpacket.writeData(socketcliente);
+        
+        loginpacket.writeData(socketCliente);
         
     }
         
@@ -226,7 +228,7 @@ public class PanelJuego extends JPanel implements Runnable{
         
         //PAQUETE DE DESCONEXION//
         Packet01Disconnect packet = new Packet01Disconnect(this.jugador.getUsername());
-        packet.writeData(this.socketcliente);
+        packet.writeData(this.socketCliente);
         
         //CERRAR JUEGO//
         if (gameThread!=null){
@@ -283,7 +285,7 @@ public class PanelJuego extends JPanel implements Runnable{
         g2.dispose();
     }
     
-    public void reproducirmusica(int i){
+    public void reproducirMusica(int i){
         controlmusica.reproducirmusica(i);
     }
     
