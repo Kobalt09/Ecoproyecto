@@ -1,20 +1,20 @@
 package ep.ecoproyecto.logica.net.packets;
 import ep.ecoproyecto.logica.net.Cliente;
-import ep.ecoproyecto.logica.net.Server;
+import ep.ecoproyecto.logica.net.Servidor;
 /**
  *
  * @author C-A-F
  */
-public class Packet01Disconnect extends Packet{
+public class Paquete01Desconectar extends Paquete{
     
     private String username;
     
-    public Packet01Disconnect(byte[] data) {
+    public Paquete01Desconectar(byte[] data) {
         super(01);
         this.username = readData(data);
     }
 
-    public Packet01Disconnect(String username) {
+    public Paquete01Desconectar(String username) {
         super(01);
         this.username = username;
     }
@@ -33,7 +33,7 @@ public class Packet01Disconnect extends Packet{
     }
 
     @Override
-    public void writeData(Server server) {
+    public void writeData(Servidor server) {
         server.enviarDataClientes(getData());
     }
 

@@ -1,14 +1,14 @@
 package ep.ecoproyecto.logica.net;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.entidades.JugadorMP;
-import ep.ecoproyecto.logica.net.packets.Packet;
-import static ep.ecoproyecto.logica.net.packets.Packet.PacketTypes.DISCONNECT;
-import static ep.ecoproyecto.logica.net.packets.Packet.PacketTypes.INVALID;
-import static ep.ecoproyecto.logica.net.packets.Packet.PacketTypes.LOGIN;
-import ep.ecoproyecto.logica.net.packets.Packet00Login;
-import ep.ecoproyecto.logica.net.packets.Packet02Mov;
-import ep.ecoproyecto.logica.net.packets.Packet01Disconnect;
-import ep.ecoproyecto.logica.net.packets.Packet03Mapa;
+import ep.ecoproyecto.logica.net.packets.Paquete;
+import static ep.ecoproyecto.logica.net.packets.Paquete.PacketTypes.DISCONNECT;
+import static ep.ecoproyecto.logica.net.packets.Paquete.PacketTypes.INVALID;
+import static ep.ecoproyecto.logica.net.packets.Paquete.PacketTypes.LOGIN;
+import ep.ecoproyecto.logica.net.packets.Paquete00Login;
+import ep.ecoproyecto.logica.net.packets.Paquete02Movimiento;
+import ep.ecoproyecto.logica.net.packets.Paquete01Desconectar;
+import ep.ecoproyecto.logica.net.packets.Paquete03Mapa;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -49,30 +49,30 @@ public class Cliente extends Thread{
     
     private void parsePacket(byte[] data, InetAddress direccion, int puerto) {
         String mensaje = new String(data).trim();
-        Packet.PacketTypes type = Packet.lookupPacket(mensaje.substring(0,2));
-        Packet packet;
+        Paquete.PacketTypes type = Paquete.lookupPacket(mensaje.substring(0,2));
+        Paquete packet;
         switch(type){
             case INVALID->{
                 System.out.println("Paquete invalido");
             }
             case LOGIN->{
-                packet = new Packet00Login(data); 
-                System.out.println("["+direccion.getHostAddress()+":"+puerto+"] "+((Packet00Login)packet).getUsername()+" se ha unido al juego.");
-                JugadorMP jugador = new JugadorMP(direccion,puerto,pJuego,((Packet00Login)packet).getUsername(),((Packet00Login)packet).getX(),((Packet00Login)packet).getY(),((Packet00Login)packet).getDir(),((Packet00Login)packet).getMapa());
+                packet = new Paquete00Login(data); 
+                System.out.println("["+direccion.getHostAddress()+":"+puerto+"] "+((Paquete00Login)packet).getUsername()+" se ha unido al juego.");
+                JugadorMP jugador = new JugadorMP(direccion,puerto,pJuego,((Paquete00Login)packet).getUsername(),((Paquete00Login)packet).getX(),((Paquete00Login)packet).getY(),((Paquete00Login)packet).getDir(),((Paquete00Login)packet).getMapa());
                 pJuego.jugadores.add(jugador);
             }
             case DISCONNECT->{
-                packet = new Packet01Disconnect(data); 
-                System.out.println("["+direccion.getHostAddress()+":"+puerto+"] "+((Packet01Disconnect)packet).getUsername()+" se ha ido del juego.");
-                pJuego.removePlayerMP(((Packet01Disconnect)packet).getUsername());
+                packet = new Paquete01Desconectar(data); 
+                System.out.println("["+direccion.getHostAddress()+":"+puerto+"] "+((Paquete01Desconectar)packet).getUsername()+" se ha ido del juego.");
+                pJuego.removePlayerMP(((Paquete01Desconectar)packet).getUsername());
             }
             case MOVE->{
-                packet = new Packet02Mov(data);
-                this.manejarMov((Packet02Mov)packet);
+                packet = new Paquete02Movimiento(data);
+                this.manejarMov((Paquete02Movimiento)packet);
             }
              case CAMBIO->{
-                packet =new Packet03Mapa(data);
-                this.cambioMapa((Packet03Mapa)packet);
+                packet =new Paquete03Mapa(data);
+                this.cambioMapa((Paquete03Mapa)packet);
             }
             default->{
                 System.out.println("Paquete desconocido");
@@ -88,11 +88,11 @@ public class Cliente extends Thread{
         }
     }
     
-    private void manejarMov(Packet02Mov packet) {
+    private void manejarMov(Paquete02Movimiento packet) {
         this.pJuego.moverJugadores(packet.getUsername(), packet.getX(), packet.getY(),packet.getDir());          
     }
 
-    private void cambioMapa(Packet03Mapa packet) {
+    private void cambioMapa(Paquete03Mapa packet) {
        pJuego.cambiarMapa(packet.getUsername(),packet.getMapa());
     }
     

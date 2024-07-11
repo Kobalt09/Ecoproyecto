@@ -1,6 +1,6 @@
 package ep.ecoproyecto.logica;
 import ep.ecoproyecto.gui.PanelJuego;
-import ep.ecoproyecto.logica.net.packets.Packet03Mapa;
+import ep.ecoproyecto.logica.net.packets.Paquete03Mapa;
 /**
  *
  * @author C-A-F
@@ -34,7 +34,7 @@ public class ControladorEventos {
         pJuego.jugador.setMapa(mapa);
         pJuego.manCas.actualizar(pJuego.jugador, pJuego.screenWidth, pJuego.screenHeight);
         
-        Packet03Mapa packet =new Packet03Mapa(mapa, pJuego.jugador.getUsername());
+        Paquete03Mapa packet =new Paquete03Mapa(mapa, pJuego.jugador.getUsername());
         packet.writeData(pJuego.socketCliente);
        
     }
@@ -48,7 +48,7 @@ public class ControladorEventos {
         pJuego.manCas.actualizar(pJuego.jugador, pJuego.screenWidth, pJuego.screenHeight);
         
         
-        Packet03Mapa packet =new Packet03Mapa(mapa, pJuego.jugador.getUsername());
+        Paquete03Mapa packet =new Paquete03Mapa(mapa, pJuego.jugador.getUsername());
         packet.writeData(pJuego.socketCliente);
         
     }

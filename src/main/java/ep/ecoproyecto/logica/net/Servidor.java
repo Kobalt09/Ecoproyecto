@@ -1,13 +1,13 @@
 package ep.ecoproyecto.logica.net;
 
-import ep.ecoproyecto.logica.net.packets.Packet03Mapa;
+import ep.ecoproyecto.logica.net.packets.Paquete03Mapa;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.entidades.JugadorMP;
-import ep.ecoproyecto.logica.net.packets.Packet;
-import ep.ecoproyecto.logica.net.packets.Packet.PacketTypes;
-import ep.ecoproyecto.logica.net.packets.Packet00Login;
-import ep.ecoproyecto.logica.net.packets.Packet02Mov;
-import ep.ecoproyecto.logica.net.packets.Packet01Disconnect;
+import ep.ecoproyecto.logica.net.packets.Paquete;
+import ep.ecoproyecto.logica.net.packets.Paquete.PacketTypes;
+import ep.ecoproyecto.logica.net.packets.Paquete00Login;
+import ep.ecoproyecto.logica.net.packets.Paquete02Movimiento;
+import ep.ecoproyecto.logica.net.packets.Paquete01Desconectar;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -18,14 +18,14 @@ import java.util.LinkedList;
  *
  * @author C-A-F
  */
-public class Server extends Thread{
+public class Servidor extends Thread{
     private DatagramSocket socket;
     private PanelJuego pJuego;
     private LinkedList<JugadorMP> jugadoresConectados = new LinkedList<>();
     public static int refresco=0;
     
     
-    public Server(PanelJuego pJuego) {
+    public Servidor(PanelJuego pJuego) {
         this.pJuego = pJuego;
         try {
             this.socket = new DatagramSocket(1234);
@@ -53,34 +53,34 @@ public class Server extends Thread{
     
     public void parsePacket(byte[] data, InetAddress direccion, int puerto) {
         String mensaje = new String(data).trim();
-        PacketTypes type = Packet.lookupPacket(mensaje.substring(0,2));
-        Packet packet;
+        PacketTypes type = Paquete.lookupPacket(mensaje.substring(0,2));
+        Paquete packet;
         switch(type){
             case INVALID->{
                 System.out.println("Paquete invalido");
             }
             case LOGIN->{
-                packet = new Packet00Login(data); 
-                System.out.println("["+direccion.getHostAddress()+":"+puerto+"] "+((Packet00Login)packet).getUsername()+" se ha conectado.");
-                JugadorMP jugador = new JugadorMP(direccion,puerto,pJuego,((Packet00Login)packet).getUsername(),((Packet00Login)packet).getX(),((Packet00Login)packet).getY(),((Packet00Login)packet).getDir(),((Packet00Login)packet).getMapa());
-                this.addConnection(jugador,((Packet00Login)packet));
+                packet = new Paquete00Login(data); 
+                System.out.println("["+direccion.getHostAddress()+":"+puerto+"] "+((Paquete00Login)packet).getUsername()+" se ha conectado.");
+                JugadorMP jugador = new JugadorMP(direccion,puerto,pJuego,((Paquete00Login)packet).getUsername(),((Paquete00Login)packet).getX(),((Paquete00Login)packet).getY(),((Paquete00Login)packet).getDir(),((Paquete00Login)packet).getMapa());
+                this.addConnection(jugador,((Paquete00Login)packet));
             }
             case DISCONNECT->{
-                packet = new Packet01Disconnect(data); 
-                System.out.println("["+direccion.getHostAddress()+":"+puerto+"] "+((Packet01Disconnect)packet).getUsername()+" se ha desconectado.");
-                this.removeConnection((Packet01Disconnect)packet);
+                packet = new Paquete01Desconectar(data); 
+                System.out.println("["+direccion.getHostAddress()+":"+puerto+"] "+((Paquete01Desconectar)packet).getUsername()+" se ha desconectado.");
+                this.removeConnection((Paquete01Desconectar)packet);
             }
             case MOVE->{
-                packet =new Packet02Mov(data);
+                packet =new Paquete02Movimiento(data);
                 if (refresco++ % 10==0)
-                    System.out.println(((Packet02Mov)packet).getUsername()+" movido a x "+((Packet02Mov)packet).getX()+" y "+((Packet02Mov)packet).getY()+" mirando a "+((Packet02Mov)packet).getDir());
-                this.manejarMov((Packet02Mov)packet);
+                    System.out.println(((Paquete02Movimiento)packet).getUsername()+" movido a x "+((Paquete02Movimiento)packet).getX()+" y "+((Paquete02Movimiento)packet).getY()+" mirando a "+((Paquete02Movimiento)packet).getDir());
+                this.manejarMov((Paquete02Movimiento)packet);
             }
             
             case CAMBIO->{
-                packet =new Packet03Mapa(data);
-                System.out.println(((Packet03Mapa)packet).getUsername()+" cambiado a mapa "+((Packet03Mapa)packet).getMapa());
-                this.cambioMapa((Packet03Mapa)packet);
+                packet =new Paquete03Mapa(data);
+                System.out.println(((Paquete03Mapa)packet).getUsername()+" cambiado a mapa "+((Paquete03Mapa)packet).getMapa());
+                this.cambioMapa((Paquete03Mapa)packet);
             }
                        
             default->{
@@ -89,7 +89,7 @@ public class Server extends Thread{
         }
     }
     
-    public void addConnection(JugadorMP jugador, Packet00Login packet) {
+    public void addConnection(JugadorMP jugador, Paquete00Login packet) {
         boolean yaConectado = false;
         for (JugadorMP j:jugadoresConectados){
             if (jugador.getUsername().equalsIgnoreCase(j.getUsername())){
@@ -102,7 +102,7 @@ public class Server extends Thread{
                 yaConectado = true;
             }else{
                 enviarData(packet.getData(),j.direccionIP,j.puerto);
-                packet = new Packet00Login(j.getUsername(),j.xMapa,j.yMapa,j.direction,j.getMapa());
+                packet = new Paquete00Login(j.getUsername(),j.xMapa,j.yMapa,j.direction,j.getMapa());
                 enviarData(packet.getData(),jugador.direccionIP,jugador.puerto);
             }
         }
@@ -112,7 +112,7 @@ public class Server extends Thread{
     }
     
     
-    private void removeConnection(Packet01Disconnect packet) {
+    private void removeConnection(Paquete01Desconectar packet) {
         this.jugadoresConectados.remove(getJugadorMPindex(packet.getUsername()));
         packet.writeData(this);
     }
@@ -151,7 +151,7 @@ public class Server extends Thread{
         }
     }
    
-    private void manejarMov(Packet02Mov packet) {
+    private void manejarMov(Paquete02Movimiento packet) {
         
         if(getJugadorMP(packet.getUsername())!=null){
             
@@ -164,7 +164,7 @@ public class Server extends Thread{
         }
     }
 
-    private void cambioMapa(Packet03Mapa packet) {
+    private void cambioMapa(Paquete03Mapa packet) {
         if(getJugadorMP(packet.getUsername())!=null){
             
             int indice=this.getJugadorMPindex(packet.getUsername());

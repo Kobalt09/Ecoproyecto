@@ -33,7 +33,6 @@ public class ManejadorEntidades  implements Dibujado, Actualizar{
         //----MUNDO 1:-----//
         int NumMap = 0;
         pJuego.NPC[NumMap][0]= new Chiguire(pJuego,20,15);
-        pJuego.NPC[NumMap][1]= new Tienda(pJuego,9,9);
         
         //posicion de la puerta(x,y,z), luego posiciona a la que hara el tp(xyz)
         
@@ -80,8 +79,8 @@ public class ManejadorEntidades  implements Dibujado, Actualizar{
         
         //----MUNDO 5:-----arriba// 
             NumMap = 4;
-            pJuego.NPC[NumMap][0]= new PuertaInteractuable(pJuego,"Ab",14, 25, 4,   20,9,0);
-            pJuego.NPC[NumMap][1]= new PuertaInteractuable(pJuego,"Ab",15, 25, 4,   21,9,0);
+            pJuego.NPC[NumMap][0]= new PuertaInteractuable(pJuego,"Ab",14, 25, 4,   20,5,0);
+            pJuego.NPC[NumMap][1]= new PuertaInteractuable(pJuego,"Ab",15, 25, 4,   21,5,0);
             pJuego.NPC[NumMap][2]= new Turpial(pJuego,13,23);
             
             pJuego.NPC[NumMap][5]=new Agujero(pJuego,19,20);

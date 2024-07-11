@@ -1,7 +1,7 @@
 package ep.ecoproyecto.gui;
 
 import ep.ecoproyecto.logica.net.Cliente;
-import ep.ecoproyecto.logica.net.Server;
+import ep.ecoproyecto.logica.net.Servidor;
 import ep.ecoproyecto.logica.tipografia.Fuentes;
 import java.awt.Color;
 import javax.swing.ImageIcon;
@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- *
+ *Clase del menú para dar opciones de inicio del juego e inforrmacion
  * @author C-A-F
  */
 
@@ -18,7 +18,6 @@ public class MenuIni extends javax.swing.JFrame {
    
     Fuentes tipoFuente=new Fuentes();
     ImageIcon img = new ImageIcon("/player/jg_abj_01.png");
-    
     JFrame ventana= new JFrame();
     PanelJuego panelDeJuego= new PanelJuego(ventana);
     
@@ -32,7 +31,9 @@ public class MenuIni extends javax.swing.JFrame {
         this.setTitle("ECOPROYECTO");
         titulo.setForeground(Color.white);
         this.setLocationRelativeTo(null);
+        
         JpanelImagen jImg= new JpanelImagen(jPanel1,"/fondo/ecocrosin.jpg" );
+        
         jPanel1.add(jImg).repaint();
         
     }
@@ -182,14 +183,18 @@ public class MenuIni extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    /**
+     *inicia el juego si se presionó jugar
+    *@param evt Indicador de acciones
 
+    */
     private void jugarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarButtonActionPerformed
    
         
-        //Se puede adaptar como una funcion dentro del MENU//
+        
         int resp=JOptionPane.showConfirmDialog(this, "Quieres iniciar el server?");
         if( resp == JOptionPane.YES_OPTION){
-            panelDeJuego.socketserver = new Server(panelDeJuego);
+            panelDeJuego.socketserver = new Servidor(panelDeJuego);
             panelDeJuego.socketserver.start();
         }
         if(resp==JOptionPane.CANCEL_OPTION){
@@ -224,19 +229,22 @@ public class MenuIni extends javax.swing.JFrame {
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
         panelDeJuego.reproducirMusica(panelDeJuego.musica);
-        
-        
-            
-       
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jugarButtonActionPerformed
 
+    }//GEN-LAST:event_jugarButtonActionPerformed
+/**
+     *para la ejecución si se presiona salir
+    *@param evt Indicador de acciones
+
+    */
     private void salirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirButtonActionPerformed
         this.dispose();
         ventana.dispose();
     }//GEN-LAST:event_salirButtonActionPerformed
+    /**
+     *Muestra la informacion del grupo si se preciona acerca de
+    *@param evt Indicador de acciones
 
+    */
     private void acercadeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercadeButtonActionPerformed
         String mensaje = "<html><body>" +
                 "<h2>ECOCROSSING</h2>" +
@@ -249,7 +257,11 @@ public class MenuIni extends javax.swing.JFrame {
         // Cuadro de Dialogo//
         JOptionPane.showMessageDialog(this, mensaje, "Acerca de ECOCROSSING", JOptionPane.INFORMATION_MESSAGE, img);
     }//GEN-LAST:event_acercadeButtonActionPerformed
+/**
+     *Muestra las instrucciones
+    *@param evt Indicador de acciones
 
+    */
     private void ayudaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ayudaButtonActionPerformed
         String mensaje = "<html><body>" +
                 "<h2>Ayuda - ECOCROSSING</h2>" +

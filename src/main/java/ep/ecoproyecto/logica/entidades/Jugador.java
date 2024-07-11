@@ -2,7 +2,7 @@ package ep.ecoproyecto.logica.entidades;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.Herramientas;
 import ep.ecoproyecto.logica.KeyHandler;
-import ep.ecoproyecto.logica.net.packets.Packet02Mov;
+import ep.ecoproyecto.logica.net.packets.Paquete02Movimiento;
 import ep.ecoproyecto.logica.objetos.ObjetoEquipo;
 import ep.ecoproyecto.logica.objetos.ObjetoRecogible;
 import ep.ecoproyecto.logica.objetos.Objetosclase;
@@ -117,12 +117,12 @@ public class Jugador extends Entidad{
         
         estado=estadojuego;
         
-        vel=4;
+        vel=6;
         veloriginal=vel;
         direction ="down"; 
         
         if(pJuego.socketserver!=null){
-        Packet02Mov packet=new Packet02Mov(username, this.xMapa, this.yMapa,this.direction);
+        Paquete02Movimiento packet=new Paquete02Movimiento(username, this.xMapa, this.yMapa,this.direction);
         packet.writeData(PanelJuego.juego.socketCliente);
         }
     }
@@ -251,7 +251,7 @@ public class Jugador extends Entidad{
                     }
                 }
                 
-                Packet02Mov packet=new Packet02Mov(username, this.xMapa, this.yMapa,this.direction);
+                Paquete02Movimiento packet=new Paquete02Movimiento(username, this.xMapa, this.yMapa,this.direction);
                 packet.writeData(PanelJuego.juego.socketCliente);
                 
                 spriteCounter++;

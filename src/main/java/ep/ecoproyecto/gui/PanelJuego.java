@@ -14,8 +14,8 @@ import ep.ecoproyecto.logica.casillas.ManejadorCasillas;
 import ep.ecoproyecto.logica.entidades.Jugador;
 import ep.ecoproyecto.logica.entidades.JugadorMP;
 import ep.ecoproyecto.logica.net.*;
-import ep.ecoproyecto.logica.net.packets.Packet00Login;
-import ep.ecoproyecto.logica.net.packets.Packet01Disconnect;
+import ep.ecoproyecto.logica.net.packets.Paquete00Login;
+import ep.ecoproyecto.logica.net.packets.Paquete01Desconectar;
 import ep.ecoproyecto.logica.objetos.Objetosclase;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -32,6 +32,7 @@ import javax.swing.JOptionPane;
 import ep.ecoproyecto.logica.minijuegos.Minijuego;
 
 /**
+ * Clase que contiene en si toda la reproduccion del juego
  * @author C-A-F
  */
 
@@ -82,9 +83,7 @@ public class PanelJuego extends JPanel implements Runnable{
     public ControladorEventos controlEventos= new ControladorEventos(this);
     Thread gameThread;
 
-    //manejador de efectos de sonido
-    
-
+   
     
     //Jugador, objetos y NPC
     public Jugador jugador;
@@ -92,7 +91,6 @@ public class PanelJuego extends JPanel implements Runnable{
     public Objetosclase obj[][]= new Objetosclase[maximoMundos][20];
     public Entidad NPC[][]= new Entidad[maximoMundos][20];
     public Minijuego[][] minijuego=new Minijuego[maximoMundos][10];
-    //ArrayList<Entidad> Entidadlista= new ArrayList<>();
 
 
     
@@ -101,11 +99,14 @@ public class PanelJuego extends JPanel implements Runnable{
     
     //----ONLINE-----//
     public Cliente socketCliente;
-    public Server socketserver;
+    public Servidor socketserver;
     
 
-    
-    //Inicializar el panel
+    /**
+     *inicia el panel en un frame
+    *@param frame marco donde se dibujará el panel
+
+    */
     public PanelJuego(JFrame frame) {
         
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
@@ -155,7 +156,7 @@ public class PanelJuego extends JPanel implements Runnable{
         jugador = new JugadorMP(null,-1,this,keyH,nomb);
         jugadores.add((JugadorMP)jugador);
         
-        Packet00Login loginpacket = new Packet00Login(jugador.getUsername(),jugador.xMapa,jugador.yMapa,jugador.direction,jugador.getMapa());
+        Paquete00Login loginpacket = new Paquete00Login(jugador.getUsername(),jugador.xMapa,jugador.yMapa,jugador.direction,jugador.getMapa());
         if (socketserver!=null){
             socketserver.addConnection((JugadorMP)jugador, loginpacket);
         }
@@ -164,18 +165,20 @@ public class PanelJuego extends JPanel implements Runnable{
         
     }
         
-    public void removePlayerMP(String username) {
+    public void removePlayerMP(String usuarioname) {
         for (JugadorMP j:jugadores){
-            if (j.getUsername().equals(username)){
+            if (j.getUsername().equals(usuarioname)){
                 jugadores.remove(j);
             }
         }
     }
    
-
+    /**
+     * maneja los fps del juego
+     */
     @Override
     public void run() {
-        double drawInterval= 1000000000/fps; //0.016666 segundos
+        double drawInterval= 2000000000/fps; //0.016666 segundos
         double nextDrawTime = System.nanoTime()+drawInterval;
         long lastTimeCheck = System.nanoTime();
         int frameCount = 0;
@@ -195,7 +198,7 @@ public class PanelJuego extends JPanel implements Runnable{
             frameCount++;
 
             // mediante esto imrpmimos el numero de cuadros que se han hecho en 1 segundo
-            if (currentTime - lastTimeCheck >= 1000000000) {
+            if (currentTime - lastTimeCheck >= 2000000000) {
                 //System.out.println("FPS: " + frameCount);
                 frameCount = 0;
                 lastTimeCheck = System.nanoTime();
@@ -204,10 +207,11 @@ public class PanelJuego extends JPanel implements Runnable{
             //de esta forma el programa se queda en espera tras que se cumpla una actualizacion 
             try{
                 double remaningTime= nextDrawTime - System.nanoTime();
-                remaningTime=remaningTime /1000000;
+                remaningTime=remaningTime /2000000;
                
                 if(keyH.escPressed==true){
                               gameThread.interrupt();
+                            
                           }
                 
                 if(remaningTime<0){
@@ -221,13 +225,15 @@ public class PanelJuego extends JPanel implements Runnable{
             }
         }
     }
-    
+    /**
+     * devuelve a MenuIni
+     */
     public void regresarAlMenuIni(){
         //DETENER MUSICA//
         controlmusica.detenerMusica();
         
         //PAQUETE DE DESCONEXION//
-        Packet01Disconnect packet = new Packet01Disconnect(this.jugador.getUsername());
+        Paquete01Desconectar packet = new Paquete01Desconectar(this.jugador.getUsername());
         packet.writeData(this.socketCliente);
         
         //CERRAR JUEGO//
@@ -242,7 +248,9 @@ public class PanelJuego extends JPanel implements Runnable{
             new MenuIni().setVisible(true);
         });
     }
-    
+    /**
+     * actualiza la informacion de las variables
+     */
     public void actualizar(){
         
         if (!pause){
@@ -258,7 +266,10 @@ public class PanelJuego extends JPanel implements Runnable{
         manCas.actualizar(jugador,screenWidth, screenHeight);
       
     }
-    
+    /**
+     * dibuja todo lo que se ve en pantalla
+     * @param g clase base para el dibujado
+     */
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -296,19 +307,30 @@ public class PanelJuego extends JPanel implements Runnable{
     public void efectos(int i){
         controlsonido.reproducirefecto(i);
     }
-    
-    private int getIndiceJugador(String user){
+    /**
+     * Devuelve el lugar en el indice del jugador deseado
+     * @param usuario nombre del usuario
+     * @return indice del jugador
+     */
+    private int getIndiceJugador(String usuario){
         int indice=0;
         for (Jugador jug:jugadores){
-            if(jug.getUsername() == null ? (user) == null : jug.getUsername().equals(user)){
+            if(jug.getUsername() == null ? (usuario) == null : jug.getUsername().equals(usuario)){
                 break;
             }indice++;
         }
         return indice;
     }
     
-    public void moverJugadores(String user,int x, int y,String dir){
-        int indice=getIndiceJugador(user);
+    /**
+     * Mueve a los jugadores que no son el principal
+     * @param usuario nombre de usuario
+     * @param x posicion en x a mover
+     * @param y posicion en y a mover
+     * @param dir direccion a donde se mueve el jugador
+     */
+    public void moverJugadores(String usuario,int x, int y,String dir){
+        int indice=getIndiceJugador(usuario);
         
         this.jugadores.get(indice).xMapa=x;
         this.jugadores.get(indice).yMapa=y;
@@ -325,11 +347,15 @@ public class PanelJuego extends JPanel implements Runnable{
                     this.jugadores.get(indice).spriteCounter = 0;
                 }
     }
-
-    public void cambiarMapa(String username, int mapa) {
-        int indice=getIndiceJugador(username);
+ 
+    /**
+    *cambia e mapa a un usuario
+    *@param usuarioname nombre del usuario que cambia de mapa
+    *@param mapa mapa al que se cambiará
+    */
+    public void cambiarMapa(String usuarioname, int mapa) {
+        int indice=getIndiceJugador(usuarioname);
         this.jugadores.get(indice).setMapa(mapa);
-        
-        
+     
     }
 }
