@@ -225,9 +225,6 @@ public class Jugador extends Entidad{
 
                 recogerobjetos(gp.colisiones.chequeoObjetos(this, true));
             
-                //colision eventos
-                gp.controlEventos.chequeoEvento();
-            
             
                 if(colision==false && interactuar==false){
                     switch (direction) {
@@ -539,7 +536,7 @@ public class Jugador extends Entidad{
                     case Aguaconbasura aux ->{
                         if("Aguasucia".equals(aux.estado) && this.inventario[3]!=null){
                                     gp.hud.mostrarmensaje("Recogiste la basura");
-                                    aux.estado="Agua";
+                                    aux.estado="agua";
                                     aux.getImage();
                         }else{
                                 gp.hud.mostrarmensaje(aux.mensaje);

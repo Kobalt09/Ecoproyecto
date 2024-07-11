@@ -5,12 +5,11 @@
 package ep.ecoproyecto.logica.objetos;
 
 import ep.ecoproyecto.gui.PanelJuego;
-import ep.ecoproyecto.logica.entidades.Entidad;
 import java.awt.Rectangle;
 
 /**
  *
- * @author hp
+ * @author C-A-F
  */
 public class Casa extends Objetosclase {
     
