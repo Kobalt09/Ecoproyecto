@@ -9,7 +9,7 @@ import java.awt.Rectangle;
 
 /**
  *
- * @author hp
+ * @author C-A-F
  */
 public class Casa extends Objetosclase {
     

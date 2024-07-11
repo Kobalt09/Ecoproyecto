@@ -5,13 +5,28 @@
     <groupId>ep</groupId>    
     <modelVersion>4.0.0</modelVersion>
     <artifactId>Ecoproyecto</artifactId>
-    <version>3.9.6</version>
+    <version>3.9.8</version>
     <packaging>jar</packaging>
+        <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>    
+    
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
-        
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>    
         <exec.mainClass>ep.ecoproyecto.gui.MenuIni</exec.mainClass>
+        <maven.compiler.release>22</maven.compiler.release>
     </properties>
 </project>
