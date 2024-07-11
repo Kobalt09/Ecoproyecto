@@ -21,7 +21,6 @@ public class Packet00Login extends Packet{
         this.mapa=Integer.parseInt(datos[4]);
     }
 
-
     public Packet00Login(String username,int x,int y,String dir,int mapa) {
         super(00);
         this.username = username;
@@ -31,37 +30,44 @@ public class Packet00Login extends Packet{
         this.mapa=mapa;
     }
 
-    public String getUsername() {
-        return username;
-    }
-    
-    public int getX() {
-        return x;
-    }
-
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public void setDir(String dir) {
+        this.dir = dir;
     }
 
     public void setX(int x) {
         this.x = x;
     }
 
-    
-    public int getY() {
-        return y;
-    }
-
     public void setY(int y) {
         this.y = y;
+    }
+
+    public void setMapa(int mapa) {
+        this.mapa = mapa;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public String getDir() {
         return dir;
     }
 
-    public void setDir(String dir) {
-        this.dir = dir;
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getMapa() {
+        return mapa;
     }
     
     @Override
@@ -77,14 +83,6 @@ public class Packet00Login extends Packet{
     @Override
     public byte[] getData() {
         return ("00" + this.username+","+x+","+ y+","+dir+","+mapa ).getBytes();
-    }
-
-    public int getMapa() {
-        return mapa;
-    }
-
-    public void setMapa(int mapa) {
-        this.mapa = mapa;
     }
     
 }
