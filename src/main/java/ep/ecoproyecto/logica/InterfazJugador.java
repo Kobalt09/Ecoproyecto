@@ -352,7 +352,6 @@ public class InterfazJugador{
             int MarcoX=(pJuego.screenWidth/2)-128;
             int MarcoY=pJuego.tamanioCasilla/6;
             int MarcoAncho=pJuego.tamanioCasilla;
-            int MarcoAlto=pJuego.tamanioCasilla;
             
             BufferedImage casilla=this.configuracion("/objetos/casilla");
             int cont=0;
@@ -403,9 +402,9 @@ public class InterfazJugador{
             dibujadoinfoTienda(g2,opcion,MarcoY+10);
                 
                 if(opcion>0){
-                    g2.drawString("*", MarcoX+27+((opcion-1)*64), MarcoY+MarcoAlto+32);
+                    dibujadoLetras("^", MarcoX+25+((opcion-1)*64), MarcoY+MarcoAlto+35,3);
                 }else{
-                    g2.drawString("*", 100+20, MarcoY+pJuego.tamanioCasilla*2+40);
+                    dibujadoLetras("^", 100+15, MarcoY+pJuego.tamanioCasilla*2+45,3);
 
                 }
                
