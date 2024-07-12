@@ -412,7 +412,7 @@ public class InterfazJugador{
         
         g2.setColor(Color.WHITE);
         
-        for(Objetosclase obj:pJuego.NPC[0][1].inventario){
+        for(Objetosclase obj:pJuego.NPC[2][1].inventario){
             cont++;
             if(obj!=null && cont==objselect){
                 g2.drawString(obj.nombre, 100, MarcoY+pJuego.tamanioCasilla/2);
