@@ -190,48 +190,80 @@ public class MenuIni extends javax.swing.JFrame {
     */
     private void jugarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarButtonActionPerformed
    
-        
-        
-        int resp=JOptionPane.showConfirmDialog(this, "Quieres iniciar el server?");
-        if( resp == JOptionPane.YES_OPTION){
-            panelDeJuego.socketserver = new Servidor(panelDeJuego);
-            panelDeJuego.socketserver.start();
+        int respServer = JOptionPane.showConfirmDialog(this, "Quieres iniciar un server?", "Inicio de Server",JOptionPane.YES_NO_CANCEL_OPTION);
+        switch (respServer) {
+            case JOptionPane.YES_OPTION ->{
+                iniciarServidor();
+                panelDeJuego.socketCliente = new Cliente("localhost",panelDeJuego);
+                panelDeJuego.socketCliente.start();
+            }
+            case JOptionPane.NO_OPTION -> {
+                if (!iniciarCliente())
+                    return;
+            }
+            default ->{
+                return;
+            }
         }
-        if(resp==JOptionPane.CANCEL_OPTION){
-            panelDeJuego=new PanelJuego(ventana);
-            return;
-        }
-        //-------------------------------------------------//
         
+        configurarVentana();
+        iniciarJuego();
+    }//GEN-LAST:event_jugarButtonActionPerformed
+    
+    private void iniciarServidor(){
+        panelDeJuego.socketserver = new Servidor(panelDeJuego);
+        panelDeJuego.socketserver.start();
+    }
+    
+    private boolean iniciarCliente(){
+        int respCliente = JOptionPane.showConfirmDialog(this, "Quieres ingresar a un server?", "Ingresar a un server", JOptionPane.YES_NO_OPTION);
+        
+        switch (respCliente) {
+            case JOptionPane.YES_OPTION -> {
+                String IPServer = JOptionPane.showInputDialog(this, "Introduzca la IP del server a la que se quiere conectar:", "IP Server", JOptionPane.INFORMATION_MESSAGE);
+                if (IPServer == null || IPServer.trim().isEmpty()){
+                    return false;
+                }
+                panelDeJuego.socketCliente = new Cliente(IPServer, panelDeJuego);
+            }
+            case JOptionPane.NO_OPTION -> panelDeJuego.socketCliente = new Cliente("localhost",panelDeJuego);
+            default -> {
+                return false;
+            }
+        }
+        
+        panelDeJuego.socketCliente.start();
+        return true;
+    }
+    
+    private void configurarVentana(){
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setResizable(false);
         ventana.setTitle("ECOPROYECTO");
         ventana.setIconImage((new ImageIcon(getClass().getResource("/player/jg_abj_01.png"))).getImage());
-     
+
         panelDeJuego.config.cargarConfig();
-        if (panelDeJuego.pantallaCompleta){
+        if (panelDeJuego.pantallaCompleta) {
             ventana.setUndecorated(true);
         }
-        
-        panelDeJuego.socketCliente = new Cliente("localhost",panelDeJuego);
-        panelDeJuego.socketCliente.start();
-        
+    }
+    
+    private void iniciarJuego(){
         panelDeJuego.configuracionDeJuego();
         panelDeJuego.inicioJugador();
-        
+
         panelDeJuego.gameThread = new Thread(panelDeJuego);
         panelDeJuego.gameThread.start();
-        
-       
+
         this.setVisible(false);
-        ventana.add(panelDeJuego); 
-        ventana.pack();       
+        ventana.add(panelDeJuego);
+        ventana.pack();
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
         panelDeJuego.reproducirMusica(panelDeJuego.musica);
-
-    }//GEN-LAST:event_jugarButtonActionPerformed
-/**
+    }
+    
+    /**
      *para la ejecución si se presiona salir
     *@param evt Indicador de acciones
 
