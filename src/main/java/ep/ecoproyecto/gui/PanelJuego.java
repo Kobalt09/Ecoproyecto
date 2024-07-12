@@ -134,9 +134,6 @@ public class PanelJuego extends JPanel implements Runnable{
         //ESTADO DE JUEGO//
         pause=false;
         
-        if (pantallaCompleta){
-            setPantallaCompleta();
-        }
     }
     
     public void setPantallaCompleta(){
@@ -155,6 +152,9 @@ public class PanelJuego extends JPanel implements Runnable{
         do{
             nomb=JOptionPane.showInputDialog(this, "Por favor, introduzca su nombre de usuario:");        
         }while(nomb==null || nomb.trim().isEmpty());
+        if (pantallaCompleta){
+            setPantallaCompleta();
+        }
         jugador = new JugadorMP(null,-1,this,keyH,nomb);
         jugadores.add((JugadorMP)jugador);
         
