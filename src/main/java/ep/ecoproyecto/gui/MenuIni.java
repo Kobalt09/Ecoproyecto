@@ -20,6 +20,7 @@ public class MenuIni extends javax.swing.JFrame {
     ImageIcon img = new ImageIcon("/player/jg_abj_01.png");
     JFrame ventana= new JFrame();
     PanelJuego panelDeJuego= new PanelJuego(ventana);
+    String nomb;
     
     /**
      * Creates new form Menu
@@ -205,6 +206,9 @@ public class MenuIni extends javax.swing.JFrame {
                 return;
             }
         }
+        do{
+            nomb=JOptionPane.showInputDialog(this, "Por favor, introduzca su nombre de usuario:");        
+        }while(nomb==null || nomb.trim().isEmpty());
         
         configurarVentana();
         iniciarJuego();
@@ -250,7 +254,7 @@ public class MenuIni extends javax.swing.JFrame {
     
     private void iniciarJuego(){
         panelDeJuego.configuracionDeJuego();
-        panelDeJuego.inicioJugador();
+        panelDeJuego.inicioJugador(nomb);
 
         panelDeJuego.gameThread = new Thread(panelDeJuego);
         panelDeJuego.gameThread.start();

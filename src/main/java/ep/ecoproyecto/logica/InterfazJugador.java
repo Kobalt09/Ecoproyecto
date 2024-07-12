@@ -352,7 +352,6 @@ public class InterfazJugador{
             int MarcoX=(pJuego.screenWidth/2)-128;
             int MarcoY=pJuego.tamanioCasilla/6;
             int MarcoAncho=pJuego.tamanioCasilla;
-            int MarcoAlto=pJuego.tamanioCasilla;
             
             BufferedImage casilla=this.configuracion("/objetos/casilla");
             int cont=0;
@@ -373,13 +372,13 @@ public class InterfazJugador{
     }
     
     public void tienda(Graphics2D g2){
-        int MarcoX=(pJuego.screenWidth/2)-128;
-        int MarcoY=pJuego.tamanioCasilla/6+124;
-        int MarcoAncho=pJuego.tamanioCasilla;
-        int MarcoAlto=pJuego.tamanioCasilla;
-        
-        BufferedImage casilla=this.configuracion("/objetos/casilla");
-        int cont=0;
+            int MarcoX=(pJuego.screenWidth/2)-128;
+            int MarcoY=pJuego.tamanioCasilla/6+124;
+            int MarcoAncho=pJuego.tamanioCasilla;
+            int MarcoAlto=pJuego.tamanioCasilla;
+            BufferedImage casilla=this.configuracion("/objetos/casilla");
+            int cont=0;
+
                 
         dibujadoFondo();
         for(Objetosclase obj:pJuego.NPC[2][1].inventario){
@@ -403,9 +402,10 @@ public class InterfazJugador{
             dibujadoinfoTienda(g2,opcion,MarcoY+10);
                 
                 if(opcion>0){
-                    dibujadoLetras("^", MarcoX+20+((opcion-1)*64), MarcoY+MarcoAlto+35, 3);
+                    dibujadoLetras("^", MarcoX+25+((opcion-1)*64), MarcoY+MarcoAlto+35,3);
                 }else{
-                    dibujadoLetras("^", 100+15, MarcoY+pJuego.tamanioCasilla*2+45, 3);
+                    dibujadoLetras("^", 100+15, MarcoY+pJuego.tamanioCasilla*2+45,3);
+
                 }
                
     }
