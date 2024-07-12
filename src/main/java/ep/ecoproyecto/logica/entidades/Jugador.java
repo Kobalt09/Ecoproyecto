@@ -11,6 +11,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import ep.ecoproyecto.logica.tipografia.Fuentes;
 import java.awt.Color;
+import java.awt.RenderingHints;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
@@ -306,19 +307,19 @@ public class Jugador extends Entidad{
                                         this.sombreroactual=this.sombreros[0];
                                         getsombre();
                                     }
-                                    case "gCopa" -> {
-                                        this.sombreros[1]="gCopa";
+                                    case "GCopa" -> {
+                                        this.sombreros[1]="GCopa";
                                         pJuego.NPC[2][1].inventario[cont]=null;
                                         this.sombreroactual=this.sombreros[1];
                                         getsombre();
                                     }
-                                    case "gPlaya" -> {
-                                        this.sombreros[2]="gPlaya";
+                                    case "GPlaya" -> {
+                                        this.sombreros[2]="GPlaya";
                                         pJuego.NPC[2][1].inventario[cont]=null;
                                         this.sombreroactual=this.sombreros[2];
                                         getsombre();
                                     }
-                                    case "botas" -> {
+                                    case "Botas" -> {
                                         if(this.inventario[0]==null){
                                             pJuego.efectos(4);
                                             pJuego.hud.mostrarmensaje("conseguiste "+obj.nombre);
@@ -354,7 +355,7 @@ public class Jugador extends Entidad{
             //nota se puede usar un getclass para saber el tipo o usar 
             switch(objnombre){
               
-                case "botas" -> {
+                case "Botas" -> {
                     if(this.inventario[0]==null){
                         pJuego.efectos(4);
                         pJuego.hud.mostrarmensaje("conseguiste "+objnombre);
@@ -578,30 +579,33 @@ public class Jugador extends Entidad{
         if (pJuego.jugador.getMapa()==this.mapa) {   
             if(pJuego.jugador.equals(this)) {
                 g2.drawImage(image,pantallaX,pantallaY,null);  
-                    if(sombreroactual!="ninguno"){
-                        g2.drawImage(sombrero,pantallaX,pantallaY,null);
-                    }
+                if(sombreroactual!="ninguno"){
+                    g2.drawImage(sombrero,pantallaX,pantallaY,null);
+                }
                 
                 if (username != null){
                     Fuentes tipoFuente=new Fuentes();
                     g2.setFont((tipoFuente.fuente(tipoFuente.upheaval,0,20)));
                     int textX = pantallaX + (image.getWidth() - g2.getFontMetrics().stringWidth(username))/2 ;
                     int textY = pantallaY - 5;
-
+                    
+                    //ANTI-LIASING
+                    g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                    g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+                    
                     //Bordes Negros//
-                     g2.setColor(Color.BLACK);
-                     g2.drawString(username, textX - 2, textY - 2);
-                     g2.drawString(username, textX - 2, textY + 2);
-                     g2.drawString(username, textX + 2, textY - 2);
-                     g2.drawString(username, textX + 2, textY + 2);
-                     g2.drawString(username, textX, textY - 2);
-                     g2.drawString(username, textX, textY + 2);
-                     g2.drawString(username, textX - 2, textY);
-                     g2.drawString(username, textX + 2, textY);
+                    g2.setColor(Color.BLACK);
+                    for (int i = -2; i <= 2; i++) {
+                        for (int j = -2; j <= 2; j++) {
+                            if (i != 0 || j != 0) {
+                                g2.drawString(username, textX + i, textY + j);
+                            }
+                        }
+                    }
 
-                     //Letras Blancas//
-                     g2.setColor(Color.WHITE);
-                     g2.drawString(username, textX, textY);
+                    //Letras Blancas//
+                    g2.setColor(Color.WHITE);
+                    g2.drawString(username, textX, textY);
 
 
 
@@ -620,21 +624,24 @@ public class Jugador extends Entidad{
                     g2.setFont((tipoFuente.fuente(tipoFuente.upheaval,0,20)));
                     int textX = dibX + (image.getWidth() - g2.getFontMetrics().stringWidth(username))/2 ;
                     int textY = dibY - 5;
-
+                    
+                    //ANTI-LIASING
+                    g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                    g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+                        
                     //Bordes Negros//
-                     g2.setColor(Color.BLACK);
-                     g2.drawString(username, textX - 2, textY - 2);
-                     g2.drawString(username, textX - 2, textY + 2);
-                     g2.drawString(username, textX + 2, textY - 2);
-                     g2.drawString(username, textX + 2, textY + 2);
-                     g2.drawString(username, textX, textY - 2);
-                     g2.drawString(username, textX, textY + 2);
-                     g2.drawString(username, textX - 2, textY);
-                     g2.drawString(username, textX + 2, textY);
-
-                     //Letras Blancas//
-                     g2.setColor(Color.WHITE);
-                     g2.drawString(username, textX, textY);
+                    g2.setColor(Color.BLACK);
+                    for (int i = -2; i <= 2; i++) {
+                        for (int j = -2; j <= 2; j++) {
+                            if (i != 0 || j != 0) {
+                                g2.drawString(username, textX + i, textY + j);
+                            }
+                        }
+                    }
+                    
+                    //Letras Blancas//
+                    g2.setColor(Color.WHITE);
+                    g2.drawString(username, textX, textY);
                 }
 
             }

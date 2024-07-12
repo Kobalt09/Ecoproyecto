@@ -14,6 +14,7 @@ public class Fuentes {
     public String upheaval="/fuente/upheavtt.ttf";
     public String roboto="/fuente/Roboto-Regular.ttf";
     public String pokemon="/fuente/pokemon_pixel_font.ttf";
+    public String pokemon2="/fuente/Pokemon_Classic.ttf";
     
     public Font fuente(String nFuente, int estilo, float tamanio){
         
