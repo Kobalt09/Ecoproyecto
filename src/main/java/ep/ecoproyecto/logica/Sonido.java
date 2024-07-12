@@ -19,7 +19,6 @@ public class Sonido {
     float volumen;
     
     public Sonido(){
-        
         sonidoURL[0]=getClass().getResource("/musica/paseo.wav");
         sonidoURL[1]=getClass().getResource("/musica/tiendajazz.wav");
         sonidoURL[2]=getClass().getResource("/efectos/moneda.wav");
@@ -28,9 +27,8 @@ public class Sonido {
         sonidoURL[5]=getClass().getResource("/efectos/powerup.wav");
         sonidoURL[6]=getClass().getResource("/efectos/Recoger.wav");
         sonidoURL[7]=getClass().getResource("/efectos/Select.wav");
+        sonidoURL[8]=getClass().getResource("/efectos/Victoria.wav");
     }
-    
-
     
     public void detenerMusica(){
         if(clip!=null && clip.isRunning())
@@ -67,15 +65,15 @@ public class Sonido {
     }
     
     public void reproducirmusica(int i) {
-            try{
-                    AudioInputStream ais= AudioSystem.getAudioInputStream(sonidoURL[i]);
-                    clip= AudioSystem.getClip();
-                    clip.open(ais);
-                    fc = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
-                    chequearVolumen();
-                    clip.start();
-                    clip.loop(Clip.LOOP_CONTINUOUSLY);
-            }catch(Exception e){}
+        try{
+            AudioInputStream ais= AudioSystem.getAudioInputStream(sonidoURL[i]);
+            clip= AudioSystem.getClip();
+            clip.open(ais);
+            fc = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
+            chequearVolumen();
+            clip.start();
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        }catch(Exception e){}
     }
     
     public void reproducirefecto(int i) {

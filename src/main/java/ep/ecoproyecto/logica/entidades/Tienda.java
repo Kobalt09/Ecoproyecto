@@ -33,11 +33,11 @@ public final class Tienda extends Entidad {
     public void establecerTienda(){
         this.inventario[0]=new ObjetoEquipo("Botas",16,6,pJuego);
         this.inventario[0].setPrecio(10);
-        this.inventario[1]=new ObjetoRecogible("Calvo",10,10,pJuego);
-        this.inventario[1].setPrecio(0);
-        this.inventario[2]=new ObjetoRecogible("GCopa",10,10,pJuego);
-        this.inventario[2].setPrecio(5);
-        this.inventario[3]=new ObjetoRecogible("GPlaya",10,10,pJuego);
+        this.inventario[1]=new ObjetoRecogible("gGorro",10,10,pJuego);
+        this.inventario[1].setPrecio(5);
+        this.inventario[2]=new ObjetoRecogible("gCopa",10,10,pJuego);
+        this.inventario[2].setPrecio(10);
+        this.inventario[3]=new ObjetoRecogible("gPlaya",10,10,pJuego);
         this.inventario[3].setPrecio(5);
     }
     
