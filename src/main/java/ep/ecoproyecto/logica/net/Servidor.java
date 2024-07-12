@@ -73,7 +73,7 @@ public class Servidor extends Thread{
             case MOVE->{
                 packet =new Paquete02Movimiento(data);
                 if (refresco++ % 10==0)
-                    System.out.println(((Paquete02Movimiento)packet).getUsername()+" movido a x "+((Paquete02Movimiento)packet).getX()+" y "+((Paquete02Movimiento)packet).getY()+" mirando a "+((Paquete02Movimiento)packet).getDir());
+                    //System.out.println(((Paquete02Movimiento)packet).getUsername()+" movido a x "+((Paquete02Movimiento)packet).getX()+" y "+((Paquete02Movimiento)packet).getY()+" mirando a "+((Paquete02Movimiento)packet).getDir());
                 this.manejarMov((Paquete02Movimiento)packet);
             }
             

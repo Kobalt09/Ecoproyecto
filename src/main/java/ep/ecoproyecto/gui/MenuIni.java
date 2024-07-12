@@ -247,18 +247,26 @@ public class MenuIni extends javax.swing.JFrame {
         ventana.setIconImage((new ImageIcon(getClass().getResource("/player/jg_abj_01.png"))).getImage());
 
         panelDeJuego.config.cargarConfig();
+        
         if (panelDeJuego.pantallaCompleta) {
-            ventana.setUndecorated(true);
+            panelDeJuego.setPantallaCompleta();
+         //   jPanel1.setPreferredSize(new java.awt.Dimension(panelDeJuego.screenWidth, panelDeJuego.screenHeight));
+           // ventana.setUndecorated(true);
         }
     }
     
     private void iniciarJuego(){
         panelDeJuego.configuracionDeJuego();
+        
         panelDeJuego.inicioJugador(nomb);
 
         panelDeJuego.gameThread = new Thread(panelDeJuego);
         panelDeJuego.gameThread.start();
-
+        
+        panelDeJuego.maxColumnasPantalla=panelDeJuego.screenWidth/32; 
+        panelDeJuego.maxFilasPantalla=panelDeJuego.screenHeight/32;
+       
+        
         this.setVisible(false);
         ventana.add(panelDeJuego);
         ventana.pack();
