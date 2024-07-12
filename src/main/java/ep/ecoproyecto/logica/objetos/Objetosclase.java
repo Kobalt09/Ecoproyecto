@@ -1,8 +1,6 @@
 package ep.ecoproyecto.logica.objetos;
-import ep.ecoproyecto.logica.Herramientas;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.entidades.Entidad;
-import java.awt.Rectangle;
 
 /**
  *

@@ -303,25 +303,25 @@ public class Jugador extends Entidad{
                                 
                                 this.cantInventario[4]=this.cantInventario[4]-obj.getPrecio();
                                 switch(obj.nombre){
-                                    case "calvo" -> {
-                                        this.sombreros[0]= "calvo";
+                                    case "Calvo" -> {
+                                        this.sombreros[0]= "Calvo";
                                         pJuego.NPC[2][1].inventario[cont]=null;
                                         this.sombreroactual=this.sombreros[0];
                                         getsombre();
                                     }
-                                    case "gCopa" -> {
-                                        this.sombreros[1]="gCopa";
+                                    case "GCopa" -> {
+                                        this.sombreros[1]="GCopa";
                                         pJuego.NPC[2][1].inventario[cont]=null;
                                         this.sombreroactual=this.sombreros[1];
                                         getsombre();
                                     }
-                                    case "gPlaya" -> {
-                                        this.sombreros[2]="gPlaya";
+                                    case "GPlaya" -> {
+                                        this.sombreros[2]="GPlaya";
                                         pJuego.NPC[2][1].inventario[cont]=null;
                                         this.sombreroactual=this.sombreros[2];
                                         getsombre();
                                     }
-                                    case "botas" -> {
+                                    case "Botas" -> {
                                         if(this.inventario[0]==null){
                                             pJuego.efectos(4);
                                             pJuego.hud.mostrarmensaje("conseguiste "+obj.nombre);
@@ -357,7 +357,7 @@ public class Jugador extends Entidad{
             //nota se puede usar un getclass para saber el tipo o usar 
             switch(objnombre){
               
-                case "botas" -> {
+                case "Botas" -> {
                     if(this.inventario[0]==null){
                         pJuego.efectos(4);
                         pJuego.hud.mostrarmensaje("conseguiste "+objnombre);

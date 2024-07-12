@@ -12,7 +12,7 @@ public class ObjetoRecogible extends Objetosclase{
         this.nombre=nombre;
         this.xMapa=posicionX*pJuego.tamanioCasilla;
         this.yMapa=posicionY*pJuego.tamanioCasilla;
-        if(nombre.equals("calvo")||nombre.equals("gCopa")||nombre.equals("gPlaya")){
+        if(nombre.equals("Calvo")||nombre.equals("GCopa")||nombre.equals("GPlaya")){
             down1= this.configuracion("/gorros/"+nombre);
         }else {
             down1= this.configuracion("/objetos/"+nombre);
