@@ -151,8 +151,10 @@ public class PanelJuego extends JPanel implements Runnable{
     }
     
     public void inicioJugador (){
-        String nomb=JOptionPane.showInputDialog(this, "Por favor, introduzca su nombre de usuario:");        
-        
+        String nomb;
+        do{
+            nomb=JOptionPane.showInputDialog(this, "Por favor, introduzca su nombre de usuario:");        
+        }while(nomb==null || nomb.trim().isEmpty());
         jugador = new JugadorMP(null,-1,this,keyH,nomb);
         jugadores.add((JugadorMP)jugador);
         
