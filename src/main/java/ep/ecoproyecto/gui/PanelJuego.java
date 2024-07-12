@@ -44,9 +44,9 @@ public class PanelJuego extends JPanel implements Runnable{
     
     public final int tamanioCasilla= tamanioCasillaOrig*escala; //casillas 64x64 
     
-    public final int maxColumnasPantalla= 16;
+    public  int maxColumnasPantalla= 16;
     //public final int maxColumnasPantalla= 10;
-    public final int maxFilasPantalla = 10;
+    public  int maxFilasPantalla = 10;
     public int screenWidth=tamanioCasilla *maxColumnasPantalla; // resoluciom en x 1024
     public int screenHeight=tamanioCasilla *maxFilasPantalla; //  resoluciom en x  640
     
@@ -129,6 +129,7 @@ public class PanelJuego extends JPanel implements Runnable{
         mini.establecerminijuegos();
         
         
+        
         this.jugador=new Jugador(this); //inicializa un jugador en blanco para las funciones que lo necesitan antes de darle valores
         
         //ESTADO DE JUEGO//
@@ -142,9 +143,11 @@ public class PanelJuego extends JPanel implements Runnable{
         GraphicsDevice gd = ge.getDefaultScreenDevice();
         gd.setFullScreenWindow(frame);
         
+        
         //CONSEGUIR LOS DATOS DE LA NUEVA RESOLUCION//
         screenWidth = frame.getWidth();
         screenHeight = frame.getHeight();
+        this.setPreferredSize(new Dimension(screenWidth,screenHeight));
     }
     
     public void inicioJugador (String nomb){

@@ -113,7 +113,7 @@ public class Jugador extends Entidad{
     
     private void valoresporDefecto(){
         //posicion del jugador en el arreglo +1,
-        xMapa=10*pJuego.tamanioCasilla+pJuego.tamanioCasilla;
+        xMapa=15*pJuego.tamanioCasilla+pJuego.tamanioCasilla;
         yMapa=10*pJuego.tamanioCasilla+pJuego.tamanioCasilla;
         
         estado=estadojuego;
