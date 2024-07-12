@@ -55,13 +55,10 @@ public class InterfazJugador{
     public void dibujado(Graphics2D g2,Jugador jugador){
         this.g2 = g2;
         
-        g2.setFont(fuente.fuente(fuente.upheaval,0,25));
-        g2.setColor(Color.WHITE);
-        g2.drawString("posicion X:"+(pJuego.jugador.xMapa/64)+" Y "+(pJuego.jugador.yMapa/64), pJuego.screenWidth-800, pJuego.screenHeight-50);
-
-        //g2.setFont(fuente);
-        g2.drawString("Unidades de credito: "+(pJuego.jugador.cantInventario[4]),50, 50);
+        dibujadoLetras("Posicion:  X:"+(pJuego.jugador.xMapa/64)+"  Y: "+(pJuego.jugador.yMapa/64), pJuego.screenWidth-800, pJuego.screenHeight-50, false);
         
+        //g2.setFont(fuente);
+        dibujadoLetras("Unidades de credito: "+(pJuego.jugador.cantInventario[4]), 50, 50, false);
         
         if (pJuego.pause){
             dibujadoFondo();
