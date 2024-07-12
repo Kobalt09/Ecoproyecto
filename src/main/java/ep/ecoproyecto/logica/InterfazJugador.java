@@ -366,11 +366,6 @@ public class InterfazJugador{
             int MarcoY=pJuego.tamanioCasilla/6+124;
             int MarcoAncho=pJuego.tamanioCasilla;
             int MarcoAlto=pJuego.tamanioCasilla;
-                /*
-                //Color c= new Color(9,28,21);/
-                g2.setColor(Color.ORANGE);
-                g2.fillRect(MarcoX, MarcoY, MarcoAncho, MarcoAlto);
-                */
             BufferedImage casilla=this.configuracion("/objetos/casilla");
             int cont=0;
                 
@@ -396,9 +391,9 @@ public class InterfazJugador{
                 
                 g2.setColor(Color.WHITE);
                 if(opcion>0){
-                    g2.drawString("^", MarcoX+27+((opcion-1)*64), MarcoY+MarcoAlto+32);
+                    g2.drawString("*", MarcoX+27+((opcion-1)*64), MarcoY+MarcoAlto+32);
                 }else{
-                    g2.drawString("^", 100+20, MarcoY+pJuego.tamanioCasilla*2+40);
+                    g2.drawString("*", 100+20, MarcoY+pJuego.tamanioCasilla*2+40);
                 }
                
     }
