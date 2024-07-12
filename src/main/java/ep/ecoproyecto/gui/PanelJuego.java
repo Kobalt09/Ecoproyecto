@@ -147,11 +147,7 @@ public class PanelJuego extends JPanel implements Runnable{
         screenHeight = frame.getHeight();
     }
     
-    public void inicioJugador (){
-        String nomb;
-        do{
-            nomb=JOptionPane.showInputDialog(this, "Por favor, introduzca su nombre de usuario:");        
-        }while(nomb==null || nomb.trim().isEmpty());
+    public void inicioJugador (String nomb){
         if (pantallaCompleta){
             setPantallaCompleta();
         }
