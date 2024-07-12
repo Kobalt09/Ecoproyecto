@@ -7,6 +7,7 @@ import ep.ecoproyecto.logica.objetos.Objetosclase;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -235,16 +236,19 @@ public class InterfazJugador{
             }
         }
         
+        //ANTI-LIASING
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        
         //BORDES NEGROS//
         g2.setColor(Color.BLACK);
-        g2.drawString(texto, x - b, y - b);
-        g2.drawString(texto, x + b, y + b);
-        g2.drawString(texto, x + b, y - b);
-        g2.drawString(texto, x - b, y + b);
-        g2.drawString(texto, x, y + b);
-        g2.drawString(texto, x, y - b);
-        g2.drawString(texto, x + b, y);
-        g2.drawString(texto, x - b, y);
+        for (int i = -b; i <= b; i++) {
+            for (int j = -b; j <= b; j++) {
+                if (i != 0 || j != 0) {
+                    g2.drawString(texto, x + i, y + j);
+                }
+            }
+        }
         
         //LETRAS BLANCAS//
         g2.setColor(Color.WHITE);
