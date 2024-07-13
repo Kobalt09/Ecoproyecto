@@ -1,4 +1,5 @@
 package ep.ecoproyecto.gui;
+
 import ep.ecoproyecto.logica.ControladorEventos;
 import ep.ecoproyecto.logica.InterfazJugador;
 import ep.ecoproyecto.logica.EmisorObjetos;
@@ -28,7 +29,6 @@ import java.util.logging.Logger;
 import javax.swing.JPanel;
 import java.util.LinkedList;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import ep.ecoproyecto.logica.minijuegos.Minijuego;
 
 /**

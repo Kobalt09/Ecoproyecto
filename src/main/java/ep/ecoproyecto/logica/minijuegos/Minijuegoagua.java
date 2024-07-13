@@ -1,15 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ep.ecoproyecto.logica.minijuegos;
 
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.entidades.Agujero;
 
 /**
- *
- * @author Cris
+ * Se encarga de el minijuego de recoger basura en el agua
+ * @author C-A-F
  */
 public class Minijuegoagua extends Minijuego{
     

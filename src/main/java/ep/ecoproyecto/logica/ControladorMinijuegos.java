@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ep.ecoproyecto.logica;
 
 import ep.ecoproyecto.gui.PanelJuego;
@@ -10,7 +6,7 @@ import ep.ecoproyecto.logica.minijuegos.Minijuegoarboles;
 import ep.ecoproyecto.logica.minijuegos.Minijuegobasura;
 
 /**
- *
+ * Establece los minijuegos para cada mapa
  * @author C-A-F
  */
 public class ControladorMinijuegos {

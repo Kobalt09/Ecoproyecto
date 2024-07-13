@@ -1,16 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ep.ecoproyecto.logica.entidades;
 
 import ep.ecoproyecto.gui.PanelJuego;
 import java.awt.Rectangle;
 
 /**
- *
- * @author Cris
+ * Asigna un comportamiento para las casillas para el minijugo de plantar arboles
+ * @author C-A-F
  */
+
 public final class Agujero extends Entidad{
     public String estado;
     

@@ -1,4 +1,5 @@
 package ep.ecoproyecto.logica.casillas;
+
 import ep.ecoproyecto.logica.Herramientas;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.Interfaces.Dibujado;
@@ -11,8 +12,8 @@ import java.io.InputStreamReader;
 import javax.imageio.ImageIO;
 
 /**
- *
- * @author hp
+ * Maneja lo resalcionado con cargar, asignar y dibujar las casillas
+ * @author C-A-F
  */
 public class ManejadorCasillas  implements Dibujado{
     

@@ -4,9 +4,11 @@ import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
 /**
- *
+ * Recibe los comandos del teclado y los interpreta para saber 
+ * que tecla se está presionando
  * @author C-A-F
  */
+
 public class KeyHandler implements KeyListener{
 
     public boolean upPressed, downPressed, leftPressed, rightPressed,PPressed,escPressed,ePressed, enterPressed;

@@ -1,9 +1,12 @@
 package ep.ecoproyecto.logica.net.packets;
+
 import ep.ecoproyecto.logica.net.*;
+
 /**
- *
+ * Clase que define los tipos de paquetes y su comportamiento base
  * @author C-A-F
  */
+
 public abstract class Paquete {
     public static enum PacketTypes{
         INVALID(-1), LOGIN(00), DISCONNECT(01),MOVE(02),CAMBIO(03);

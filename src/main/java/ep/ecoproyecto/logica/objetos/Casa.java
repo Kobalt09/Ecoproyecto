@@ -1,17 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ep.ecoproyecto.logica.objetos;
 
 import ep.ecoproyecto.gui.PanelJuego;
 import java.awt.Rectangle;
 
 /**
- *
+ * Casa con las dimensiones de 3x2
  * @author C-A-F
  */
+
 public class Casa extends Objetosclase {
+      /**
+     * constructor de clase casa
+     * @param nombre nombre de la casa
+     * @param posicionX posicion en horizontal
+     * @param posicionY posicion en vertical
+     * @param pJuego panel donde se dibujará
+     */
     
     public Casa(String nombre, int posicionX, int posicionY, PanelJuego pJuego) {
         super(pJuego);

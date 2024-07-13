@@ -1,9 +1,11 @@
 package ep.ecoproyecto.logica.entidades;
+
 import ep.ecoproyecto.gui.PanelJuego;
 import java.awt.Rectangle;
 import java.util.Random;
+
 /**
- *
+ * Comportamiento del NPC del Chiguire
  * @author C-A-F
  */
 public final class Chiguire extends Entidad {

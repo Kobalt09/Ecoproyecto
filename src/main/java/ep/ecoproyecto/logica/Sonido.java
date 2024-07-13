@@ -7,9 +7,10 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
 /**
- *
+ * Asigna y permite la reproduccion de efectos de sonido y musica
  * @author C-A-F
  */
+
 public class Sonido {
     //los archivos deben ser WAP de 16bits
     Clip clip;

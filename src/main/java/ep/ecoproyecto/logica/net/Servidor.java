@@ -14,10 +14,12 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.util.LinkedList;
+
 /**
- *
+ * Jugador que aporta un servidor para jugar en linea
  * @author C-A-F
  */
+
 public class Servidor extends Thread{
     private DatagramSocket socket;
     private PanelJuego pJuego;
@@ -117,19 +119,19 @@ public class Servidor extends Thread{
         packet.writeData(this);
     }
     
-    public JugadorMP getJugadorMP(String username){
+    public JugadorMP getJugadorMP(String usuario){
         for (JugadorMP jugador:jugadoresConectados){
-            if (jugador.getUsername().equals(username)){
+            if (jugador.getUsername().equals(usuario)){
                 return jugador;
             }
         }
         return null;
     }
     
-    public int getJugadorMPindex(String username){
+    public int getJugadorMPindex(String usuario){
         int index = 0;
         for (JugadorMP jugador:jugadoresConectados){
-            if (jugador.getUsername().equals(username)){
+            if (jugador.getUsername().equals(usuario)){
                 break;
             }
             index++;
