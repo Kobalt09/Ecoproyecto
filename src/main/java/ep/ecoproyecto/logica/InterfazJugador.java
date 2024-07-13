@@ -388,7 +388,7 @@ public class InterfazJugador{
                 g2.drawImage(casilla, MarcoX+(cont), MarcoY, MarcoAncho,MarcoAncho,null);
 
                 if(obj!=null){
-                    if(obj.nombre.equals("botas")){
+                    if(obj.nombre.equals("Botas")){
                         g2.drawImage(obj.down1, MarcoX+(cont), MarcoY, MarcoAncho,MarcoAncho,null);
                     }else{
                         g2.drawImage(obj.down1, MarcoX+(cont), MarcoY+10, MarcoAncho,MarcoAncho+10,null);
