@@ -4,7 +4,7 @@ import ep.ecoproyecto.gui.PanelJuego;
 import java.awt.Rectangle;
 import java.util.Random;
 /**
- * Comportamiento del NPC del Trpial
+ * Comportamiento del entidades del Trpial
  * @author C-A-F
  */
 public final class Turpial extends Entidad {

@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 import java.util.Random;
 
 /**
- * Comportamiento del NPC del zamuro
+ * Comportamiento del entidades del zamuro
  * @author C-A-F
  */
 

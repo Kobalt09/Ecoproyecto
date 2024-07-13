@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 import java.util.Random;
 
 /**
- * Comportamiento del NPC de la Tonina
+ * Comportamiento del entidades de la Tonina
  * @author C-A-F
  */
 

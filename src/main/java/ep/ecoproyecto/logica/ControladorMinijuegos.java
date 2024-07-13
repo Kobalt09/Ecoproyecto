@@ -12,15 +12,21 @@ import ep.ecoproyecto.logica.minijuegos.Minijuegobasura;
 public class ControladorMinijuegos {
     //public Minijuego minijuegos;
     public PanelJuego pJuego;
-
+    
+    /**
+     * Constructor de la clase
+     * @param pJuego Panel donde se ubicará la clase
+     */
     public ControladorMinijuegos(PanelJuego pJuego) {
         this.pJuego = pJuego;
     }
-    
+    /**
+     * pone los minijuegos en cada mapa
+     */
     public void establecerminijuegos(){
         
         
-                //----MUNDO 1:-----//
+        //----MUNDO 1:-----//
         int NumMap = 0;
        
         
@@ -43,7 +49,11 @@ public class ControladorMinijuegos {
         pJuego.minijuego[NumMap][0]= new Minijuegoarboles(pJuego);
                   
     }
-    
+    /**
+     * Activa un minijuego
+     * @param mapa mapa del minijuego
+     * @param num numero del minijuego
+     */
     public void activarMini(int mapa, int num){
         pJuego.minijuego[mapa][num].interaccion();
     }

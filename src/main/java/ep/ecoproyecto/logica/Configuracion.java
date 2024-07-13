@@ -15,10 +15,16 @@ public class Configuracion {
     
     private final PanelJuego pJuego;
 
+    /**
+     * Constructor de la clase
+     * @param pJuego Panel donde se ubicará
+     */
     public Configuracion(PanelJuego pJuego) {
         this.pJuego = pJuego;
     }
-    
+    /**
+     * guarda en un archivo la configuracion del juego
+     */
     public void guardarConfig(){
         try {
             try (BufferedWriter bw = new BufferedWriter(new FileWriter("config.txt"))) {
@@ -41,7 +47,9 @@ public class Configuracion {
         } catch (IOException ex) {
         }
     }
-    
+    /**
+     * carga de un archivo de texto la configuracion del juego
+     */
     public void cargarConfig(){
         try {
             try (BufferedReader br = new BufferedReader(new FileReader("config.txt"))) {

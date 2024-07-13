@@ -32,37 +32,57 @@ public class InterfazJugador{
     public int opcion=0;
     public int opcionMenu=0;
     public int subState = 0;
-    
+    /**
+     * Constructor de la clase
+     * @param pJuego Panel donde se ubicará la clase
+     */
     public InterfazJugador(PanelJuego pJuego) {
         this.pJuego = pJuego;
         
     }
-    
+    /**
+     * Muestra el mensaje recibido
+     * @param texto mensaje a mostrar
+     */
     public void mostrarmensaje(String texto) {
         mensaje=texto;
         mensajeOn= true;
     }
-    
+    /**
+     * Muestra la interfaz de la tienda
+     */
     public void mostrartienda() {
         if(tiendaOn==false){
             tiendaOn=true;
         }
     }
-    
+    /**
+     * Oculta la interfaz de la tienda
+     */
     public void guardartienda() {
         if(tiendaOn==true){
             tiendaOn=false;
         }
     }
-    
+    /**
+     * Muestra imagenes de los ods
+     * @param ods 
+     */
     public void mostrarODS(String ods){
         ODSOn=true;
         ODS=ods;
     }
+    /**
+     * Oculta las imagenes de los ods
+     */
     public void ocultarODS(){
         ODSOn=false;
     }
-    
+    /**
+     * Dibuja la interfaz que ve el jugador
+     * @param g2 base para dibujar en la pantalla
+     * @param jugador jugador del que se obtienen datos 
+     */
     public void dibujado(Graphics2D g2,Jugador jugador){
         this.g2 = g2;
         
@@ -78,7 +98,7 @@ public class InterfazJugador{
             dibujadoMenuPausa();
         }
         
-        //mostrar mensajes de NPC
+        //mostrar mensajes de entidades
         if(mensajeOn==true){
             int tarjeta=mensaje.length();
             g2.setColor(Color.blue);
@@ -112,13 +132,17 @@ public class InterfazJugador{
             }
         }
     }
-    
+    /**
+     * Dibuja un fondo oscuro
+     */
     public void dibujadoFondo(){
         Color colorOscuro = new Color(0,0,0,150);
         g2.setColor(colorOscuro);
         g2.fillRect(0, 0, pJuego.screenWidth, pJuego.screenHeight);
     }
-    
+    /**
+     * Dibuja el menu de pausa
+     */
     public void dibujadoMenuPausa(){
         
         int frameX = getXcentrado("Opciones:") - pJuego.tamanioCasilla;
@@ -133,7 +157,11 @@ public class InterfazJugador{
         
         pJuego.keyH.enterPressed = false;
     }
-    
+    /**
+     * Muestra las opciones del menu
+     * @param frameX posicion en x para el dibujado
+     * @param frameY posicion en y para el dibujado
+     */
     public void opciones_Top(int frameX, int frameY){
         int textoX, textoY;
         
@@ -210,11 +238,24 @@ public class InterfazJugador{
         pJuego.config.guardarConfig();
     }
     
+    /**
+     * Devuelve las coordenadas para hacaer que el texto se vea centrado
+     * @param texto cadena la cual se requiere centrar 
+     * @return desplazamiento en x
+     */
+    
     private int getXcentrado(String texto){
         int length = (int)g2.getFontMetrics().getStringBounds(texto, g2).getWidth();
         return pJuego.screenWidth/2 - length/2;
     }
     
+    /**
+     * Dibuja rectangulos y cuadrados
+     * @param x posicion en horizontal
+     * @param y posicion en vertical
+     * @param rect valor que decide si es un rectangulo o cuadrado
+     * @param cantidad cantidad de rectangulos a dibujar consecutivos
+     */
     private void dibujadoRect(int x,int y, boolean rect, int cantidad){
         int dimX = 36, dimY = 36;
         if (rect)
@@ -234,7 +275,13 @@ public class InterfazJugador{
             g2.fillRect(x+8+i*24, y+8, dimX-15, dimY-15);
         }
     }
-    
+    /**
+     * Dibuja letras con borde negro
+     * @param texto mensaje a dibujar
+     * @param x posicion en horizontal
+     * @param y posicion en vertical
+     * @param tipo tipo de letra para imprimir el nombre
+     */
     private void dibujadoLetras(String texto, int x, int y, int tipo){
         Fuentes tipoFuente=new Fuentes();
         int b = 0;
@@ -253,7 +300,7 @@ public class InterfazJugador{
             }
         }
         
-        //ANTI-LIASING
+        //ANTI-ALIASING
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         
@@ -271,7 +318,11 @@ public class InterfazJugador{
         g2.setColor(Color.WHITE);
         g2.drawString(texto, x, y);
     }
-    
+    /**
+     * Avisa cuando se activa la pantalla completa y da un regreso al menu
+     * @param frameX posicion en horizontal
+     * @param frameY posicion en vertical
+     */
     public void pantallaCompletaNotif(int frameX, int frameY){
         int textoX = frameX - pJuego.tamanioCasilla*2;
         int textoY = frameY + pJuego.tamanioCasilla*3;
@@ -294,7 +345,11 @@ public class InterfazJugador{
             }
         }
     }
-    
+    /**
+     * Muestra los controles del juego
+     * @param frameX posicion en horizontal
+     * @param frameY posicion en vertical
+     */
     public void controlesMenu(int frameX, int frameY){
         int textoX = getXcentrado("CONTROLES:") - pJuego.tamanioCasilla,
         textoY = frameY + pJuego.tamanioCasilla;
@@ -330,7 +385,11 @@ public class InterfazJugador{
             }
         }
     }
-    
+    /**
+     * pregunta si de verdad se quiere cerrar el juego
+     * @param frameX posicion en horizontal
+     * @param frameY posicion en vertical
+     */
     public void cerrarJuegoConfirm(int frameX, int frameY){
         int textoX = frameX - pJuego.tamanioCasilla*2;
         int textoY = frameY + pJuego.tamanioCasilla*3;
@@ -364,7 +423,11 @@ public class InterfazJugador{
             }
         }
     }
-    
+    /**
+     * Dibuja el inventario actual del jugador
+     * @param g2 base para el dibujado en pantalla
+     * @param jugador de donde se sacará el inventario actual
+     */
     public void dibujadoinventario(Graphics2D g2,Jugador jugador){
             int MarcoX=(pJuego.screenWidth/2)-128;
             int MarcoY=pJuego.tamanioCasilla/6;
@@ -387,7 +450,10 @@ public class InterfazJugador{
                 cont=cont+pJuego.tamanioCasilla;
             }    
     }
-    
+    /**
+     * Dibuja el menu de tienda
+     * @param g2 base para el dibujado en pantalla
+     */
     public void tienda(Graphics2D g2){
             int MarcoX=(pJuego.screenWidth/2)-128;
             int MarcoY=pJuego.tamanioCasilla/6+124;
@@ -398,7 +464,7 @@ public class InterfazJugador{
 
                 
         dibujadoFondo();
-        for(Objetosclase obj:pJuego.NPC[2][1].inventario){
+        for(Objetosclase obj:pJuego.entidades[2][1].inventario){
             if(cont<pJuego.tamanioCasilla*4){
                 g2.drawImage(casilla, MarcoX+(cont), MarcoY, MarcoAncho,MarcoAncho,null);
 
@@ -426,11 +492,16 @@ public class InterfazJugador{
                 }
                
     }
-    
+    /**
+     * Dibuja la informacion de los objetos
+     * @param g2 base para el dibujado en pantalla
+     * @param objselect objeto seleccionado actualmente
+     * @param MarcoY posicion en vertical para colocar los objetos
+     */
     public void dibujadoinfoTienda(Graphics2D g2,int objselect ,int MarcoY){
         int cont=0;
         
-        for(Objetosclase obj:pJuego.NPC[2][1].inventario){
+        for(Objetosclase obj:pJuego.entidades[2][1].inventario){
             cont++;
             if(obj!=null && cont==objselect){
                 dibujadoLetras(obj.nombre,100, MarcoY+pJuego.tamanioCasilla/2+10, 2);
@@ -439,7 +510,11 @@ public class InterfazJugador{
         }
         dibujadoLetras("Salir",100, MarcoY+pJuego.tamanioCasilla*2, 2);
     }
-    
+    /**
+     * envia una imagen escalada de una  direccion de archivo
+     * @param nombre direccion del archivo
+     * @return imagen del archivoen tamaño de casilla
+     */
     public BufferedImage configuracion(String nombre){
         
         Herramientas herramienta = new Herramientas();
@@ -454,7 +529,11 @@ public class InterfazJugador{
         
         return imagen;
     }
-    
+    /**
+     * Escala y envia las imagenes de los ods
+     * @param nombre nombre de la imagen
+     * @return Imagen escalada
+     */
         public BufferedImage configuracionODS(String nombre){
         
         Herramientas herramienta = new Herramientas();

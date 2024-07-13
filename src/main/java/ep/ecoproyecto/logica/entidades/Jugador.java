@@ -220,8 +220,8 @@ public class Jugador extends Entidad{
         colision=false;
         pJuego.colisiones.revisarColision(this);
     
-                //colision NPC
-                intereaccionNCP(pJuego.colisiones.chequeoEntidades(this, pJuego.NPC));
+                //colision entidades
+                intereaccionNCP(pJuego.colisiones.chequeoEntidades(this, pJuego.entidades));
                 
                 //colision objetos
                 recogerobjetos(pJuego.colisiones.chequeoObjetos(this, true));
@@ -295,27 +295,27 @@ public class Jugador extends Entidad{
                 }else{
                     int cont=0;
                     
-                    for(Objetosclase obj:pJuego.NPC[2][1].inventario){
+                    for(Objetosclase obj:pJuego.entidades[2][1].inventario){
                         if(obj!=null && cont==(pJuego.hud.opcion-1) ){
-                            if(!(obj.getPrecio()>this.cantInventario[4])&&(pJuego.NPC[2][1].inventario[cont]!=null)){
+                            if(!(obj.getPrecio()>this.cantInventario[4])&&(pJuego.entidades[2][1].inventario[cont]!=null)){
                                 
                                 this.cantInventario[4]=this.cantInventario[4]-obj.getPrecio();
                                 switch(obj.nombre){
                                     case "gGorro" -> {
                                         this.sombreros[0]= "gGorro";
-                                        pJuego.NPC[2][1].inventario[cont]=null;
+                                        pJuego.entidades[2][1].inventario[cont]=null;
                                         this.sombreroactual=this.sombreros[0];
                                         getsombre();
                                     }
                                     case "gCopa" -> {
                                         this.sombreros[1]="gCopa";
-                                        pJuego.NPC[2][1].inventario[cont]=null;
+                                        pJuego.entidades[2][1].inventario[cont]=null;
                                         this.sombreroactual=this.sombreros[1];
                                         getsombre();
                                     }
                                     case "gPlaya" -> {
                                         this.sombreros[2]="gPlaya";
-                                        pJuego.NPC[2][1].inventario[cont]=null;
+                                        pJuego.entidades[2][1].inventario[cont]=null;
                                         this.sombreroactual=this.sombreros[2];
                                         getsombre();
                                     }
@@ -325,13 +325,13 @@ public class Jugador extends Entidad{
                                             pJuego.hud.mostrarmensaje("conseguiste "+obj.nombre);
                                             vel=vel+2;
                                             this.inventario[0]=new ObjetoEquipo("Botas", 0, 0, pJuego);
-                                            pJuego.NPC[2][1].inventario[cont]=null;
+                                            pJuego.entidades[2][1].inventario[cont]=null;
                                         }
                                     }
                                 }
                             }else{
                                 
-                                if(pJuego.NPC[2][1].inventario[cont]==null){
+                                if(pJuego.entidades[2][1].inventario[cont]==null){
                                     pJuego.hud.mostrarmensaje("Ya compraste esto");
                                 }else{
                                     pJuego.hud.mostrarmensaje("Es muy caro");
@@ -402,21 +402,21 @@ public class Jugador extends Entidad{
         if(id!=999){
             if (interactuar==true){
                 pJuego.efectos(7);
-                if(pJuego.NPC[pJuego.mapaActual][id].movimiento==true){
+                if(pJuego.entidades[pJuego.mapaActual][id].movimiento==true){
                     if("right".equals(direction)){
-                        pJuego.NPC[pJuego.mapaActual][id].direction="left";
+                        pJuego.entidades[pJuego.mapaActual][id].direction="left";
                     }
                     if("left".equals(direction)){
-                        pJuego.NPC[pJuego.mapaActual][id].direction="right";
+                        pJuego.entidades[pJuego.mapaActual][id].direction="right";
                     }
                     if("up".equals(direction)){
-                        pJuego.NPC[pJuego.mapaActual][id].direction="down";
+                        pJuego.entidades[pJuego.mapaActual][id].direction="down";
                     }
                     if("down".equals(direction)){
-                        pJuego.NPC[pJuego.mapaActual][id].direction="up";
+                        pJuego.entidades[pJuego.mapaActual][id].direction="up";
                     }
                 }
-                switch (pJuego.NPC[pJuego.mapaActual][id]) {
+                switch (pJuego.entidades[pJuego.mapaActual][id]) {
                     case Tienda aux -> {
                         pJuego.hud.mostrarmensaje("Tienda");
                         estado=estadotienda;
@@ -435,7 +435,7 @@ public class Jugador extends Entidad{
                                 this.inventario[2]=null;
                                 this.cantInventario[2]=0;
                             }else{
-                                pJuego.hud.mostrarmensaje(pJuego.NPC[pJuego.mapaActual][id].mensaje);
+                                pJuego.hud.mostrarmensaje(pJuego.entidades[pJuego.mapaActual][id].mensaje);
                             }
                         }
                     case Agujero  aux -> {
@@ -530,12 +530,12 @@ public class Jugador extends Entidad{
                             pJuego.efectos(8);            
                             pJuego.hud.mostrarmensaje("FELICIDADES AYUDASTE A TODA LA ISLA");
                         }else{
-                            pJuego.hud.mostrarmensaje(pJuego.NPC[pJuego.mapaActual][id].mensaje);
+                            pJuego.hud.mostrarmensaje(pJuego.entidades[pJuego.mapaActual][id].mensaje);
                         }
                         tecla=false;
                     }
                     default -> {
-                        pJuego.hud.mostrarmensaje(pJuego.NPC[pJuego.mapaActual][id].mensaje);
+                        pJuego.hud.mostrarmensaje(pJuego.entidades[pJuego.mapaActual][id].mensaje);
                     }
                 }
             }
