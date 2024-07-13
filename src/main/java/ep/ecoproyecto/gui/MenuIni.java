@@ -184,10 +184,10 @@ public class MenuIni extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
     /**
      *inicia el juego si se presionó jugar
     *@param evt Indicador de acciones
-
     */
     private void jugarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarButtonActionPerformed
    
@@ -213,11 +213,18 @@ public class MenuIni extends javax.swing.JFrame {
         configurarVentana();
         iniciarJuego();
     }//GEN-LAST:event_jugarButtonActionPerformed
-    
+    /** 
+     * Inicia un servidor en el equipo
+     */
     private void iniciarServidor(){
         panelDeJuego.socketserver = new Servidor(panelDeJuego);
         panelDeJuego.socketserver.start();
     }
+    
+    /**
+     * Inicia el cliente con ajustes para entrar o no a un servidor
+     * @return devuelve verdadero si no se conecta a un sevidor
+     */
     
     private boolean iniciarCliente(){
         int respCliente = JOptionPane.showConfirmDialog(this, "Quieres ingresar a un server?", "Ingresar a un server", JOptionPane.YES_NO_OPTION);
@@ -240,6 +247,10 @@ public class MenuIni extends javax.swing.JFrame {
         return true;
     }
     
+    /**
+     * configura las opciones de la ventana
+     */
+    
     private void configurarVentana(){
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setResizable(false);
@@ -249,12 +260,14 @@ public class MenuIni extends javax.swing.JFrame {
         panelDeJuego.config.cargarConfig();
         
         if (panelDeJuego.pantallaCompleta) {
+            ventana.setUndecorated(true);
             panelDeJuego.setPantallaCompleta();
-         //   jPanel1.setPreferredSize(new java.awt.Dimension(panelDeJuego.screenWidth, panelDeJuego.screenHeight));
-           // ventana.setUndecorated(true);
+            
         }
     }
-    
+    /**
+     * Inicia los parametros del juego y muestra el frame en pantalla
+     */
     private void iniciarJuego(){
         panelDeJuego.configuracionDeJuego();
         
@@ -263,9 +276,6 @@ public class MenuIni extends javax.swing.JFrame {
         panelDeJuego.gameThread = new Thread(panelDeJuego);
         panelDeJuego.gameThread.start();
         
-        panelDeJuego.maxColumnasPantalla=panelDeJuego.screenWidth/32; 
-        panelDeJuego.maxFilasPantalla=panelDeJuego.screenHeight/32;
-       
         
         this.setVisible(false);
         ventana.add(panelDeJuego);

@@ -39,13 +39,12 @@ import ep.ecoproyecto.logica.minijuegos.Minijuego;
 public class PanelJuego extends JPanel implements Runnable{
     //configuracion de pantalla
     
-    final int tamanioCasillaOrig= 32; //dimenciones por defecto del jugador, NPC o mapa title 32x32
+    final int tamanioCasillaOrig= 32; //dimenciones por defecto del jugador, entidades o mapa title 32x32
     final int escala = 2; //escala los sprites de 32x32 a 64x64
     
     public final int tamanioCasilla= tamanioCasillaOrig*escala; //casillas 64x64 
     
     public  int maxColumnasPantalla= 16;
-    //public final int maxColumnasPantalla= 10;
     public  int maxFilasPantalla = 10;
     public int screenWidth=tamanioCasilla *maxColumnasPantalla; // resoluciom en x 1024
     public int screenHeight=tamanioCasilla *maxFilasPantalla; //  resoluciom en x  640
@@ -64,8 +63,6 @@ public class PanelJuego extends JPanel implements Runnable{
     //Fps permitidos
     int fps=60;
     
-
-
     public ManejadorCasillas manCas=new ManejadorCasillas(this); // maneja los mapas 
     public KeyHandler keyH= new KeyHandler();                    // detecta el teclado
     public Sonido controlmusica = new Sonido();
@@ -85,11 +82,11 @@ public class PanelJuego extends JPanel implements Runnable{
 
    
     
-    //Jugador, objetos y NPC
+    //Jugador, objetos y entidades
     public Jugador jugador;
     public LinkedList<JugadorMP> jugadores = new LinkedList<>(); 
     public Objetosclase obj[][]= new Objetosclase[maximoMundos][20];
-    public Entidad NPC[][]= new Entidad[maximoMundos][20];
+    public Entidad[][] entidades= new Entidad[maximoMundos][20];
     public Minijuego[][] minijuego=new Minijuego[maximoMundos][10];
 
 
@@ -117,8 +114,10 @@ public class PanelJuego extends JPanel implements Runnable{
         this.frame = frame;
         winH = new WindowHandler(this);
     }
+    /**
+     * prepara todo para antes de dibujar y comenzar el juego
+     */
     
-    //prepara todo para antes de dibujar y comenzar el juego
     public void configuracionDeJuego(){
         juego=this;
         
@@ -136,7 +135,9 @@ public class PanelJuego extends JPanel implements Runnable{
         pause=false;
         
     }
-    
+    /**
+     * Busca el tamaño de la pantalla y lo asigna, para tener pantalla completa
+     */
     public void setPantallaCompleta(){
         //OBTENER DISPOSITIVO DE PANTALLA LOCAL//
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -149,12 +150,15 @@ public class PanelJuego extends JPanel implements Runnable{
         screenHeight = frame.getHeight();
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
     }
-    
-    public void inicioJugador (String nomb){
+    /**
+     * Inicia las variables del jugador
+     * @param nombreUsuario nombre del usuario para su personaje
+     */
+    public void inicioJugador (String nombreUsuario){
         if (pantallaCompleta){
             setPantallaCompleta();
         }
-        jugador = new JugadorMP(null,-1,this,keyH,nomb);
+        jugador = new JugadorMP(null,-1,this,keyH,nombreUsuario);
         jugadores.add((JugadorMP)jugador);
         
         Paquete00Login loginpacket = new Paquete00Login(jugador.getUsername(),jugador.xMapa,jugador.yMapa,jugador.direction,jugador.getMapa());
@@ -165,10 +169,13 @@ public class PanelJuego extends JPanel implements Runnable{
         loginpacket.writeData(socketCliente);
         
     }
-        
-    public void removePlayerMP(String usuarioname) {
+    /**
+     * quita a un jugador de la lista de conectados
+     * @param nombreUsuario nombre del jugador a desconectar
+     */     
+    public void removePlayerMP(String nombreUsuario) {
         for (JugadorMP j:jugadores){
-            if (j.getUsername().equals(usuarioname)){
+            if (j.getUsername().equals(nombreUsuario)){
                 jugadores.remove(j);
             }
         }
@@ -264,13 +271,15 @@ public class PanelJuego extends JPanel implements Runnable{
         }
         
 
-        manCas.actualizar(jugador,screenWidth, screenHeight);
+        manCas.actualizar();
       
     }
+    
     /**
      * dibuja todo lo que se ve en pantalla
      * @param g clase base para el dibujado
      */
+    
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -296,18 +305,30 @@ public class PanelJuego extends JPanel implements Runnable{
 
         g2.dispose();
     }
-    
+    /**
+     * reproduce la musica sin parar otra
+     * @param i indice de la musica a reproducir
+     */
     public void reproducirMusica(int i){
         controlmusica.reproducirmusica(i);
     }
-    
+    /**
+     * reproduce la musica para la tienda 
+     * @param i indice de la musica elegida
+     * @return devuelve el clip de audio cambiado
+     */
     public int reproducirmusicatienda(int i){
         return controlmusica.musicatienda(i);
     }
-    
+   
+    /**
+     * llama a reproducir el efecto especificado
+     * @param i indice del efecto a reproducir
+     */
     public void efectos(int i){
         controlsonido.reproducirefecto(i);
     }
+    
     /**
      * Devuelve el lugar en el indice del jugador deseado
      * @param usuario nombre del usuario
