@@ -36,9 +36,7 @@ public class ManejadorEntidades  implements Dibujado, Actualizar{
         pJuego.NPC[NumMap][0]= new Chiguire(pJuego,20,15);
         
         //posicion de la puerta(x,y,z), luego posiciona a la que hara el tp(xyz)
-        
-        //prueba
-        pJuego.NPC[NumMap][7]= new PuertaInteractuable(pJuego,"Ar",20,35,0  ,15, 15, 1);
+
         //tienda
         pJuego.NPC[NumMap][2]= new PuertaInteractuable(pJuego,"puerta",13,9,0   ,4, 8, 2);
         
