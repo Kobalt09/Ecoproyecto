@@ -357,7 +357,6 @@ public class InterfazJugador{
             
             BufferedImage casilla=this.configuracion("/objetos/casilla");
             int cont=0;
-
             
             for(Objetosclase obj:jugador.inventario){
                 
@@ -366,7 +365,8 @@ public class InterfazJugador{
                 }
                 if(obj!=null){
                     g2.drawImage(obj.down1, MarcoX+(cont), MarcoY, MarcoAncho,MarcoAncho,null);
-                
+                    if (cont/pJuego.tamanioCasilla==1 || cont/pJuego.tamanioCasilla==2)
+                        dibujadoLetras(String.valueOf(jugador.cantInventario[cont/pJuego.tamanioCasilla]),MarcoX+(cont),MarcoY+pJuego.tamanioCasilla,2);
                     //g2.drawImage(obj.down1, pJuego.tamanioCasilla*4+cont, pJuego.tamanioCasilla/4, pJuego.tamanioCasilla,pJuego.tamanioCasilla,null);
                 }
                 cont=cont+pJuego.tamanioCasilla;
