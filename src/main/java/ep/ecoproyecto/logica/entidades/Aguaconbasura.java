@@ -13,7 +13,9 @@ import javax.imageio.ImageIO;
  */
 
 public final class Aguaconbasura extends Entidad{
-
+    /**
+     * estado de la clase
+     */
     public String estado;
     /**
     * /**
