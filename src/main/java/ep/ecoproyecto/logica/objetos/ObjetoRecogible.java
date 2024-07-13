@@ -2,7 +2,7 @@ package ep.ecoproyecto.logica.objetos;
 import ep.ecoproyecto.gui.PanelJuego;
 import java.awt.Rectangle;
 /**
- *
+ * Es la clase que define los objetos recogibles por el jugador
  * @author C-A-F
  */
 public class ObjetoRecogible extends Objetosclase{
