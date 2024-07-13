@@ -458,9 +458,10 @@ public class Jugador extends Entidad{
                     case Tonina  aux -> {
                             if(pJuego.minijuego[3][0].terminado==true){
                                 if(aux.misioncumplida==false){
-                                    pJuego.hud.mostrarmensaje("Muchas gracias, ten estas U.N.D");
+                                    pJuego.hud.mostrarmensaje("Muchas gracias, ten estas U.C.");
                                     aux.misioncumplida=true;
                                     this.cantInventario[4]=this.cantInventario[4]+10;
+                                    pJuego.hud.ocultarODS();
                                 }else{
                                     pJuego.hud.mostrarmensaje("Muchas gracias de nuevo");
                                 }   
@@ -469,6 +470,7 @@ public class Jugador extends Entidad{
                                     pJuego.hud.mostrarmensaje("Hola, me ayudas a limpiar el agua? Usa esta red");
                                     this.inventario[3]= new ObjetoRecogible("Red", 1, 1, pJuego);
                                     pJuego.mini.activarMini(3, 0);
+                                    pJuego.hud.mostrarODS("ODS14");
                                 }else if(pJuego.minijuego[3][0].empezado==true){
                                     pJuego.minijuego[3][0].interaccion();
                                 }
@@ -477,9 +479,10 @@ public class Jugador extends Entidad{
                     case Turpial  aux -> {
                             if(pJuego.minijuego[5][0].terminado==true){
                                 if(aux.misioncumplida==false){
-                                    pJuego.hud.mostrarmensaje("Gracias, toma estas U.N.D");
+                                    pJuego.hud.mostrarmensaje("Gracias, toma estas U.C.");
                                     aux.misioncumplida=true;
                                     this.cantInventario[4]=this.cantInventario[4]+10;
+                                     pJuego.hud.ocultarODS();
                                 }else{
                                     pJuego.hud.mostrarmensaje("Gracias de nuevo");
                                 }
@@ -487,6 +490,7 @@ public class Jugador extends Entidad{
                                 if(pJuego.minijuego[5][0].empezado==false){
                                     pJuego.hud.mostrarmensaje("Hola, Podrias sembrar algunos arboles?");
                                     pJuego.mini.activarMini(5, 0);
+                                    pJuego.hud.mostrarODS("ODS15");
                                 }else if(pJuego.minijuego[5][0].empezado==true){
                                     pJuego.minijuego[5][0].interaccion();
                                 }
@@ -495,16 +499,18 @@ public class Jugador extends Entidad{
                     case Zamuro  aux -> {
                             if(pJuego.minijuego[4][0].terminado==true){
                                 if(aux.misioncumplida==false){
-                                    pJuego.hud.mostrarmensaje("Toma estas U.N.D");
+                                    pJuego.hud.mostrarmensaje("Toma estas U.C.");
                                     aux.misioncumplida=true;
                                     this.cantInventario[4]=this.cantInventario[4]+10;
+                                     pJuego.hud.ocultarODS();
                                 }else{
                                     pJuego.hud.mostrarmensaje("Ahora esa basura es toda mia");
                                 }
                             }else{
                                 if(pJuego.minijuego[4][0].empezado==false){
-                                    pJuego.hud.mostrarmensaje("Oye, recoge esa basura por mi te dare U.N.D");
+                                    pJuego.hud.mostrarmensaje("Oye, recoge esa basura por mi te dare U.C.");
                                     pJuego.mini.activarMini(4, 0);
+                                    pJuego.hud.mostrarODS("ODS13");
                                 }else if(pJuego.minijuego[4][0].empezado==true){
                                     pJuego.minijuego[4][0].interaccion();
                                 }
@@ -525,10 +531,6 @@ public class Jugador extends Entidad{
                             pJuego.hud.mostrarmensaje("FELICIDADES AYUDASTE A TODA LA ISLA");
                         }else{
                             pJuego.hud.mostrarmensaje(pJuego.NPC[pJuego.mapaActual][id].mensaje);
-                            pJuego.minijuego[4][0].terminado=true;
-                            pJuego.minijuego[3][0].terminado=true;
-                            pJuego.minijuego[5][0].terminado=true;
-                             this.cantInventario[4]=this.cantInventario[4]+50;
                         }
                         tecla=false;
                     }
@@ -613,8 +615,7 @@ public class Jugador extends Entidad{
 
 
                 }
-            }else
-            {
+            }else{
                 int dibX=pJuego.jugador.pantallaX+this.xMapa-pJuego.jugador.xMapa;
                 int dibY=pJuego.jugador.pantallaY+this.yMapa-pJuego.jugador.yMapa;
                // g2.drawImage(image,xMapa,yMapa,null);

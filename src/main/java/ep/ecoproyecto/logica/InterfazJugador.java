@@ -23,8 +23,10 @@ public class InterfazJugador{
     public BufferedImage imagen;
     public boolean mensajeOn=false;
     public boolean tiendaOn=false;
+    public boolean ODSOn=false;
     public boolean victoriaMensaje=false;
     public String mensaje="";
+    public String ODS="";
     int contMensajes=0;
     public int opcion=0;
     public int opcionMenu=0;
@@ -51,7 +53,14 @@ public class InterfazJugador{
             tiendaOn=false;
         }
     }
-
+    
+    public void mostrarODS(String ods){
+        ODSOn=true;
+        ODS=ods;
+    }
+    public void ocultarODS(){
+        ODSOn=false;
+    }
     
     public void dibujado(Graphics2D g2,Jugador jugador){
         this.g2 = g2;
@@ -81,10 +90,15 @@ public class InterfazJugador{
             
             g2.drawString(mensaje, pJuego.screenWidth/3, pJuego.tamanioCasilla/2+5);   
             contMensajes++;
-            if(contMensajes>60){
+            if(contMensajes>120){
                 contMensajes=0;
                 mensajeOn=false;
             }
+        }
+        
+        if(ODSOn==true){
+            imagen=this.configuracionODS("/ODS/"+ODS);
+            g2.drawImage(imagen, 35, 400, 330,210,null);  
         }
 
         //dibujado de inventario
@@ -433,6 +447,21 @@ public class InterfazJugador{
         try{
             imagen=ImageIO.read(getClass().getResourceAsStream(nombre+".png"));
             imagen= herramienta.imagenEscalada(imagen, pJuego.tamanioCasilla, pJuego.tamanioCasilla);
+            
+        }catch(IOException e){
+        }
+        
+        return imagen;
+    }
+    
+        public BufferedImage configuracionODS(String nombre){
+        
+        Herramientas herramienta = new Herramientas();
+        BufferedImage imagen= null;
+        
+        try{
+            imagen=ImageIO.read(getClass().getResourceAsStream(nombre+".png"));
+            imagen= herramienta.imagenEscalada(imagen, 350, 210);
             
         }catch(IOException e){
         }
