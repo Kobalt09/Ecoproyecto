@@ -9,7 +9,11 @@ import java.awt.Rectangle;
  */
 
 public final class Agujero extends Entidad{
+    /**
+     * estado de la clase
+     */
     public String estado;
+    
     /**
      * Constructor de la clase
      * @param pJuego panel donde se ubica
