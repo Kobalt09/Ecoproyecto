@@ -11,15 +11,16 @@ public abstract class Minijuego {
     PanelJuego pJuego;
     public boolean empezado, terminado;
     
-    
+    /**
+     * Constructor de la clase
+     * @param pJuego panel donde se ubica
+     */
     public Minijuego(PanelJuego pJuego) {
         this.pJuego = pJuego;
         empezado=false;
         terminado=false;
     }
-    
-    
-    
+
     public abstract void interaccion();
     
     public abstract void generarobjetos();

@@ -7,10 +7,10 @@
     <artifactId>Ecoproyecto</artifactId>
     <version>3.9.8</version>
     <packaging>jar</packaging>
-        <build>
+    <build>
         <plugins>
             <plugin>
-                <version>3.7.0</version>
+              
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <executions>

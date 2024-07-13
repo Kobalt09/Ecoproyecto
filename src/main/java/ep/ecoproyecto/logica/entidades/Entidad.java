@@ -1,4 +1,5 @@
 package ep.ecoproyecto.logica.entidades;
+
 import ep.ecoproyecto.logica.Herramientas;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.Interfaces.Actualizar;
@@ -44,11 +45,17 @@ public class Entidad implements Actualizar{
     public boolean movimiento;
     
     
+    /**
+     * Constructor de la clase
+     * @param pJuego panel donde estará
+     */
     public Entidad(PanelJuego pJuego){
         this.pJuego=pJuego;
     }
     
-    
+    /**
+     * actualiza las variables de la entidad
+     */
     @Override
     public void actualizar(){
         
@@ -78,7 +85,12 @@ public class Entidad implements Actualizar{
                 spriteCounter = 0;
             }
     }
-    
+   
+    /**
+     * Escala una imagen al tamaño de la casilla
+     * @param nombre ubicacion del archivo de la imagen
+     * @return imagen en tamaño de la casilla
+     */
     public BufferedImage configuracion(String nombre){
         
         Herramientas herramienta = new Herramientas();
@@ -93,21 +105,5 @@ public class Entidad implements Actualizar{
         
         return imagen;
     }
-    
-    public void dialogo(){
-        if(dialogo==false){
-            dialogo=true;
-            veloriginal=vel;
-            vel=0;
-            directionoriginal=direction;
-        }else{
-            dialogo=false;
-            vel=veloriginal;
-            direction=directionoriginal;
-        }
-    }
-    
-    public Entidad retornar(){
-        return this;
-    }
+  
 }

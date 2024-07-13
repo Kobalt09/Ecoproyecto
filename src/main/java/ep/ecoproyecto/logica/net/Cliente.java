@@ -35,7 +35,9 @@ public class Cliente extends Thread{
         } catch (SocketException | UnknownHostException ex) {
         }
     }
-    
+    /**
+     * Ejecucion constante de llamadas
+     */
     @Override
     public void run(){
         while(true){
@@ -49,7 +51,12 @@ public class Cliente extends Thread{
             this.parsePacket(packet.getData(), packet.getAddress(), packet.getPort());
         }
     }
-    
+      /**
+     * Determina que paquete se recibe y que se hace con el
+     * @param data data de un paquete
+     * @param direccion ip de donde llega
+     * @param puerto puerto del que llega
+     */
     private void parsePacket(byte[] data, InetAddress direccion, int puerto) {
         String mensaje = new String(data).trim();
         Paquete.PacketTypes type = Paquete.lookupPacket(mensaje.substring(0,2));
@@ -82,11 +89,17 @@ public class Cliente extends Thread{
             }
         }
     }
-    
+    /**
+     * obtiene la ip del servidor
+     * @return string de la direccion
+     */
     public String getServerIP() {
         return direccionIP.getHostAddress();
     }
-
+    /**
+     * envia datos empaquetados
+     * @param data datos a empaquetar
+     */
     public void enviarData(byte[] data){
         DatagramPacket packet = new DatagramPacket(data, data.length, direccionIP, 1234);
         try {
@@ -94,11 +107,18 @@ public class Cliente extends Thread{
         } catch (IOException ex) {
         }
     }
-    
+    /**
+     * mueve a los otros jugadores 
+     * @param packet paquete que llega con la informacion de los otros jugadores
+     */
     private void manejarMov(Paquete02Movimiento packet) {
         this.pJuego.moverJugadores(packet.getUsername(), packet.getX(), packet.getY(),packet.getDir());          
     }
 
+    /**
+     * cambia de mapa a los jugadores
+     * @param packet paquete que llega con la informacion de los otros jugadores
+     */
     private void cambioMapa(Paquete03Mapa packet) {
        pJuego.cambiarMapa(packet.getUsername(),packet.getMapa());
     }

@@ -8,11 +8,14 @@ import ep.ecoproyecto.logica.net.*;
  */
 
 public abstract class Paquete {
+    /**
+     * Asigna tipos de paqutes a los valores
+     */
     public static enum PacketTypes{
         INVALID(-1), LOGIN(00), DISCONNECT(01),MOVE(02),CAMBIO(03);
     
         private final int packetid;
-
+        
         private PacketTypes(int packetid) {
             this.packetid = packetid;
         }
@@ -24,7 +27,11 @@ public abstract class Paquete {
     }
     
     public byte packetid;
-
+    
+    /**
+     * constructor a bytes
+     * @param packetid 
+     */
     public Paquete(int packetid) {
         this.packetid = (byte) packetid;
     }
@@ -36,10 +43,14 @@ public abstract class Paquete {
         String mensaje = new String(data).trim();
         return mensaje.substring(2);
     }
-    
+
     public abstract byte[] getData();
     
-    //Buscar un paquete en especifico//
+    /**
+     * Busca un paquete en especifico
+     * @param packetId id del paquete en string
+     * @return numero del paquete
+     */
     public static PacketTypes lookupPacket(String packetId){
         try{
             return lookupPacket(Integer.parseInt(packetId));
@@ -47,7 +58,11 @@ public abstract class Paquete {
             return PacketTypes.INVALID;
         }
     }
-    
+    /**
+     * Busca un paquete en especifico
+     * @param id numero de id del paquete
+     * @return numero del paquete
+     */
     public static PacketTypes lookupPacket(int id){
         for (PacketTypes p:PacketTypes.values()){
             if (p.getPacketid() == id){

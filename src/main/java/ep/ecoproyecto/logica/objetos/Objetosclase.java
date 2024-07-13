@@ -13,12 +13,13 @@ public class Objetosclase extends Entidad{
     public int precio;
             
     /**
-     * 
+     * Panel para dibujar el objeto
      * @param pJuego panel de juego 
      */
     public Objetosclase(PanelJuego pJuego) {
         super(pJuego);
     }
+    
     /**
      * @return precio del objeto 
      */
