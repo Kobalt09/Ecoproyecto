@@ -10,7 +10,12 @@ import java.util.Random;
 public final class Turpial extends Entidad {
     
     public boolean misioncumplida=false;
-
+    /**
+     * Constructor de la clase
+     * @param pJuego panel donde se ubica
+     * @param x posicion en horizontal
+     * @param y posicion en vertical
+     */
     public Turpial(PanelJuego pJuego, int x, int y) {
         super(pJuego);
         this.xMapa=x*pJuego.tamanioCasilla;
@@ -24,12 +29,16 @@ public final class Turpial extends Entidad {
         this.mensaje="Hola, soy un Turpial";
         getImage();
     }
-    
+     /**
+     * asigna las imagenes para la clase
+     */
     public void getImage(){
         right1=up1=left1=down1=this.configuracion("/NPC/turpial");
         right2=up2=left2=down2=this.configuracion("/NPC/turpial1");
     }
-    
+      /**
+     * cambia la direccion del sprite
+     */
     public void estableceraccion(){
         if(movimiento==true){
         contadordeaccion++;

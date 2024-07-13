@@ -8,11 +8,16 @@ import ep.ecoproyecto.logica.objetos.ObjetoRecogible;
  * @author C-A-F
  */
 public class Minijuegobasura extends Minijuego{
-    
+    /**
+     * Constructor de la clase
+     * @param pJuego Panel donde se ubicará la clase
+     */
     public Minijuegobasura(PanelJuego pJuego) {
         super(pJuego);
     }
-    
+    /**
+     * comprueba el estado del evento
+     */
     @Override
     public void interaccion(){
         if(terminado==false && empezado==false){
@@ -25,7 +30,9 @@ public class Minijuegobasura extends Minijuego{
             }
         }     
     }
-    
+    /**
+     * genera los objetos del evento
+     */
     @Override
     public void generarobjetos(){
         //objetos
@@ -42,7 +49,9 @@ public class Minijuegobasura extends Minijuego{
         
         //pJuego.entidades[5][5]=new Papelera(pJuego,15,20);
     }
-    
+    /**
+     * comprueba que el evento haya terminado
+     */
     @Override
     public void comprobante(){    
         terminado=true;

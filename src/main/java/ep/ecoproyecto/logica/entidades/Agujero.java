@@ -10,7 +10,12 @@ import java.awt.Rectangle;
 
 public final class Agujero extends Entidad{
     public String estado;
-    
+    /**
+     * Constructor de la clase
+     * @param pJuego panel donde se ubica
+     * @param x posicion en horizontal
+     * @param y posicion en vertical
+     */
     public Agujero(PanelJuego pJuego, int x, int y) {
         super(pJuego);
         this.xMapa=x*pJuego.tamanioCasilla;
@@ -26,7 +31,9 @@ public final class Agujero extends Entidad{
         getImage();
     }
     
-    
+    /**
+     * obtiene la imagen para la clase
+     */
     public void getImage(){
         right1=right2=up1=up2=left1=left2=down2=down1=this.configuracion("/objetos/agujero/"+estado);
     }

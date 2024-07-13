@@ -36,7 +36,7 @@ public class ObjetoRecogible extends Objetosclase{
     }
     
     /**
-     * 
+     * metodo get del precio
      * @return retorna el precio del objeto
      */
     @Override
@@ -44,7 +44,7 @@ public class ObjetoRecogible extends Objetosclase{
         return precio;
     }
     /**
-    * 
+    * metodo set del precio
     * @param precio Precio a introducir en el objeto
     */
     @Override

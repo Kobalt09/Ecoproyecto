@@ -13,7 +13,7 @@ public class Paquete03Mapa extends Paquete {
     private int mapa;
     
     /**
-     * constructor del paquete
+     * constructor del paquete con bytes 
      * @param data bites de datos que se usa para construir un archivo
      */
     public Paquete03Mapa(byte[] data) {
@@ -23,6 +23,12 @@ public class Paquete03Mapa extends Paquete {
         this.usuario=datos[1];
         
     }
+/**
+ * constructor del paquete en variables
+ * @param mapa mapa a guardar
+ * @param usuario nombre del usuario a guarda
+ */
+    
     public Paquete03Mapa(int mapa,String usuario) {
         super(03);
         this.mapa = mapa;

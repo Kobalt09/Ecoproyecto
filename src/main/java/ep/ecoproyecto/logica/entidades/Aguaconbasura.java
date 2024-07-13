@@ -15,7 +15,13 @@ import javax.imageio.ImageIO;
 public final class Aguaconbasura extends Entidad{
 
     public String estado;
-
+    /**
+    * /**
+    * Constructor de la clase
+    * @param pJuego Panel donde se ubicará la clase
+    * @param x posicion en horizontal
+    * @param y posicion en vertical
+    */
     public Aguaconbasura(PanelJuego pJuego, int x, int y) {
         super(pJuego);
         this.xMapa=x*pJuego.tamanioCasilla;
@@ -31,11 +37,17 @@ public final class Aguaconbasura extends Entidad{
         getImage();
     }
     
-    
+    /**
+     * asigna la imagen del agua con o sin basura
+     */
     public void getImage(){
         right1=right2=up1=up2=left1=left2=down2=down1=this.configuracion("/objetos/agua/"+estado);
     }
-    
+     /**
+     * envia una imagen escalada de una  direccion de archivo
+     * @param nombre direccion del archivo
+     * @return imagen del archivoen tamaño de casilla
+     */
     @Override
     public BufferedImage configuracion(String nombre){
         

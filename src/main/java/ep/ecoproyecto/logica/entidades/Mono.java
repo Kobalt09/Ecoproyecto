@@ -25,13 +25,17 @@ public class Mono extends Entidad {
         
         getImage();
     }
-    
+     /**
+     * asigna las imagenes para la clase
+     */
     public void getImage(){
         right1=up1=left1=down1= this.configuracion("/NPC/mono");
         right2=up2=left2=down2=this.configuracion("/NPC/mono1");
     }
 
-    
+      /**
+     * cambia la direccion del sprite
+     */
     public void estableceraccion(){
         if(movimiento==true){
         contadordeaccion++;

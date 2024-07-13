@@ -72,17 +72,27 @@ public class Paquete00Login extends Paquete{
     public int getMapa() {
         return mapa;
     }
-    
+      /**
+    * Escribe su informacion para el cliente conectado
+    * @param cliente persona conectada al servidor
+    */ 
     @Override
     public void writeData(Cliente cliente) {
         cliente.enviarData(getData());
     }
-
+ /**
+     * envía la informacion de un cliente al servidor
+     * @param server servidor donde se envia la informacion
+     */
     @Override
     public void writeData(Servidor server) {
         server.enviarDataClientes(getData());
     }
-
+    
+    /**
+     * reparte los datos en bytes separados por comas
+     * @return bytes de datos 
+     */
     @Override
     public byte[] getData() {
         return ("00" + this.usuario+","+x+","+ y+","+dir+","+mapa ).getBytes();

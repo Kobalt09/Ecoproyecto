@@ -48,7 +48,10 @@ public class Jugador extends Entidad{
     public BufferedImage sombrero;
     public String sombreroactual;
 
-    
+    /**
+     * Constructor de la clase para inicializar antes de permitir movimiento
+     * @param pJuego panel de juego del jugador
+     */
     public Jugador(PanelJuego pJuego) {
         super(pJuego);
         this.keyH=new KeyHandler();
@@ -73,7 +76,12 @@ public class Jugador extends Entidad{
         valoresporDefecto();
         getPlayerImage();
     }
-    
+    /**
+     * Constructoe con keyH y usuario
+     * @param pJuego panel del jugador 
+     * @param keyH manejador de teclas
+     * @param usuario nombre a asignar para el usuario
+     */
     public Jugador(PanelJuego pJuego, KeyHandler keyH, String usuario){
         
         super(pJuego);
@@ -110,7 +118,9 @@ public class Jugador extends Entidad{
     public void setMapa(int mapa) {
         this.mapa = mapa;
     }
-    
+    /**
+     * Da valores por defecto a los jugadores para iniciar
+     */
     private void valoresporDefecto(){
         //posicion del jugador en el arreglo +1,
         xMapa=15*pJuego.tamanioCasilla+pJuego.tamanioCasilla;
@@ -135,7 +145,9 @@ public class Jugador extends Entidad{
     public String getUsername() {
         return usuario;
     }
-    
+    /**
+     * asigna los sprites al jugador
+     */
     private void getPlayerImage(){
         
         up1=configuracion("/player/jg_arr_01");
@@ -148,14 +160,20 @@ public class Jugador extends Entidad{
         right2=configuracion("/player/jg_der_02");
         
     }
-    
+    /**
+     * verifica si el jugador cuenta con un sombrero
+     */
     private void getsombre(){
         if(sombreroactual!="ninguno"){
-            sombrero=configuracionsombrero("/gorros/"+sombreroactual);
+            sombrero=configuracionSombrero("/gorros/"+sombreroactual);
         }
     }
-    
-    public BufferedImage configuracionsombrero(String nombre){
+    /**
+     * Devuele la imagen de un sombrero
+     * @param nombre nombre del sombrero
+     * @return imagen del sombrero actual
+     */
+    public BufferedImage configuracionSombrero(String nombre){
         
         Herramientas herramienta = new Herramientas();
         BufferedImage imagen= null;
@@ -170,7 +188,9 @@ public class Jugador extends Entidad{
         return imagen;
     }
     
-    
+    /**
+     * actualiza la posicion y estado del jugador
+     */
     public void update(){
         if(keyH != null){        
             interactuar=false;
@@ -188,6 +208,10 @@ public class Jugador extends Entidad{
             }    
         } 
     }
+    
+    /**
+     * aumenta un contador para el tiempo de presion de las teclas
+     */
     public void aumentarcontador(){
         contador++;
         if(contador>5){
@@ -195,9 +219,9 @@ public class Jugador extends Entidad{
             contador=0;
         }
     }
-    
-    
-    //la tienda se esta volviendo a abrir porque reconoce la precion de tecla mas de una vez asi que interactua denuevo con la tienda
+    /**
+     * Mueve al jugador y comprueba los eventos relacionados a el
+     */
     
     public void estadoJuego(){
         pJuego.hud.guardartienda();
@@ -224,7 +248,7 @@ public class Jugador extends Entidad{
                 intereaccionNCP(pJuego.colisiones.chequeoEntidades(this, pJuego.entidades));
                 
                 //colision objetos
-                recogerobjetos(pJuego.colisiones.chequeoObjetos(this, true));
+                recogerObjetos(pJuego.colisiones.chequeoObjetos(this, true));
 
                 if(colision==false && interactuar==false){
                     switch (direction) {
@@ -266,6 +290,9 @@ public class Jugador extends Entidad{
                 }
     }
 
+    /**
+     * mueve el hud de la tienda
+     */
     public void estadoTienda(){
         if(tecla==true){
             if(keyH.upPressed==true){
@@ -345,8 +372,11 @@ public class Jugador extends Entidad{
         }    
         pJuego.hud.mostrartienda();
     }
-            
-    public void recogerobjetos(int id){
+    /**
+     * Comprueba la recoleccion de objetos
+     * @param id id del objeto a recoger
+     */        
+    public void recogerObjetos(int id){
         if(id!=999){
             //usa el nombre del objeto para saber con cual objeto colisiona 
             String objnombre=pJuego.obj[pJuego.mapaActual][id].nombre;
@@ -391,13 +421,20 @@ public class Jugador extends Entidad{
             }
         }
     }
-    
+    /**
+     * Elimina el objeto recogido
+     * @param i indice del objeto 
+     */
     public void recogerObjeto(int i){
         if(i!=999){
             pJuego.obj[pJuego.mapaActual][i]=null;
         }
     }
           
+    /**
+     * comprueba la interaccin con un npc
+     * @param id id del npc
+     */
     public void intereaccionNCP(int id) {
         if(id!=999){
             if (interactuar==true){
@@ -541,7 +578,10 @@ public class Jugador extends Entidad{
             }
         }
     }
-    
+    /**
+     * dibuja el personaje 
+     * @param g2 Elemento basico para dibujar en la pantalla
+     */
     public void dibujado(Graphics2D g2){
 
         BufferedImage image = null;  

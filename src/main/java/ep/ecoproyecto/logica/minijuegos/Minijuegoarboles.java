@@ -9,12 +9,17 @@ import ep.ecoproyecto.logica.objetos.ObjetoRecogible;
  * @author C-A-F
  */
 public class Minijuegoarboles extends Minijuego{
-
+    /**
+     * Constructor de la clase
+     * @param pJuego Panel donde se ubicará la clase
+     */
     public Minijuegoarboles(PanelJuego pJuego) {
         super(pJuego);
     }
     
-    
+    /**
+     * comprueba el estado del evento
+     */
     
     @Override
     public void interaccion(){
@@ -30,7 +35,9 @@ public class Minijuegoarboles extends Minijuego{
     }
    
     
-    
+    /**
+     * genera los objetos del evento
+     */
     
     @Override
     public void generarobjetos(){
@@ -46,7 +53,9 @@ public class Minijuegoarboles extends Minijuego{
         
 
     }
-    
+    /**
+     * comprueba que el evento haya teminado
+     */
     @Override
     public void comprobante(){    
         terminado=true;

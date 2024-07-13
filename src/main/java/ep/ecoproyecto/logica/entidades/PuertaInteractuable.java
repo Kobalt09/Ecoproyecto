@@ -11,7 +11,17 @@ public final class PuertaInteractuable extends Entidad{
     int Xtp;
     int Ytp;
     int Ztp;
-    
+    /**
+     * Constructor de la clase
+     * @param pJuego panel donde se ubica la entidad
+     * @param nombre nombre del tipo de puerta
+     * @param x posicion en horizontal
+     * @param y posicion en vertica
+     * @param z mapa en el que se encuentra
+     * @param Xtp posicion en horizontal a la que transporta
+     * @param Ytp posicion en vertical a la que transporta
+     * @param Ztp mapa al que transporta
+     */
     public PuertaInteractuable(PanelJuego pJuego,String nombre, int x, int y,int z ,int Xtp, int Ytp, int Ztp) {
         super(pJuego);
         this.nombre=nombre;
@@ -30,7 +40,9 @@ public final class PuertaInteractuable extends Entidad{
         this.Ztp=Ztp;
         getImage();
     }
-
+     /**
+     * asigna las imagenes para la clase
+     */
     public void getImage(){
         if(this.nombre.equals("puerta")){
             right1=up1=left1=down1=right2=up2=left2=down2= this.configuracion("/objetos/puerta1Invis");

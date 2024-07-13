@@ -9,7 +9,12 @@ import java.awt.Rectangle;
  */
 
 public class Papelera extends Entidad{
-    
+    /**
+     * Constructor de la clase
+     * @param pJuego panel donde se ubica
+     * @param x posicion en horizontal
+     * @param y posicion en vertical
+     */
     public Papelera(PanelJuego pJuego, int x, int y) {
         super(pJuego);
         this.xMapa=x*pJuego.tamanioCasilla;
@@ -23,7 +28,9 @@ public class Papelera extends Entidad{
         getImage();
     }
     
-    
+     /**
+     * asigna la imagen para la clase
+     */
     public void getImage(){
         right1=right2=up1=up2=left1=left2=down2=down1=this.configuracion("/objetos/papelera/Casillapapelera");
     }
