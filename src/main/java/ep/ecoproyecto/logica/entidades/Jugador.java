@@ -307,14 +307,14 @@ public class Jugador extends Entidad{
                                         this.sombreroactual=this.sombreros[0];
                                         getsombre();
                                     }
-                                    case "GCopa" -> {
-                                        this.sombreros[1]="GCopa";
+                                    case "gCopa" -> {
+                                        this.sombreros[1]="gCopa";
                                         pJuego.NPC[2][1].inventario[cont]=null;
                                         this.sombreroactual=this.sombreros[1];
                                         getsombre();
                                     }
-                                    case "GPlaya" -> {
-                                        this.sombreros[2]="GPlaya";
+                                    case "gPlaya" -> {
+                                        this.sombreros[2]="gPlaya";
                                         pJuego.NPC[2][1].inventario[cont]=null;
                                         this.sombreroactual=this.sombreros[2];
                                         getsombre();
@@ -528,7 +528,9 @@ public class Jugador extends Entidad{
                             pJuego.minijuego[4][0].terminado=true;
                             pJuego.minijuego[3][0].terminado=true;
                             pJuego.minijuego[5][0].terminado=true;
+                             this.cantInventario[4]=this.cantInventario[4]+50;
                         }
+                        tecla=false;
                     }
                     default -> {
                         pJuego.hud.mostrarmensaje(pJuego.NPC[pJuego.mapaActual][id].mensaje);
