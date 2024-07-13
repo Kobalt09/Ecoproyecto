@@ -21,7 +21,7 @@ public class ObjetoMesa extends Objetosclase{
         this.yMapa=posicionY*pJuego.tamanioCasilla;
         down1= this.configuracion("/objetos/mesa");
         colision=true;
-        hitBox= new Rectangle(0,0,64,96);
+        hitBox= new Rectangle(0,0,64,64);
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
     }

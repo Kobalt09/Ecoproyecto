@@ -91,7 +91,7 @@ public class InterfazJugador{
             
             g2.drawString(mensaje, pJuego.screenWidth/3, pJuego.tamanioCasilla/2+5);   
             contMensajes++;
-            if(contMensajes>120){
+            if(contMensajes>90){
                 contMensajes=0;
                 mensajeOn=false;
             }

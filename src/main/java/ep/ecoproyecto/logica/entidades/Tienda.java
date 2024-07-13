@@ -27,7 +27,7 @@ public final class Tienda extends Entidad {
         right1=right2=up1=up2=left1=left2=down2=down1= this.configuracion("/objetos/CajaRegistradora");
         colision=true;
         
-        hitBox= new Rectangle(-128,32,128,64);
+        hitBox= new Rectangle(-1,-1,pJuego.tamanioCasilla+2,pJuego.tamanioCasilla+2);
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
         movimiento=false;
