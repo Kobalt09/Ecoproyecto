@@ -79,6 +79,10 @@ public class Cliente extends Thread{
             }
         }
     }
+    
+    public String getServerIP() {
+        return direccionIP.getHostAddress();
+    }
 
     public void enviarData(byte[] data){
         DatagramPacket packet = new DatagramPacket(data, data.length, direccionIP, 1234);

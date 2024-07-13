@@ -56,10 +56,12 @@ public class InterfazJugador{
     public void dibujado(Graphics2D g2,Jugador jugador){
         this.g2 = g2;
         
-        dibujadoLetras("Posicion:  X:"+(pJuego.jugador.xMapa/64)+"  Y: "+(pJuego.jugador.yMapa/64), pJuego.screenWidth-800, pJuego.screenHeight-50, 2);
-        
-        //g2.setFont(fuente);
         dibujadoLetras("Unidades de credito: "+(pJuego.jugador.cantInventario[4]), 50, 50, 2);
+        if (pJuego.socketserver!=null)
+            dibujadoLetras("IP Server: "+pJuego.socketserver.getServerIP(), getXcentrado("IP Server: ")+pJuego.tamanioCasilla*4, 50, 2);
+        else
+            dibujadoLetras("IP Server: "+pJuego.socketCliente.getServerIP(), getXcentrado("IP Server: ")+pJuego.tamanioCasilla*4, 50, 2);
+        dibujadoLetras("Posicion:  X:"+(pJuego.jugador.xMapa/64)+"  Y: "+(pJuego.jugador.yMapa/64), getXcentrado("Posicion:  X:22  Y:22"), pJuego.screenHeight-50, 2);
         
         if (pJuego.pause){
             dibujadoFondo();

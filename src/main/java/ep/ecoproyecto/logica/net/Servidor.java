@@ -13,6 +13,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.LinkedList;
 /**
  *
@@ -135,6 +136,14 @@ public class Servidor extends Thread{
             index++;
         }
         return index;
+    }
+    
+    public String getServerIP() {
+        try {
+            return InetAddress.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            return "Desconocida";
+        }
     }
     
     public void enviarData(byte[] data, InetAddress direccionIP, int puerto){
