@@ -9,6 +9,13 @@ import java.awt.image.BufferedImage;
  */
 
 public class Herramientas {
+    /**
+     * metodo para escalar imagenes
+     * @param original imagen original
+     * @param ancho ancho al que se escalará
+     * @param alto alto al que se escalará
+     * @return imagen escalada
+     */
     public BufferedImage imagenEscalada(BufferedImage original, int ancho, int alto){
         
         BufferedImage imagenEscalada= new BufferedImage(ancho,alto, original.getType());

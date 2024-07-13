@@ -13,14 +13,21 @@ public class KeyHandler implements KeyListener{
 
     public boolean upPressed, downPressed, leftPressed, rightPressed,PPressed,escPressed,ePressed, enterPressed;
     public PanelJuego pJuego;
+
     @Override
     public void keyTyped(KeyEvent e) {
     }
-    
+    /**
+     * Establece el panel para el keyHandler
+     * @param pJuego panel de juego
+     */
     public void establecerPanel(PanelJuego pJuego){
         this.pJuego=pJuego;
     }
-
+/**
+ * Revisa si se debe activar el estao de pausa
+ * @param e receptor de evento
+ */
     @Override
     public void keyPressed(KeyEvent e) {
         int code=e.getKeyCode();
@@ -36,7 +43,10 @@ public class KeyHandler implements KeyListener{
                 pJuego.pause = !pJuego.pause;
         }
     }
-
+/**
+ * Revisa si se dejó de presionar una tecla
+ * @param e receptor de eventos
+ */
     @Override
     public void keyReleased(KeyEvent e) {
         int code=e.getKeyCode();
@@ -57,9 +67,12 @@ public class KeyHandler implements KeyListener{
             ePressed=false;
         }
     }
-    
+    /**
+     * reconoce si una tecla esta siendo precionada
+     * @param code codigo de la ultima tecla presionada
+     */
     public void juegoState(int code){
-        //reconocer si una tecla esta siendo precionada
+       
         if(code==KeyEvent.VK_W || code==KeyEvent.VK_UP){
             upPressed=true;
         }
@@ -76,7 +89,10 @@ public class KeyHandler implements KeyListener{
             ePressed=true;
         }
     }
-    
+    /**
+     * Reconocer si una tecla esta siendo precionada para el menu
+     * @param code codigo de la ultima tecla presionada
+     */
     public void opcionesState(int code){
         
         if (code==KeyEvent.VK_ENTER){

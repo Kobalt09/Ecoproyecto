@@ -53,7 +53,7 @@ public class Minijuegoarboles extends Minijuego{
        
         
         for(int i=5;i<=10;i++){
-            if(pJuego.NPC[pJuego.mapaActual][i] instanceof Agujero Aux){
+            if(pJuego.entidades[pJuego.mapaActual][i] instanceof Agujero Aux){
                 if(Aux.estado.equals("Agujerovacio")){
                     terminado=false;
                 }

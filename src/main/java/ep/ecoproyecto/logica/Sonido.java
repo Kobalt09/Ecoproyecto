@@ -18,7 +18,9 @@ public class Sonido {
     FloatControl fc;
     int sonidoanterior, escalaVolumen = 3;
     float volumen;
-    
+    /**
+     * Inicializa los archivos para su uso
+     */
     public Sonido(){
         sonidoURL[0]=getClass().getResource("/musica/paseo.wav");
         sonidoURL[1]=getClass().getResource("/musica/tiendajazz.wav");
@@ -30,12 +32,18 @@ public class Sonido {
         sonidoURL[7]=getClass().getResource("/efectos/Select.wav");
         sonidoURL[8]=getClass().getResource("/efectos/Victoria.wav");
     }
-    
+    /**
+     * detiene un clip e audio
+     */
     public void detenerMusica(){
         if(clip!=null && clip.isRunning())
             clip.stop();
     }
-    
+    /**
+     * reproduce una cancion especificada y devuelve
+     * @param i indice de la cancion
+     * @return cancion cambiada
+     */
     public int musicatienda(int i) {
         int actual=9999;
         try{
@@ -64,7 +72,10 @@ public class Sonido {
         }catch(Exception e){}
         return actual;
     }
-    
+    /**
+     * reproduce un archivo de musica
+     * @param i indice de el archivo
+     */
     public void reproducirmusica(int i) {
         try{
             AudioInputStream ais= AudioSystem.getAudioInputStream(sonidoURL[i]);
@@ -76,7 +87,10 @@ public class Sonido {
             clip.loop(Clip.LOOP_CONTINUOUSLY);
         }catch(Exception e){}
     }
-    
+    /**
+     * reproduce un efecto de sonido
+     * @param i indice del archivo
+     */
     public void reproducirefecto(int i) {
         try{
             AudioInputStream ais= AudioSystem.getAudioInputStream(sonidoURL[i]);
@@ -87,7 +101,9 @@ public class Sonido {
             clip.start();
         }catch(Exception e){}
     }
-    
+    /**
+     * cambia el volumen segun corresponsa
+     */
     public void chequearVolumen(){
         switch(escalaVolumen){
             case 0-> volumen = -80f;

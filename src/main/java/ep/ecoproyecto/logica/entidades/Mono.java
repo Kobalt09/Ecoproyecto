@@ -3,7 +3,7 @@ import ep.ecoproyecto.gui.PanelJuego;
 import java.awt.Rectangle;
 import java.util.Random;
 /**
- * Comportamiento del NPC del Mono
+ * Comportamiento del entidades del Mono
  * @author C-A-F
  */
 public class Mono extends Entidad {

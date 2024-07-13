@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 import java.util.Random;
 
 /**
- * Comportamiento del NPC del Chiguire
+ * Comportamiento del entidades del Chiguire
  * @author C-A-F
  */
 public final class Chiguire extends Entidad {

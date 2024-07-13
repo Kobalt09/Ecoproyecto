@@ -22,6 +22,10 @@ public class ManejadorCasillas  implements Dibujado{
     public int numCasillaMapa[][];
     public String mapa[]= new String[6];
 
+    /**
+     * Constructor de la clase, inicializa los mapas
+     * @param pJuego Panel donde se ubicará la clase
+     */
     public ManejadorCasillas(PanelJuego pJuego) {
         
         this.pJuego = pJuego;
@@ -39,11 +43,13 @@ public class ManejadorCasillas  implements Dibujado{
          
         
         
-        cargarMapa(mapa[pJuego.mapaActual],0,0);
+        cargarMapa(mapa[pJuego.mapaActual]);
         getImagenCasilla();
         
     }
-    
+    /**
+     * inicializa las casillas
+     */
     private void getImagenCasilla(){
 
             
@@ -65,7 +71,12 @@ public class ManejadorCasillas  implements Dibujado{
             configuracion(15, "pared", true);
             configuracion(16, "pastoAma",false);
     }
-    
+    /**
+     * asigna a cada tipo de casilla una imagen y si tendrán colision
+     * @param id indice que ocupará la casilla
+     * @param ruta direccion de la imagen que se le asigna
+     * @param colision booleano para saber si chocaremos con esta o no
+     */
     public void configuracion(int id,String ruta, boolean colision){
         
         Herramientas herramienta = new Herramientas();
@@ -82,8 +93,11 @@ public class ManejadorCasillas  implements Dibujado{
         }
         
     }
-    
-    private void cargarMapa(String direccion, int dx,int dy){
+    /**
+     * Carga el mapa de un archivo de texto
+     * @param direccion direccion del archivo del mapa
+     */
+    private void cargarMapa(String direccion){
         try{
             
             
@@ -126,16 +140,18 @@ public class ManejadorCasillas  implements Dibujado{
             
         } 
     }
-    
-    public void actualizar(Jugador jugador,int dimX,int dimY){
-          
-        int i=jugador.xMapa/64; 
-        int j=jugador.yMapa/64;
+    /**
+     * Carga un mapa de nuevo
+     */
+    public void actualizar(){
 
-        cargarMapa(mapa[pJuego.mapaActual],i,j);        
+        cargarMapa(mapa[pJuego.mapaActual]);        
     
     }
-    
+    /**
+     * dibuja las casillas del mapa
+     * @param g2 base para el dibujado en pantalla
+     */
     @Override
     public void dibujado(Graphics2D g2){
         
