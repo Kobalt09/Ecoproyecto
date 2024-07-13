@@ -207,7 +207,7 @@ public class MenuIni extends javax.swing.JFrame {
             }
         }
         do{
-            nomb=JOptionPane.showInputDialog(this, "Por favor, introduzca su nombre de usuario:");        
+            nomb=JOptionPane.showInputDialog(this, "Por favor, introduzca su nombre de usuario:","Nombre de Usuario",JOptionPane.QUESTION_MESSAGE);        
         }while(nomb==null || nomb.trim().isEmpty());
         
         configurarVentana();
@@ -292,7 +292,9 @@ public class MenuIni extends javax.swing.JFrame {
     private void acercadeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercadeButtonActionPerformed
         String mensaje = "<html><body>" +
                 "<h2>ECOCROSSING</h2>" +
-                "<p><b>Versión:</b> 0.1.0</p>" +
+                "<p><b>Versión:</b> 0.1.5</p>" +
+                "<p><b>Lenguaje de Programación:</b> Java</p>" +
+                "<p><b>Librerías Externas:</b> javadoc, javax.swing, java.awt, java.util, java.io, javax.imageio, java.net, javax.sound.</p>" +
                 "<p><b>Desarrollado por:</b> Cristian Baczek, Alfonso Palma y Fernando Pérez</p>" +
                 "<p><b>Descripción:</b> EcoCrossing es una iniciativa para concientizar sobre las ODS a través de un juego interactivo.</p>" +
                 "<p><b>Agradecimientos especiales a:</b> RyiSnow y vanZeben.</p>" +
