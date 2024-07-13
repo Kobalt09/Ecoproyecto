@@ -23,6 +23,10 @@ public class WindowHandler implements WindowListener{
     public void windowOpened(WindowEvent e) {
     }
 
+    /**
+     * Escribe un paquete de desconectar cuando se cierra la ventana
+     * @param e notificador de evento
+     */
     @Override
     public void windowClosing(WindowEvent e) {
         Paquete01Desconectar packet = new Paquete01Desconectar(this.pJuego.jugador.getUsername());

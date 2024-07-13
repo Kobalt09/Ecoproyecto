@@ -37,7 +37,7 @@ public class Minijuegoagua extends Minijuego{
     public void comprobante(){
         terminado=true;
         for(int i=5;i<=8;i++){
-            if(pJuego.NPC[pJuego.mapaActual][i] instanceof Agujero Aux){
+            if(pJuego.entidades[pJuego.mapaActual][i] instanceof Agujero Aux){
                 if(Aux.estado.equals("Aguasucia")){
                     terminado=false;
                 }

@@ -14,11 +14,16 @@ import java.awt.Graphics2D;
 
 public class EmisorObjetos  implements Dibujado{
     PanelJuego pJuego;
-    
+    /**
+     * Constructor de la clase
+     * @param pJuego Panel donde se ubicará la clase
+     */
     public EmisorObjetos(PanelJuego pJuego){
         this.pJuego=pJuego;
     }
-    
+    /**
+     * Establece la posicion de los objetos en los mapas
+     */
     public void establecerObj(){
         
         //----MUNDO 1:-----//
@@ -36,11 +41,11 @@ public class EmisorObjetos  implements Dibujado{
         
         //----MUNDO 3:-----  tienda//   
         NumMap = 2;
-        pJuego.obj[NumMap][1]=new ObjetoMesa("mesa",7,1,pJuego);
-        pJuego.obj[NumMap][2]=new ObjetoMesa("mesa",6,1,pJuego);
-        pJuego.obj[NumMap][3]=new ObjetoMesa("mesa",5,1,pJuego);
-        pJuego.obj[NumMap][4]=new ObjetoMesa("mesa",4,1,pJuego);
-        pJuego.obj[NumMap][5]=new ObjetoMesa("mesa",3,1,pJuego);
+        pJuego.obj[NumMap][1]=new ObjetoMesa("mesa",8,3,pJuego);
+        pJuego.obj[NumMap][2]=new ObjetoMesa("mesa",7,3,pJuego);
+        pJuego.obj[NumMap][3]=new ObjetoMesa("mesa",6,3,pJuego);
+        pJuego.obj[NumMap][4]=new ObjetoMesa("mesa",5,3,pJuego);
+        pJuego.obj[NumMap][5]=new ObjetoMesa("mesa",4,3,pJuego);
         pJuego.obj[NumMap][6]=new ObjetoRecogible("coin",3,3,pJuego);
         pJuego.obj[NumMap][6]=new ObjetoRecogible("coin",2,5,pJuego);
         
@@ -53,6 +58,11 @@ public class EmisorObjetos  implements Dibujado{
         */
         
     }
+    
+    /**
+     * metodo para dibujar la imagen en el panel
+    *@param g2 base para los elementos graficos
+    */ 
     @Override
     public void dibujado(Graphics2D g2){
         

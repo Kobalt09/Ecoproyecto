@@ -11,10 +11,17 @@ public class Colisionador {
 
     private final PanelJuego pJuego;
 
+    /**
+     * Constructor de la clase
+     * @param pJuego panel en que se ubican las colisiones
+     */
     public Colisionador(PanelJuego pJuego) {
         this.pJuego=pJuego;
     }
-    
+    /**
+     * Revisa las colisiones de entidades
+     * @param entidad entidad con la que se revisa la colision
+     */
     public void revisarColision(Entidad entidad){
         int posiciojugadorizquierda=entidad.xMapa+entidad.hitBox.x;
         int posiciojugadorderecha=entidad.xMapa+entidad.hitBox.x+entidad.hitBox.width;
@@ -64,9 +71,13 @@ public class Colisionador {
             
         }
     }
-
-    //chequeo de colision con objetos
-    
+ 
+    /**
+     * Revisa las colisiones con objetos en las casilla alrededor del jugador
+     * @param entidad entidad del mapa
+     * @param jugador jugador principal de la instancia
+     * @return 
+     */
     
     public int chequeoObjetos(Entidad entidad, boolean jugador){
             int id=999;
@@ -137,6 +148,12 @@ public class Colisionador {
             return id;
         }
     
+    /**
+     * Revisa las colisiones con entidades en las casillas alrededor de una entidad
+     * @param entidad entidad para revisar la colision
+     * @param objetivos arreglo de varias entidades
+     * @return id de la entidad con la que se colisiona
+     */
     public int chequeoEntidades(Entidad entidad, Entidad[][] objetivos){
                     int id=999;
             
@@ -187,7 +204,13 @@ public class Colisionador {
             }
             return id;
     }
-
+   
+    /**
+     * Revisa las colisiones con entidades en las casillas alrededor del jugador
+     * @param entidad entidad del mapa
+     * @return 
+     */
+    
     public void chequeojugador(Entidad entidad){
                     entidad.hitBox.x=entidad.xMapa+entidad.hitBox.x;
                     entidad.hitBox.y=entidad.yMapa+entidad.hitBox.y;

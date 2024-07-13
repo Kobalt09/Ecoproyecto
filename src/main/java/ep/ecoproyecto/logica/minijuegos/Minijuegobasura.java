@@ -40,7 +40,7 @@ public class Minijuegobasura extends Minijuego{
         pJuego.obj[5][17]=new ObjetoRecogible("basura", 15,23, pJuego);
         //Npc
         
-        //pJuego.NPC[5][5]=new Papelera(pJuego,15,20);
+        //pJuego.entidades[5][5]=new Papelera(pJuego,15,20);
     }
     
     @Override
