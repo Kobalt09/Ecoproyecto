@@ -45,6 +45,7 @@ public class ManejadorEntidades  implements Dibujado, Actualizar{
         //prueba
         pJuego.entidades[NumMap][1]= new PuertaInteractuable(pJuego,"Ar",20,35,0  ,15, 2, 1);
         pJuego.entidades[NumMap][2]= new PuertaInteractuable(pJuego,"Ar",21,35,0  ,15, 2, 1);
+      
         //tienda
         pJuego.entidades[NumMap][3]= new PuertaInteractuable(pJuego,"puerta",13,9,0   ,4, 8, 2);
          pJuego.entidades[NumMap][4]= new PuertaInteractuable(pJuego,"puerta",12,9,0   ,4, 8, 2);
@@ -61,6 +62,7 @@ public class ManejadorEntidades  implements Dibujado, Actualizar{
         
         //----MUNDO 2:----- pruebas//
         NumMap = 1;
+
         pJuego.entidades[NumMap][0]= new Agujero(pJuego,10, 10);
         pJuego.entidades[NumMap][1]= new Agujero(pJuego,1, 5);
         pJuego.entidades[NumMap][2]= new Papelera(pJuego,1, 1);
@@ -93,6 +95,7 @@ public class ManejadorEntidades  implements Dibujado, Actualizar{
             pJuego.entidades[NumMap][1]= new PuertaInteractuable(pJuego,"Ab",15, 25, 4,   21,5,0);
             pJuego.entidades[NumMap][2]= new Turpial(pJuego,13,23);
             
+
             pJuego.entidades[NumMap][5]=new Agujero(pJuego,19,20);
             pJuego.entidades[NumMap][6]=new Agujero(pJuego,11,19);
             pJuego.entidades[NumMap][7]=new Agujero(pJuego,15,18);
@@ -105,8 +108,10 @@ public class ManejadorEntidades  implements Dibujado, Actualizar{
             NumMap = 5;
             pJuego.entidades[NumMap][0]= new PuertaInteractuable(pJuego,"De",22, 15, 5,   8,19,0);
             pJuego.entidades[NumMap][1]= new PuertaInteractuable(pJuego,"De",22, 14, 5,   8,18,0);
-            pJuego.entidades[NumMap][3]= new Zamuro(pJuego,18,14);
-            pJuego.entidades[NumMap][5]=new Papelera(pJuego,21,16);
+            pJuego.entidades[NumMap][2]= new Zamuro(pJuego,18,14);
+            pJuego.entidades[NumMap][3]=new Papelera(pJuego,21,16); 
+            
+
     }
     
     /**
