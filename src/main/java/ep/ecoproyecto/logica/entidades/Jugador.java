@@ -16,7 +16,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- *
+ * Clase del personaje jugable, para movimiento e interacciones
  * @author C-A-F
  */
 
@@ -25,7 +25,7 @@ public class Jugador extends Entidad{
     KeyHandler keyH;
     public final int pantallaX;
     public final int pantallaY;
-    protected String username;
+    protected String usuario;
     protected int mapa;
     
     public String sombreros[]= new String[10];
@@ -52,7 +52,7 @@ public class Jugador extends Entidad{
     public Jugador(PanelJuego pJuego) {
         super(pJuego);
         this.keyH=new KeyHandler();
-        this.username="";
+        this.usuario="";
         
         pantallaX=pJuego.screenWidth/2-(pJuego.tamanioCasilla/2);
         pantallaY=pJuego.screenHeight/2-(pJuego.tamanioCasilla/2);
@@ -74,12 +74,12 @@ public class Jugador extends Entidad{
         getPlayerImage();
     }
     
-    public Jugador(PanelJuego pJuego, KeyHandler keyH, String username){
+    public Jugador(PanelJuego pJuego, KeyHandler keyH, String usuario){
         
         super(pJuego);
         
         this.keyH=keyH;
-        this.username=username;
+        this.usuario=usuario;
         this.mapa=0;
         pantallaX=pJuego.screenWidth/2-(pJuego.tamanioCasilla/2);
         pantallaY=pJuego.screenHeight/2-(pJuego.tamanioCasilla/2);
@@ -123,7 +123,7 @@ public class Jugador extends Entidad{
         direction ="down"; 
         
         if(pJuego.socketserver!=null){
-        Paquete02Movimiento packet=new Paquete02Movimiento(username, this.xMapa, this.yMapa,this.direction);
+        Paquete02Movimiento packet=new Paquete02Movimiento(usuario, this.xMapa, this.yMapa,this.direction);
         packet.writeData(PanelJuego.juego.socketCliente);
         }
     }
@@ -133,7 +133,7 @@ public class Jugador extends Entidad{
     }
 
     public String getUsername() {
-        return username;
+        return usuario;
     }
     
     private void getPlayerImage(){
@@ -251,7 +251,7 @@ public class Jugador extends Entidad{
                     }
                 }
                 
-                Paquete02Movimiento packet=new Paquete02Movimiento(username, this.xMapa, this.yMapa,this.direction);
+                Paquete02Movimiento packet=new Paquete02Movimiento(usuario, this.xMapa, this.yMapa,this.direction);
                 packet.writeData(PanelJuego.juego.socketCliente);
                 
                 spriteCounter++;
@@ -587,10 +587,10 @@ public class Jugador extends Entidad{
                     g2.drawImage(sombrero,pantallaX,pantallaY,null);
                 }
                 
-                if (username != null){
+                if (usuario != null){
                     Fuentes tipoFuente=new Fuentes();
                     g2.setFont((tipoFuente.fuente(tipoFuente.upheaval,0,20)));
-                    int textX = pantallaX + (image.getWidth() - g2.getFontMetrics().stringWidth(username))/2 ;
+                    int textX = pantallaX + (image.getWidth() - g2.getFontMetrics().stringWidth(usuario))/2 ;
                     int textY = pantallaY - 5;
                     
                     //ANTI-LIASING
@@ -602,14 +602,14 @@ public class Jugador extends Entidad{
                     for (int i = -2; i <= 2; i++) {
                         for (int j = -2; j <= 2; j++) {
                             if (i != 0 || j != 0) {
-                                g2.drawString(username, textX + i, textY + j);
+                                g2.drawString(usuario, textX + i, textY + j);
                             }
                         }
                     }
 
                     //Letras Blancas//
                     g2.setColor(Color.WHITE);
-                    g2.drawString(username, textX, textY);
+                    g2.drawString(usuario, textX, textY);
 
 
 
@@ -622,10 +622,10 @@ public class Jugador extends Entidad{
                 g2.drawImage(image,dibX,dibY,null);
 
 
-                if (username != null){
+                if (usuario != null){
                     Fuentes tipoFuente=new Fuentes();
                     g2.setFont((tipoFuente.fuente(tipoFuente.upheaval,0,20)));
-                    int textX = dibX + (image.getWidth() - g2.getFontMetrics().stringWidth(username))/2 ;
+                    int textX = dibX + (image.getWidth() - g2.getFontMetrics().stringWidth(usuario))/2 ;
                     int textY = dibY - 5;
                     
                     //ANTI-LIASING
@@ -637,14 +637,14 @@ public class Jugador extends Entidad{
                     for (int i = -2; i <= 2; i++) {
                         for (int j = -2; j <= 2; j++) {
                             if (i != 0 || j != 0) {
-                                g2.drawString(username, textX + i, textY + j);
+                                g2.drawString(usuario, textX + i, textY + j);
                             }
                         }
                     }
                     
                     //Letras Blancas//
                     g2.setColor(Color.WHITE);
-                    g2.drawString(username, textX, textY);
+                    g2.drawString(usuario, textX, textY);
                 }
 
             }

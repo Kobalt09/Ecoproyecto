@@ -8,7 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- *
+ * Carga la configuracion de la ultima partida
  * @author C-A-F
  */
 public class Configuracion {

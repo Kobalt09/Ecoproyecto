@@ -1,12 +1,13 @@
-
 package ep.ecoproyecto.logica;
+
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 /**
- *
+ * Escala las imagenes
  * @author C-A-F
  */
+
 public class Herramientas {
     public BufferedImage imagenEscalada(BufferedImage original, int ancho, int alto){
         

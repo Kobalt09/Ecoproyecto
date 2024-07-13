@@ -1,37 +1,40 @@
 package ep.ecoproyecto.logica.net.packets;
+
 import ep.ecoproyecto.logica.net.Cliente;
 import ep.ecoproyecto.logica.net.Servidor;
+
 /**
- *
+ * Paquete que recibe la informacion de inicio de seciones de jugadores
  * @author C-A-F
  */
+
 public class Paquete00Login extends Paquete{
     
-    private String username,dir;
+    private String usuario,dir;
     private int x,y,mapa;
     
     
     public Paquete00Login(byte[] data) {
         super(00);
         String[] datos = readData(data).split(",");
-        this.username = datos[0];
+        this.usuario = datos[0];
         this.x=Integer.parseInt(datos[1]);
         this.y=Integer.parseInt(datos[2]);
         this.dir=datos[3];
         this.mapa=Integer.parseInt(datos[4]);
     }
 
-    public Paquete00Login(String username,int x,int y,String dir,int mapa) {
+    public Paquete00Login(String usuario,int x,int y,String dir,int mapa) {
         super(00);
-        this.username = username;
+        this.usuario = usuario;
         this.x=x;
         this.y=y;
         this.dir=dir;
         this.mapa=mapa;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String usuario) {
+        this.usuario = usuario;
     }
 
     public void setDir(String dir) {
@@ -51,7 +54,7 @@ public class Paquete00Login extends Paquete{
     }
 
     public String getUsername() {
-        return username;
+        return usuario;
     }
 
     public String getDir() {
@@ -82,7 +85,7 @@ public class Paquete00Login extends Paquete{
 
     @Override
     public byte[] getData() {
-        return ("00" + this.username+","+x+","+ y+","+dir+","+mapa ).getBytes();
+        return ("00" + this.usuario+","+x+","+ y+","+dir+","+mapa ).getBytes();
     }
     
 }

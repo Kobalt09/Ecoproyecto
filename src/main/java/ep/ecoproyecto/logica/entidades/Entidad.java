@@ -9,7 +9,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- *
+ * Clase base para las entidades jugables y no jugables
  * @author C-A-F
  */
 

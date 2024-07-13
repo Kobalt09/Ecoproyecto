@@ -1,8 +1,9 @@
 package ep.ecoproyecto.logica;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.net.packets.Paquete03Mapa;
+
 /**
- *
+ * Se encarga de eventos de interacciones
  * @author C-A-F
  */
 

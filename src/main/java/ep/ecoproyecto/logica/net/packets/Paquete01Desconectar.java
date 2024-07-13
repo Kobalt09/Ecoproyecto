@@ -1,30 +1,33 @@
 package ep.ecoproyecto.logica.net.packets;
+
 import ep.ecoproyecto.logica.net.Cliente;
 import ep.ecoproyecto.logica.net.Servidor;
+
 /**
- *
+ * Paquete de datos que se encarga de los usuarios desconectados
  * @author C-A-F
  */
+
 public class Paquete01Desconectar extends Paquete{
     
-    private String username;
+    private String usuario;
     
     public Paquete01Desconectar(byte[] data) {
         super(01);
-        this.username = readData(data);
+        this.usuario = readData(data);
     }
 
-    public Paquete01Desconectar(String username) {
+    public Paquete01Desconectar(String usuario) {
         super(01);
-        this.username = username;
+        this.usuario = usuario;
     }
 
     public String getUsername() {
-        return username;
+        return usuario;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String usuario) {
+        this.usuario = usuario;
     }
 
     @Override
@@ -39,7 +42,7 @@ public class Paquete01Desconectar extends Paquete{
 
     @Override
     public byte[] getData() {
-        return ("01" + this.username).getBytes();
+        return ("01" + this.usuario).getBytes();
     }
     
 }

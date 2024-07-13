@@ -1,4 +1,5 @@
 package ep.ecoproyecto.logica;
+
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.Interfaces.Actualizar;
 import ep.ecoproyecto.logica.Interfaces.Dibujado;
@@ -16,7 +17,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 /**
- *
+ * Asigna, dibuja y actualiza a las entidades
  * @author C-A-F
  */
 
@@ -63,7 +64,7 @@ public class ManejadorEntidades  implements Dibujado, Actualizar{
         //----MUNDO 3:-----  tienda//   
             NumMap = 2;
             pJuego.NPC[NumMap][2]= new Mono(pJuego, 5, 5);
-            pJuego.NPC[NumMap][1]= new Tienda(pJuego,7,1);
+            pJuego.NPC[NumMap][1]= new Tienda(pJuego,5,1);
             pJuego.NPC[NumMap][0]= new PuertaInteractuable(pJuego,"Ab",5, 10, 2,   12,11,0);
         
         //----MUNDO 4:-----derecha//

@@ -1,4 +1,5 @@
 package ep.ecoproyecto.logica.net;
+
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.entidades.JugadorMP;
 import ep.ecoproyecto.logica.net.packets.Paquete;
@@ -15,10 +16,12 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+
 /**
- *
+ * Jugador que establece conexion con el servidor
  * @author C-A-F
  */
+
 public class Cliente extends Thread{
     private InetAddress direccionIP;
     private DatagramSocket socket;

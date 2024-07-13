@@ -1,10 +1,10 @@
-
 package ep.ecoproyecto.logica;
+
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.entidades.Entidad;
 
 /**
- *
+ * Revisa si colisiona el jugador con alguna entidad
  * @author C-A-F
  */
 public class Colisionador {

@@ -2,10 +2,12 @@ package ep.ecoproyecto.logica.entidades;
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.KeyHandler;
 import java.net.InetAddress;
+
 /**
- *
+ * Define los jugadores para el multijugador
  * @author C-A-F
  */
+
 public class JugadorMP extends Jugador{
     public InetAddress direccionIP;
     public int puerto;
