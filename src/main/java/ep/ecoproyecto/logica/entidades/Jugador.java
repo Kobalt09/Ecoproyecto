@@ -418,7 +418,7 @@ public class Jugador extends Entidad{
                 }
                 switch (pJuego.NPC[pJuego.mapaActual][id]) {
                     case Tienda  aux -> {
-                        pJuego.hud.mostrarmensaje("tienda");
+                        pJuego.hud.mostrarmensaje("Tienda");
                         estado=estadotienda;
                     }
                     case PuertaInteractuable  aux -> {
