@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ep.ecoproyecto.logica.entidades;
 
 import ep.ecoproyecto.gui.PanelJuego;
@@ -12,9 +8,10 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- *
- * @author Cris
+ * Asigna una casilla especial para el minijuego de recoger basura del agua
+ * @author C-A-F
  */
+
 public final class Aguaconbasura extends Entidad{
 
     public String estado;

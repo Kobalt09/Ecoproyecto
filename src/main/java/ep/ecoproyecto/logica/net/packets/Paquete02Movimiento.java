@@ -1,13 +1,15 @@
 package ep.ecoproyecto.logica.net.packets;
 import ep.ecoproyecto.logica.net.Cliente;
 import ep.ecoproyecto.logica.net.Servidor;
+
 /**
- *
+ * Paquete de datos para el movimiento de los jugadores
  * @author C-A-F
  */
+
 public class Paquete02Movimiento extends Paquete{
     
-    private String username,dir;
+    private String usuario,dir;
     private int x,y;
     
     
@@ -15,16 +17,16 @@ public class Paquete02Movimiento extends Paquete{
         super(02);
         String[] dataArray=readData(data).split(",");
         
-        this.username = dataArray[0];   
+        this.usuario = dataArray[0];   
         this.x=Integer.parseInt(dataArray[1]);
         this.y=Integer.parseInt(dataArray[2]);
         this.dir = dataArray[3];
         
     }
 
-    public Paquete02Movimiento(String username,int x,int y,String dir) {
+    public Paquete02Movimiento(String usuario,int x,int y,String dir) {
         super(02);
-        this.username = username;
+        this.usuario = usuario;
         this.x=x;
         this.y=y;
         this.dir=dir;
@@ -35,7 +37,7 @@ public class Paquete02Movimiento extends Paquete{
     }
     
     public String getUsername() {
-        return username;
+        return usuario;
     }
 
     public int getX() {
@@ -46,8 +48,8 @@ public class Paquete02Movimiento extends Paquete{
         return y;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String usuario) {
+        this.usuario = usuario;
     }
 
     public void setDir(String dir) {
@@ -77,7 +79,7 @@ public class Paquete02Movimiento extends Paquete{
     
     @Override
     public byte[] getData() {
-        return ("02" + this.username+","+this.x+","+this.y+","+this.dir).getBytes();
+        return ("02" + this.usuario+","+this.x+","+this.y+","+this.dir).getBytes();
     }
     
 }

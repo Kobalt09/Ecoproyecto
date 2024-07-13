@@ -1,11 +1,14 @@
 package ep.ecoproyecto.logica.entidades;
+
 import ep.ecoproyecto.gui.PanelJuego;
 import java.awt.Rectangle;
 import java.util.Random;
+
 /**
- *
+ * Comportamiento del NPC del zamuro
  * @author C-A-F
  */
+
 public final class Zamuro extends Entidad {
     
     public boolean misioncumplida=false;

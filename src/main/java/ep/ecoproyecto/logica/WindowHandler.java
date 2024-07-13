@@ -1,12 +1,15 @@
 package ep.ecoproyecto.logica;
+
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.net.packets.Paquete01Desconectar;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+
 /**
- *
+ * Se usa para ver si se cerró el panel con el que se trabajo
  * @author C-A-F
  */
+
 public class WindowHandler implements WindowListener{
     
     private final PanelJuego pJuego;

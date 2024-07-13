@@ -14,7 +14,7 @@ public class JpanelImagen extends JLabel {
     private final String path;
     
     /**
-
+    * Constructor
     *@param panel el panel sobre el que se trabajará
     *@param path es la direccion de la imagen a mostrar 
 
@@ -29,7 +29,7 @@ public class JpanelImagen extends JLabel {
     /**
      * metodo para dibujar la imagen en el panel
     *@param g base para los elementos graficos
-    */
+    */ 
     
     @Override
     public void paint(Graphics g) {

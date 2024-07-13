@@ -1,11 +1,14 @@
 package ep.ecoproyecto.logica.entidades;
+
 import ep.ecoproyecto.gui.PanelJuego;
 import java.awt.Rectangle;
 import java.util.Random;
+
 /**
- *
+ * Comportamiento del NPC de la Tonina
  * @author C-A-F
  */
+
 public final class Tonina extends Entidad {
     
     public boolean misioncumplida=false;

@@ -1,5 +1,5 @@
-
 package ep.ecoproyecto.logica;
+
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.entidades.Jugador;
 import ep.ecoproyecto.logica.tipografia.Fuentes;
@@ -13,9 +13,10 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- *
+ * Maeja los elementos de informacion para el jugador
  * @author C-A-F
  */
+
 public class InterfazJugador{
     public PanelJuego pJuego;
     public Fuentes fuente= new Fuentes();

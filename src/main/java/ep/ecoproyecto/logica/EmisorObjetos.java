@@ -1,16 +1,17 @@
 package ep.ecoproyecto.logica;
+
 import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.Interfaces.Dibujado;
 import ep.ecoproyecto.logica.objetos.Casa;
-import ep.ecoproyecto.logica.objetos.ObjetoEquipo;
 import ep.ecoproyecto.logica.objetos.ObjetoMesa;
 import ep.ecoproyecto.logica.objetos.ObjetoRecogible;
 import java.awt.Graphics2D;
 
 /**
- *
+ *Clase que coloca y dibuja los objetos en pantalla
  * @author C-A-F
  */
+
 public class EmisorObjetos  implements Dibujado{
     PanelJuego pJuego;
     

@@ -1,16 +1,21 @@
 package ep.ecoproyecto.logica.entidades;
-import ep.ecoproyecto.gui.PanelJuego;
 
+import ep.ecoproyecto.gui.PanelJuego;
 import ep.ecoproyecto.logica.objetos.ObjetoEquipo;
 import ep.ecoproyecto.logica.objetos.ObjetoRecogible;
 import java.awt.Rectangle;
 
 /**
- *
+ * Clase para la tienda
  * @author C-A-F
  */
 public final class Tienda extends Entidad {
-    
+    /**
+     * Constructor
+     * @param pJuego panel donde se dibujará la tienda
+     * @param x casilla horizontal de la tienda
+     * @param y casilla vertical de la tienda
+     */
     
     public Tienda(PanelJuego pJuego, int x, int y) {
         super(pJuego);
@@ -22,14 +27,16 @@ public final class Tienda extends Entidad {
         right1=right2=up1=up2=left1=left2=down2=down1= this.configuracion("/objetos/CajaRegistradora");
         colision=true;
         
-        hitBox= new Rectangle(0,0,64,64);
+        hitBox= new Rectangle(-128,32,128,64);
         areadefectoX=hitBox.x;
         areadefectoY=hitBox.y;
         movimiento=false;
         establecerTienda();
     }
     
-    
+    /**
+     * metodo que establece los objetos que se venderan en la tienda y sus precios
+     */
     public void establecerTienda(){
         this.inventario[0]=new ObjetoEquipo("Botas",16,6,pJuego);
         this.inventario[0].setPrecio(10);
